@@ -4,9 +4,6 @@ from active_user.models import active_user
 from django.db import models
 
 
-class madadkar(active_user):
-    bio = models.TextField(null=True)
-
 
 
 

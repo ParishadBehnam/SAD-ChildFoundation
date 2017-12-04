@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'system.apps.SystemConfig',
+    'madadjoo.apps.MadadjooConfig',
+    'madadkar.apps.MadadkarConfig',
+    'hamyar.apps.HamyarConfig',
     'active_user.apps.ActiveUserConfig',
 ]
 
