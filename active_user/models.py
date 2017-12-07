@@ -19,19 +19,19 @@ class active_user(AbstractUser):
 
     class Meta:
         verbose_name_plural = _("کاربران فعال")
-        verbose_name = _("کاربران فعال")
+        verbose_name = _("کاربر فعال")
 
 class madadkar(active_user):
     bio = models.TextField(null=True, verbose_name="شرح حال")
 
     class Meta:
         verbose_name_plural = _("مددکاران")
-        verbose_name = _("مددکاران")
+        verbose_name = _("مددکار")
 
 class hamyar(active_user):
     class Meta:
         verbose_name_plural = _("همیاران")
-        verbose_name = _("همیاران")
+        verbose_name = _("همیار")
 
 
 class madadjoo(active_user):
@@ -45,7 +45,7 @@ class madadjoo(active_user):
 
     class Meta:
         verbose_name_plural = _("مددجویان")
-        verbose_name = _("مددجویان")
+        verbose_name = _("مددجو")
 
 
 class madadkar_remove_madadjoo():

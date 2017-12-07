@@ -13,7 +13,7 @@ class information(models.Model):
 
     class Meta:
         verbose_name_plural = _("اطلاعات کلان سامانه")
-        verbose_name= _("اطلاعات کلان سامانه")
+        verbose_name= _("اطلاع کلان سامانه")
 
 
 
