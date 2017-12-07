@@ -3,11 +3,17 @@
 {% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
 {% block extrastyle %}
     <style>
-#header{ background-color: #800000; border-bottom: solid 3px rgba(155, 78, 79, 0.36); }
+        #header{ background-color: #800000; border-bottom: solid 3px rgba(155, 78, 79, 0.36); }
 
-#branding h1{ color: #fff; }
-.module h2, .module caption, .inline-group h2 { background: rgba(204, 136, 132, 0.44) bottom left repeat-x; color: #800000; }
-a.section:link, a.section:visited { color: #666666; }
+        #branding h1{ color: #fff; }
+        .module h2, .module caption, .inline-group h2 { background: rgba(204, 136, 132, 0.44) bottom left repeat-x; color: #800000; }
+        a.section:link, a.section:visited { color: #666666; }
+
+        .submit-row input{ background-color: #d07773 }
+
+        .submit-row input.default{ background-color: #d04f4f }
+
+        div.breadcrumbs {background-color: #d07773}
 </style>
 {% endblock %}
 {% block branding %}
