@@ -4,24 +4,56 @@ from __future__ import unicode_literals
 from django.db import models
 
 from django.contrib.auth.models import AbstractUser
+from system.models import information
+from django.utils.translation import ugettext_lazy as _
+
+
 
 
 class active_user(AbstractUser):
-    first_name = models.CharField(max_length=100, null=True)
-    last_name = models.CharField(max_length=100, null=True)
-    id_number = models.IntegerField(unique=True, null=False)
-    phone_number = models.IntegerField(null=True)
-    address = models.TextField(null=True)
+    first_name = models.CharField(max_length=100, null=True, verbose_name="نام")
+    last_name = models.CharField(max_length=100, null=True, verbose_name="نام خانوادگی")
+    id_number = models.IntegerField(unique=True, null=False, verbose_name="کد ملی")
+    phone_number = models.IntegerField(null=True, verbose_name="شماره تلفن")
+    address = models.TextField(null=True, verbose_name="آدرس")
+
+    class Meta:
+        verbose_name_plural = _("کاربران فعال")
+        verbose_name = _("کاربران فعال")
+
+class madadkar(active_user):
+    bio = models.TextField(null=True, verbose_name="شرح حال")
+
+    class Meta:
+        verbose_name_plural = _("مددکاران")
+        verbose_name = _("مددکاران")
+
+class hamyar(active_user):
+    class Meta:
+        verbose_name_plural = _("همیاران")
+        verbose_name = _("همیاران")
 
 
 class madadjoo(active_user):
-    bio = models.TextField(null=True)
-    edu_status = models.TextField(null=True)
-    successes = models.TextField(null=True)
-    confirmed = models.BooleanField(default=False)
-    removed = models.BooleanField(default=False)
-    invest_percentage = models.FloatField(default=0.0, null=True)
+    bio = models.TextField(null=True, verbose_name="شرح حال")
+    edu_status = models.TextField(null=True, verbose_name="وضعیت تحصیلی")
+    successes = models.TextField(null=True, verbose_name="شرح موفقیت‌ها")
+    confirmed = models.BooleanField(default=False, verbose_name="تایید شده")
+    removed = models.BooleanField(default=False, verbose_name="حذف شده")
+    invest_percentage = models.FloatField(default=0.0, null=True, verbose_name="درصد پس‌انداز")
+    corr_madadkar = models.ForeignKey(madadkar, on_delete=models.CASCADE, verbose_name="مددجوی حمایت‌کننده")
+
+    class Meta:
+        verbose_name_plural = _("مددجویان")
+        verbose_name = _("مددجویان")
+
+
+class madadkar_remove_madadjoo():
     madadkar = models.ForeignKey(madadkar, on_delete=models.CASCADE)
+    madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE, unique=True)
+    hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
+    text = models.TextField()
+    date = models.DateField()
 
 
 class madadjoo_madadkar_letter():
@@ -41,9 +73,6 @@ class requirements():
     urgent = models.BooleanField(default=False)
     cash = models.BooleanField(default=True)
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
-
-class hamyar(active_user):
-    pass
 
 class hamyar_system_payment():
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
@@ -101,12 +130,4 @@ class madadjoo_hamyar_letter():
     class Meta:
         unique_together = (("hamyar", "date", "madadjoo"),)
 
-class madadkar(active_user):
-    bio = models.TextField(null=True)
 
-class madadkar_remove_madadjoo():
-    madadkar = models.ForeignKey(madadkar, on_delete=models.CASCADE)
-    madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE, unique=True)
-    hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
-    text = models.TextField()
-    date = models.DateField()

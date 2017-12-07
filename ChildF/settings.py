@@ -40,9 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'system.apps.SystemConfig',
-    'madadjoo.apps.MadadjooConfig',
-    'madadkar.apps.MadadkarConfig',
-    'hamyar.apps.HamyarConfig',
     'active_user.apps.ActiveUserConfig',
 ]
 
@@ -61,8 +58,7 @@ ROOT_URLCONF = 'ChildF.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], # <- add this line
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
