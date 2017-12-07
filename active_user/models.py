@@ -11,6 +11,9 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class active_user(AbstractUser):
+    AbstractUser._meta.get_field('username').verbose_name = "نام کاربری"
+    AbstractUser._meta.get_field('password').verbose_name = "کلمه عبور"
+
     first_name = models.CharField(max_length=100, null=True, verbose_name="نام")
     last_name = models.CharField(max_length=100, null=True, verbose_name="نام خانوادگی")
     id_number = models.IntegerField(unique=True, null=False, verbose_name="کد ملی")
