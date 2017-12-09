@@ -3,11 +3,22 @@ body {
     /*float: left;*/
     /*text-align: right;*/
 }
-.container {
+body a{
+    color: black;
+}
+body .container {
     margin-top: 1%;
 }
-.navbar {
+body .navbar {
     background-color: #800000;
+}
+body nav.navbar.navbar-expand-lg a{
     color: white;
 }
-
+body a:hover {
+    color: blueviolet;
+    text-decoration: none;
+}
+/*body nav .btn:hover {*/
+    /*background-color: dimgray;*/
+/*}*/
