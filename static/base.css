@@ -1,0 +1,13 @@
+body {
+    direction: rtl;
+    /*float: left;*/
+    /*text-align: right;*/
+}
+.container {
+    margin-top: 1%;
+}
+.navbar {
+    background-color: #800000;
+    color: white;
+}
+
