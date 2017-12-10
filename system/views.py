@@ -10,6 +10,9 @@ from django.shortcuts import render
 def show_madadjoo(request):
     return render(request, 'show_madadjoo.html')
 
+def hamyar_register(request):
+    return render(request, 'hamyar_register.html')
+
 def general_information(request):
     return render(request, 'general_information.html')
 
