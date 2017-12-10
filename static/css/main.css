@@ -9,7 +9,8 @@ body {
       text-decoration: none; }
   body .container {
     margin-top: 1%; }
-  body .navbar {
+  body nav.navbar-expand-lg.navbar {
+    height: 64px;
     background-color: #800000; }
   body nav.navbar.navbar-expand-lg a {
     color: white; }

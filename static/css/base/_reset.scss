@@ -14,8 +14,10 @@ body {
     .container {
       margin-top: 1%;
     }
-    .navbar {
+    nav.navbar-expand-lg.navbar {
+      height: 64px;
       background-color: $navbar-color;
+;
     }
     nav.navbar.navbar-expand-lg a{
        color: $navbar-text-color;
