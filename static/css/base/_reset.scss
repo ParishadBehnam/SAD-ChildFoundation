@@ -1,0 +1,28 @@
+@import "../helpers/colors";
+
+body {
+    direction: rtl;
+    /*float: left;*/
+    /*text-align: right;*/
+    a {
+      color: black;
+      &:hover {
+      color: blueviolet;
+      text-decoration: none;
+      }
+    }
+    .container {
+      margin-top: 1%;
+    }
+    .navbar {
+      background-color: $navbar-color;
+    }
+    nav.navbar.navbar-expand-lg a{
+       color: $navbar-text-color;
+    }
+}
+
+
+/*body nav .btn:hover {*/
+    /*background-color: dimgray;*/
+/*}*/
