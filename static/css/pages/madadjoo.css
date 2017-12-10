@@ -1,0 +1,26 @@
+body {
+  direction: rtl;
+  /*float: left;*/
+  /*text-align: right;*/ }
+  body a {
+    color: black; }
+    body a:hover {
+      color: blueviolet;
+      text-decoration: none; }
+  body .container {
+    margin-top: 1%; }
+  body .navbar {
+    background-color: #800000; }
+  body nav.navbar.navbar-expand-lg a {
+    color: white; }
+
+/*body nav .btn:hover {*/
+/*background-color: dimgray;*/
+/*}*/
+body .container {
+  margin-top: 1%; }
+  body .container .card-deck .card .card-body .card-footer {
+    width: 70%;
+    background-color: red; }
+
+/*# sourceMappingURL=madadjoo.css.map */
