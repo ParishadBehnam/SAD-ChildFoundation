@@ -27,11 +27,14 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">خانه <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">پنل کاربری</a>
+    </ul>
+      {% block exit %}
+          <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">ورود <span class="sr-only">(current)</span></a>
       </li>
     </ul>
-      {% block exit %}{% endblock %}
+      {% endblock %}
     <form class="form-inline">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>

@@ -1,0 +1,16 @@
+@import '../base/_reset';
+
+body {
+  .container {
+    #accordion {
+      .card {
+        .card-header {
+          background-color: rgba(204, 136, 132, 0.44);
+        }
+        .card-body {
+          background-color: rgba(234, 207, 205, 0.44);
+        }
+      }
+    }
+  }
+}

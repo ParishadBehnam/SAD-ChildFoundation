@@ -8,7 +8,7 @@ body {
       color: blueviolet;
       text-decoration: none; }
   body .container {
-    margin-top: 1%; }
+    margin-top: 3%; }
   body nav.navbar-expand-lg.navbar {
     height: 64px;
     background-color: #800000; }
@@ -18,5 +18,29 @@ body {
 /*body nav .btn:hover {*/
 /*background-color: dimgray;*/
 /*}*/
+body {
+  direction: rtl;
+  /*float: left;*/
+  /*text-align: right;*/ }
+  body a {
+    color: black; }
+    body a:hover {
+      color: blueviolet;
+      text-decoration: none; }
+  body .container {
+    margin-top: 3%; }
+  body nav.navbar-expand-lg.navbar {
+    height: 64px;
+    background-color: #800000; }
+  body nav.navbar.navbar-expand-lg a {
+    color: white; }
+
+/*body nav .btn:hover {*/
+/*background-color: dimgray;*/
+/*}*/
+body .container #accordion .card .card-header {
+  background-color: rgba(204, 136, 132, 0.44); }
+body .container #accordion .card .card-body {
+  background-color: rgba(234, 207, 205, 0.44); }
 
 /*# sourceMappingURL=main.css.map */
