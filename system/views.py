@@ -13,6 +13,9 @@ def show_madadjoo(request):
 def hamyar_register(request):
     return render(request, 'hamyar_register.html')
 
+def login(request):
+    return render(request, 'login.html')
+
 def general_information(request):
     return render(request, 'general_information.html')
 

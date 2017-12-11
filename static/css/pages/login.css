@@ -1,0 +1,50 @@
+@font-face {
+  font-family: BYas;
+  src: url("../../fonts/BYas.eot") format("eot"), url("../../fonts/BYas.woff") format("woff"), url("../../fonts/BYas.ttf") format("truetype"); }
+@font-face {
+  font-family: BNazanin;
+  src: url("../../fonts/BNazanin.eot") format("eot"), url("../../fonts/BNazanin.woff") format("woff"), url("../../fonts/BNazanin.ttf") format("truetype"); }
+@font-face {
+  font-family: 'BBardiya';
+  src: url("../../fonts/BBardiya.eot?#") format("eot"), url("../../fonts/BBardiya.woff") format("woff"), url("../../fonts/BBardiya.ttf") format("truetype"); }
+@font-face {
+  font-family: BBardiya;
+  src: url("../../fonts/BBardiya.eot?#") format("eot"), url("../../fonts/BBardiya.woff") format("woff"), url("../../fonts/BBardiya.ttf") format("truetype"); }
+body {
+  font-family: 'BBardiya', Tahoma;
+  direction: rtl;
+  /*float: left;*/
+  /*text-align: right;*/ }
+  body a {
+    color: black; }
+    body a:hover {
+      color: blueviolet;
+      text-decoration: none; }
+  body .container.text-right {
+    margin-top: 3%;
+    margin-bottom: 3%; }
+    body .container.text-right h4 {
+      color: #666; }
+  body nav.navbar {
+    background-color: #800000; }
+  body nav.navbar-header.navbar a {
+    color: white; }
+
+ul.nav-pills {
+  width: 140px;
+  margin-top: 20px;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067); }
+
+ul.nav-pills.affix {
+  top: 20px;
+  /* Set the top position of pinned element */ }
+
+body {
+  position: relative; }
+
+/*body nav .btn:hover {*/
+/*background-color: dimgray;*/
+/*}*/
+
+/*# sourceMappingURL=login.css.map */

@@ -1,0 +1,13 @@
+@import '../base/_reset';
+
+body {
+  .panel-default {
+    ul.nav-pills {
+      //width: 25%;
+      height: 500px;
+    }
+    .nav {
+      display: inherit;
+    }
+  }
+}
