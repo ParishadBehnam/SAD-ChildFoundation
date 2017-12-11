@@ -4,12 +4,11 @@
 
 
     <div class="row">
-        <div class="col-sm-4"><h4>مشاهده‌ی مددجویان</h4></div>
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4">
+        <div class="col-6"><h4>مشاهده‌ی مددجویان</h4></div>
+        <div class="col-6">
 
             <nav aria-label="Page navigation example">
-                <ul class="pagination d-flex align-items-start">
+                <ul class="pagination">
                     <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                     <li class="page-item"><a class="page-link" href="#">1</a></li>
                     <li class="page-item"><a class="page-link" href="#">2</a></li>
@@ -21,22 +20,24 @@
         </div>
     </div>
     {% for i in "xx" %}
-        <div class="card-deck">
-        {% for i in "xxxx" %}
-            <div class="card border-secondary mb-3">
-                <img class="card-img-top"
-                     src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
-                     alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">نام مددجو</h5>
-                    <p class="card-text">این یک متن امتحانی‌ست. توجه نکنید:))</p>
-                    <p class="card-text">
-                    <div class="card-footer bg-transparent">
-                        <a href="http://google.com" class="btn btn-secondary">نمایش مشخصات مددجو</a>
+        <div class="row">
+            {% for i in "xxxx" %}
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="card border-secondary mb-3">
+                        <img class="card-img-top"
+                             src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
+                             alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">نام مددجو</h5>
+                            <p class="card-text">این یک متن امتحانی‌ست. توجه نکنید:))</p>
+                            <p class="card-text">
+                            <div class="card-footer bg-transparent">
+                                <a href="http://google.com" class="btn btn-secondary">نمایش مشخصات مددجو</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
         </div>
     {% endfor %}
 
