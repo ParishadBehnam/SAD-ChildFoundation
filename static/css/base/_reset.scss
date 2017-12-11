@@ -1,15 +1,8 @@
 @import "../helpers/colors";
 @import "../helpers/fonts";
 
-@font-face {
-    font-family: BBardiya;
-          src : url('../../fonts/BBardiya.eot?#') format('eot'),
-          url('../../fonts/BBardiya.woff') format('woff'),
-          url('../../fonts/BBardiya.ttf') format('truetype');
-}
-
 body {
-  font-family: 'BBardiya', Tahoma;
+  font-family: BJalal;
   //position: relative;
   direction: rtl;
   /*float: left;*/
@@ -17,7 +10,7 @@ body {
   a {
     color: black;
     &:hover {
-      color: blueviolet;
+      color: lightcoral;
       text-decoration: none;
     }
   }
@@ -37,20 +30,6 @@ body {
   }
 }
 
-ul.nav-pills {
-  width: 140px;
-  margin-top: 20px;
-  border-radius: 4px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
-}
-
-ul.nav-pills.affix {
-  top: 20px; /* Set the top position of pinned element */
-}
-
-body {
-  position: relative;
-}
 
 /*body nav .btn:hover {*/
 /*background-color: dimgray;*/
