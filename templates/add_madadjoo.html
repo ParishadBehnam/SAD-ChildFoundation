@@ -1,25 +1,15 @@
 {% extends "base_madadjoo_info.html" %}
 
 {% block buttons %}
-    <button type="button" class="btn btn-danger">حذف</button>
-    <button type="button" class="btn btn-outline-success">تایید شده</button>
-
+    <button type="button" class="btn btn-outline-danger">تایید نشده</button>
 {% endblock %}
-
-
-
 {% block below_image %}
-
-    <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action disabled">
-            نام همیاران
-        </a>
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۱</a>
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۲</a>
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۳</a>
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۴</a>
-    </div>
-
+    <form>
+        <div class="form-group text-center">
+            <label for="FormControlFile">عکس را انتخاب کنید</label>
+            <input type="file" class="form-control-file" id="FormControlFile">
+        </div>
+    </form>
 {% endblock %}
 
 {% block name %}
@@ -71,13 +61,7 @@
 
 {% block need %}
     {% include "snippets/need_snippet_edit.html" %}
-    <p>لیست نیاز‌ها</p>
-    <hr>
-    {% include "snippets/need_snippet_edit.html" %}
-    {% include "snippets/need_snippet_edit.html" %}
-    <button type="button" class="btn btn-success">ثبت تغییرات</button>
-
-
+    <button type="button" class="btn btn-success">ثبت مددجو</button>
 
 {% endblock %}
 

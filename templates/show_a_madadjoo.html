@@ -1,120 +1,75 @@
-{% extends "base_registered.html" %}
+{% extends "base_madadjoo_info.html" %}
 
-{% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6 col-md-4 mr-auto">
-                <h4>مشخصات مددجو</h4>
-            </div>
-            <div class="col-sm-6 col-md-4 mr-auto">
-                <a href="edit_madadjoo">
-                    <button type="button" class="btn btn-warning"> ویرایش</button>
-                </a>
-                <button type="button" class="btn btn-danger">حذف</button>
-
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-3">
-                <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
-                     alt="نام مددجو" class="img-thumbnail">
-
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action disabled">
-                        نام همیاران
-                    </a>
-                    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۱</a>
-                    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۲</a>
-                    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۳</a>
-                    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۴</a>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <form>
-                    <div class="form-group row">
-                        <label for="staticName" class="col-md-1 col-form-label">نام</label>
-                        <div class="col-md-4">
-                            <input type="text" id="staticName" readonly class="form-control-plaintext form-control"
-                                   value="نام مددجو">
-                        </div>
-                        <label for="staticLastName" class="col-md-2 col-form-label">نام خانوادگی</label>
-                        <div class="col-md-5">
-                            <input type="text" readonly class="form-control-plaintext form-control" id="staticLastName"
-                                   value="نام خانوادگی مددجو">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="staticbio" class="col-md-1 col-form-label">مشخصات</label>
-                        <div class="col-md-11">
-                            <textarea rows="7" id="staticbio" readonly class="form-control-plaintext form-control"
-                                      placeholder="مشخصات مددجو در این‌جا وارد می‌شود"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="staticdisc" class="col-md-1 col-form-label">شرح‌حال</label>
-                        <div class="col-md-11">
-                            <textarea rows="7" id="staticdisc" readonly class="form-control-plaintext form-control"
-                                      placeholder="شرح حال مددجو در این‌جا وارد می‌شود"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="staticedu" class="col-md-1 col-form-label">وضعیت تحصیلی</label>
-                        <div class="col-md-11">
-                            <textarea rows="7" id="staticedu" readonly class="form-control-plaintext form-control"
-                                      placeholder="وضعیت تحصیلی مددجو در این‌جا وارد می‌شود"></textarea>
-                        </div>
-                    </div>
-
-                    {% for i in "xy" %}
-                        <div class="form-group row">
-                            <label for="staticneed" class="col-md-1 col-form-label">نیاز</label>
-                            <div class="col-md-4">
-                            <textarea rows="3" id="staticneed" readonly class="form-control-plaintext form-control"
-                                      placeholder="شرح و مبلغ نیاز مددجو در این‌جا وارد می‌شود"></textarea>
-                            </div>
+{% block buttons %}
+    <a href="edit_madadjoo">
+        <button type="button" class="btn btn-warning"> ویرایش</button>
+    </a>
+    <button type="button" class="btn btn-danger">حذف</button>
+    <button type="button" class="btn btn-outline-success">تایید شده</button>
+{% endblock %}
 
 
-                            <div class="col-md-5">
-                                <div class="form-check form-check-inline disabled">
-                                    <label class="form-check-label col-md-1"> ماهانه </label>
-                                    <div class="col-md-1">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                               id="inlineRadio1" value="option1" disabled>
-                                    </div>
-                                </div>
-                                <div class="form-check form-check-inline disabled">
-                                    <label class="form-check-label col-md-1"> سالانه </label>
-                                    <div class="col-md-1">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                               id="inlineRadio2" value="option2" disabled>
-                                    </div>
-                                </div>
-                                <div class="form-check form-check-inline disabled">
-                                    <label class="form-check-label col-md-1">موردی </label>
-                                    <div class="col-md-1">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                               id="inlineRadio3" value="option3" disabled>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2 mr-auto" style="margin-top: 1%">
-                                {% if i == "x" %}
-                                    <span class="badge badge-danger">نیاز فوری</span>
-                                {% else %}
-                                    <span class="badge badge-secondary">نیاز فوری</span>
-                                {% endif %}
-
-                            </div>
-
-                        </div>
-                    {% endfor %}
-
-
-                </form>
-            </div>
-        </div>
+{% block below_image %}
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action disabled">
+            نام همیاران
+        </a>
+        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۱</a>
+        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۲</a>
+        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۳</a>
+        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۴</a>
     </div>
+{% endblock %}
+
+{% block name %}
+    <input type="text" id="staticName" readonly class="form-control-plaintext form-control"
+           placeholder="نام مددجو">
+{% endblock %}
+
+
+{% block lastName %}
+    <input type="text" readonly class="form-control-plaintext form-control" id="staticLastName"
+           placeholder="نام خانوادگی مددجو">
+{% endblock %}
+
+{% block idNum %}
+    <input type="text" id="staticid" readonly class="form-control-plaintext form-control"
+           placeholder="کد ملی مددجو">
+{% endblock %}
+
+
+{% block phone %}
+    <input type="text" readonly class="form-control-plaintext form-control" id="staticphone"
+           placeholder="شماره تلفن مددجو">
+{% endblock %}
+
+{% block addr %}
+    <input type="text" id="staticaddr" readonly class="form-control-plaintext form-control"
+           placeholder="آدرس مددجو در این‌جا وارد می‌شود.">
+{% endblock %}
+
+{% block percentage %}
+    <input type="text" readonly class="form-control-plaintext form-control" id="staticpercentage"
+           placeholder="درصد پس‌انداز">
+{% endblock %}
+
+{% block success %}
+    <textarea rows="7" id="staticsuccess" readonly class="form-control-plaintext form-control"
+              placeholder="شرح موفقیت‌های مددجو در اینجا وارد می‌شود"></textarea>
+{% endblock %}
+
+{% block bio %}
+    <textarea rows="7" id="staticdisc" readonly class="form-control-plaintext form-control"
+              placeholder="شرح حال مددجو در این‌جا وارد می‌شود"></textarea>
+{% endblock %}
+
+{% block education %}
+    <textarea rows="7" id="staticedu" readonly class="form-control-plaintext form-control"
+              placeholder="وضعیت تحصیلی مددجو در این‌جا وارد می‌شود"></textarea>
+{% endblock %}
+
+{% block need %}
+    {% for i in "xy" %}
+        {% include "snippets/need_snippet_show.html" %}
+    {% endfor %}
 {% endblock %}

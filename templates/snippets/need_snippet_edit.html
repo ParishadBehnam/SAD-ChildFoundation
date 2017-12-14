@@ -1,0 +1,28 @@
+{% extends "snippets/need_snippet_base.html" %}
+
+{% block need %}
+    <textarea rows="3" id="staticneed" class="form-control"
+              placeholder="شرح و مبلغ نیاز مددجو در این‌جا وارد می‌شود"></textarea>
+{% endblock %}
+
+{% block monthly %}
+    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+           id="inlineRadio1" value="option1">
+{% endblock %}
+
+{% block annual %}
+    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+           id="inlineRadio2" value="option2">
+{% endblock %}
+
+{% block special %}
+    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+           id="inlineRadio3" value="option3">
+{% endblock %}
+
+{% block emergency %}
+    <div class="need-botton-wrapper col-md-2 mr-auto" style="margin-top: 1%">
+        <span class="emergency-need badge badge-secondary">نیاز فوری</span>
+    </div>
+
+{% endblock %}

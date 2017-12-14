@@ -1,0 +1,95 @@
+{% extends "base_registered.html" %}
+
+{% block content %}
+    <div class="container" xmlns="http://www.w3.org/1999/html">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 mr-auto">
+                <h4>مشخصات مددجو</h4>
+            </div>
+            <div class="col-sm-6 col-md-4 mr-auto">
+                {% block buttons %}
+
+                {% endblock %}
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-3">
+                <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
+                     alt="نام مددجو" class="img-thumbnail">
+
+                {% block below_image %}
+
+                {% endblock %}
+            </div>
+            <div class="col-md-9">
+                <form>
+                    <div class="form-group row">
+                        <label for="staticName" class="col-md-1 col-form-label">نام</label>
+                        <div class="col-md-4">
+                            {% block name %}
+                            {% endblock %}
+                        </div>
+                        <label for="staticLastName" class="col-md-2 col-form-label">نام خانوادگی</label>
+                        <div class="col-md-5">
+                            {% block lastName %}
+                            {% endblock %}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="staticid" class="col-md-1 col-form-label">کدملی</label>
+                        <div class="col-md-4">
+                            {% block idNum %}
+                            {% endblock %}
+                        </div>
+                        <label for="staticphone" class="col-md-2 col-form-label">شماره تلفن</label>
+                        <div class="col-md-5">
+                            {% block phone %}
+                            {% endblock %}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="staticaddr" class="col-md-1 col-form-label">آدرس</label>
+                        <div class="col-md-5">
+                            {% block addr %}
+                            {% endblock %}
+                        </div>
+                        <label for="staticpercentage" class="col-md-2 col-form-label">درصد پس‌انداز</label>
+                        <div class="col-md-4">
+                            {% block percentage %}
+                            {% endblock %}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="staticsuccess" class="col-md-1 col-form-label">شرح موفقیت‌ها</label>
+                        <div class="col-md-11">
+                            {% block success %}
+                            {% endblock %}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="staticdisc" class="col-md-1 col-form-label">شرح‌حال</label>
+                        <div class="col-md-11">
+                            {% block bio %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="staticedu" class="col-md-1 col-form-label">وضعیت تحصیلی</label>
+                        <div class="col-md-11">
+                            {% block education %}
+                            {% endblock %}
+                        </div>
+                    </div>
+
+                    {% block need %} {% endblock %}
+
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
