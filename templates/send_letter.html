@@ -1,0 +1,32 @@
+{% extends 'base_registered.html' %}
+{% block content %}
+    <div class="col-sm-6 col-md-4">
+        <h4><span class="oi oi-pencil" aria-hidden="true"
+                  style="margin-left:5%;"></span>ارسال نامه</h4>
+    </div>
+    <hr>
+
+    <form>
+  <div class="form-group">
+    <label for="sender">فرستنده</label>
+    <input type="text" readonly class="form-control-plaintext form-control" id="sender" placeholder="نام مددکار">
+  </div>
+
+        <div class="form-group">
+    <label for="reciever">گیرنده</label>
+    <input type="text" readonly class="form-control-plaintext form-control" id="reciever" placeholder="نام همیار">
+  </div>
+
+        <div class="form-group">
+    <label for="title">عنوان نامه</label>
+    <input type="text" class="form-control" id="title">
+  </div>
+
+
+  <div class="form-group">
+    <label for="letter-body">متن نامه</label>
+    <textarea class="form-control" id="letter-body" rows="7"></textarea>
+  </div>
+    <button type="submit" class="btn btn-success">ارسال</button>
+</form>
+{% endblock %}

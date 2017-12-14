@@ -1,0 +1,155 @@
+{% extends "base_registered.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 mr-auto">
+                <h4>مشخصات مددجو</h4>
+            </div>
+            <div class="col-sm-6 col-md-4 mr-auto">
+                <button type="button" class="btn btn-warning">ویرایش</button>
+                <button type="button" class="btn btn-danger">حذف</button>
+                </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-3">
+                <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
+                     alt="نام مددجو" class="img-thumbnail">
+
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action disabled">
+                        نام همیاران
+                    </a>
+                    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۱</a>
+                    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۲</a>
+                    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۳</a>
+                    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۴</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <form>
+                    <div class="form-group row">
+                        <label for="staticName" class="col-md-1 col-form-label">نام</label>
+                        <div class="col-md-4">
+                            <input type="text" id="staticName" class="form-control"
+                                   placeholder="نام مددجو">
+                        </div>
+                        <label for="staticLastName" class="col-md-2 col-form-label">نام خانوادگی</label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" id="staticLastName"
+                                   placeholder="نام خانوادگی مددجو">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="staticbio" class="col-md-1 col-form-label">مشخصات</label>
+                        <div class="col-md-11">
+                            <textarea rows="7" id="staticbio" class="form-control"
+                                      placeholder="مشخصات مددجو در این‌جا وارد می‌شود"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="staticdisc" class="col-md-1 col-form-label">شرح‌حال</label>
+                        <div class="col-md-11">
+                            <textarea rows="7" id="staticdisc" class="form-control"
+                                      placeholder="شرح حال مددجو در این‌جا وارد می‌شود"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="staticedu" class="col-md-1 col-form-label">وضعیت تحصیلی</label>
+                        <div class="col-md-11">
+                            <textarea rows="7" id="staticedu" class="form-control"
+                                      placeholder="وضعیت تحصیلی مددجو در این‌جا وارد می‌شود"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="staticneed" class="col-md-1 col-form-label">افزودن نیاز</label>
+                        <div class="col-md-4">
+                            <textarea rows="3" id="staticneed" class="form-control"
+                                      placeholder="شرح و مبلغ نیاز مددجو در این‌جا وارد می‌شود"></textarea>
+                        </div>
+
+
+                        <div class="col-md-5">
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label col-md-1"> ماهانه </label>
+                                <div class="col-md-1">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                           id="inlineRadio1" value="option1">
+                                </div>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label col-md-1"> سالانه </label>
+                                <div class="col-md-1">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                           id="inlineRadio2" value="option2">
+                                </div>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label col-md-1">موردی </label>
+                                <div class="col-md-1">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                           id="inlineRadio3" value="option3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="need-botton-wrapper col-md-2 mr-auto" style="margin-top: 1%">
+                            <span class="emergency-need badge badge-secondary">نیاز فوری</span>
+
+                        </div>
+                    </div>
+                    <p>لیست نیاز‌ها</p>
+                    <hr>
+
+                    {% for i in "xx" %}
+                        <div class="form-group row">
+                            <label for="staticneed" class="col-md-1 col-form-label">ویرایش نیاز</label>
+                            <div class="col-md-4">
+                            <textarea rows="3" id="staticneed" class="form-control"
+                                      placeholder="شرح و مبلغ نیاز مددجو در این‌جا وارد می‌شود"></textarea>
+                            </div>
+
+
+                            <div class="col-md-5">
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label col-md-1"> ماهانه </label>
+                                    <div class="col-md-1">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                               id="inlineRadio1" value="option1">
+                                    </div>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label col-md-1"> سالانه </label>
+                                    <div class="col-md-1">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                               id="inlineRadio2" value="option2">
+                                    </div>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label col-md-1">موردی </label>
+                                    <div class="col-md-1">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                               id="inlineRadio3" value="option3">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="need-botton-wrapper col-md-2 mr-auto" style="margin-top: 1%">
+                                <span class="emergency-need badge badge-secondary">نیاز فوری</span>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="row">
+                        <div class="col-md-4 offset-md-4">
+                            <button class="btn btn-success">ذخیره تغییرات</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

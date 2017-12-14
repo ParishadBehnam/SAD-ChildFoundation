@@ -1,0 +1,67 @@
+{% extends "base_registered.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 mr-auto">
+                <h4>مشخصات همیار</h4>
+            </div>
+            <div class="col-sm-6 col-md-4 mr-auto">
+                <a href="send_letter">
+                    <button type="button" class="btn btn-info">ارسال نامه</button>
+                </a>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-3">
+                <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
+                     alt="نام همیار" class="img-thumbnail">
+
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action disabled">
+                        نام مددجویان تحت تکفل
+                    </a>
+                    <a href="show_a_madadjoo" class="list-group-item list-group-item-action">مددجو ۱</a>
+                    <a href="show_a_madadjoo" class="list-group-item list-group-item-action">مددجو ۲</a>
+                    <a href="show_a_madadjoo" class="list-group-item list-group-item-action">مددجو ۳</a>
+                    <a href="show_a_madadjoo" class="list-group-item list-group-item-action">مددجو ۴</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <form>
+                    <div class="form-group row">
+                        <label for="staticName" class="col-md-1 col-form-label">نام</label>
+                        <div class="col-md-4">
+                            <input type="text" id="staticName" readonly class="form-control-plaintext form-control"
+                                   value="نام همیار">
+                        </div>
+                        <label for="staticLastName" class="col-md-2 col-form-label">نام خانوادگی</label>
+                        <div class="col-md-5">
+                            <input type="text" readonly class="form-control-plaintext form-control" id="staticLastName"
+                                   value="نام خانوادگی همیار">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="staticphone" class="col-md-2 col-form-label">شماره تلفن همیار</label>
+                        <div class="col-md-10">
+                            <input type="text" id="staticphone" readonly class="form-control-plaintext form-control"
+                                   value="۰۲۱-xxxxxxxx">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="staticaddr" class="col-md-2 col-form-label">آدرس همیار</label>
+                        <div class="col-md-10">
+                            <textarea rows="7" id="staticaddr" readonly class="form-control-plaintext form-control"
+                                      placeholder="آدرس همیار در این‌جا وارد می‌شود"></textarea>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

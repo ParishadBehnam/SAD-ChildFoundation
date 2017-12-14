@@ -10,13 +10,18 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    {#    <!-- open-iconic-bootstrap (icon set for bootstrap) -->#}
+    {#    <link rel="stylesheet"#}
+    {#          href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css"#}
+    {#          integrity="sha256-BJ/G+e+y7bQdrYkS2RBTyNfBHpA9IuGaPmf9htub5MQ=" crossorigin="anonymous"/>#}
+    <link rel="stylesheet" href="../static/open-iconic-master/font/css/open-iconic-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../static/css/main.css"/>
 
 
 </head>
-<body>
+<body data-spy="scroll">
 
-<nav class="navbar-header navbar navbar-expand-md navbar-toggleable-md navbar-fixed-top">
+<nav class="navbar fixed-top navbar-header navbar-expand-md navbar-toggleable-md">
     <a class="navbar-brand" href="/">بنیاد کودک</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,11 +29,13 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">خانه <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
+        {% block right-side-navbar %}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">خانه <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        {% endblock %}
         {% block exit %}
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -48,11 +55,57 @@
 
 <div class="container text-right">
     {% block content %}{% endblock %}
+
+
 </div>
+{% block footer %}
+    <!--Footer-->
+    <footer class="page-footer blue center-on-small-only">
+
+        <!--Footer Links-->
+        <div class="container-fluid text-right">
+            <div class="row">
+
+                <!--Second column-->
+                <div class="col-md-6">
+                    <h5 class="title">تماس با ما </h5>
+                    <div><a href="mailto:childF@example.com"><span
+                            class="oi oi-envelope-closed" title="envelope closed" aria-hidden="true"
+                            style="margin-left:1%;"></span>
+                        به ما ایمیل بزنید </a>
+                    </div>
+                    <div><a href="#!"><span class="oi oi-comment-square" aria-hidden="true"
+                                            style="margin-left:1%;"></span>سوالات رایج را ببینید</a></div>
+                    <div><span class="oi oi-envelope-open" title="star" aria-hidden="true"></span> صندوق پستی:
+                        ۱۱۱۵۵-۱۱۳۶۵
+                    </div>
+                    <div><a href="#!"></a><span class="oi oi-map-marker" title="social twitter" aria-hidden="true"
+                                                style="margin-left:1%;"></span>تهران،خیابان آزادی،دانشگاه صنعتی شریف.
+                    </div>
+
+                </div>
+                <!--/.Second column-->
+            </div>
+        </div>
+        <!--/.Footer Links-->
+
+        <!--Copyright-->
+        <div class="footer-copyright">
+            <div class="container-fluid text-right text-center">
+                © کلیه حقوق مربوط به <a href="https://www.hap.com"> گروه حاپ </a> است.
+
+            </div>
+        </div>
+        <!--/.Copyright-->
+
+    </footer>
+    <!--/.Footer-->
+{% endblock %}
 
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -62,7 +115,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
         integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
         crossorigin="anonymous"></script>
-
+<script src="../static/js/base.js"></script>
 {% block scripts %}
 {% endblock %}
 </body>

@@ -13,6 +13,9 @@
   font-family: BJalal;
   src: url("../fonts/BJalal.eot");
   src: url("../fonts/BJalal.eot?#") format("embedded-opentype"), url("../fonts/BJalal.woff") format("woff"), url("../fonts/BJalal.ttf") format("truetype"); }
+@font-face {
+  font-family: 'open-iconic';
+  src: url("../open-iconic-master/font/fonts/open-iconic.eot"); }
 body {
   font-family: BJalal;
   direction: rtl; }
@@ -23,10 +26,10 @@ body {
     color: black; }
     body a:hover {
       color: lightcoral;
-      text-decoration: none; }
+      text-decworation: none; }
   body .container.text-right {
-    margin-top: 3%;
-    margin-bottom: 3%; }
+    margin-top: 6%;
+    margin-bottom: 6%; }
     body .container.text-right h4 {
       color: #666; }
     body .container.text-right .nav {
@@ -35,6 +38,13 @@ body {
     background-color: #800000; }
   body nav.navbar-header.navbar a {
     color: white; }
+
+#navbar-scroller {
+  position: fixed; }
+
+footer {
+  padding: 2%;
+  background-color: #e5e5e5; }
 
 /*body nav .btn:hover {*/
 /*background-color: dimgray;*/
@@ -54,6 +64,9 @@ body {
   font-family: BJalal;
   src: url("../fonts/BJalal.eot");
   src: url("../fonts/BJalal.eot?#") format("embedded-opentype"), url("../fonts/BJalal.woff") format("woff"), url("../fonts/BJalal.ttf") format("truetype"); }
+@font-face {
+  font-family: 'open-iconic';
+  src: url("../open-iconic-master/font/fonts/open-iconic.eot"); }
 body {
   font-family: BJalal;
   direction: rtl; }
@@ -64,10 +77,10 @@ body {
     color: black; }
     body a:hover {
       color: lightcoral;
-      text-decoration: none; }
+      text-decworation: none; }
   body .container.text-right {
-    margin-top: 3%;
-    margin-bottom: 3%; }
+    margin-top: 6%;
+    margin-bottom: 6%; }
     body .container.text-right h4 {
       color: #666; }
     body .container.text-right .nav {
@@ -76,6 +89,13 @@ body {
     background-color: #800000; }
   body nav.navbar-header.navbar a {
     color: white; }
+
+#navbar-scroller {
+  position: fixed; }
+
+footer {
+  padding: 2%;
+  background-color: #e5e5e5; }
 
 /*body nav .btn:hover {*/
 /*background-color: dimgray;*/
@@ -99,6 +119,9 @@ body .nav-pills .nav-link.active {
   font-family: BJalal;
   src: url("../fonts/BJalal.eot");
   src: url("../fonts/BJalal.eot?#") format("embedded-opentype"), url("../fonts/BJalal.woff") format("woff"), url("../fonts/BJalal.ttf") format("truetype"); }
+@font-face {
+  font-family: 'open-iconic';
+  src: url("../open-iconic-master/font/fonts/open-iconic.eot"); }
 body {
   font-family: BJalal;
   direction: rtl; }
@@ -109,10 +132,10 @@ body {
     color: black; }
     body a:hover {
       color: lightcoral;
-      text-decoration: none; }
+      text-decworation: none; }
   body .container.text-right {
-    margin-top: 3%;
-    margin-bottom: 3%; }
+    margin-top: 6%;
+    margin-bottom: 6%; }
     body .container.text-right h4 {
       color: #666; }
     body .container.text-right .nav {
@@ -121,6 +144,13 @@ body {
     background-color: #800000; }
   body nav.navbar-header.navbar a {
     color: white; }
+
+#navbar-scroller {
+  position: fixed; }
+
+footer {
+  padding: 2%;
+  background-color: #e5e5e5; }
 
 /*body nav .btn:hover {*/
 /*background-color: dimgray;*/
