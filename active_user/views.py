@@ -5,7 +5,10 @@ from django.shortcuts import render
 
 # Create your views here.
 def show_madadjoo(request):
-    return render(request, 'show_madadjoo.html')
+    return render(request, 'madadkar/show_madadjoo.html')
+
+def show_madadjoo_hamyar(request):
+    return render(request, 'hamyar/show_madadjoo.html')
 
 def edit_madadjoo(request):
     return render(request, 'madadkar/edit_madadjoo.html')
@@ -15,6 +18,9 @@ def add_madadjoo(request):
 
 def show_a_madadjoo(request):
     return render(request, 'madadkar/show_a_madadjoo.html')
+
+def show_a_madadjoo_hamyar(request):
+    return render(request, 'hamyar/show_a_madadjoo.html')
 
 def show_a_hamyar(request):
     return render(request, 'show_a_hamyar.html')
@@ -36,3 +42,9 @@ def madadkar_panel(request):
 
 def hamyar_panel(request):
     return render(request, 'hamyar/hamyar_panel.html')
+
+def payment_reports(request):
+    return render(request, 'hamyar/payment_reports.html')
+
+def select_madadjoo(request):
+    return render(request, 'hamyar/select_madadjoo.html')

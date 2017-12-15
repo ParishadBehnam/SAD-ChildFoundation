@@ -1,4 +1,4 @@
-{% extends "base_madadjoo_info.html" %}
+{% extends "base_show_a_madadjoo.html" %}
 
 {% block buttons %}
     <a href="edit_madadjoo">
@@ -6,70 +6,4 @@
     </a>
     <button type="button" class="btn btn-danger">حذف</button>
     <button type="button" class="btn btn-outline-success">تایید شده</button>
-{% endblock %}
-
-
-{% block below_image %}
-    <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action disabled">
-            نام همیاران
-        </a>
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۱</a>
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۲</a>
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۳</a>
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۴</a>
-    </div>
-{% endblock %}
-
-{% block name %}
-    <input type="text" id="staticName" readonly class="form-control-plaintext form-control"
-           placeholder="نام مددجو">
-{% endblock %}
-
-
-{% block lastName %}
-    <input type="text" readonly class="form-control-plaintext form-control" id="staticLastName"
-           placeholder="نام خانوادگی مددجو">
-{% endblock %}
-
-{% block idNum %}
-    <input type="text" id="staticid" readonly class="form-control-plaintext form-control"
-           placeholder="کد ملی مددجو">
-{% endblock %}
-
-
-{% block phone %}
-    <input type="text" readonly class="form-control-plaintext form-control" id="staticphone"
-           placeholder="شماره تلفن مددجو">
-{% endblock %}
-
-{% block addr %}
-    <input type="text" id="staticaddr" readonly class="form-control-plaintext form-control"
-           placeholder="آدرس مددجو در این‌جا وارد می‌شود.">
-{% endblock %}
-
-{% block percentage %}
-    <input type="text" readonly class="form-control-plaintext form-control" id="staticpercentage"
-           placeholder="درصد پس‌انداز">
-{% endblock %}
-
-{% block success %}
-    <textarea rows="7" id="staticsuccess" readonly class="form-control-plaintext form-control"
-              placeholder="شرح موفقیت‌های مددجو در اینجا وارد می‌شود"></textarea>
-{% endblock %}
-
-{% block bio %}
-    <textarea rows="7" id="staticdisc" readonly class="form-control-plaintext form-control"
-              placeholder="شرح حال مددجو در این‌جا وارد می‌شود"></textarea>
-{% endblock %}
-
-{% block education %}
-    <textarea rows="7" id="staticedu" readonly class="form-control-plaintext form-control"
-              placeholder="وضعیت تحصیلی مددجو در این‌جا وارد می‌شود"></textarea>
-{% endblock %}
-
-{% block need %}
-    {% for i in "xy" %}
-        {% include "snippets/need_snippet_show.html" %}
-    {% endfor %}
 {% endblock %}

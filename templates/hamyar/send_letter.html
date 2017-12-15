@@ -1,4 +1,4 @@
-{% extends 'send_letter.html' %}
+{% extends 'base_send_letter.html' %}
 {% block panel %}
     <a class="nav-link" href="hamyar_panel">پنل مدیریت همیار</a>
 {% endblock %}
@@ -8,9 +8,17 @@
 {% endblock %}
 {% block receiver %}
     <div id="reciever">
-        <label class="checkbox-inline"><input type="checkbox" value=""> مددجو ۱</label>
-        <label class="checkbox-inline"><input type="checkbox" value=""> مددجو ۲</label>
-        <label class="checkbox-inline"><input type="checkbox" value=""> مددجو ۳</label>
+        <div data-toggle="buttons">
+            <label class="btn btn-secondary active" >
+                <input type="checkbox" checked autocomplete="off"> مددجوی ۱
+            </label>
+            <label class="btn btn-secondary">
+                <input type="checkbox" autocomplete="off"> مددجوی ۲
+            </label>
+            <label class="btn btn-secondary">
+                <input type="checkbox" autocomplete="off"> مددجوی ۳
+            </label>
+</div>
     </div>
 
 {% endblock %}
