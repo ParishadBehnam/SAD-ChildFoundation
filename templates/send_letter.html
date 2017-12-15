@@ -10,14 +10,15 @@
         <form>
             <div class="form-group">
                 <label for="sender">فرستنده</label>
-                <input type="text" readonly class="form-control-plaintext form-control" id="sender"
-                       placeholder="نام مددکار">
+                {% block sender %}
+                {% endblock %}
             </div>
 
             <div class="form-group">
                 <label for="reciever">گیرنده</label>
-                <input type="text" readonly class="form-control-plaintext form-control" id="reciever"
-                       placeholder="نام همیار">
+                {% block receiver %}
+                {% endblock %}
+
             </div>
 
             <div class="form-group">

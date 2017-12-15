@@ -1,0 +1,12 @@
+{% extends 'send_letter.html' %}
+    {% block panel %}
+        <a class="nav-link" href="madadkar_panel">پنل مدیریت مددکار</a>
+    {% endblock %}
+    {% block sender %}
+        <input type="text" readonly class="form-control-plaintext form-control" id="sender"
+            placeholder="نام مددکار">
+    {% endblock %}
+   {% block receiver %}
+        <input type="text" readonly class="form-control-plaintext form-control" id="reciever"
+               placeholder="نام همیار">
+    {% endblock %}

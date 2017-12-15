@@ -1,0 +1,17 @@
+{% extends 'send_letter.html' %}
+{% block panel %}
+    <a class="nav-link" href="hamyar_panel">پنل مدیریت همیار</a>
+{% endblock %}
+{% block sender %}
+    <input type="text" readonly class="form-control-plaintext form-control" id="sender"
+           placeholder="نام همیار">
+{% endblock %}
+{% block receiver %}
+    <div id="reciever">
+        <label class="checkbox-inline"><input type="checkbox" value=""> مددجو ۱</label>
+        <label class="checkbox-inline"><input type="checkbox" value=""> مددجو ۲</label>
+        <label class="checkbox-inline"><input type="checkbox" value=""> مددجو ۳</label>
+    </div>
+
+{% endblock %}
+
