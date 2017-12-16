@@ -1,0 +1,42 @@
+{% extends "madadjoo/base_registered.html" %}
+
+{% block content %}
+    <div class="container" xmlns="http://www.w3.org/1999/html">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 mr-auto">
+                {% block head %}{% endblock %}
+            </div>
+            <div class="col-sm-6 col-md-4 mr-auto">
+                {% block buttons %}
+                {% endblock %}
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-3">
+                <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
+                     alt="نام" class="img-thumbnail">
+
+            </div>
+            <div class="col-md-9">
+                <form>
+                    <div class="form-group row">
+                        <label for="staticName" class="col-md-1 col-form-label">نام</label>
+                        <div class="col-md-4">
+                            {% block name %}
+
+                            {% endblock %}
+                        </div>
+                        <label for="staticLastName" class="col-md-2 col-form-label">نام خانوادگی</label>
+                        <div class="col-md-5">
+                            {% block l-name %}
+
+
+                            {% endblock %}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

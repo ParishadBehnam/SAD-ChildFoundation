@@ -1,0 +1,24 @@
+{% extends "madadjoo/base_show_a_supporter.html" %}
+
+{% block head %}
+    <h4>مشخصات مددکار</h4>
+{% endblock %}
+
+{% block buttons %}
+    <a href="send_request_madadkar">
+        <button type="button" class="btn btn-outline-warning">ارسال درخواست</button>
+    </a>
+    <a href="send_gratitude_letter">
+        <button type="button" class="btn btn-outline-success">ارسال نامه‌ی تشکر</button>
+    </a>
+{% endblock %}
+
+{% block name %}
+    <input type="text" id="staticName" readonly class="form-control-plaintext form-control" placeholder="نام مددکار">
+{% endblock %}
+
+{% block l-name %}
+    <input type="text" readonly class="form-control-plaintext form-control" id="staticLastName"
+           placeholder="نام خانوادگی مددکار">
+
+{% endblock %}

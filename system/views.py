@@ -8,7 +8,7 @@ from django.shortcuts import render
 
 
 def hamyar_register(request):
-    return render(request, 'hamyar_register.html')
+    return render(request, 'hamyar/hamyar_register.html')
 
 def login(request):
     return render(request, 'login.html')

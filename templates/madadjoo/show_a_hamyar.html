@@ -1,0 +1,21 @@
+{% extends "madadjoo/base_show_a_supporter.html" %}
+
+{% block head %}
+    <h4>مشخصات همیار</h4>
+{% endblock %}
+
+{% block buttons %}
+    <a href="send_letter_hamyar_madadjoo">
+        <button type="button" class="btn btn-outline-warning">ارسال نامه</button>
+    </a>
+{% endblock %}
+
+{% block name %}
+    <input type="text" id="staticName" readonly class="form-control-plaintext form-control" placeholder="نام همیار">
+{% endblock %}
+
+{% block l-name %}
+    <input type="text" readonly class="form-control-plaintext form-control" id="staticLastName"
+           placeholder="نام خانوادگی همیار">
+
+{% endblock %}

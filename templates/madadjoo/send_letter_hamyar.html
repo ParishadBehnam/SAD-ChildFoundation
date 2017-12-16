@@ -1,0 +1,22 @@
+{% extends 'base_send_letter.html' %}
+{% block panel %}
+    <a class="nav-link" href="madadjoo_panel">پنل مدیریت مددجو</a>
+{% endblock %}
+{% block sender %}
+    <input type="text" readonly class="form-control-plaintext form-control" id="sender"
+           placeholder="نام مددجو">
+{% endblock %}
+{% block receiver %}
+    <div id="reciever">
+        <div class="form-group">
+            <label for="sel1">نام همیار</label>
+            <select class="form-control" id="sel1">
+                <option>همیار ۱</option>
+                <option>همیار ۲</option>
+                <option>همیار ۳</option>
+            </select>
+        </div>
+    </div>
+
+{% endblock %}
+

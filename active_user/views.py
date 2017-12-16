@@ -48,3 +48,31 @@ def payment_reports(request):
 
 def select_madadjoo(request):
     return render(request, 'hamyar/select_madadjoo.html')
+
+def madadjoo_panel(request):
+    return render(request, 'madadjoo/madadjoo_panel.html')
+
+def show_hamyar(request):
+    return render(request, 'madadjoo/show_hamyar.html')
+
+def show_a_madadkar_madadjoo(request):
+    return render(request, 'madadjoo/show_a_madadkar.html')
+
+def show_a_hamyar_madadjoo(request):
+    return render(request, 'madadjoo/show_a_hamyar.html')
+
+def payment_reports_madadjoo(request):
+    return render(request, 'madadjoo/payment_reports.html')
+
+def send_letter_hamyar_madadjoo(request):
+    return render(request, 'madadjoo/send_letter_hamyar.html')
+
+def send_request_madadkar(request):
+    return render(request, 'madadjoo/send_request_madadkar.html')
+
+def send_gratitude_letter(request):
+    return render(request, 'madadjoo/send_gratitude_letter.html')
+
+def show_madadjoo_information(request):
+    return render(request, 'madadjoo/show_madadjoo_information.html')
+

@@ -1,0 +1,16 @@
+{% extends 'base_send_message.html' %}
+{% block panel %}
+    <a class="nav-link" href="madadjoo_panel">پنل مدیریت مددجو</a>
+{% endblock %}
+{% block sender %}
+    <input type="text" readonly class="form-control-plaintext form-control" id="sender"
+           placeholder="نام مددجو">
+{% endblock %}
+{% block receiver %}
+    <input type="text" readonly class="form-control-plaintext form-control" id="sender"
+           placeholder="نام مددکار">
+
+{% endblock %}
+{% block message_title %}<label for="title">عنوان نامه‌ی تشکر</label>{% endblock %}
+{% block message_text %}<label for="text">متن نامه‌ی تشکر</label>{% endblock %}
+
