@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'inbox_hamyar$', views.inbox_hamyar, name='inbox_hamyar'),
     url(r'madadkar_panel$', views.madadkar_panel, name='madadkar_panel'),
     url(r'hamyar_panel$', views.hamyar_panel, name='hamyar_panel'),
+    url(r'madadjoo_report$', views.show_madadjoo_report, name='madadjoo_report'),
     url(r'payment_reports$', views.payment_reports, name='payment_reports'),
     url(r'select_madadjoo$', views.select_madadjoo, name='select_madadjoo'),
     url(r'madadjoo_panel$', views.madadjoo_panel, name='madadjoo_panel'),

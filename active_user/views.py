@@ -49,6 +49,9 @@ def payment_reports(request):
 def select_madadjoo(request):
     return render(request, 'hamyar/select_madadjoo.html')
 
+def show_madadjoo_report(request):
+    return render(request, 'hamyar/madadjoo_report.html')
+
 def madadjoo_panel(request):
     return render(request, 'madadjoo/madadjoo_panel.html')
 
@@ -75,4 +78,5 @@ def send_gratitude_letter(request):
 
 def show_madadjoo_information(request):
     return render(request, 'madadjoo/show_madadjoo_information.html')
+
 
