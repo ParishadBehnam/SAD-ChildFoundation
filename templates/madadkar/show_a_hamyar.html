@@ -1,0 +1,40 @@
+{% extends "base_show_a_hamyar.html" %}
+
+{% block panel %}
+    <a class="nav-link" href="madadkar_panel">پنل مدیریت مددکار</a>
+{% endblock %}
+
+{% block buttons %}
+    <a href="send_letter">
+        <button type="button" class="btn btn-info">ارسال نامه</button>
+    </a>
+{% endblock %}
+
+{% block madadjoos %}
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action disabled">
+                        نام مددجویان تحت تکفل
+        </a>
+        <a href="show_a_madadjoo" class="list-group-item list-group-item-action">مددجو ۱</a>
+        <a href="show_a_madadjoo" class="list-group-item list-group-item-action">مددجو ۲</a>
+        <a href="show_a_madadjoo" class="list-group-item list-group-item-action">مددجو ۳</a>
+        <a href="show_a_madadjoo" class="list-group-item list-group-item-action">مددجو ۴</a>
+    </div>
+{% endblock %}
+
+{% block more_detail %}
+    <div class="form-group row">
+        <label for="staticphone" class="col-md-2 col-form-label">شماره تلفن همیار</label>
+        <div class="col-md-10">
+            <input type="text" id="staticphone" readonly class="form-control-plaintext form-control"
+                   value="۰۲۱-xxxxxxxx">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="staticaddr" class="col-md-2 col-form-label">آدرس همیار</label>
+        <div class="col-md-10">
+            <textarea rows="7" id="staticaddr" readonly class="form-control-plaintext form-control"
+                      placeholder="آدرس همیار در این‌جا وارد می‌شود"></textarea>
+        </div>
+    </div>
+{% endblock %}

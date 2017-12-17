@@ -23,7 +23,7 @@ def show_a_madadjoo_hamyar(request):
     return render(request, 'hamyar/show_a_madadjoo.html')
 
 def show_a_hamyar(request):
-    return render(request, 'show_a_hamyar.html')
+    return render(request, 'madadkar/show_a_hamyar.html')
 
 def send_letter(request):
     return render(request, 'madadkar/send_letter.html')
