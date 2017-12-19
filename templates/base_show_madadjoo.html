@@ -1,7 +1,9 @@
-{% extends "madadkar/base_registered.html" %}
+{% extends "base_registered.html" %}
 {% block content %}
     <div class="row">
-        <div class="col-6 ml-auto"><h4>مشاهده‌ی مددجویان</h4></div>
+        {% block title %}
+            <div class="col-6 ml-auto"><h4>مشاهده‌ی مددجویان</h4></div>
+        {% endblock %}
         <div class="col-6 ml-auto">
 
             <nav aria-label="Page navigation example">
@@ -31,6 +33,9 @@
                             <div class="card-footer bg-transparent">
                                 {% block link %} {% endblock %}
                             </div>
+                            {% block button %}
+
+                            {% endblock %}
                         </div>
                     </div>
                 </div>

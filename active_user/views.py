@@ -79,4 +79,19 @@ def send_gratitude_letter(request):
 def show_madadjoo_information(request):
     return render(request, 'madadjoo/show_madadjoo_information.html')
 
+def admin_panel(request):
+    return render(request, 'admin/admin_panel.html')
+
+def show_madadjoo_admin(request):
+    return render(request, 'admin/show_madadjoo.html')
+
+def show_a_madadjoo_admin(request):
+    return render(request, 'admin/show_a_madadjoo.html')
+
+def edit_a_madadjoo_admin(request):
+    return render(request, 'admin/edit_a_madadjoo.html')
+
+def inbox_admin(request):
+    return render(request, 'admin/inbox.html')
+
 

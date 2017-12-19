@@ -1,0 +1,14 @@
+{% extends "snippets/need_snippet_show.html" %}
+
+{% block emergency %}
+    <div class="col-md-3 mr-auto" style="margin-top: 1%">
+
+        {% if i == "x" %}
+            <span class="badge badge-danger">نیاز فوری</span>
+            <span class="badge badge-danger">پرداخت نشده</span>
+        {% else %}
+            <span class="badge badge-secondary">نیاز فوری</span>
+            <span class="badge badge-secondary">پرداخت شده</span>
+        {% endif %}
+    </div>
+{% endblock %}

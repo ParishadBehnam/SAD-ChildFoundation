@@ -1,0 +1,85 @@
+{% extends "base_madadjoo_info.html" %}
+
+{% block buttons %}
+    <button type="button" class="btn btn-danger">حذف</button>
+    <button type="button" class="btn btn-outline-success">تایید</button>
+
+{% endblock %}
+
+{% block panel %}
+     <a class="nav-link" href="admin_panel">پنل مدیریت مدیر سامانه</a>
+{% endblock %}
+
+{% block below_image %}
+
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action disabled">
+            نام همیاران
+        </a>
+        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۱</a>
+        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۲</a>
+        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۳</a>
+        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۴</a>
+    </div>
+
+{% endblock %}
+
+{% block name %}
+    <input type="text" id="staticName" class="form-control"
+           placeholder="نام مددجو">
+{% endblock %}
+
+{% block lastName %}
+    <input type="text" class="form-control" id="staticLastName"
+           placeholder="نام خانوادگی مددجو">
+{% endblock %}
+
+{% block idNum %}
+    <input type="text" id="staticid" class="form-control"
+           placeholder="کد ملی مددجو">
+{% endblock %}
+
+{% block phone %}
+    <input type="text" class="form-control" id="staticphone"
+           placeholder="شماره تلفن مددجو">
+{% endblock %}
+
+{% block addr %}
+    <input type="text" id="staticaddr" class="form-control"
+           placeholder="آدرس مددجو در این‌جا وارد می‌شود.">
+{% endblock %}
+
+{% block percentage %}
+    <input type="text" class="form-control"
+           id="staticpercentage"
+           placeholder="درصد پس‌انداز">
+{% endblock %}
+
+{% block success %}
+    <textarea rows="7" id="staticsuccess" class="form-control"
+              placeholder="شرح موفقیت‌های مددجو در اینجا وارد می‌شود"></textarea>
+{% endblock %}
+
+{% block bio %}
+    <textarea rows="7" id="staticbio" class="form-control"
+              placeholder="مشخصات مددجو در این‌جا وارد می‌شود"></textarea>
+{% endblock %}
+
+{% block education %}
+    <textarea rows="7" id="staticedu" class="form-control"
+              placeholder="وضعیت تحصیلی مددجو در این‌جا وارد می‌شود"></textarea>
+{% endblock %}
+
+
+{% block need %}
+    {% include "snippets/need_snippet_edit_admin.html" %}
+    <p>لیست نیاز‌ها</p>
+    <hr>
+    {% include "snippets/need_snippet_edit_admin.html" %}
+    {% include "snippets/need_snippet_edit_admin.html" %}
+    <button type="button" class="btn btn-success">ثبت تغییرات</button>
+
+
+
+{% endblock %}
+

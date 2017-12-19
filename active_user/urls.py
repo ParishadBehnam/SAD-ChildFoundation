@@ -27,4 +27,9 @@ urlpatterns = [
     url(r'send_request_madadkar', views.send_request_madadkar, name='send_request_madadkar'),
     url(r'send_gratitude_letter', views.send_gratitude_letter, name='send_gratitude_letter'),
     url(r'show_madadjoo_information', views.show_madadjoo_information, name='show_madadjoo_information'),
+    url(r'admin_panel', views.admin_panel, name='admin_panel'),
+    url(r'show_madadjoo_admin', views.show_madadjoo_admin, name='show_madadjoo_admin'),
+    url(r'show_a_madadjoo_admin', views.show_a_madadjoo_admin, name='show_a_madadjoo_admin'),
+    url(r'edit_a_madadjoo_admin', views.edit_a_madadjoo_admin, name='edit_a_madadjoo_admin'),
+    url(r'inbox_admin', views.inbox_admin, name='inbox_admin'),
 ]
