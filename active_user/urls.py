@@ -31,5 +31,6 @@ urlpatterns = [
     url(r'show_madadjoo_admin', views.show_madadjoo_admin, name='show_madadjoo_admin'),
     url(r'show_a_madadjoo_admin', views.show_a_madadjoo_admin, name='show_a_madadjoo_admin'),
     url(r'edit_a_madadjoo_admin', views.edit_a_madadjoo_admin, name='edit_a_madadjoo_admin'),
+    url(r'add_a_madadjoo_admin', views.add_a_madadjoo_admin, name='add_a_madadjoo_admin'),
     url(r'inbox_admin', views.inbox_admin, name='inbox_admin'),
 ]

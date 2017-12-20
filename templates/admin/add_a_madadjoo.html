@@ -1,0 +1,70 @@
+{% extends "base_madadjoo_info.html" %}
+
+{% block panel %}
+    <a class="nav-link" href="admin_panel">پنل مدیریت مدیر سامانه</a>
+{% endblock %}
+
+{% block buttons %}
+{% endblock %}
+{% block below_image %}
+    <form>
+        <div class="form-group text-center">
+            <label for="FormControlFile">عکس را انتخاب کنید</label>
+            <input type="file" class="form-control-file" id="FormControlFile">
+        </div>
+    </form>
+{% endblock %}
+
+{% block name %}
+    <input type="text" id="staticName" class="form-control"
+           placeholder="نام مددجو">
+{% endblock %}
+
+{% block lastName %}
+    <input type="text" class="form-control" id="staticLastName"
+           placeholder="نام خانوادگی مددجو">
+{% endblock %}
+
+{% block idNum %}
+    <input type="text" id="staticid" class="form-control"
+           placeholder="کد ملی مددجو">
+{% endblock %}
+
+{% block phone %}
+    <input type="text" class="form-control" id="staticphone"
+           placeholder="شماره تلفن مددجو">
+{% endblock %}
+
+{% block addr %}
+    <input type="text" id="staticaddr" class="form-control"
+           placeholder="آدرس مددجو در این‌جا وارد می‌شود.">
+{% endblock %}
+
+{% block percentage %}
+    <input type="text" class="form-control"
+           id="staticpercentage"
+           placeholder="درصد پس‌انداز">
+{% endblock %}
+
+{% block success %}
+    <textarea rows="7" id="staticsuccess" class="form-control"
+              placeholder="شرح موفقیت‌های مددجو در اینجا وارد می‌شود"></textarea>
+{% endblock %}
+
+{% block bio %}
+    <textarea rows="7" id="staticbio" class="form-control"
+              placeholder="مشخصات مددجو در این‌جا وارد می‌شود"></textarea>
+{% endblock %}
+
+{% block education %}
+    <textarea rows="7" id="staticedu" class="form-control"
+              placeholder="وضعیت تحصیلی مددجو در این‌جا وارد می‌شود"></textarea>
+{% endblock %}
+
+
+{% block need %}
+    {% include "snippets/need_snippet_edit_admin.html" %}
+    <button type="button" class="btn btn-success">ثبت مددجو</button>
+
+{% endblock %}
+

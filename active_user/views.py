@@ -94,4 +94,7 @@ def edit_a_madadjoo_admin(request):
 def inbox_admin(request):
     return render(request, 'admin/inbox.html')
 
+def add_a_madadjoo_admin(request):
+    return render(request, 'admin/add_a_madadjoo.html')
+
 
