@@ -97,4 +97,29 @@ def inbox_admin(request):
 def add_a_madadjoo_admin(request):
     return render(request, 'admin/add_a_madadjoo.html')
 
+def show_madadkar_admin(request):
+    return render(request, 'admin/show_madadkar.html')
+
+def show_a_madadkar_admin(request):
+    return render(request, 'admin/show_a_madadkar.html')
+
+def edit_a_madadkar_admin(request):
+    return render(request, 'admin/edit_a_madadkar.html')
+
+def add_a_madadkar_admin(request):
+    return render(request, 'admin/add_a_madadkar.html')
+
+def show_hamyar_admin(request):
+    return render(request, 'admin/show_hamyar.html')
+
+def show_a_hamyar_admin(request):
+    return render(request, 'admin/show_a_hamyar.html')
+
+def edit_a_hamyar_admin(request):
+    return render(request, 'admin/edit_a_hamyar.html')
+
+def add_a_hamyar_admin(request):
+    return render(request, 'admin/add_a_hamyar.html')
+
+
 

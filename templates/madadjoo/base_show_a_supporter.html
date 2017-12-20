@@ -6,7 +6,7 @@
             <div class="col-sm-6 col-md-4 mr-auto">
                 {% block head %}{% endblock %}
             </div>
-            <div class="col-sm-6 col-md-4 mr-auto">
+            <div class="col-sm-5 col-md-4 mr-auto">
                 {% block buttons %}
                 {% endblock %}
             </div>
@@ -16,6 +16,9 @@
             <div class="col-md-3">
                 <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
                      alt="نام" class="img-thumbnail">
+                {% block below_image %}
+
+                {% endblock %}
 
             </div>
             <div class="col-md-9">
@@ -34,7 +37,13 @@
 
                             {% endblock %}
                         </div>
+
                     </div>
+                    {% block more_detail %}
+
+                    {% endblock %}
+                    {% block submit %}
+                    {% endblock %}
                 </form>
             </div>
         </div>

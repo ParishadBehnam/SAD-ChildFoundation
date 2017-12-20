@@ -1,8 +1,10 @@
 {% extends "madadjoo/base_registered.html" %}
 {% block content %}
     <div class="row">
-        <div class="col-6 ml-auto">{% block head %}{% endblock %}</div>
-        <div class="col-6 ml-auto">
+        {% block head %}
+            <div class="col-6 ml-auto"></div>
+        {% endblock %}
+        <div class="col-5 ml-auto">
 
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
