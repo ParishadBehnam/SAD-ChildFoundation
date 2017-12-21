@@ -14,8 +14,36 @@
            placeholder="نام خانوادگی همیار">
 {% endblock %}
 
+{% block more_detail %}
+     <div class="form-group row">
+        <label for="staticid" class="col-md-2 col-form-label">کد ملی همیار</label>
+        <div class="col-md-10">
+            <input type="text" id="staticid" class="form-control form-control"
+                   placeholder="کد ملی همیار">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="staticphone" class="col-md-2 col-form-label">شماره تلفن همیار</label>
+        <div class="col-md-10">
+            <input type="text" id="staticphone" class="form-control"
+                   value="۰۲۱-xxxxxxxx">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="staticaddr" class="col-md-2 col-form-label">آدرس همیار</label>
+        <div class="col-md-10">
+            <textarea rows="7" id="staticaddr" class="form-control"
+                      placeholder="آدرس همیار در این‌جا وارد می‌شود"></textarea>
+        </div>
+    </div>
+    {% block pass %}
+
+    {% endblock %}
+{% endblock %}
+
 {% block submit %}
-    <button type="button" class="btn btn-success">ثبت اطلاعات</button>
+    <button type="button" class="btn btn-success">ثبت تغییرات</button>
 {% endblock %}
 
 

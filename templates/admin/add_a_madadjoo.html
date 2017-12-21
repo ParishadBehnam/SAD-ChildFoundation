@@ -64,7 +64,18 @@
 
 {% block need %}
     {% include "snippets/need_snippet_edit_admin.html" %}
-    <button type="button" class="btn btn-success">ثبت مددجو</button>
 
 {% endblock %}
 
+{% block pass %}
+    <div class="form-group row">
+        <label class="col-md-1 col-form-label" for="pwd">رمز عبور</label>
+        <div class="col-md-11">
+            <input type="password" class="form-control" id="pwd">
+        </div>
+    </div>
+{% endblock %}
+
+{% block submit %}
+    <button type="button" class="btn btn-success">ثبت مددجو</button>
+{% endblock %}
