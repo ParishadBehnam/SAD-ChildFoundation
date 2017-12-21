@@ -1,2 +1,2 @@
 
-web: gunicorn myproject.wsgi --log-file -
+web: gunicorn ChildF.wsgi --log-file -
