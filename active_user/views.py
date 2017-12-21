@@ -121,5 +121,12 @@ def edit_a_hamyar_admin(request):
 def add_a_hamyar_admin(request):
     return render(request, 'admin/add_a_hamyar.html')
 
+def payment_reports_admin(request):
+    return render(request, 'admin/payment_reports.html')
 
 
+def activity_report(request):
+    return render(request, 'admin/activity_reports.html')
+
+def madadjoo_paid_report(request):
+    return render(request, 'admin/madadjoo_paid_report.html')

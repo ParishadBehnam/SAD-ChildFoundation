@@ -41,4 +41,7 @@ urlpatterns = [
     url(r'add_a_madadkar_admin', views.add_a_madadkar_admin, name='add_a_madadkar_admin'),
     url(r'add_a_hamyar_admin', views.add_a_hamyar_admin, name='add_a_hamyar_admin'),
     url(r'inbox_admin', views.inbox_admin, name='inbox_admin'),
+    url(r'payment_reports_admin$', views.payment_reports_admin, name='payment_reports_admin'),
+    url(r'activity_report_admin$', views.activity_report, name='activity_report_admin'),
+    url(r'madadjoo_paid_report$', views.madadjoo_paid_report, name='madadjoo_paid_report'),
 ]
