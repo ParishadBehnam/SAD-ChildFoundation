@@ -51,7 +51,7 @@ class madadjoo(active_user):
         verbose_name = _("مددجو")
 
 
-class madadkar_remove_madadjoo():
+class madadkar_remove_madadjoo(models.Model):
     madadkar = models.ForeignKey(madadkar, on_delete=models.CASCADE)
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE, unique=True)
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
@@ -59,7 +59,7 @@ class madadkar_remove_madadjoo():
     date = models.DateField()
 
 
-class madadjoo_madadkar_letter():
+class madadjoo_madadkar_letter(models.Model):
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
     madadkar = models.ForeignKey(madadkar, on_delete=models.CASCADE)
     text = models.TextField()
@@ -69,15 +69,15 @@ class madadjoo_madadkar_letter():
         unique_together = (("madadjoo", "date"),)
 
 
-class requirements():
+class requirements(models.Model):
     description = models.TextField(null=True)
-    type = models.CharField(choices=['monthly', 'annual', 'instantly'], max_length=60)
+    type = models.CharField(choices=(('mo','monthly'), ('ann','annual'), ('inst','instantly')), max_length=60)
     confirmed = models.BooleanField(default=False)
     urgent = models.BooleanField(default=False)
     cash = models.BooleanField(default=True)
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
 
-class hamyar_system_payment():
+class hamyar_system_payment(models.Model):
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
     system = models.ForeignKey(information, on_delete=models.CASCADE)
     amount = models.IntegerField(null=False)
@@ -87,25 +87,25 @@ class hamyar_system_payment():
         unique_together = (("hamyar", "date"),)
 
 
-class sponsership():
+class sponsership(models.Model):
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
 
     class Meta:
-        unique_together = (("madadjoo", "madadkar"),)
+        unique_together = (("madadjoo", "hamyar"),)
 
-class hamyar_madadjoo_payment():
+class hamyar_madadjoo_payment(models.Model):
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
     amount = models.IntegerField(null=False)
-    type = models.CharField(choices=['monthly', 'annual', 'instantly'], max_length=60)
+    type = models.CharField(choices=(('mo','monthly'), ('ann','annual'), ('inst','instantly')), max_length=60)
     date = models.DateField(auto_now=True)
 
     class Meta:
         unique_together = (("madadjoo", "hamyar", "date"),)
 
 
-class hamyar_madadjoo_non_cash():
+class hamyar_madadjoo_non_cash(models.Model):
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
     date = models.DateField(auto_now=True)
@@ -115,7 +115,7 @@ class hamyar_madadjoo_non_cash():
         unique_together = (("hamyar", "date", "madadjoo"),)
 
 
-class hamyar_madadjoo_meeting(): #should process this table when madadkar wants to see her letters
+class hamyar_madadjoo_meeting(models.Model): #should process this table when madadkar wants to see her letters
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
     date = models.DateField(auto_now=True)
@@ -123,7 +123,7 @@ class hamyar_madadjoo_meeting(): #should process this table when madadkar wants 
     class Meta:
         unique_together = (("hamyar", "date", "madadjoo"),)
 
-class madadjoo_hamyar_letter():
+class madadjoo_hamyar_letter(models.Model):
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
     date = models.DateField(auto_now=True)
