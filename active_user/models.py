@@ -24,12 +24,14 @@ class active_user(AbstractUser):
         verbose_name_plural = _("کاربران فعال")
         verbose_name = _("کاربر فعال")
 
+
 class madadkar(active_user):
     bio = models.TextField(null=True, verbose_name="شرح حال")
 
     class Meta:
         verbose_name_plural = _("مددکاران")
         verbose_name = _("مددکار")
+
 
 class hamyar(active_user):
     class Meta:
@@ -77,6 +79,7 @@ class requirements(models.Model):
     cash = models.BooleanField(default=True)
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
 
+
 class hamyar_system_payment(models.Model):
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
     system = models.ForeignKey(information, on_delete=models.CASCADE)
@@ -93,6 +96,7 @@ class sponsership(models.Model):
 
     class Meta:
         unique_together = (("madadjoo", "hamyar"),)
+
 
 class hamyar_madadjoo_payment(models.Model):
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
@@ -122,6 +126,7 @@ class hamyar_madadjoo_meeting(models.Model): #should process this table when mad
 
     class Meta:
         unique_together = (("hamyar", "date", "madadjoo"),)
+
 
 class madadjoo_hamyar_letter(models.Model):
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
