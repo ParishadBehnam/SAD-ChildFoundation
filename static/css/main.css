@@ -19,6 +19,8 @@
 body {
   font-family: BJalal;
   direction: rtl; }
+  body ul.errorlist {
+    color: #990000; }
   body .center {
     margin-left: auto;
     margin-right: auto; }
@@ -70,6 +72,8 @@ footer {
 body {
   font-family: BJalal;
   direction: rtl; }
+  body ul.errorlist {
+    color: #990000; }
   body .center {
     margin-left: auto;
     margin-right: auto; }
@@ -125,6 +129,8 @@ body .nav-pills .nav-link.active {
 body {
   font-family: BJalal;
   direction: rtl; }
+  body ul.errorlist {
+    color: #990000; }
   body .center {
     margin-left: auto;
     margin-right: auto; }

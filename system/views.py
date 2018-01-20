@@ -34,7 +34,8 @@ def hamyar_register(request):
             new_hamyar.username = form.cleaned_data['username']
             new_hamyar.save()
 
-            return  HttpResponseRedirect(reverse('login'))
+            login(request, new_hamyar)
+            return HttpResponseRedirect(reverse("general_information")) #this should be hamyar's own page
         else:
             return render(request, 'hamyar/hamyar_register.html', {'form': form})
 
@@ -49,14 +50,14 @@ def sign_in(request):
         password = request.POST.get("password")
         type = request.POST.get("user_type")
         user = authenticate(request, username=username, password=password)
-        print(type)
+        # print(type)
 
         table_type = [models.madadjoo, models.madadkar, models.hamyar]
         if user is not None:
             target_username = models.active_user.objects.get(username=username)
 
             try:
-                final_user = table_type[int(type)-2].objects.get(username = target_username)
+                final_user = table_type[int(type)-2].objects.get(username = target_username) #after defining Modir, this should become int(type)-1
                 login(request, user)
                 return HttpResponseRedirect(reverse("general_information"))
 
