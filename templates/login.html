@@ -1,49 +1,41 @@
 {% extends 'base.html' %}
+{% load addcss %}
 
 {% block content %}
 
     <h4>ورود کاربر</h4>
     <div class="row">
-{#    <div class="col-sm-3">#}
-{#        <ul class="nav nav-pills nav-stacked">#}
-{#          <li class="active"><a href="#">ورود به عنوان مددجو</a></li>#}
-{#          <li><a href="#">ورود به عنوان مددکار</a></li>#}
-{#          <li><a href="#">ورود به عنوان همیار </a></li>#}
-{#        </ul>#}
-{##}
-{#        <nav id="navbar-example3" class="right-navbar navbar-light bg-light">#}
-{#            <nav class="nav nav-pills flex-column">#}
-{#                <a class="nav-link active" href="#">ورود به عنوان مددجو</a>#}
-{#                <a class="nav-link" href="#">ورود به عنوان مددکار</a>#}
-{#                <a class="nav-link" href="#">ورود به عنوان همیار</a>#}
-{#            </nav>#}
-{#        </nav>#}
-{#    </div>#}
-    <div class="col-sm-6 center jumbotron">
-        <div class="panel panel-default">
-        <div class="panel-body">
-        <form action="#">
-            <div class="form-group">
-                <label for="id">کد ملی</label>
-                <input type="number" class="form-control" id="id">
-            </div>
-            <div class="form-group">
-                <label for="pwd">رمز عبور</label>
-                <input type="password" class="form-control" id="pwd">
-            </div>
-            <div class="form-group">
-                <label for="sel1">ورود به عنوانِ</label>
-                <select class="form-control" id="sel1">
-                    <option>همیار</option>
-                    <option>مددجو</option>
-                    <option>مددکار</option>
-                    <option>مدیر سامانه</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-danger">ورود</button>
-        </form>
+        <div class="col-sm-6 center jumbotron">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form method="post">
+                        {#            <div class="form-group">#}
+                        {#                <label for="id">کد ملی</label>#}
+                        {#                <input type="number" class="form-control" id="id">#}
+                        {#            </div>#}
+                        {#            <div class="form-group">#}
+                        {#                <label for="pwd">رمز عبور</label>#}
+                        {#                <input type="password" class="form-control" id="pwd">#}
+                        {#            </div>#}
+                        {#            <div class="form-group">#}
+                        {#                <label for="sel1">ورود به عنوانِ</label>#}
+                        {#                <select class="form-control" id="sel1">#}
+                        {#                    <option>همیار</option>#}
+                        {#                    <option>مددجو</option>#}
+                        {#                    <option>مددکار</option>#}
+                        {#                    <option>مدیر سامانه</option>#}
+                        {#                </select>#}
+                        {#            </div>#}
+                        {% for field in form %}
+                            <div class="form-group">
+                                {{ field.errors }}
+                                {{ field.label_tag }} {{ field|addcss:'form-control' }}
+                            </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-danger">ورود</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 {% endblock %}

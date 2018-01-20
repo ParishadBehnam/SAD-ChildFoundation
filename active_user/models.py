@@ -7,9 +7,6 @@ from django.contrib.auth.models import AbstractUser
 from system.models import information
 from django.utils.translation import ugettext_lazy as _
 
-
-
-
 class active_user(AbstractUser):
     AbstractUser._meta.get_field('username').verbose_name = "نام کاربری"
     AbstractUser._meta.get_field('password').verbose_name = "کلمه عبور"
@@ -19,6 +16,12 @@ class active_user(AbstractUser):
     id_number = models.IntegerField(unique=True, null=False, verbose_name="کد ملی")
     phone_number = models.IntegerField(null=True, verbose_name="شماره تلفن")
     address = models.TextField(null=True, verbose_name="آدرس")
+    email = models.EmailField(null=False, verbose_name="رایانامه")
+    profile_pic = models.ImageField(null=True, verbose_name="تصویر")
+
+    def save(self, *args, **kwargs):
+        return super(active_user, self).save(*args, **kwargs)
+
 
     class Meta:
         verbose_name_plural = _("کاربران فعال")
