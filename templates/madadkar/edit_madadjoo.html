@@ -42,6 +42,11 @@
            placeholder="شماره تلفن مددجو">
 {% endblock %}
 
+{% block email %}
+    <input type="text" class="form-control" id="staticEmail"
+           placeholder="رایانامه  مددجو">
+{% endblock %}
+
 {% block addr %}
     <input type="text" id="staticaddr" class="form-control"
            placeholder="آدرس مددجو در این‌جا وارد می‌شود.">
@@ -70,7 +75,7 @@
 
 
 {% block need %}
-    {% include "snippets/need_snippet_edit.html" %}
+{#    {% include "snippets/need_snippet_edit.html" %}#}
     <p>لیست نیاز‌ها</p>
     <hr>
     {% include "snippets/need_snippet_edit.html" %}

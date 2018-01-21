@@ -2,7 +2,6 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="Django default" uuid="a8b47d1f-ac5a-49bc-a74f-0482101a8cd0">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
       <secret-storage>memory</secret-storage>
     </data-source>
   </component>

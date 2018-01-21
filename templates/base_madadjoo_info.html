@@ -51,14 +51,22 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="staticaddr" class="col-md-1 col-form-label">آدرس</label>
-                        <div class="col-md-5">
-                            {% block addr %}
+                        <label for="staticid" class="col-md-1 col-form-label">رایانامه</label>
+                        <div class="col-md-4">
+                            {% block email %}
                             {% endblock %}
                         </div>
                         <label for="staticpercentage" class="col-md-2 col-form-label">درصد پس‌انداز</label>
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             {% block percentage %}
+                            {% endblock %}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="staticaddr" class="col-md-1 col-form-label">آدرس</label>
+                        <div class="col-md-11">
+                            {% block addr %}
                             {% endblock %}
                         </div>
                     </div>
