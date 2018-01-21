@@ -35,7 +35,7 @@ def hamyar_register(request):
             new_hamyar.save()
 
             login(request, new_hamyar)
-            return HttpResponseRedirect(reverse("general_information")) #this should be hamyar's own page
+            return HttpResponseRedirect(reverse("hamyar_panel")) #this should be hamyar's own page
         else:
             return render(request, 'hamyar/hamyar_register.html', {'form': form})
 
