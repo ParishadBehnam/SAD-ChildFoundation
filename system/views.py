@@ -10,6 +10,7 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
 from active_user import forms
+from django import forms as d_forms
 from active_user import models
 from django.contrib.auth import authenticate, login
 
@@ -64,8 +65,23 @@ def sign_in(request):
                 return HttpResponseRedirect(reverse(user_panel[int(type)-1]))
 
             except table_type[int(type)-2].DoesNotExist:
+                # raise d_forms.ValidationError("Sorry, that login was invalid. Please try again.")
+                # cnt = 1
+                # for field in form:
+                #     if cnt == 1:
+                #         field.errors = "ارور!"
+                #         cnt += 1
+                # print(form)
                 return render(request, 'login.html', {'form': form})  # TODO
         else:
+            # raise d_forms.ValidationError("Sorry, that login was invalid. Please try again.")
+            # print(type(form))
+            # cnt = 1
+            # for field in form:
+            #     if cnt == 1:
+            #         field.errors = "ارور!"
+            #         cnt += 1
+            # print(form)
             return render(request, 'login.html', {'form': form}) #TODO
 
 

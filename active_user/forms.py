@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate
 from django.forms import ModelForm, forms
 from django import forms
 from active_user import models
@@ -40,3 +41,22 @@ class login_form(ModelForm):
     class Meta:
         model = models.active_user
         fields = ['username', 'password']
+
+
+    def clean(self):
+        cleaned_data = super(login_form, self).clean()
+        username = cleaned_data["username"]
+        password = cleaned_data["password"]
+        type = cleaned_data["user_type"]
+        user = authenticate(self.data, username=username, password=password)
+
+        table_type = [models.madadjoo, models.madadkar, models.hamyar]
+        user_panel = ["admin_panel", "madadjoo_panel", "madadkar_panel", "hamyar_panel"]
+
+        print('!!')
+        if user is None:
+            # print("!")
+            raise forms.ValidationError("kooft")
+
+        return cleaned_data
+
