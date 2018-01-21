@@ -18,7 +18,7 @@ from django.contrib.auth import authenticate, login
 def hamyar_register(request):
     form = forms.hamyar_form()
     if request.method == 'GET':
-        return render(request, 'hamyar/hamyar_register.html', {'form' : form})
+        return render(request, 'hamyar/hamyar_register.html', {'form': form})
     else:
         form = forms.hamyar_form(request.POST)
 
@@ -39,6 +39,7 @@ def hamyar_register(request):
         else:
             return render(request, 'hamyar/hamyar_register.html', {'form': form})
 
+
 @csrf_exempt
 def sign_in(request):
     form = forms.login_form()
@@ -53,19 +54,19 @@ def sign_in(request):
         # print(type)
 
         table_type = [models.madadjoo, models.madadkar, models.hamyar]
+        user_panel = ["admin_panel", "madadjoo_panel", "madadkar_panel", "hamyar_panel"]
         if user is not None:
             target_username = models.active_user.objects.get(username=username)
 
             try:
                 final_user = table_type[int(type)-2].objects.get(username = target_username) #after defining Modir, this should become int(type)-1
                 login(request, user)
-                return HttpResponseRedirect(reverse("general_information"))
+                return HttpResponseRedirect(reverse(user_panel[int(type)-1]))
 
             except table_type[int(type)-2].DoesNotExist:
                 return render(request, 'login.html', {'form': form})  # TODO
         else:
             return render(request, 'login.html', {'form': form}) #TODO
-
 
 
 def general_information(request):

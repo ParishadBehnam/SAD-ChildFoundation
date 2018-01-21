@@ -43,6 +43,12 @@ def madadkar_panel(request):
 def hamyar_panel(request):
     return render(request, 'hamyar/hamyar_panel.html')
 
+def show_hamyar_information(request):
+    return render(request, 'hamyar/show_details.html')
+
+def edit_hamyar_information(request):
+    return render(request, 'hamyar/edit_details.html')
+
 def payment_reports(request):
     return render(request, 'hamyar/payment_reports.html')
 

@@ -1,0 +1,66 @@
+{% extends "madadjoo/base_show_a_supporter.html" %}
+
+{% block panel %}
+    <a class="nav-link" href="hamyar_panel">پنل مدیریت همیار</a>
+{% endblock %}
+
+{% block head %}
+    <div class="col-6 ml-auto">
+        <h4>مشخصات همیار</h4>
+    </div>
+{% endblock %}
+
+{% block buttons %}
+    <a href="edit_hamyar_hamyar"><button type="button" class="btn btn-outline-warning">ویرایش</button></a>
+{% endblock %}
+
+{% block below_image %}
+
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action disabled">
+نام مددجویان تحت تکلف
+        </a>
+        <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۱</a>
+        <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۲</a>
+        <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۳</a>
+        <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۴</a>
+    </div>
+
+{% endblock %}
+
+{% block name %}
+    <input type="text" id="staticName" readonly class="form-control-plaintext form-control" placeholder="نام همیار">
+{% endblock %}
+
+{% block l-name %}
+    <input type="text" readonly class="form-control-plaintext form-control" id="staticLastName"
+           placeholder="نام خانوادگی همیار">
+
+{% endblock %}
+
+{% block more_detail %}
+
+    <div class="form-group row">
+        <label for="staticid" class="col-md-2 col-form-label">کد ملی همیار</label>
+        <div class="col-md-10">
+            <input type="text" id="staticid" readonly class="form-control-plaintext form-control"
+                   placeholder="کد ملی همیار">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="staticphone" class="col-md-2 col-form-label">شماره تلفن همیار</label>
+        <div class="col-md-10">
+            <input type="text" id="staticphone" readonly class="form-control-plaintext form-control"
+                   value="۰۲۱-xxxxxxxx">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="staticaddr" class="col-md-2 col-form-label">آدرس همیار</label>
+        <div class="col-md-10">
+            <textarea rows="7" id="staticaddr" readonly class="form-control-plaintext form-control"
+                      placeholder="آدرس همیار در این‌جا وارد می‌شود"></textarea>
+        </div>
+    </div>
+
+{% endblock %}
