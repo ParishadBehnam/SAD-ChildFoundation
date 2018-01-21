@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'login.html' %}
+
+{% block error %}
+    <p style="color: red">
+                نام کاربری یا کلمه ورود صحیح نمی باشد. لطفا مجددا تلاش کنید.
+    </p>
+
+{% endblock %}

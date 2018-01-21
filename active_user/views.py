@@ -2,6 +2,21 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
+from __future__ import unicode_literals
+
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+
+from django.http import Http404
+from django.shortcuts import render
+from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
+
+from active_user import forms
+from django import forms as d_forms
+from active_user import models
+from django.contrib.auth import authenticate, login
+
 
 # Create your views here.
 def show_madadjoo(request):
@@ -48,6 +63,31 @@ def show_hamyar_information(request):
 
 def edit_hamyar_information(request):
     return render(request, 'hamyar/edit_details.html')
+
+@csrf_exempt
+def edit_hamyar_information(request):
+    form = forms.hamyar_form()
+    if request.method == 'GET':
+        return render(request, 'hamyar/hamyar_register.html', {'form': form})
+    else:
+        form = forms.hamyar_form(request.POST)
+
+        if form.is_valid():
+        
+            new_hamyar.first_name = form.cleaned_data['first_name']
+            new_hamyar.last_name = form.cleaned_data['last_name']
+            new_hamyar.id_number = form.cleaned_data['id_number']
+            new_hamyar.phone_number = form.cleaned_data['phone_number']
+            new_hamyar.address = form.cleaned_data['address']
+            new_hamyar.email = form.cleaned_data['email']
+            new_hamyar.set_password(form.cleaned_data['password'])
+            new_hamyar.username = form.cleaned_data['username']
+            new_hamyar.save()
+
+            login(request, new_hamyar)
+            return HttpResponseRedirect(reverse("hamyar_panel")) #this should be hamyar's own page
+        else:
+            return render(request, 'hamyar/hamyar_register.html', {'form': form})
 
 def payment_reports(request):
     return render(request, 'hamyar/payment_reports.html')
