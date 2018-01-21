@@ -50,37 +50,23 @@ def sign_in(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
         type = request.POST.get("user_type")
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(username=username, password=password)
         # print(type)
 
-        table_type = [models.madadjoo, models.madadkar, models.hamyar]
-        user_panel = ["admin_panel", "madadjoo_panel", "madadkar_panel", "hamyar_panel"]
+        table_type = [models.hamyar, models.madadjoo, models.madadkar]
+        user_panel = ["hamyar_panel", "madadjoo_panel", "madadkar_panel", "admin_panel"]
         if user is not None:
             target_username = models.active_user.objects.get(username=username)
 
             try:
-                final_user = table_type[int(type)-2].objects.get(username = target_username) #after defining Modir, this should become int(type)-1
+                final_user = table_type[int(type)-1].objects.get(username = target_username) #after defining Modir, this should become int(type)-1
                 login(request, user)
                 return HttpResponseRedirect(reverse(user_panel[int(type)-1]))
 
-            except table_type[int(type)-2].DoesNotExist:
-                # raise d_forms.ValidationError("Sorry, that login was invalid. Please try again.")
-                # cnt = 1
-                # for field in form:
-                #     if cnt == 1:
-                #         field.errors = "ارور!"
-                #         cnt += 1
-                # print(form)
-                return render(request, 'login.html', {'form': form})  # TODO
+            except table_type[int(type)-1].DoesNotExist:
+                return render(request, 'error_login.html', {'form': form})  # TODO
         else:
-            # raise d_forms.ValidationError("Sorry, that login was invalid. Please try again.")
-            # print(type(form))
-            # cnt = 1
-            # for field in form:
-            #     if cnt == 1:
-            #         field.errors = "ارور!"
-            #         cnt += 1
-            # print(form)
+
             return render(request, 'error_login.html', {'form': form}) #TODO
 
 
