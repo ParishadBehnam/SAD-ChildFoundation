@@ -12,7 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from active_user import forms
 from django import forms as d_forms
 from active_user import models
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 @csrf_exempt

@@ -53,7 +53,7 @@ class madadjoo(active_user):
     confirmed = models.BooleanField(default=False, verbose_name="تایید شده")
     removed = models.BooleanField(default=False, verbose_name="حذف شده")
     invest_percentage = models.FloatField(default=0.0, null=True, verbose_name="درصد پس‌انداز")
-    corr_madadkar = models.ForeignKey(madadkar, on_delete=models.CASCADE, verbose_name="مددجوی حمایت‌کننده")
+    corr_madadkar = models.ForeignKey(madadkar, null=True, on_delete=models.CASCADE, verbose_name="مددجوی حمایت‌کننده")
 
     class Meta:
         verbose_name_plural = _("مددجویان")

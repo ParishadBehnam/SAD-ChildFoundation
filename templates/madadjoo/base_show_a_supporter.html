@@ -12,25 +12,28 @@
             </div>
         </div>
         <hr>
-        <div class="row">
-            <div class="col-md-3">
-                <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
-                     alt="نام" class="img-thumbnail">
-                {% block below_image %}
+        <form method="post">
+            {% csrf_token %}
+            {% block error %}
+            {% endblock %}
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
+                         alt="نام" class="img-thumbnail">
+                    {% block below_image %}
 
-                {% endblock %}
+                    {% endblock %}
 
-            </div>
-            <div class="col-md-9">
-                <form>
+                </div>
+                <div class="col-md-9">
                     <div class="form-group row">
-                        <label for="staticName" class="col-md-1 col-form-label">نام</label>
+                        <label for="first_name" class="col-md-1 col-form-label">نام</label>
                         <div class="col-md-4">
                             {% block name %}
 
                             {% endblock %}
                         </div>
-                        <label for="staticLastName" class="col-md-2 col-form-label">نام خانوادگی</label>
+                        <label for="last_name" class="col-md-2 col-form-label">نام خانوادگی</label>
                         <div class="col-md-5">
                             {% block l-name %}
 
@@ -44,8 +47,8 @@
                     {% endblock %}
                     {% block submit %}
                     {% endblock %}
-                </form>
-            </div>
-        </div>
+        </form>
+    </div>
+    </div>
     </div>
 {% endblock %}

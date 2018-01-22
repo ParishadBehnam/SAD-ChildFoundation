@@ -13,24 +13,25 @@
             </div>
         </div>
         <hr>
-        <div class="row">
-            <div class="col-md-3">
-                <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
-                     alt="نام مددجو" class="img-thumbnail">
+        <form method="post">
+        {% csrf_token %}
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
+                         alt="نام مددجو" class="img-thumbnail">
 
-                {% block below_image %}
+                    {% block below_image %}
 
-                {% endblock %}
-            </div>
-            <div class="col-md-9">
-                <form>
+                    {% endblock %}
+                </div>
+                <div class="col-md-9">
                     <div class="form-group row">
-                        <label for="staticName" class="col-md-1 col-form-label">نام</label>
+                        <label for="first_name" class="col-md-1 col-form-label">نام</label>
                         <div class="col-md-4">
                             {% block name %}
                             {% endblock %}
                         </div>
-                        <label for="staticLastName" class="col-md-2 col-form-label">نام خانوادگی</label>
+                        <label for="last_name" class="col-md-2 col-form-label">نام خانوادگی</label>
                         <div class="col-md-5">
                             {% block lastName %}
                             {% endblock %}
@@ -38,12 +39,12 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="staticid" class="col-md-1 col-form-label">کدملی</label>
+                        <label for="id_number" class="col-md-1 col-form-label">کدملی</label>
                         <div class="col-md-4">
                             {% block idNum %}
                             {% endblock %}
                         </div>
-                        <label for="staticphone" class="col-md-2 col-form-label">شماره تلفن</label>
+                        <label for="phone_number" class="col-md-2 col-form-label">شماره تلفن</label>
                         <div class="col-md-5">
                             {% block phone %}
                             {% endblock %}
@@ -51,12 +52,12 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="staticid" class="col-md-1 col-form-label">رایانامه</label>
+                        <label for="email" class="col-md-1 col-form-label">رایانامه</label>
                         <div class="col-md-4">
                             {% block email %}
                             {% endblock %}
                         </div>
-                        <label for="staticpercentage" class="col-md-2 col-form-label">درصد پس‌انداز</label>
+                        <label for="invest_percentage" class="col-md-2 col-form-label">درصد پس‌انداز</label>
                         <div class="col-md-5">
                             {% block percentage %}
                             {% endblock %}
@@ -64,7 +65,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="staticaddr" class="col-md-1 col-form-label">آدرس</label>
+                        <label for="address" class="col-md-1 col-form-label">آدرس</label>
                         <div class="col-md-11">
                             {% block addr %}
                             {% endblock %}
@@ -72,7 +73,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="staticsuccess" class="col-md-1 col-form-label">شرح موفقیت‌ها</label>
+                        <label for="successes" class="col-md-1 col-form-label">شرح موفقیت‌ها</label>
                         <div class="col-md-11">
                             {% block success %}
                             {% endblock %}
@@ -80,26 +81,26 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="staticdisc" class="col-md-1 col-form-label">شرح‌حال</label>
+                        <label for="bio" class="col-md-1 col-form-label">شرح‌حال</label>
                         <div class="col-md-11">
                             {% block bio %}
                             {% endblock %}
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="staticedu" class="col-md-1 col-form-label">وضعیت تحصیلی</label>
+                        <label for="edu_status" class="col-md-1 col-form-label">وضعیت تحصیلی</label>
                         <div class="col-md-11">
                             {% block education %}
                             {% endblock %}
                         </div>
                     </div>
 
-                    {% block need %} {% endblock %}
                     {% block pass %} {% endblock %}
+                    {% block need %} {% endblock %}
                     {% block submit %} {% endblock %}
 
-                </form>
-            </div>
-        </div>
+        </form>
+    </div>
+    </div>
     </div>
 {% endblock %}

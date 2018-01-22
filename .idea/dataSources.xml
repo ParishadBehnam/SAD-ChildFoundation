@@ -20,18 +20,6 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="db.sqlite3" uuid="fbd07fc9-eb0f-4ce8-9ee3-2ead3f521570">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db.sqlite3</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="db.sqlite3 [2]" uuid="1a8c48c4-df83-46e2-ae6e-7326ccb59ddc">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:db.sqlite3</jdbc-url>
-    </data-source>
     <data-source source="LOCAL" name="db.sqlite3 [3]" uuid="130b8679-3912-48cf-ad2f-4c9d9c05b52b">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>

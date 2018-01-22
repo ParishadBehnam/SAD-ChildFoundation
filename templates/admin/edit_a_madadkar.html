@@ -5,42 +5,48 @@
 {% endblock %}
 
 {% block name %}
-    <input type="text" id="staticName" class="form-control"
+    <input type="text" name="first_name" class="form-control"
            placeholder="نام مددکار">
 {% endblock %}
 
 {% block l-name %}
-    <input type="text" id="staticName" class="form-control"
+    <input type="text" name="last_name" class="form-control"
            placeholder="نام خانوادگی مددکار">
 {% endblock %}
 
 {% block more_detail %}
      <div class="form-group row">
-        <label for="staticid" class="col-md-2 col-form-label">کد ملی مددکار</label>
-        <div class="col-md-10">
-            <input type="text" id="staticid" class="form-control form-control"
-                   placeholder="کد ملی مددکار">
+        <label for="id_number" class="col-md-2 col-form-label">کد ملی مددکار</label>
+        <div class="col-md-4">
+            <input type="number" id="id_number" name="id_number" class="form-control form-control"
+                   placeholder="کد ملی مددکار" required="true">
+        </div>
+
+        <label for="email" class="col-md-2 col-form-label">ایمیل مددکار</label>
+        <div class="col-md-4">
+            <input type="email" id="email" name="email" class="form-control form-control"
+                   placeholder="ایمیل مددکار" required="true">
         </div>
     </div>
 
     <div class="form-group row">
-        <label for="staticphone" class="col-md-2 col-form-label">شماره تلفن مددکار</label>
+        <label for="phone_number" class="col-md-2 col-form-label">شماره تلفن مددکار</label>
         <div class="col-md-10">
-            <input type="text" id="staticphone" class="form-control"
-                   value="۰۲۱-xxxxxxxx">
+            <input type="number" name="phone_number" id="phone_number" class="form-control"
+                   placeholder="021xxxxxxxx">
         </div>
     </div>
     <div class="form-group row">
-        <label for="staticaddr" class="col-md-2 col-form-label">آدرس مددکار</label>
+        <label for="address" class="col-md-2 col-form-label">آدرس مددکار</label>
         <div class="col-md-10">
-            <textarea rows="7" id="staticaddr" class="form-control"
+            <textarea rows="7" name="address" id="address" class="form-control"
                       placeholder="آدرس مددکار در این‌جا وارد می‌شود"></textarea>
         </div>
     </div>
     <div class="form-group row">
-        <label for="staticbio" class="col-md-2 col-form-label">شرح‌حال</label>
+        <label for="bio" class="col-md-2 col-form-label">شرح‌حال</label>
         <div class="col-md-10">
-            <textarea rows="7" id="staticbio" class="form-control"
+            <textarea rows="7" name="bio" id="bio" class="form-control"
                       placeholder="شرح‌حال مددکار در این‌جا وارد می‌شود"></textarea>
         </div>
     </div>

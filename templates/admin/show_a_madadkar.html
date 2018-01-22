@@ -32,11 +32,11 @@
 {% endblock %}
 
 {% block name %}
-    <input type="text" id="staticName" readonly class="form-control-plaintext form-control" placeholder="نام مددکار">
+    <input type="text" name="first_name" id="staticName" readonly class="form-control-plaintext form-control" placeholder="نام مددکار">
 {% endblock %}
 
 {% block l-name %}
-    <input type="text" readonly class="form-control-plaintext form-control" id="staticLastName"
+    <input type="text" name="last_name" readonly class="form-control-plaintext form-control" id="staticLastName"
            placeholder="نام خانوادگی مددکار">
 
 {% endblock %}
@@ -45,10 +45,15 @@
 
     <div class="form-group row">
         <label for="staticid" class="col-md-2 col-form-label">کد ملی مددکار</label>
-        <div class="col-md-10">
+        <div class="col-md-4">
             <input type="text" id="staticid" readonly class="form-control-plaintext form-control"
                    placeholder="کد ملی مددکار">
         </div>
+        <label for="email" class="col-md-2 col-form-label">ایمیل مددکار</label>
+            <div class="col-md-4">
+                <input type="email" id="email" name="email" readonly class="form-control form-control"
+                       placeholder="ایمیل مددکار">
+            </div>
     </div>
     <div class="form-group row">
         <label for="staticphone" class="col-md-2 col-form-label">شماره تلفن مددکار</label>
