@@ -14,6 +14,16 @@ from active_user import models
 
 
 # Create your views here.
+
+def home_madadkar(request):
+    return render(request, 'madadkar/home_madadkar.html')
+
+def home_hamyar(request):
+    return render(request, 'hamyar/home_hamyar.html')
+
+def home_madadjoo(request):
+    return render(request, 'madadjoo/home_madadjoo.html')
+
 def show_madadjoo(request):
     return render(request, 'madadkar/show_madadjoo.html')
 

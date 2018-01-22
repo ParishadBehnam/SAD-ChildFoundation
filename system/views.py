@@ -70,7 +70,12 @@ def sign_in(request):
             return render(request, 'error_login.html', {'form': form}) #TODO
 
 
+@csrf_exempt
 def general_information(request):
+    current_user = request.user
+    print(current_user)
+    if current_user is not None:
+        logout(request)
     return render(request, 'general_information.html')
 
 
