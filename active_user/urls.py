@@ -45,6 +45,7 @@ urlpatterns = [
     url(r'edit_a_madadkar_admin', views.edit_a_madadkar_admin, name='edit_a_madadkar_admin'),
     url(r'edit_a_hamyar_admin', views.edit_a_hamyar_admin, name='edit_a_hamyar_admin'),
     url(r'add_a_madadjoo_admin', views.add_a_madadjoo_admin, name='add_a_madadjoo_admin'),
+    url(r'add_a_madadjoo_madadkar', views.add_a_madadjoo_madadkar, name='add_a_madadjoo_admin'),
     url(r'add_a_madadkar_admin', views.add_a_madadkar_admin, name='add_a_madadkar_admin'),
     url(r'add_a_hamyar_admin', views.add_a_hamyar_admin, name='add_a_hamyar_admin'),
     url(r'inbox_admin', views.inbox_admin, name='inbox_admin'),
