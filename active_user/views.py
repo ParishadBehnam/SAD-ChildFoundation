@@ -236,6 +236,7 @@ def add_a_madadjoo_admin(request):
 @csrf_exempt
 def add_a_madadjoo_madadkar(request):
     if request.method == "GET":
+        print(request.user)
         return render(request, 'madadkar/add_a_madadjoo.html')
     else:
         username = request.POST.get('username')
@@ -256,7 +257,10 @@ def add_a_madadjoo_madadkar(request):
         description = request.POST.get('description')
         type = request.POST.get('type')
         # corr_madadkar = models.active_user.objects.get(username=request.user)
-        corr_madadkar = request.user
+        print(request.user)
+        id_madadkar = models.active_user.objects.get(username=request.user).values('id')
+        print(id_madadkar)
+        corr_madadkar = models.madadkar.objects.get(active_user_ptr_id=id_madadkar)
         cash = True if request.POST.get('cash') == 'cash' else False
         urgent = True if request.POST.get('urgent') == 'urgent' else False
 
