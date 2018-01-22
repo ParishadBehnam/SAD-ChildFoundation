@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="066d6cc6-cd8a-4e5d-9a0b-2253d677f1d7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ChildF.iml" afterPath="$PROJECT_DIR$/.idea/ChildF.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/active_user/models.py" afterPath="$PROJECT_DIR$/active_user/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/active_user/views.py" afterPath="$PROJECT_DIR$/active_user/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/add_a_hamyar.html" afterPath="$PROJECT_DIR$/templates/admin/add_a_hamyar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/add_a_madadjoo.html" afterPath="$PROJECT_DIR$/templates/admin/add_a_madadjoo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/admin/add_a_madadkar.html" afterPath="$PROJECT_DIR$/templates/admin/add_a_madadkar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base_madadjoo_info.html" afterPath="$PROJECT_DIR$/templates/base_madadjoo_info.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/madadjoo/base_show_a_supporter.html" afterPath="$PROJECT_DIR$/templates/madadjoo/base_show_a_supporter.html" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -81,11 +71,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add_a_hamyar.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="add_a_hamyar.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/admin/add_a_hamyar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.061349694">
+            <state vertical-scroll-proportion="-1.25">
               <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/active_user/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.0701754">
+              <caret line="224" column="112" selection-start-line="224" selection-start-column="112" selection-end-line="224" selection-end-column="112" />
               <folding />
             </state>
           </provider>
@@ -751,7 +751,13 @@
       <option name="project" value="LOCAL" />
       <updated>1516558825046</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="error of adding madadjoos and madadkaars.">
+      <created>1516645951946</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1516645951946</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -774,6 +780,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17423134" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1734375" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25256222" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -784,7 +791,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -810,7 +816,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="back to normal" />
     <MESSAGE value="just a bit show &amp; edit fixing!" />
-    <option name="LAST_COMMIT_MESSAGE" value="just a bit show &amp; edit fixing!" />
+    <MESSAGE value="error of adding madadjoos and madadkaars." />
+    <option name="LAST_COMMIT_MESSAGE" value="error of adding madadjoos and madadkaars." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1171,14 +1178,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/active_user/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="224" column="112" selection-start-line="224" selection-start-column="112" selection-end-line="224" selection-end-column="112" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/6633961f/a8b47d1f-ac5a-49bc-a74f-0482101a8cd0/active_user_madadkar">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1263,8 +1262,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin/add_a_hamyar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.061349694">
+        <state vertical-scroll-proportion="-1.25">
           <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/active_user/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.0701754">
+          <caret line="224" column="112" selection-start-line="224" selection-start-column="112" selection-end-line="224" selection-end-column="112" />
           <folding />
         </state>
       </provider>
