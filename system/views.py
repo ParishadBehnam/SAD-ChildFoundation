@@ -50,16 +50,16 @@ def sign_in(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
         type = request.POST.get("user_type")
-        user = authenticate(username=username, password=password)
-        # print(type)
 
-        table_type = [models.hamyar, models.madadjoo, models.madadkar]
+        user = authenticate(username=username, password=password)
+
+        table_type = [models.hamyar, models.madadjoo, models.madadkar, models.admin_user]
         user_panel = ["hamyar_panel", "madadjoo_panel", "madadkar_panel", "admin_panel"]
         if user is not None:
             target_username = models.active_user.objects.get(username=username)
 
             try:
-                final_user = table_type[int(type)-1].objects.get(username = target_username) #after defining Modir, this should become int(type)-1
+                final_user = table_type[int(type)-1].objects.get(username = target_username)
                 login(request, user)
                 return HttpResponseRedirect(reverse(user_panel[int(type)-1]))
 

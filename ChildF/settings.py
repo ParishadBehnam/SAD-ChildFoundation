@@ -29,7 +29,6 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'active_user.active_user'
 
-
 # Application definition
 
 INSTALLED_APPS = [

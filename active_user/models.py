@@ -27,6 +27,10 @@ class active_user(AbstractUser):
         verbose_name_plural = _("کاربران فعال")
         verbose_name = _("کاربر فعال")
 
+class admin_user(active_user):
+    class Meta:
+        verbose_name_plural = _("مدیران")
+        verbose_name = _("مدیر")
 
 class madadkar(active_user):
     bio = models.TextField(null=True, verbose_name="شرح حال")
