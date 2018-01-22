@@ -19,14 +19,18 @@ from active_user import models
 def home_madadkar(request):
     return render(request, 'madadkar/home_madadkar.html')
 
+
 def home_hamyar(request):
     return render(request, 'hamyar/home_hamyar.html')
+
 
 def home_madadjoo(request):
     return render(request, 'madadjoo/home_madadjoo.html')
 
+
 def home_admin(request):
     return render(request, 'admin/home_admin.html')
+
 
 def show_madadjoo(request):
     return render(request, 'madadkar/show_madadjoo.html')
@@ -186,7 +190,6 @@ def add_a_madadjoo_admin(request):
     if request.method == "GET":
         return render(request, 'admin/add_a_madadjoo.html')
     else:
-        print('hiiii')
         username = request.POST.get('username')
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
@@ -199,36 +202,35 @@ def add_a_madadjoo_admin(request):
         bio = request.POST.get('bio')
         edu_status = request.POST.get('edu_status')
         successes = request.POST.get('successes')
-        confirmed = request.POST.get('confirmed')
-        removed = request.POST.get('removed')
         invest_percentage = request.POST.get('invest_percentage')
         invest_percentage = '0.0' if invest_percentage == '' else invest_percentage
         description = request.POST.get('description')
         type = request.POST.get('type')
         # corr_madadkar = models.active_user.objects.get(username=request.user)
         corr_madadkar = None
+        cash = True if request.POST.get('cash') == 'cash' else False
+        urgent = True if request.POST.get('urgent') == 'urgent' else False
 
         print(request.POST.get('type'))
         print(invest_percentage)
         print(phone_number)
 
-
-        new_madadkar = models.madadjoo(username=username, first_name=first_name,
+        new_madadjoo = models.madadjoo(username=username, first_name=first_name,
                                        last_name=last_name, id_number=id_number, phone_number=phone_number,
                                        address=address, email=email, profile_pic=profile_pic, bio=bio,
                                        edu_status=edu_status, successes=successes, removed=False,
                                        invest_percentage=invest_percentage, corr_madadkar=corr_madadkar, confirmed=True,
-                                        )
-        new_madadkar.set_password(request.POST.get("password"))
+                                       )
+        new_madadjoo.set_password(request.POST.get("password"))
         try:
-            new_madadkar.save()
-            print("saved")
+            new_madadjoo.save()
+            new_req = models.requirements(description=description, type=type, confirmed=True, urgent=urgent,
+                                          cash=cash, madadjoo=new_madadjoo)
+            new_req.save()
         except IntegrityError:
-            print("error1")
             return render_to_response("admin/add_a_madadjoo.html",
                                       {"message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
-        except ValueError as e:
-            print(e)
+        except ValueError:
             return render_to_response("admin/add_a_madadjoo.html", {"message": "لطفا موارد الزامی را تکمیل کنید"})
 
         return HttpResponseRedirect(reverse("admin_panel"))
@@ -302,8 +304,8 @@ def add_a_hamyar_admin(request):
         profile_pic = request.POST.get('profile_pic')
 
         new_madadkar = models.hamyar(username=username, first_name=first_name,
-                                       last_name=last_name, id_number=id_number, phone_number=phone_number,
-                                       address=address, email=email, profile_pic=profile_pic)
+                                     last_name=last_name, id_number=id_number, phone_number=phone_number,
+                                     address=address, email=email, profile_pic=profile_pic)
         new_madadkar.set_password(request.POST.get("password"))
         try:
             new_madadkar.save()
