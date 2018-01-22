@@ -1,23 +1,30 @@
 {% extends "admin/edit_a_hamyar.html" %}
+{% block error %}
+    {% if message is not None %}
+        <ul style="color: #990000"><li>{{ message }}</li></ul>
+    {% endif %}
+{% endblock %}
 
 {% block below_image %}
-    <form>
-        <div class="form-group text-center">
-            <label for="FormControlFile">عکس را انتخاب کنید</label>
-            <input type="file" class="form-control-file" id="FormControlFile">
-        </div>
-    </form>
+    <div class="form-group text-center">
+        <label for="profile_pic">عکس را انتخاب کنید</label>
+        <input accept="image/*" type="file" name="profile_pic" class="form-control-file" id="profile_pic">
+    </div>
 {% endblock %}
 
 {% block pass %}
     <div class="form-group row">
-        <label class="col-md-2 col-form-label" for="pwd">رمز عبور</label>
-        <div class="col-md-10">
-            <input type="password" class="form-control" id="pwd">
+        <label class="col-md-2 col-form-label" for="username">نام ‌کاربری</label>
+        <div class="col-md-4">
+            <input type="text" name="username" class="form-control" id="username" required="true">
+        </div>
+        <label class="col-md-2 col-form-label" for="password">رمز عبور</label>
+        <div class="col-md-4">
+            <input type="password" name="password" class="form-control" id="password" required="true">
         </div>
     </div>
 {% endblock %}
 
 {% block submit %}
-    <button type="button" class="btn btn-success">ثبت همیار</button>
+    <input type="submit" class="btn btn-success" value="ثبت همیار">
 {% endblock %}

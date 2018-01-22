@@ -255,7 +255,7 @@ def add_a_madadkar_admin(request):
         last_name = request.POST.get('last_name')
         id_number = request.POST.get('id_number')
         phone_number = request.POST.get('phone_number', 0)
-        address = request.POST.get('addres')
+        address = request.POST.get('address')
         email = request.POST.get('email')
         profile_pic = request.POST.get('profile_pic')
         bio = request.POST.get('bio')
@@ -288,7 +288,34 @@ def edit_a_hamyar_admin(request):
 
 
 def add_a_hamyar_admin(request):
-    return render(request, 'admin/add_a_hamyar.html')
+    if request.method == "GET":
+        return render(request, 'admin/add_a_hamyar.html')
+    else:
+        username = request.POST.get('username')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        id_number = request.POST.get('id_number')
+        phone_number = request.POST.get('phone_number', 0)
+        phone_number = '0' if phone_number == '' else phone_number
+        address = request.POST.get('address')
+        email = request.POST.get('email')
+        profile_pic = request.POST.get('profile_pic')
+
+        new_madadkar = models.hamyar(username=username, first_name=first_name,
+                                       last_name=last_name, id_number=id_number, phone_number=phone_number,
+                                       address=address, email=email, profile_pic=profile_pic)
+        new_madadkar.set_password(request.POST.get("password"))
+        try:
+            new_madadkar.save()
+        except IntegrityError:
+            print("error1")
+            return render_to_response("admin/add_a_hamyar.html",
+                                      {"message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
+        except ValueError:
+            print("error2")
+            return render_to_response("admin/add_a_hamyar.html", {"message": "لطفا موارد الزامی را تکمیل کنید"})
+
+        return HttpResponseRedirect(reverse("admin_panel"))
 
 
 def payment_reports_admin(request):
