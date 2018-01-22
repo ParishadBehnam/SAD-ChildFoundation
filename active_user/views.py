@@ -186,7 +186,6 @@ def add_a_madadjoo_admin(request):
     if request.method == "GET":
         return render(request, 'admin/add_a_madadjoo.html')
     else:
-        print('hiiii')
         username = request.POST.get('username')
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
@@ -199,8 +198,8 @@ def add_a_madadjoo_admin(request):
         bio = request.POST.get('bio')
         edu_status = request.POST.get('edu_status')
         successes = request.POST.get('successes')
-        confirmed = request.POST.get('confirmed')
-        removed = request.POST.get('removed')
+        # confirmed = request.POST.get('confirmed')
+        # removed = request.POST.get('removed')
         invest_percentage = request.POST.get('invest_percentage')
         invest_percentage = '0.0' if invest_percentage == '' else invest_percentage
         description = request.POST.get('description')
@@ -208,28 +207,22 @@ def add_a_madadjoo_admin(request):
         # corr_madadkar = models.active_user.objects.get(username=request.user)
         corr_madadkar = None
 
-        print(request.POST.get('type'))
-        print(invest_percentage)
-        print(phone_number)
-
-
-        new_madadkar = models.madadjoo(username=username, first_name=first_name,
+        new_madadjoo = models.madadjoo(username=username, first_name=first_name,
                                        last_name=last_name, id_number=id_number, phone_number=phone_number,
                                        address=address, email=email, profile_pic=profile_pic, bio=bio,
                                        edu_status=edu_status, successes=successes, removed=False,
                                        invest_percentage=invest_percentage, corr_madadkar=corr_madadkar, confirmed=True,
                                         )
-        new_madadkar.set_password(request.POST.get("password"))
+        new_madadjoo.set_password(request.POST.get("password"))
         try:
-            new_madadkar.save()
-            print("saved")
+            new_madadjoo.save()
         except IntegrityError:
-            print("error1")
+            # print("error1")
             return render_to_response("admin/add_a_madadjoo.html",
-                                      {"message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
+                                      {"message": "این نام کاربری یا کد ملی قبلا انتخاب شده است."})
         except ValueError as e:
             print(e)
-            return render_to_response("admin/add_a_madadjoo.html", {"message": "لطفا موارد الزامی را تکمیل کنید"})
+            return render_to_response("admin/add_a_madadjoo.html", {"message": "لطفا موارد الزامی را تکمیل کنید."})
 
         return HttpResponseRedirect(reverse("admin_panel"))
 
@@ -308,11 +301,11 @@ def add_a_hamyar_admin(request):
         try:
             new_madadkar.save()
         except IntegrityError:
-            print("error1")
+            # print("error1")
             return render_to_response("admin/add_a_hamyar.html",
                                       {"message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
         except ValueError:
-            print("error2")
+            # print("error2")
             return render_to_response("admin/add_a_hamyar.html", {"message": "لطفا موارد الزامی را تکمیل کنید"})
 
         return HttpResponseRedirect(reverse("admin_panel"))

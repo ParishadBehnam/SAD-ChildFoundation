@@ -4,6 +4,12 @@
     <a class="nav-link" href="admin_panel">پنل مدیریت مدیر سامانه</a>
 {% endblock %}
 
+{% block error %}
+    {% if not message == None %}
+        <ul style="color: #990000"><li>{{ message }}</li></ul>
+    {% endif %}
+{% endblock %}
+
 {% block buttons %}
 {% endblock %}
 {% block below_image %}
@@ -24,7 +30,7 @@
 {% endblock %}
 
 {% block idNum %}
-    <input type="number" id="id_number" name="id_number" class="form-control"
+    <input type="number" id="id_number" name="id_number" class="form-control" required="true"
            placeholder="کد ملی مددجو">
 {% endblock %}
 
@@ -74,11 +80,11 @@
     <div class="form-group row">
         <label class="col-md-1 col-form-label" for="username">نام کاربری</label>
         <div class="col-md-5">
-            <input type="text" class="form-control" name="username" id="username">
+            <input type="text" class="form-control" name="username" id="username" required="true">
         </div>
         <label class="col-md-1 col-form-label" for="password">رمز عبور</label>
         <div class="col-md-5">
-            <input type="password" class="form-control" id="password" name="password">
+            <input type="password" class="form-control" id="password" name="password" required="true">
         </div>
     </div>
 {% endblock %}
