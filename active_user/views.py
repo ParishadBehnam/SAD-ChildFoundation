@@ -24,6 +24,9 @@ def home_hamyar(request):
 def home_madadjoo(request):
     return render(request, 'madadjoo/home_madadjoo.html')
 
+def home_admin(request):
+    return render(request, 'admin/home_admin.html')
+
 def show_madadjoo(request):
     return render(request, 'madadkar/show_madadjoo.html')
 

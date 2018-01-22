@@ -73,7 +73,6 @@ def sign_in(request):
 @csrf_exempt
 def general_information(request):
     current_user = request.user
-    print(current_user)
     if current_user is not None:
         logout(request)
     return render(request, 'general_information.html')

@@ -2,8 +2,10 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="Django default" uuid="a8b47d1f-ac5a-49bc-a74f-0482101a8cd0">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <database-info product="SQLite" version="3.8.11" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native" />
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
       <secret-storage>memory</secret-storage>
+      <auth-required>false</auth-required>
     </data-source>
     <data-source name="db.sqlite3" uuid="fbd07fc9-eb0f-4ce8-9ee3-2ead3f521570">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
@@ -16,6 +18,12 @@
       <secret-storage>master_key</secret-storage>
       <auth-required>false</auth-required>
       <first-sync>true</first-sync>
+    </data-source>
+    <data-source name="db.sqlite3 [3]" uuid="130b8679-3912-48cf-ad2f-4c9d9c05b52b">
+      <database-info product="SQLite" version="3.8.11" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native" />
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <secret-storage>master_key</secret-storage>
+      <auth-required>false</auth-required>
     </data-source>
   </component>
 </project>
