@@ -101,18 +101,6 @@ def edit_hamyar_information(request):
         form = forms.hamyar_form(request.POST)
 
         if form.is_valid():
-
-            # new_hamyar.first_name = form.cleaned_data['first_name']
-            # new_hamyar.last_name = form.cleaned_data['last_name']
-            # new_hamyar.id_number = form.cleaned_data['id_number']
-            # new_hamyar.phone_number = form.cleaned_data['phone_number']
-            # new_hamyar.address = form.cleaned_data['address']
-            # new_hamyar.email = form.cleaned_data['email']
-            # new_hamyar.set_password(form.cleaned_data['password'])
-            # new_hamyar.username = form.cleaned_data['username']
-            # new_hamyar.save()
-            #
-            # login(request, new_hamyar)
             return HttpResponseRedirect(reverse("hamyar_panel"))  # this should be hamyar's own page
         else:
             return render(request, 'hamyar/hamyar_register.html', {'form': form})
@@ -236,7 +224,7 @@ def add_a_madadjoo_admin(request):
 @csrf_exempt
 def add_a_madadjoo_madadkar(request):
     if request.method == "GET":
-        print(request.user)
+        # print(request.user)
         return render(request, 'madadkar/add_a_madadjoo.html')
     else:
         username = request.POST.get('username')
@@ -256,11 +244,10 @@ def add_a_madadjoo_madadkar(request):
         invest_percentage = '0.0' if invest_percentage == '' else invest_percentage
         description = request.POST.get('description')
         type = request.POST.get('type')
-        # corr_madadkar = models.active_user.objects.get(username=request.user)
-        print(request.user)
-        id_madadkar = models.active_user.objects.get(username=request.user).values('id')
-        print(id_madadkar)
-        corr_madadkar = models.madadkar.objects.get(active_user_ptr_id=id_madadkar)
+
+        # id_madadkar = models.active_user.objects.get(username=request.user).values('id')
+        # corr_madadkar = models.madadkar.objects.get(active_user_ptr_id=id_madadkar)
+        corr_madadkar = None
         cash = True if request.POST.get('cash') == 'cash' else False
         urgent = True if request.POST.get('urgent') == 'urgent' else False
 
@@ -274,9 +261,9 @@ def add_a_madadjoo_madadkar(request):
         new_madadjoo.set_password(request.POST.get("password"))
         try:
             new_madadjoo.save()
-            new_req = models.requirements(description=description, type=type, confirmed=False, urgent=urgent,
-                                          cash=cash, madadjoo=new_madadjoo)
-            new_req.save()
+            # new_req = models.requirements(description=description, type=type, confirmed=False, urgent=urgent,
+            #                               cash=cash, madadjoo=new_madadjoo)
+            # new_req.save()
         except IntegrityError:
             return render_to_response("madadkar/add_a_madadjoo.html",
                                       {"message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
@@ -306,7 +293,8 @@ def add_a_madadkar_admin(request):
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         id_number = request.POST.get('id_number')
-        phone_number = request.POST.get('phone_number', 0)
+        phone_number = request.POST.get('phone_number')
+        phone_number = '0' if phone_number == '' else phone_number
         address = request.POST.get('address')
         email = request.POST.get('email')
         profile_pic = request.POST.get('profile_pic')
@@ -360,11 +348,9 @@ def add_a_hamyar_admin(request):
         try:
             new_madadkar.save()
         except IntegrityError:
-            # print("error1")
             return render_to_response("admin/add_a_hamyar.html",
                                       {"message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
         except ValueError:
-            # print("error2")
             return render_to_response("admin/add_a_hamyar.html", {"message": "لطفا موارد الزامی را تکمیل کنید"})
 
         return HttpResponseRedirect(reverse("admin_panel"))
