@@ -1,0 +1,94 @@
+{% extends "base_madadjoo_info.html" %}
+
+{% block panel %}
+    <a class="nav-link" href="madadkar_panel">پنل مدیریت مددکار</a>
+{% endblock %}
+
+{% block error %}
+    {% if not message == None %}
+        <ul style="color: #990000"><li>{{ message }}</li></ul>
+    {% endif %}
+{% endblock %}
+
+{% block buttons %}
+{% endblock %}
+{% block below_image %}
+    <div class="form-group text-center">
+        <label for="profile_pic">عکس را انتخاب کنید</label>
+        <input type="file" name="profile_pic" class="form-control-file" id="profile_pic" accept="image/*">
+    </div>
+{% endblock %}
+
+{% block name %}
+    <input type="text" id="first_name" name="first_name" class="form-control"
+           placeholder="نام مددجو">
+{% endblock %}
+
+{% block lastName %}
+    <input type="text" class="form-control" id="last_name" name="last_name"
+           placeholder="نام خانوادگی مددجو">
+{% endblock %}
+
+{% block idNum %}
+    <input type="number" id="id_number" name="id_number" class="form-control" required="true"
+           placeholder="کد ملی مددجو">
+{% endblock %}
+
+{% block phone %}
+    <input type="number" class="form-control" id="phone_number" name="phone_number"
+           placeholder="شماره تلفن مددجو">
+{% endblock %}
+
+{% block email %}
+    <input type="email" class="form-control" id="email" name="email"
+           placeholder="رایانامه مددجو">
+{% endblock %}
+
+{% block addr %}
+    <input type="text" id="address" name="address" class="form-control"
+           placeholder="آدرس مددجو در این‌جا وارد می‌شود.">
+{% endblock %}
+
+{% block percentage %}
+    <input type="number" class="form-control"
+           id="invest_percentage" name="invest_percentage"
+           placeholder="درصد پس‌انداز" step="0.05" max="1.0" min="0.0">
+{% endblock %}
+
+{% block success %}
+    <textarea rows="7" id="successes" name="successes" class="form-control"
+              placeholder="شرح موفقیت‌های مددجو در اینجا وارد می‌شود"></textarea>
+{% endblock %}
+
+{% block bio %}
+    <textarea rows="7" id="bio" name="bio" class="form-control"
+              placeholder="مشخصات مددجو در این‌جا وارد می‌شود"></textarea>
+{% endblock %}
+
+{% block education %}
+    <textarea rows="7" id="edu_status" name="edu_status" class="form-control"
+              placeholder="وضعیت تحصیلی مددجو در این‌جا وارد می‌شود"></textarea>
+{% endblock %}
+
+
+{% block need %}
+    {% include "snippets/need_snippet_edit_admin.html" %}
+
+{% endblock %}
+
+{% block pass %}
+    <div class="form-group row">
+        <label class="col-md-1 col-form-label" for="username">نام کاربری</label>
+        <div class="col-md-5">
+            <input type="text" class="form-control" name="username" id="username" required="true">
+        </div>
+        <label class="col-md-1 col-form-label" for="password">رمز عبور</label>
+        <div class="col-md-5">
+            <input type="password" class="form-control" id="password" name="password" required="true">
+        </div>
+    </div>
+{% endblock %}
+
+{% block submit %}
+    <input type="submit" class="btn btn-success" value="ثبت مددجو">
+{% endblock %}

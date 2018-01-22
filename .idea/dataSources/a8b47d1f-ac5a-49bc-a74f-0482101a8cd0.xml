@@ -483,7 +483,6 @@ date</ColNames>
     <column id="109" parent="12" name="corr_madadkar_id">
       <Position>7</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
-      <NotNull>1</NotNull>
     </column>
     <key id="110" parent="12">
       <ColNames>active_user_ptr_id</ColNames>
