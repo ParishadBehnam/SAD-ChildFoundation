@@ -202,6 +202,7 @@ def add_a_madadjoo_admin(request):
         bio = request.POST.get('bio')
         edu_status = request.POST.get('edu_status')
         successes = request.POST.get('successes')
+
         invest_percentage = request.POST.get('invest_percentage')
         invest_percentage = '0.0' if invest_percentage == '' else invest_percentage
         description = request.POST.get('description')
@@ -211,15 +212,12 @@ def add_a_madadjoo_admin(request):
         cash = True if request.POST.get('cash') == 'cash' else False
         urgent = True if request.POST.get('urgent') == 'urgent' else False
 
-        print(request.POST.get('type'))
-        print(invest_percentage)
-        print(phone_number)
-
         new_madadjoo = models.madadjoo(username=username, first_name=first_name,
                                        last_name=last_name, id_number=id_number, phone_number=phone_number,
                                        address=address, email=email, profile_pic=profile_pic, bio=bio,
                                        edu_status=edu_status, successes=successes, removed=False,
                                        invest_percentage=invest_percentage, corr_madadkar=corr_madadkar, confirmed=True,
+
                                        )
         new_madadjoo.set_password(request.POST.get("password"))
         try:
@@ -310,11 +308,11 @@ def add_a_hamyar_admin(request):
         try:
             new_madadkar.save()
         except IntegrityError:
-            print("error1")
+            # print("error1")
             return render_to_response("admin/add_a_hamyar.html",
                                       {"message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
         except ValueError:
-            print("error2")
+            # print("error2")
             return render_to_response("admin/add_a_hamyar.html", {"message": "لطفا موارد الزامی را تکمیل کنید"})
 
         return HttpResponseRedirect(reverse("admin_panel"))

@@ -2,6 +2,8 @@
 
 {% block content %}
     <div class="container" xmlns="http://www.w3.org/1999/html">
+        {% block error %}
+        {% endblock %}
         <div class="row">
             <div class="col-sm-6 col-md-4 mr-auto">
                 {% block head %}{% endblock %}
@@ -14,8 +16,6 @@
         <hr>
         <form method="post">
             {% csrf_token %}
-            {% block error %}
-            {% endblock %}
             <div class="row">
                 <div class="col-md-3">
                     <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
@@ -47,8 +47,8 @@
                     {% endblock %}
                     {% block submit %}
                     {% endblock %}
+                </div>
+            </div>
         </form>
-    </div>
-    </div>
     </div>
 {% endblock %}

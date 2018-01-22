@@ -16,7 +16,6 @@ class active_user(AbstractUser):
     id_number = models.IntegerField(unique=True, null=False, verbose_name="کد ملی")
     phone_number = models.IntegerField(null=True, verbose_name="شماره تلفن")
     address = models.TextField(null=True, verbose_name="آدرس")
-    email = models.EmailField(null=False, verbose_name="رایانامه")
     profile_pic = models.ImageField(null=True, verbose_name="تصویر")
 
     def save(self, *args, **kwargs):
