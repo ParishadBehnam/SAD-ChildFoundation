@@ -9,11 +9,13 @@ from active_user.models import hamyar
 from django.utils.translation import ugettext_lazy as _
 
 
-
 class hamyar_form(ModelForm):
     class Meta:
         model = models.hamyar
         fields = ['username', 'password', 'first_name', 'last_name', 'id_number', 'phone_number', 'email', 'address']
+        widgets = {
+            'password': forms.TextInput(attrs={'type': 'password'})
+        }
 
         error_messages = {
             'username': {
@@ -31,12 +33,16 @@ class hamyar_form(ModelForm):
 
 
 class login_form(ModelForm):
+    user_type = forms.ChoiceField(choices=[(1, 'همیار'), (2, 'مددجو'), (3, 'مددکار'), (4, 'مدیر سامانه')],
+                                  label="ورود به عنوانِ")
 
-    user_type = forms.ChoiceField(choices=[(1, 'همیار'), (2, 'مددجو'), (3, 'مددکار'), (4, 'مدیر سامانه')], label="ورود به عنوانِ")
     class Meta:
         model = models.active_user
         fields = ['username', 'password']
 
+        widgets = {
+            'password': forms.TextInput(attrs={'type': 'password'})
+        }
 
     def clean(self):
         cleaned_data = super(login_form, self).clean()
@@ -51,4 +57,3 @@ class login_form(ModelForm):
             raise forms.ValidationError("kooft")
 
         return cleaned_data
-

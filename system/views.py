@@ -6,6 +6,7 @@ from django.shortcuts import render
 
 from django.http import Http404
 from django.shortcuts import render
+from django.template import RequestContext
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
@@ -36,7 +37,7 @@ def hamyar_register(request):
             new_hamyar.save()
 
             login(request, new_hamyar)
-            return HttpResponseRedirect(reverse("hamyar_panel")) #this should be hamyar's own page
+            return HttpResponseRedirect(reverse("hamyar_panel"))  # this should be hamyar's own page
         else:
             return render(request, 'hamyar/hamyar_register.html', {'form': form})
 
@@ -51,7 +52,7 @@ def sign_in(request):
         password = request.POST.get("password")
         type = request.POST.get("user_type")
 
-        user = authenticate(username=username, password=password)
+        user = authenticate(request, username=username, password=password)
 
         table_type = [models.hamyar, models.madadjoo, models.madadkar, models.admin_user]
         user_panel = ["hamyar_panel", "madadjoo_panel", "madadkar_panel", "admin_panel"]
@@ -59,23 +60,27 @@ def sign_in(request):
             target_username = models.active_user.objects.get(username=username)
 
             try:
-                final_user = table_type[int(type)-1].objects.get(username = target_username)
+                final_user = table_type[int(type) - 1].objects.get(username=target_username)
                 login(request, user)
                 return HttpResponseRedirect(reverse(user_panel[int(type)-1]))
 
-            except table_type[int(type)-1].DoesNotExist:
+            except table_type[int(type) - 1].DoesNotExist:
                 return render(request, 'error_login.html', {'form': form})  # TODO
         else:
 
-            return render(request, 'error_login.html', {'form': form}) #TODO
+            return render(request, 'error_login.html', {'form': form})  # TODO
 
+def system_logout(request):
+    current_user = request.user
+    print(request.user)
+    if current_user is not None:
+        logout(request)
+    return HttpResponseRedirect(reverse('general_information'))
 
 @csrf_exempt
 def general_information(request):
-    current_user = request.user
-    if current_user is not None:
-        logout(request)
+    print("is it here?")
     return render(request, 'general_information.html')
 
 
-# Create your views here.
+    # Create your views here.

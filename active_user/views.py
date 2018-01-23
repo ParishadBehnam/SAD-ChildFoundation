@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect
@@ -153,7 +154,7 @@ def send_gratitude_letter(request):
 def show_madadjoo_information(request):
     return render(request, 'madadjoo/show_madadjoo_information.html')
 
-
+@login_required
 def admin_panel(request):
     return render(request, 'admin/admin_panel.html')
 
@@ -245,9 +246,9 @@ def add_a_madadjoo_madadkar(request):
         description = request.POST.get('description')
         type = request.POST.get('type')
 
-        # id_madadkar = models.active_user.objects.get(username=request.user).values('id')
-        # corr_madadkar = models.madadkar.objects.get(active_user_ptr_id=id_madadkar)
-        corr_madadkar = None
+        id_madadkar = models.active_user.objects.get(username=request.user).id
+        corr_madadkar = models.madadkar.objects.get(active_user_ptr_id=id_madadkar)
+
         cash = True if request.POST.get('cash') == 'cash' else False
         urgent = True if request.POST.get('urgent') == 'urgent' else False
 
@@ -261,9 +262,9 @@ def add_a_madadjoo_madadkar(request):
         new_madadjoo.set_password(request.POST.get("password"))
         try:
             new_madadjoo.save()
-            # new_req = models.requirements(description=description, type=type, confirmed=False, urgent=urgent,
-            #                               cash=cash, madadjoo=new_madadjoo)
-            # new_req.save()
+            new_req = models.requirements(description=description, type=type, confirmed=False, urgent=urgent,
+                                          cash=cash, madadjoo=new_madadjoo)
+            new_req.save()
         except IntegrityError:
             return render_to_response("madadkar/add_a_madadjoo.html",
                                       {"message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
