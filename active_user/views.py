@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect
@@ -13,84 +14,95 @@ from django.views.decorators.csrf import csrf_exempt
 from active_user import forms
 from active_user import models
 
+from active_user.decorators import admin_login_required
+from active_user.decorators import madadkar_login_required
+from active_user.decorators import hamyar_login_required
+from active_user.decorators import madadjoo_login_required
 
-# Create your views here.
-
+@madadkar_login_required
 def home_madadkar(request):
     return render(request, 'madadkar/home_madadkar.html')
 
-
+@hamyar_login_required
 def home_hamyar(request):
     return render(request, 'hamyar/home_hamyar.html')
 
-
+@madadjoo_login_required
 def home_madadjoo(request):
     return render(request, 'madadjoo/home_madadjoo.html')
 
-
+@admin_login_required
 def home_admin(request):
     return render(request, 'admin/home_admin.html')
 
-
+@madadkar_login_required
 def show_madadjoo(request):
     return render(request, 'madadkar/show_madadjoo.html')
 
-
+@hamyar_login_required
 def show_madadjoo_hamyar(request):
     return render(request, 'hamyar/show_madadjoo.html')
 
-
+@madadkar_login_required
 def edit_madadjoo(request):
     return render(request, 'madadkar/edit_madadjoo.html')
 
-
+@madadkar_login_required
 def add_madadjoo(request):
     return render(request, 'madadkar/add_madadjoo.html')
 
-
+@madadkar_login_required
 def show_a_madadjoo(request):
     return render(request, 'madadkar/show_a_madadjoo.html')
 
-
+@hamyar_login_required
 def show_a_madadjoo_hamyar(request):
     return render(request, 'hamyar/show_a_madadjoo.html')
 
-
+@madadkar_login_required
 def show_a_hamyar(request):
     return render(request, 'madadkar/show_a_hamyar.html')
 
-
+@madadkar_login_required
 def send_letter(request):
     return render(request, 'madadkar/send_letter.html')
 
-
+@hamyar_login_required
 def send_letter_hamyar(request):
     return render(request, 'hamyar/send_letter.html')
 
-
+@madadkar_login_required
 def inbox(request):
     return render(request, 'madadkar/inbox.html')
 
-
+@hamyar_login_required
 def inbox_hamyar(request):
     return render(request, 'hamyar/inbox.html')
 
-
+@madadkar_login_required
 def madadkar_panel(request):
     return render(request, 'madadkar/madadkar_panel.html')
 
-
+@hamyar_login_required
 def hamyar_panel(request):
     return render(request, 'hamyar/hamyar_panel.html')
 
-
+@hamyar_login_required
 def show_hamyar_information(request):
+    active_user = models.active_user.objects.get(username=request.user)
+    hamyar = models.hamyar.objects.get(active_user_ptr_id=active_user.id)
+    user = {'first_name': active_user.first_name,
+            'last_name': active_user.last_name,
+            'id_number': active_user.id_number,
+            'phone_number': active_user.phone_number,
+            'email': active_user.email,
+            'address': active_user.address,
+            }
     return render(request, 'hamyar/show_details.html')
 
-
+@hamyar_login_required
 def edit_hamyar_information(request):
     return render(request, 'hamyar/edit_details.html')
-
 
 @csrf_exempt
 def edit_hamyar_information(request):
@@ -105,27 +117,27 @@ def edit_hamyar_information(request):
         else:
             return render(request, 'hamyar/edit_details.html', {'form': form})
 
-
+@hamyar_login_required
 def payment_reports(request):
     return render(request, 'hamyar/payment_reports.html')
 
-
+@hamyar_login_required
 def select_madadjoo(request):
     return render(request, 'hamyar/select_madadjoo.html')
 
-
+@hamyar_login_required
 def show_madadjoo_report(request):
     return render(request, 'hamyar/madadjoo_report.html')
 
-
+@madadjoo_login_required
 def madadjoo_panel(request):
     return render(request, 'madadjoo/madadjoo_panel.html')
 
-
+@madadjoo_login_required
 def show_hamyar(request):
     return render(request, 'madadjoo/show_hamyar.html')
 
-
+@madadjoo_login_required
 def show_a_madadkar_madadjoo(request):
     madadkar_id = models.madadjoo.objects.get(username=request.user).corr_madadkar_id
     if madadkar_id == None:
@@ -135,27 +147,27 @@ def show_a_madadkar_madadjoo(request):
     return render(request, 'madadjoo/show_a_madadkar.html',
                   {'first_name': madadkar.first_name, 'last_name': madadkar.last_name})
 
-
+@madadjoo_login_required
 def show_a_hamyar_madadjoo(request):
     return render(request, 'madadjoo/show_a_hamyar.html')
 
-
+@madadjoo_login_required
 def payment_reports_madadjoo(request):
     return render(request, 'madadjoo/payment_reports.html')
 
-
+@madadjoo_login_required
 def send_letter_hamyar_madadjoo(request):
     return render(request, 'madadjoo/send_letter_hamyar.html')
 
-
+@madadjoo_login_required
 def send_request_madadkar(request):
     return render(request, 'madadjoo/send_request_madadkar.html')
 
-
+@madadjoo_login_required
 def send_gratitude_letter(request):
     return render(request, 'madadjoo/send_gratitude_letter.html')
 
-
+@madadjoo_login_required
 def show_madadjoo_information(request):
     active_user = models.active_user.objects.get(username=request.user)
     madadjoo = models.madadjoo.objects.get(active_user_ptr_id=active_user.id)
@@ -174,27 +186,28 @@ def show_madadjoo_information(request):
             }
     return render(request, 'madadjoo/show_madadjoo_information.html', {'user': user})
 
-
+@admin_login_required
 def admin_panel(request):
+    print(request.session['type'])
     return render(request, 'admin/admin_panel.html')
 
-
+@admin_login_required
 def show_madadjoo_admin(request):
     return render(request, 'admin/show_madadjoo.html')
 
-
+@login_required(login_url='/login')
 def show_a_madadjoo_admin(request):
     return render(request, 'admin/show_a_madadjoo.html')
 
-
+@admin_login_required
 def edit_a_madadjoo_admin(request):
     return render(request, 'admin/edit_a_madadjoo.html')
 
-
+@admin_login_required
 def inbox_admin(request):
     return render(request, 'admin/inbox.html')
 
-
+@admin_login_required
 def add_a_madadjoo_admin(request):
     if request.method == "GET":
         return render(request, 'admin/add_a_madadjoo.html')
@@ -242,7 +255,7 @@ def add_a_madadjoo_admin(request):
 
         return HttpResponseRedirect(reverse("admin_panel"))
 
-
+@madadkar_login_required
 @csrf_exempt
 def add_a_madadjoo_madadkar(request):
     if request.method == "GET":
@@ -293,19 +306,19 @@ def add_a_madadjoo_madadkar(request):
 
         return HttpResponseRedirect(reverse("madadkar_panel"))
 
-
+@admin_login_required
 def show_madadkar_admin(request):
     return render(request, 'admin/show_madadkar.html')
 
-
+@admin_login_required
 def show_a_madadkar_admin(request):
     return render(request, 'admin/show_a_madadkar.html')
 
-
+@admin_login_required
 def edit_a_madadkar_admin(request):
     return render(request, 'admin/edit_a_madadkar.html')
 
-
+@admin_login_required
 def add_a_madadkar_admin(request):
     if request.method == "GET":
         return render(request, 'admin/add_a_madadkar.html')
@@ -335,19 +348,19 @@ def add_a_madadkar_admin(request):
 
         return HttpResponseRedirect(reverse("admin_panel"))
 
-
+@admin_login_required
 def show_hamyar_admin(request):
     return render(request, 'admin/show_hamyar.html')
 
-
+@admin_login_required
 def show_a_hamyar_admin(request):
     return render(request, 'admin/show_a_hamyar.html')
 
-
+@admin_login_required
 def edit_a_hamyar_admin(request):
     return render(request, 'admin/edit_a_hamyar.html')
 
-
+@admin_login_required
 def add_a_hamyar_admin(request):
     if request.method == "GET":
         return render(request, 'admin/add_a_hamyar.html')
@@ -376,14 +389,14 @@ def add_a_hamyar_admin(request):
 
         return HttpResponseRedirect(reverse("admin_panel"))
 
-
+@admin_login_required
 def payment_reports_admin(request):
     return render(request, 'admin/payment_reports.html')
 
-
+@admin_login_required
 def activity_report(request):
     return render(request, 'admin/activity_reports.html')
 
-
+@admin_login_required
 def madadjoo_paid_report(request):
     return render(request, 'admin/madadjoo_paid_report.html')

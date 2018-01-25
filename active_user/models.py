@@ -27,6 +27,34 @@ class active_user(AbstractUser):
         verbose_name_plural = _("کاربران فعال")
         verbose_name = _("کاربر فعال")
 
+    def is_admin(self):
+        try:
+            admin_user.objects.get(username=self.username)
+            return True
+        except:
+            return False
+
+    def is_hamyar(self):
+        try:
+            hamyar.objects.get(username=self.username)
+            return True
+        except:
+            return False
+
+    def is_madadkar(self):
+        try:
+            madadkar.objects.get(username=self.username)
+            return True
+        except:
+            return False
+
+    def is_madadjoo(self):
+        try:
+            madadjoo.objects.get(username=self.username)
+            return True
+        except:
+            return False
+
 class admin_user(active_user):
     class Meta:
         verbose_name_plural = _("مدیران")

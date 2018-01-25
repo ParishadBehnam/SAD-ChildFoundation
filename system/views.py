@@ -56,13 +56,16 @@ def sign_in(request):
 
         table_type = [models.hamyar, models.madadjoo, models.madadkar, models.admin_user]
         user_panel = ["hamyar_panel", "madadjoo_panel", "madadkar_panel", "admin_panel"]
+        user_type = ["hamyar", "madadjoo", "madadkar", "admin"]
+
         if user is not None:
             target_username = models.active_user.objects.get(username=username)
 
             try:
                 final_user = table_type[int(type) - 1].objects.get(username=target_username)
                 login(request, user)
-                return HttpResponseRedirect(reverse(user_panel[int(type)-1]))
+                request.session['type'] = user_type[int(type) - 1]
+                return HttpResponseRedirect(reverse(user_panel[int(type) - 1]))
 
             except table_type[int(type) - 1].DoesNotExist:
                 return render(request, 'error_login.html', {'form': form})  # TODO
@@ -70,12 +73,14 @@ def sign_in(request):
 
             return render(request, 'error_login.html', {'form': form})  # TODO
 
+
 def system_logout(request):
     current_user = request.user
     print(request.user)
     if current_user is not None:
         logout(request)
     return HttpResponseRedirect(reverse('general_information'))
+
 
 @csrf_exempt
 def general_information(request):
