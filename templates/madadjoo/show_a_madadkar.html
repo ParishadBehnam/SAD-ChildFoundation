@@ -16,11 +16,11 @@
 {% endblock %}
 
 {% block name %}
-    <input type="text" id="staticName" readonly class="form-control-plaintext form-control" placeholder="نام مددکار">
+    <input type="text" id="staticName" readonly class="form-control-plaintext form-control" value={{ first_name }}>
 {% endblock %}
 
 {% block l-name %}
     <input type="text" readonly class="form-control-plaintext form-control" id="staticLastName"
-           placeholder="نام خانوادگی مددکار">
+           value={{ last_name }}>
 
 {% endblock %}

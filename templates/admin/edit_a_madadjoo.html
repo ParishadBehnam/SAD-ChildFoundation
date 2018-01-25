@@ -7,10 +7,17 @@
 {% endblock %}
 
 {% block panel %}
-     <a class="nav-link" href="admin_panel">پنل مدیریت مدیر سامانه</a>
+    <a class="nav-link" href="admin_panel">پنل مدیریت مدیر سامانه</a>
 {% endblock %}
 
 {% block below_image %}
+
+    {% block upload_pic %}
+        <div class="form-group text-center">
+            <label for="profile_pic">برای تغییر عکس، عکس جدیدی انتخاب کنید.</label>
+            <input type="file" name="profile_pic" class="form-control-file" id="profile_pic" accept="image/*">
+        </div>
+    {% endblock %}
 
     <div class="list-group">
         <a href="#" class="list-group-item list-group-item-action disabled">
@@ -42,6 +49,11 @@
 {% block phone %}
     <input type="text" class="form-control" id="staticphone"
            placeholder="شماره تلفن مددجو">
+{% endblock %}
+
+{% block email %}
+    <input type="text" class="form-control" id="email"
+           placeholder="رایانامه مددجو">
 {% endblock %}
 
 {% block addr %}
@@ -76,7 +88,7 @@
     <p>لیست نیاز‌ها</p>
     <hr>
     {% include "snippets/need_snippet_edit_admin.html" %}
-{#    {% include "snippets/need_snippet_edit_admin.html" %}#}
+    {#    {% include "snippets/need_snippet_edit_admin.html" %}#}
 
 {% endblock %}
 

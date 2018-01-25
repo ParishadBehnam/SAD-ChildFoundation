@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect
@@ -97,14 +96,14 @@ def edit_hamyar_information(request):
 def edit_hamyar_information(request):
     form = forms.hamyar_form()
     if request.method == 'GET':
-        return render(request, 'hamyar/hamyar_register.html', {'form': form})
+        return render(request, 'hamyar/edit_details.html', {'form': form})
     else:
         form = forms.hamyar_form(request.POST)
 
         if form.is_valid():
             return HttpResponseRedirect(reverse("hamyar_panel"))  # this should be hamyar's own page
         else:
-            return render(request, 'hamyar/hamyar_register.html', {'form': form})
+            return render(request, 'hamyar/edit_details.html', {'form': form})
 
 
 def payment_reports(request):
@@ -128,7 +127,13 @@ def show_hamyar(request):
 
 
 def show_a_madadkar_madadjoo(request):
-    return render(request, 'madadjoo/show_a_madadkar.html')
+    madadkar_id = models.madadjoo.objects.get(username=request.user).corr_madadkar_id
+    if madadkar_id == None:
+        return render(request, 'madadjoo/show_a_madadkar.html',
+                  {'first_name': 'مدیر سامانه', 'last_name': 'مدیر سامانه'})
+    madadkar = models.madadkar.objects.get(active_user_ptr_id=madadkar_id)
+    return render(request, 'madadjoo/show_a_madadkar.html',
+                  {'first_name': madadkar.first_name, 'last_name': madadkar.last_name})
 
 
 def show_a_hamyar_madadjoo(request):
@@ -152,9 +157,24 @@ def send_gratitude_letter(request):
 
 
 def show_madadjoo_information(request):
-    return render(request, 'madadjoo/show_madadjoo_information.html')
+    active_user = models.active_user.objects.get(username=request.user)
+    madadjoo = models.madadjoo.objects.get(active_user_ptr_id=active_user.id)
+    needs = models.requirements.objects.get(madadjoo_id=active_user.id)
+    user = {'first_name': active_user.first_name,
+            'last_name': active_user.last_name,
+            'id_number': active_user.id_number,
+            'phone_number': active_user.phone_number,
+            'email': active_user.email,
+            'address': active_user.address,
+            'invest': madadjoo.invest_percentage,
+            'successes': madadjoo.successes,
+            'bio': madadjoo.bio,
+            'edu_status': madadjoo.edu_status,
+            'need': {'description': needs.description, 'type': needs.type, 'urgent': needs.urgent, 'cash': needs.cash}
+            }
+    return render(request, 'madadjoo/show_madadjoo_information.html', {'user': user})
 
-@login_required
+
 def admin_panel(request):
     return render(request, 'admin/admin_panel.html')
 
@@ -222,6 +242,7 @@ def add_a_madadjoo_admin(request):
 
         return HttpResponseRedirect(reverse("admin_panel"))
 
+
 @csrf_exempt
 def add_a_madadjoo_madadkar(request):
     if request.method == "GET":
@@ -248,7 +269,6 @@ def add_a_madadjoo_madadkar(request):
 
         id_madadkar = models.active_user.objects.get(username=request.user).id
         corr_madadkar = models.madadkar.objects.get(active_user_ptr_id=id_madadkar)
-
         cash = True if request.POST.get('cash') == 'cash' else False
         urgent = True if request.POST.get('urgent') == 'urgent' else False
 
@@ -256,8 +276,8 @@ def add_a_madadjoo_madadkar(request):
                                        last_name=last_name, id_number=id_number, phone_number=phone_number,
                                        address=address, email=email, profile_pic=profile_pic, bio=bio,
                                        edu_status=edu_status, successes=successes, removed=False,
-                                       invest_percentage=invest_percentage, corr_madadkar=corr_madadkar, confirmed=False,
-
+                                       invest_percentage=invest_percentage, corr_madadkar=corr_madadkar,
+                                       confirmed=False,
                                        )
         new_madadjoo.set_password(request.POST.get("password"))
         try:

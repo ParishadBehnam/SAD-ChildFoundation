@@ -29,22 +29,22 @@
             </div>
         </div>
 
-        <div class="form-check form-check-inline disabled">
-            <label class="form-check-label col-md-1">فوری </label>
-            <div class="col-md-1">
-                {% block urgent %}
-                {% endblock %}
-            </div>
-        </div>
-
-        <div class="form-check form-check-inline disabled">
-            <label class="form-check-label col-md-1">نقدی </label>
-            <div class="col-md-1">
-                {% block chash %}
-                {% endblock %}
-            </div>
-        </div>
+{#        <div class="form-check form-check-inline disabled">#}
+{#            <label class="form-check-label col-md-1">فوری </label>#}
+{#            <div class="col-md-1">#}
+{#                {% block urgent %}#}
+{#                {% endblock %}#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#        <div class="form-check form-check-inline disabled">#}
+{#            <label class="form-check-label col-md-1">نقدی </label>#}
+{#            <div class="col-md-1">#}
+{#                {% block chash %}#}
+{#                {% endblock %}#}
+{#            </div>#}
+{#        </div>#}
+        {% block emergency %}
+        {% endblock %}
     </div>
-    {% block emergency %}
-    {% endblock %}
 </div>

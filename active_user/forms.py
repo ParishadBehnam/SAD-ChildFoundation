@@ -39,6 +39,9 @@ class login_form(ModelForm):
     class Meta:
         model = models.active_user
         fields = ['username', 'password']
+        widgets = {
+            'password': forms.TextInput(attrs={'type': 'password'})
+        }
 
         widgets = {
             'password': forms.TextInput(attrs={'type': 'password'})

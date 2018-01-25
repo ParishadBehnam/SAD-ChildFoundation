@@ -1,10 +1,68 @@
 {% extends 'base_show_a_madadjoo.html' %}
-    {% block panel %}
-        <a class="nav-link" href="madadjoo_panel">پنل مدیریت مددجو</a>
-    {% endblock %}
-    {% block links %}
-        <a href="show_a_hamyar_madadjoo" class="list-group-item list-group-item-action">همیار ۱</a>
-        <a href="show_a_hamyar_madadjoo" class="list-group-item list-group-item-action">همیار ۲</a>
-        <a href="show_a_hamyar_madadjoo" class="list-group-item list-group-item-action">همیار ۳</a>
-        <a href="show_a_hamyar_madadjoo" class="list-group-item list-group-item-action">همیار ۴</a>
-    {% endblock %}
+{% block panel %}
+    <a class="nav-link" href="madadjoo_panel">پنل مدیریت مددجو</a>
+{% endblock %}
+{% block name %}
+    <input type="text" id="staticName" readonly class="form-control-plaintext form-control"
+           value={{ user.first_name }}>
+{% endblock %}
+
+
+{% block lastName %}
+    <input type="text" readonly class="form-control-plaintext form-control" id="staticLastName"
+           value={{ user.last_name }}>
+{% endblock %}
+
+{% block idNum %}
+    <input type="text" id="staticid" readonly class="form-control-plaintext form-control"
+           value={{ user.id_number }}>
+{% endblock %}
+
+
+{% block phone %}
+    <input type="text" readonly class="form-control-plaintext form-control" id="staticphone"
+           value={{ user.phone_number }}>
+{% endblock %}
+
+{% block email %}
+    <input type="text" readonly class="form-control-plaintext form-control" id="staticEmail"
+           value={{ user.email }}>
+{% endblock %}
+
+{% block addr %}
+    <input type="text" id="staticaddr" readonly class="form-control-plaintext form-control"
+           value={{ user.address }}>
+{% endblock %}
+
+{% block percentage %}
+    <input type="text" readonly class="form-control-plaintext form-control" id="staticpercentage"
+           value={{ user.invest }}>
+{% endblock %}
+
+{% block success %}
+    <textarea rows="7" id="staticsuccess" readonly class="form-control-plaintext form-control"
+              placeholder="شرح موفقیت‌های مددجو در اینجا وارد می‌شود">{{ user.successes }}</textarea>
+{% endblock %}
+
+{% block bio %}
+    <textarea rows="7" id="staticdisc" readonly class="form-control-plaintext form-control"
+              placeholder="شرح حال مددجو در این‌جا وارد می‌شود">{{ user.bio }}</textarea>
+{% endblock %}
+
+{% block education %}
+    <textarea rows="7" id="staticedu" readonly class="form-control-plaintext form-control"
+              placeholder="وضعیت تحصیلی مددجو در این‌جا وارد می‌شود">{{ user.edu_status }}</textarea>
+{% endblock %}
+
+{% block need %}
+    {% for i in "x" %}
+        {% include "snippets/need_snippet_show.html" %}
+    {% endfor %}
+{% endblock %}
+
+{% block links %}
+    <a href="show_a_hamyar_madadjoo" class="list-group-item list-group-item-action">همیار ۱</a>
+    <a href="show_a_hamyar_madadjoo" class="list-group-item list-group-item-action">همیار ۲</a>
+    <a href="show_a_hamyar_madadjoo" class="list-group-item list-group-item-action">همیار ۳</a>
+    <a href="show_a_hamyar_madadjoo" class="list-group-item list-group-item-action">همیار ۴</a>
+{% endblock %}

@@ -14,14 +14,19 @@
     <a href="#">
         <button type="button" class="btn btn-outline-danger">ارسال اخطار</button>
     </a>
-    <a href="edit_a_madadkar_admin"><button type="button" class="btn btn-outline-warning">ویرایش</button></a>
+    <a href="edit_a_madadkar_admin">
+        <button type="button" class="btn btn-outline-warning">ویرایش</button>
+    </a>
 {% endblock %}
 
 {% block below_image %}
 
+    {% block upload_pic %}
+    {% endblock %}
+
     <div class="list-group">
         <a href="#" class="list-group-item list-group-item-action disabled">
-نام مددجویان تحت حمایت
+            نام مددجویان تحت حمایت
         </a>
         <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۱</a>
         <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۲</a>
@@ -32,7 +37,8 @@
 {% endblock %}
 
 {% block name %}
-    <input type="text" name="first_name" id="staticName" readonly class="form-control-plaintext form-control" placeholder="نام مددکار">
+    <input type="text" name="first_name" id="staticName" readonly class="form-control-plaintext form-control"
+           placeholder="نام مددکار">
 {% endblock %}
 
 {% block l-name %}
@@ -50,10 +56,10 @@
                    placeholder="کد ملی مددکار">
         </div>
         <label for="email" class="col-md-2 col-form-label">ایمیل مددکار</label>
-            <div class="col-md-4">
-                <input type="email" id="email" name="email" readonly class="form-control form-control"
-                       placeholder="ایمیل مددکار">
-            </div>
+        <div class="col-md-4">
+            <input type="email" id="email" name="email" readonly class="form-control form-control"
+                   placeholder="ایمیل مددکار">
+        </div>
     </div>
     <div class="form-group row">
         <label for="staticphone" class="col-md-2 col-form-label">شماره تلفن مددکار</label>
@@ -73,7 +79,7 @@
         <label for="staticdisc" class="col-md-2 col-form-label">شرح‌حال</label>
         <div class="col-md-10">
             <textarea rows="7" id="staticbio" readonly class="form-control"
-              placeholder="شرح حال مددکار در این‌جا وارد می‌شود"></textarea>
+                      placeholder="شرح حال مددکار در این‌جا وارد می‌شود"></textarea>
         </div>
     </div>
 

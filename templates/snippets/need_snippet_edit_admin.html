@@ -31,6 +31,24 @@
 {% endblock %}
 
 {% block emergency %}
+    <div class="form-check form-check-inline" disabled>
+        <div class="col-md-1 mr-auto">
+            {% if user.need.urgent %}
+                <span class="emergency-need-admin badge badge-danger">نیاز فوری</span>
+            {% else %}
+                <span class="emergency-need-admin badge badge-secondary">نیاز فوری</span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="form-check form-check-inline" disabled>
+        <div class="col-md-1 mr-auto">
+            {% if user.need.cash %}
+                <span class="badge badge-danger">پرداخت‌شده</span>
+            {% else %}
+                <span class="badge badge-secondary">پرداخت‌نشده</span>
+            {% endif %}
+        </div>
+    </div>
 {#    <div class="need-botton-wrapper col-md-3 mr-auto" style="margin-top: 1%">#}
 {#        <span class="emergency-need-admin badge badge-secondary">نیاز فوری</span>#}
 {#        <span class="emergency-need-admin badge badge-secondary">پرداخت شده</span>#}

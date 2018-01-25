@@ -79,7 +79,7 @@ def system_logout(request):
 
 @csrf_exempt
 def general_information(request):
-    print("is it here?")
+    # print("is it here?")
     return render(request, 'general_information.html')
 
 

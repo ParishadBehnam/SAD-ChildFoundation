@@ -7,6 +7,7 @@ from django.contrib.auth.models import AbstractUser
 from system.models import information
 from django.utils.translation import ugettext_lazy as _
 
+
 class active_user(AbstractUser):
     AbstractUser._meta.get_field('username').verbose_name = "نام کاربری"
     AbstractUser._meta.get_field('password').verbose_name = "کلمه عبور"

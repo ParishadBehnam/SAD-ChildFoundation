@@ -11,14 +11,17 @@
 {% endblock %}
 
 {% block buttons %}
-    <a href="edit_hamyar_hamyar"><button type="button" class="btn btn-outline-warning">ویرایش</button></a>
+    <a href="edit_hamyar_hamyar">
+        <button type="button" class="btn btn-outline-warning">ویرایش</button>
+    </a>
 {% endblock %}
 
 {% block below_image %}
-
+    {% block upload_pic %}
+    {% endblock %}
     <div class="list-group">
         <a href="#" class="list-group-item list-group-item-action disabled">
-نام مددجویان تحت تکلف
+            نام مددجویان تحت تکلف
         </a>
         <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۱</a>
         <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۲</a>
