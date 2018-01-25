@@ -1,49 +1,60 @@
 {% extends "hamyar/base_registered.html" %}
 {% block content %}
+    {% block message %}
+        {% if not message == None %}
+            <ul style="color: #30996d">
+                <li>{{ message }}</li>
+            </ul>
+        {% endif %}
+    {% endblock %}
     <div class="row">
         <div class="col-6 ml-auto"><h4>تحت تکفل قرار دادن مددجویان</h4></div>
-        <div class="col-6 ml-auto">
+        {#        <div class="col-6 ml-auto">#}
+        {##}
+        {#            <nav aria-label="Page navigation example">#}
+        {#                <ul class="pagination">#}
+        {#                    <li class="page-item"><a class="page-link" href="#">قبل</a></li>#}
+        {#                    <li class="page-item"><a class="page-link" href="#">1</a></li>#}
+        {#                    <li class="page-item"><a class="page-link" href="#">2</a></li>#}
+        {#                    <li class="page-item"><a class="page-link" href="#">3</a></li>#}
+        {#                    <li class="page-item"><a class="page-link" href="#">بعد</a></li>#}
+        {#                </ul>#}
+        {#            </nav>#}
+        {##}
+        {#        </div>#}
 
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">قبل</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">بعد</a></li>
-                </ul>
-            </nav>
-
-        </div>
     </div>
+    <br>
     <form>
-        {% for i in "xx" %}
-            <div class="row">
-                {% for i in "xxxx" %}
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="card border-secondary mb-3">
-                            <img class="card-img-top"
-                                 src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
-                                 alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">نام مددجو</h5>
-                                <p class="card-text">این یک متن امتحانی‌ست. توجه نکنید:))</p>
-                                <p class="card-text">
-                                <div class="card-footer bg-transparent">
-                                    {% block link %}
-                                        <a href="show_a_madadjoo_hamyar" class="btn btn-secondary">نمایش مشخصات مددجو</a>
-                                    {% endblock %}
-                                </div>
-                                <div class="card-footer bg-transparent">
-                                    <button type="button" class="btn btn-outline-success btn-lg btn-block">انتخاب</button>
-                                </div>
+        <div class="row">
+            {% for madadjoo in madadjoos %}
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="card border-secondary mb-3">
+                        <img class="card-img-top"
+                             src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
+                             alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ madadjoo.first_name }} {{ madadjoo.last_name }}</h5>
+                            <p class="card-text">{{ madadjoo.bio }}</p>
+                            <p class="card-text">
+                            <div class="card-footer bg-transparent">
+                                {% block link %}
+                                    <a href="{% url "show_a_madadjoo_hamyar" %}?username={{ madadjoo.username }}"
+                                       class="btn btn-secondary">نمایش مشخصات مددجو</a>
+                                {% endblock %}
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <button type="button" class="btn btn-outline-success btn-lg btn-block">
+                                    <a href="{% url "support_a_madadjoo" %}?username={{ madadjoo.username }}">تکفل
+                                        کن</a>
+                                </button>
                             </div>
                         </div>
-
                     </div>
-                {% endfor %}
-            </div>
-        {% endfor %}
-    <button type="button" class="btn btn-success btn-lg btn-block">تایید</button>
+
+                </div>
+            {% endfor %}
+        </div>
+        {#        <button type="button" class="btn btn-success btn-lg btn-block">تایید</button>#}
     </form>
 {% endblock %}

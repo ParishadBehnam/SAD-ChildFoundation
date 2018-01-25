@@ -52,4 +52,5 @@ urlpatterns = [
     url(r'payment_reports_admin$', views.payment_reports_admin, name='payment_reports_admin'),
     url(r'activity_report_admin$', views.activity_report, name='activity_report_admin'),
     url(r'madadjoo_paid_report$', views.madadjoo_paid_report, name='madadjoo_paid_report'),
+    url(r'support_a_madadjoo_hamyar$', views.support_a_madadjoo, name='support_a_madadjoo'),
 ]
