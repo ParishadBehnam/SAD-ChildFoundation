@@ -25,7 +25,7 @@
                 {% block message_title %}
                     <label for="title">عنوان نامه</label>
                 {% endblock %}
-                <input type="text" class="form-control" id="title">
+                <input type="text" name="title" class="form-control" id="title">
             </div>
 
 
@@ -33,7 +33,7 @@
                 {% block message_text %}
                     <label for="letter-body">متن نامه</label>
                 {% endblock %}
-                <textarea class="form-control" id="letter-body" rows="7"></textarea>
+                <textarea class="form-control" name="text" id="letter-body" rows="7"></textarea>
             </div>
             <button type="submit" class="btn btn-success">ارسال</button>
         </form>

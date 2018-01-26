@@ -19,7 +19,7 @@ from active_user.decorators import admin_login_required
 from active_user.decorators import madadkar_login_required
 from active_user.decorators import hamyar_login_required
 from active_user.decorators import madadjoo_login_required
-from active_user.models import madadjoo, hamyar, madadkar, sponsership
+from active_user.models import madadjoo, hamyar, madadkar, sponsership, madadjoo_madadkar_letter
 
 
 @madadkar_login_required
@@ -233,17 +233,17 @@ def show_a_madadkar_madadjoo(request):
     if madadkar_id == None:
         return render(request, 'madadjoo/show_a_madadkar.html',
                       {'first_name': 'مدیر سامانه', 'last_name': 'مدیر سامانه'})
-    madadkar = models.madadkar.objects.get(active_user_ptr_id=madadkar_id)
+    target_madadkar = models.madadkar.objects.get(active_user_ptr_id=madadkar_id)
     # print(madadkar.profile_pic)
     try:
-        madadkar.profile_pic
+        target_madadkar.profile_pic
         return render(request, 'madadjoo/show_a_madadkar.html',
-                  {'first_name': madadkar.first_name, 'last_name': madadkar.last_name,
-                   'username': madadkar.username, 'profile_pic': madadkar.profile_pic})
+                  {'first_name': target_madadkar.first_name, 'last_name': target_madadkar.last_name,
+                   'username': target_madadkar.username, 'profile_pic': target_madadkar.profile_pic})
     except Exception:
         return render(request, 'madadjoo/show_a_madadkar.html',
-                  {'first_name': madadkar.first_name, 'last_name': madadkar.last_name,
-                   'username': madadkar.username, 'profile_pic': None})
+                  {'first_name': target_madadkar.first_name, 'last_name': target_madadkar.last_name,
+                   'username': target_madadkar.username, 'profile_pic': None})
 
 
 @madadjoo_login_required
@@ -268,12 +268,20 @@ def send_letter_hamyar_madadjoo(request):
 
 @madadjoo_login_required
 def send_request_madadkar(request):
+    target_madadkar = madadkar.objects.get(username=request.GET.get('username', ''))
+    user = madadjoo.objects.get(username=request.user)
     if request.method == "GET":
         target_madadkar = madadkar.objects.get(username=request.GET.get('username', ''))
         user = madadjoo.objects.get(username=request.user)
         return render(request, 'madadjoo/send_request_madadkar.html', {'user': user, 'receiver': target_madadkar})
     else:
-        return render(request, 'madadjoo/send_request_madadkar.html')
+        print(target_madadkar)
+        title = request.POST.get('title')
+        text = request.POST.get('text')
+        letter = madadjoo_madadkar_letter(madadjoo=user, madadkar=target_madadkar, text=text, title=title,
+                                          thank=False)
+        letter.save()
+        return HttpResponseRedirect(reverse("madadjoo_panel"))
 
 
 @madadjoo_login_required

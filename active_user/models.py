@@ -100,7 +100,9 @@ class madadjoo_madadkar_letter(models.Model):
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
     madadkar = models.ForeignKey(madadkar, on_delete=models.CASCADE)
     text = models.TextField()
+    title = models.TextField(default='')
     date = models.DateField(auto_now=True)
+    thank = models.BooleanField(null=False, default=False)
 
     class Meta:
         unique_together = (("madadjoo", "date"),)
