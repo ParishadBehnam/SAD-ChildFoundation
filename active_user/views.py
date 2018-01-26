@@ -259,11 +259,17 @@ def payment_reports_madadjoo(request):
 
 @madadjoo_login_required
 def send_letter_hamyar_madadjoo(request):
-    if request.method == "GET":
+    # target_madadkar = madadkar.objects.get(username=request.GET.get('username', ''))
+    # user = madadjoo.objects.get(username=request.user)
+    # if request.method == "GET":
         return render(request, 'madadjoo/send_letter_hamyar.html')
-    else:
-        pass
-    return render(request, 'madadjoo/send_letter_hamyar.html')
+    # else:
+    #     title = request.POST.get('title')
+    #     text = request.POST.get('text')
+    #     letter = madadjoo_madadkar_letter(madadjoo=user, madadkar=target_madadkar, text=text, title=title,
+    #                                       thank=True)
+    #     letter.save()
+    #     return HttpResponseRedirect(reverse("madadjoo_panel"))
 
 
 @madadjoo_login_required
@@ -271,11 +277,8 @@ def send_request_madadkar(request):
     target_madadkar = madadkar.objects.get(username=request.GET.get('username', ''))
     user = madadjoo.objects.get(username=request.user)
     if request.method == "GET":
-        target_madadkar = madadkar.objects.get(username=request.GET.get('username', ''))
-        user = madadjoo.objects.get(username=request.user)
         return render(request, 'madadjoo/send_request_madadkar.html', {'user': user, 'receiver': target_madadkar})
     else:
-        print(target_madadkar)
         title = request.POST.get('title')
         text = request.POST.get('text')
         letter = madadjoo_madadkar_letter(madadjoo=user, madadkar=target_madadkar, text=text, title=title,
@@ -286,7 +289,17 @@ def send_request_madadkar(request):
 
 @madadjoo_login_required
 def send_gratitude_letter(request):
-    return render(request, 'madadjoo/send_gratitude_letter.html')
+    target_madadkar = madadkar.objects.get(username=request.GET.get('username', ''))
+    user = madadjoo.objects.get(username=request.user)
+    if request.method == "GET":
+        return render(request, 'madadjoo/send_gratitude_letter.html', {'user': user, 'receiver': target_madadkar})
+    else:
+        title = request.POST.get('title')
+        text = request.POST.get('text')
+        letter = madadjoo_madadkar_letter(madadjoo=user, madadkar=target_madadkar, text=text, title=title,
+                                          thank=True)
+        letter.save()
+        return HttpResponseRedirect(reverse("madadjoo_panel"))
 
 
 @madadjoo_login_required

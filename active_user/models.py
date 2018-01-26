@@ -104,8 +104,8 @@ class madadjoo_madadkar_letter(models.Model):
     date = models.DateField(auto_now=True)
     thank = models.BooleanField(null=False, default=False)
 
-    class Meta:
-        unique_together = (("madadjoo", "date"),)
+    # class Meta:
+    #     unique_together = (("madadjoo", "date"),)
 
 
 class requirements(models.Model):

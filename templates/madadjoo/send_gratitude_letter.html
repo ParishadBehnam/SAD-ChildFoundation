@@ -3,12 +3,12 @@
     <a class="nav-link" href="madadjoo_panel">پنل مدیریت مددجو</a>
 {% endblock %}
 {% block sender %}
-    <input type="text" readonly class="form-control-plaintext form-control" id="sender"
-           placeholder="نام مددجو">
+    <input type="text" readonly name="sender" class="form-control-plaintext form-control" id="sender"
+           placeholder="نام مددجو" value="{{ user.first_name }} {{ user.last_name }}">
 {% endblock %}
 {% block receiver %}
-    <input type="text" readonly class="form-control-plaintext form-control" id="sender"
-           placeholder="نام مددکار">
+    <input type="text" readonly name="receiver" class="form-control-plaintext form-control" id="sender"
+           placeholder="نام مددکار" value="{{ receiver.first_name }} {{ receiver.last_name }}">
 
 {% endblock %}
 {% block message_title %}<label for="title">عنوان نامه‌ی تشکر</label>{% endblock %}

@@ -7,7 +7,8 @@
         </div>
         <hr>
 
-        <form>
+        <form method="post">
+            {% csrf_token %}
             <div class="form-group">
                 <label for="sender">فرستنده</label>
                 {% block sender %}
