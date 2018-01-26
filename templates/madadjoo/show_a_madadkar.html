@@ -19,6 +19,16 @@
     <input type="text" id="staticName" readonly class="form-control-plaintext form-control" value="{{ first_name }}">
 {% endblock %}
 
+{% block profile_pic %}
+    {% if user.profile_pic %}
+        <img src="{{ profile_pic.url|default:"https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276" }}"
+             alt="نام مددجو" class="img-thumbnail">
+    {% else %}
+        <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
+             alt="نام مددجو" class="img-thumbnail">
+    {% endif %}
+{% endblock %}
+
 {% block l-name %}
     <input type="text" readonly class="form-control-plaintext form-control" id="staticLastName"
            value="{{ last_name }}">
