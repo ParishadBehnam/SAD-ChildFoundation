@@ -13,8 +13,13 @@
 {% endblock %}
 
 {% block links %}
-    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۱</a>
-    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۲</a>
-    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۳</a>
-    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۴</a>
+    {% for hamyar in hamyars %}
+        <a href="{% url "show_a_hamyar" %}?username={{ hamyar.username }}" class="list-group-item list-group-item-action">
+            {{ hamyar.username }}
+        </a>
+    {% endfor %}
+
+{#    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۲</a>#}
+{#    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۳</a>#}
+{#    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۴</a>#}
 {% endblock %}

@@ -15,8 +15,13 @@
         <hr>
         <div class="row">
             <div class="col-md-3">
-                <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
-                     alt="نام همیار" class="img-thumbnail">
+                {% if user.profile_pic %}
+                        <img src="{{ user.profile_pic.url|default:"https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276" }}"
+                             alt="نام مددجو" class="img-thumbnail">
+                    {% else %}
+                        <img src= "https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
+                             alt="نام مددجو" class="img-thumbnail">
+                    {% endif %}
                 {% block madadjoos %}
 
                 {% endblock %}
@@ -27,12 +32,12 @@
                         <label for="staticName" class="col-md-1 col-form-label">نام</label>
                         <div class="col-md-4">
                             <input type="text" id="staticName" readonly class="form-control-plaintext form-control"
-                                   value="نام همیار">
+                                   value="{{ user.first_name }}">
                         </div>
                         <label for="staticLastName" class="col-md-2 col-form-label">نام خانوادگی</label>
                         <div class="col-md-5">
                             <input type="text" readonly class="form-control-plaintext form-control" id="staticLastName"
-                                   value="نام خانوادگی همیار">
+                                   value="{{ user.last_name }}">
                         </div>
                     </div>
                     {% block more_detail %}

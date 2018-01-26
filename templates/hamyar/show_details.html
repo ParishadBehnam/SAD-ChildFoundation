@@ -19,20 +19,23 @@
 {% block below_image %}
     {% block upload_pic %}
     {% endblock %}
-    <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action disabled">
-            نام مددجویان تحت تکلف
-        </a>
-        <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۱</a>
-        <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۲</a>
-        <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۳</a>
-        <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۴</a>
-    </div>
+    {% block madadjoos %}
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action disabled">
+                نام کاربری مددجویان تحت تکلف
+            </a>
+            {% for madadjoo in madadjoos %}
+                <a href="{% url "show_a_madadjoo_hamyar" %}?username={{ madadjoo.username }}"
+                   class="list-group-item list-group-item-action">{{ madadjoo.username }}</a>
+            {% endfor %}
+        </div>
+    {% endblock %}
 
 {% endblock %}
 
 {% block name %}
-    <input type="text" id="staticName" readonly class="form-control-plaintext form-control" placeholder="نام همیار" value="{{ user.first_name }}">
+    <input type="text" id="staticName" readonly class="form-control-plaintext form-control" placeholder="نام همیار"
+           value="{{ user.first_name }}">
 {% endblock %}
 
 {% block l-name %}
@@ -61,7 +64,7 @@
         <label for="staticphone" class="col-md-2 col-form-label">شماره تلفن همیار</label>
         <div class="col-md-10">
             <input type="text" id="staticphone" readonly class="form-control-plaintext form-control"
-                   value={{ user.phone_number }} >
+                   value={{ user.phone_number }}>
         </div>
     </div>
     <div class="form-group row">

@@ -19,7 +19,7 @@ from active_user.decorators import admin_login_required
 from active_user.decorators import madadkar_login_required
 from active_user.decorators import hamyar_login_required
 from active_user.decorators import madadjoo_login_required
-from active_user.models import madadjoo, sponsership
+from active_user.models import madadjoo, hamyar, madadkar, sponsership
 
 
 @madadkar_login_required
@@ -81,8 +81,8 @@ def show_a_madadjoo(request):
             'edu_status': target_madadjoo.edu_status,
             'need': {'description': needs.description, 'type': needs.type, 'urgent': needs.urgent, 'cash': needs.cash}
             }
-
-    return render(request, 'madadkar/show_a_madadjoo.html', {'user': user})
+    hamyars = hamyar.objects.filter(sponsership__madadjoo_id=target_madadjoo.id)
+    return render(request, 'madadkar/show_a_madadjoo.html', {'user': user, 'hamyars': hamyars})
 
 
 @hamyar_login_required
@@ -114,12 +114,15 @@ def show_a_madadjoo_hamyar(request):
             'edu_status': target_madadjoo.edu_status,
             'need': {'description': needs.description, 'type': needs.type, 'urgent': needs.urgent, 'cash': needs.cash}
             }
-    return render(request, 'hamyar/show_a_madadjoo.html', {'user': user})
+    hamyars = hamyar.objects.filter(sponsership__madadjoo_id=target_madadjoo.id)
+    return render(request, 'hamyar/show_a_madadjoo.html', {'user': user, 'hamyars': hamyars})
 
 
 @madadkar_login_required
 def show_a_hamyar(request):
-    return render(request, 'madadkar/show_a_hamyar.html')
+    target_hamyar = hamyar.objects.get(username=request.GET.get('username', ''))
+    madadjoos = madadjoo.objects.filter(corr_madadkar_id=request.user.id, sponsership__hamyar_id=target_hamyar.id)
+    return render(request, 'madadkar/show_a_hamyar.html', {'user': target_hamyar, 'madadjoos': madadjoos})
 
 
 @madadkar_login_required
@@ -163,7 +166,8 @@ def show_hamyar_information(request):
             'email': active_user.email,
             'address': active_user.address,
             }
-    return render(request, 'hamyar/show_details.html')
+    madadjoos = madadjoo.objects.filter(sponsership__hamyar_id=active_user.id)
+    return render(request, 'hamyar/show_details.html', {'madadjoos': madadjoos})
 
 
 @hamyar_login_required

@@ -3,10 +3,10 @@
         <a class="nav-link" href="hamyar_panel">پنل مدیریت همیار</a>
     {% endblock %}
     {% block links %}
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۱</a>
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۲</a>
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۳</a>
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۴</a>
+        {% for hamyar in hamyars %}
+            <a href="#" class="list-group-item list-group-item-action disabled"
+            style="cursor: default">{{ hamyar.username }}</a>
+        {% endfor %}
         <hr>
         <a href="https://sep.shaparak.ir/PaymentError.aspx?key=0dqPUmtI1Qg" class="btn btn-success">پرداخت</a>
     {% endblock %}

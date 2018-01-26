@@ -19,6 +19,6 @@ from system.admin import admin_site
 urlpatterns = [
     url(r'^admin/', admin_site.urls),
     url(r'^user/', include('active_user.urls')),
-    url(r'logout/', include('system.urls')),
+    url(r'^logout/', include('system.urls')),
     url(r'', include('system.urls')),
 ]

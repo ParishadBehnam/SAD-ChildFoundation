@@ -6,14 +6,17 @@
 
 {% block name %}
     <input type="text" id="staticName" class="form-control"
-           placeholder="نام همیار">
+           placeholder="نام همیار" value="{{ user.first_name }}">
 {% endblock %}
 
 {% block l-name %}
     <input type="text" id="staticName" class="form-control"
-           placeholder="نام خانوادگی همیار">
+           placeholder="نام خانوادگی همیار" value="{{ user.last_name }}">
 {% endblock %}
 
+
+{% block madadjoos %}
+{% endblock %}
 {% block upload_pic %}
     <div class="form-group text-center">
         <label for="profile_pic">برای تغییر عکس، عکس جدیدی انتخاب کنید.</label>
@@ -24,9 +27,14 @@
 {% block more_detail %}
     <div class="form-group row">
         <label for="staticid" class="col-md-2 col-form-label">کد ملی همیار</label>
-        <div class="col-md-10">
+        <div class="col-md-3">
             <input type="text" id="staticid" class="form-control form-control"
-                   placeholder="کد ملی همیار">
+                   placeholder="کد ملی همیار"  value="{{ user.id_number }}">
+        </div>
+        <label for="staticid" class="col-md-2 col-form-label">رایانامه همیار</label>
+        <div class="col-md-5">
+            <input type="text" id="staticid" class="form-control form-control"
+                   placeholder="ایمیل همیار"  value="{{ user.email }}">
         </div>
     </div>
 
@@ -34,14 +42,14 @@
         <label for="staticphone" class="col-md-2 col-form-label">شماره تلفن همیار</label>
         <div class="col-md-10">
             <input type="text" id="staticphone" class="form-control"
-                   value="۰۲۱-xxxxxxxx">
+                   value="{{ user.phone_number }}">
         </div>
     </div>
     <div class="form-group row">
         <label for="staticaddr" class="col-md-2 col-form-label">آدرس همیار</label>
         <div class="col-md-10">
             <textarea rows="7" id="staticaddr" class="form-control"
-                      placeholder="آدرس همیار در این‌جا وارد می‌شود"></textarea>
+                      placeholder="آدرس همیار در این‌جا وارد می‌شود">{{ user.address }}</textarea>
         </div>
     </div>
     {% block pass %}
