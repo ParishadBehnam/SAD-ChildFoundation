@@ -30,9 +30,14 @@
             {% for madadjoo in madadjoos %}
                 <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="card border-secondary mb-3">
-                        <img class="card-img-top"
-                             src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
-                             alt="Card image cap">
+                        {% if madadjoo.profile_pic %}
+                            <img src="{{ madadjoo.profile_pic.url|default:"https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276" }}"
+                                 alt="نام مددجو" class="img-thumbnail">
+
+                        {% else %}
+                            <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
+                                 alt="نام مددجو" class="img-thumbnail">
+                        {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{ madadjoo.first_name }} {{ madadjoo.last_name }}</h5>
                             <p class="card-text">{{ madadjoo.bio }}</p>
