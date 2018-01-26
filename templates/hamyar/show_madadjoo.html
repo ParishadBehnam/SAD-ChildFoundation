@@ -3,5 +3,5 @@
     <a class="nav-link" href="hamyar_panel">پنل مدیریت همیار</a>
 {% endblock %}
 {% block link %}
-    <a href="show_a_madadjoo_hamyar" class="btn btn-secondary">نمایش مشخصات مددجو</a>
+    <a href="{% url "show_a_madadjoo_hamyar" %}?username={{ madadjoo.username }}" class="btn btn-secondary">نمایش مشخصات مددجو</a>
  {% endblock %}

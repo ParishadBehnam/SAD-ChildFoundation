@@ -44,12 +44,14 @@ def home_admin(request):
 
 @madadkar_login_required
 def show_madadjoo(request):
-    return render(request, 'madadkar/show_madadjoo.html')
+    all_madadjoo = madadjoo.objects.filter(corr_madadkar=request.user.id)
+    return render(request, 'madadkar/show_madadjoo.html', {'madadjoos': all_madadjoo})
 
 
 @hamyar_login_required
 def show_madadjoo_hamyar(request):
-    return render(request, 'hamyar/show_madadjoo.html')
+    all_madadjoo = madadjoo.objects.filter(sponsership__hamyar_id=request.user.id)
+    return render(request, 'hamyar/show_madadjoo.html', {'madadjoos': all_madadjoo})
 
 
 @madadkar_login_required
@@ -64,7 +66,23 @@ def add_madadjoo(request):
 
 @madadkar_login_required
 def show_a_madadjoo(request):
-    return render(request, 'madadkar/show_a_madadjoo.html')
+    target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
+    needs = models.requirements.objects.get(madadjoo_id=target_madadjoo.id)
+    user = {'first_name': target_madadjoo.first_name,
+            'last_name': target_madadjoo.last_name,
+            'id_number': target_madadjoo.id_number,
+            'phone_number': target_madadjoo.phone_number,
+            'email': target_madadjoo.email,
+            'address': target_madadjoo.address,
+            'profile_pic': target_madadjoo.profile_pic,
+            'invest': target_madadjoo.invest_percentage,
+            'successes': target_madadjoo.successes,
+            'bio': target_madadjoo.bio,
+            'edu_status': target_madadjoo.edu_status,
+            'need': {'description': needs.description, 'type': needs.type, 'urgent': needs.urgent, 'cash': needs.cash}
+            }
+
+    return render(request, 'madadkar/show_a_madadjoo.html', {'user': user})
 
 
 @hamyar_login_required
@@ -89,13 +107,13 @@ def show_a_madadjoo_hamyar(request):
             'phone_number': target_madadjoo.phone_number,
             'email': target_madadjoo.email,
             'address': target_madadjoo.address,
+            'profile_pic': target_madadjoo.profile_pic,
             'invest': target_madadjoo.invest_percentage,
             'successes': target_madadjoo.successes,
             'bio': target_madadjoo.bio,
             'edu_status': target_madadjoo.edu_status,
             'need': {'description': needs.description, 'type': needs.type, 'urgent': needs.urgent, 'cash': needs.cash}
             }
-    print(target_madadjoo.phone_number)
     return render(request, 'hamyar/show_a_madadjoo.html', {'user': user})
 
 
@@ -174,8 +192,19 @@ def payment_reports(request):
 
 @hamyar_login_required
 def select_madadjoo(request):
-    all_madadjoo = madadjoo.objects.values('username', 'first_name', 'last_name', 'bio')
-    return render(request, 'hamyar/select_madadjoo.html', {'madadjoos': list(all_madadjoo)})
+    # all_madadjoo = list(madadjoo.objects.values('id', 'username', 'first_name', 'last_name', 'bio'))
+    # corr_madadjoos = list(sponsership.objects.filter(hamyar_id=request.user.id).values('madadjoo_id'))
+    # corr_madadjoos_id = [list(x.values())[0] for x in corr_madadjoos]
+    #
+    # not_rel_madadjoos = list()
+    #
+    # for madadjoo_dict in all_madadjoo:
+    #     if madadjoo_dict['id'] not in corr_madadjoos_id:
+    #         not_rel_madadjoos.append(madadjoo_dict)
+
+    not_rel_madadjoos = madadjoo.objects.exclude(sponsership__hamyar_id=request.user.id)
+
+    return render(request, 'hamyar/select_madadjoo.html', {'madadjoos': not_rel_madadjoos})
 
 
 @hamyar_login_required
@@ -339,7 +368,8 @@ def add_a_madadjoo_madadkar(request):
         phone_number = '0' if phone_number == '' else phone_number
         address = request.POST.get('addres')
         email = request.POST.get('email')
-        profile_pic = request.POST.get('profile_pic')
+        profile_pic = request.FILES.get('profile_pic')
+        print(profile_pic)
         bio = request.POST.get('bio')
         edu_status = request.POST.get('edu_status')
         successes = request.POST.get('successes')

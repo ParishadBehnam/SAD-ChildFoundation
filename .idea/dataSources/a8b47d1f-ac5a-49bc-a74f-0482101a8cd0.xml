@@ -90,14 +90,14 @@
       <Position>12</Position>
       <DataType>TEXT(0,-1)|12</DataType>
     </column>
-    <column id="41" parent="3" name="email">
+    <column id="41" parent="3" name="profile_pic">
       <Position>13</Position>
+      <DataType>VARCHAR(100)(0,-1)|12</DataType>
+    </column>
+    <column id="42" parent="3" name="email">
+      <Position>14</Position>
       <DataType>VARCHAR(254)(0,-1)|12</DataType>
       <NotNull>1</NotNull>
-    </column>
-    <column id="42" parent="3" name="profile_pic">
-      <Position>14</Position>
-      <DataType>VARCHAR(100)(0,-1)|12</DataType>
     </column>
     <index id="43" parent="3" name="sqlite_autoindex_active_user_active_user_1">
       <NameSurrogate>1</NameSurrogate>

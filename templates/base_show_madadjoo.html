@@ -2,44 +2,50 @@
 {% block content %}
     <div class="row">
         {% block title %}
-            <div class="col-6 ml-auto"><h4>مشاهده‌ی مددجویان</h4></div>
+            <div class="col-6 ml-auto"><h4> مشاهده مددجویان تحت حمایت</h4></div>
         {% endblock %}
-        <div class="col-5 ml-auto">
 
-            <nav aria-label="Page navigation example">
-                <ul class="pagination mr-auto">
-                    <li class="page-item"><a class="page-link" href="#">قبل</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">بعد</a></li>
-                </ul>
-            </nav>
-
-        </div>
+        {#        <div class="col-5 ml-auto">#}
+        {##}
+        {#            <nav aria-label="Page navigation example">#}
+        {#                <ul class="pagination mr-auto">#}
+        {#                    <li class="page-item"><a class="page-link" href="#">قبل</a></li>#}
+        {#                    <li class="page-item"><a class="page-link" href="#">1</a></li>#}
+        {#                    <li class="page-item"><a class="page-link" href="#">2</a></li>#}
+        {#                    <li class="page-item"><a class="page-link" href="#">3</a></li>#}
+        {#                    <li class="page-item"><a class="page-link" href="#">بعد</a></li>#}
+        {#                </ul>#}
+        {#            </nav>#}
+        {##}
+        {#        </div>#}
     </div>
-    {% for i in "xx" %}
-        <div class="row">
-            {% for i in "xxxx" %}
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="card border-secondary mb-3">
-                        <img class="card-img-top"
-                             src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
-                             alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">نام مددجو</h5>
-                            <p class="card-text">این یک متن امتحانی‌ست. توجه نکنید:))</p>
-                            <p class="card-text">
-                            <div class="card-footer bg-transparent">
-                                {% block link %} {% endblock %}
-                            </div>
-                            {% block button %}
+    <br>
+    <div class="row">
+        {% for madadjoo in madadjoos %}
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="card border-secondary mb-3">
+                    {% if madadjoo.profile_pic %}
+                        <img src="{{ madadjoo.profile_pic.url|default:"https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276" }}"
+                             alt="نام مددجو" class="img-thumbnail">
 
-                            {% endblock %}
+                    {% else %}
+                        <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
+                             alt="نام مددجو" class="img-thumbnail">
+                    {% endif %}
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ madadjoo.first_name }} {{ madadjoo.last_name }}</h5>
+                        <p class="card-text">{{ madadjoo.bio }}</p>
+                        <p class="card-text">
+                        <div class="card-footer bg-transparent">
+                            {% block link %} {% endblock %}
                         </div>
+                        {% block button %}
+
+                        {% endblock %}
                     </div>
                 </div>
-            {% endfor %}
-        </div>
-    {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

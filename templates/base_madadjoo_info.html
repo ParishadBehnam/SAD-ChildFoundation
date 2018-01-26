@@ -15,12 +15,18 @@
             </div>
         </div>
         <hr>
-        <form method="post">
-        {% csrf_token %}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="row">
                 <div class="col-md-3">
-                    <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
-                         alt="نام مددجو" class="img-thumbnail">
+                    {% if user.profile_pic %}
+                        <img src="{{ user.profile_pic.url|default:"https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276" }}"
+                             alt="نام مددجو" class="img-thumbnail">
+
+                    {% else %}
+                        <img src= "https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
+                             alt="نام مددجو" class="img-thumbnail">
+                    {% endif %}
 
                     {% block below_image %}
 
