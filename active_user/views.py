@@ -57,7 +57,8 @@ def show_madadjoo_hamyar(request):
 
 @madadkar_login_required
 def edit_madadjoo(request):
-    return render(request, 'madadkar/edit_madadjoo.html')
+    target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
+    return render(request, 'madadkar/edit_madadjoo.html', {'user':target_madadjoo})
 
 
 @madadkar_login_required
@@ -68,22 +69,22 @@ def add_madadjoo(request):
 @madadkar_login_required
 def show_a_madadjoo(request):
     target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
-    needs = models.requirements.objects.get(madadjoo_id=target_madadjoo.id)
-    user = {'first_name': target_madadjoo.first_name,
-            'last_name': target_madadjoo.last_name,
-            'id_number': target_madadjoo.id_number,
-            'phone_number': target_madadjoo.phone_number,
-            'email': target_madadjoo.email,
-            'address': target_madadjoo.address,
-            'profile_pic': target_madadjoo.profile_pic,
-            'invest': target_madadjoo.invest_percentage,
-            'successes': target_madadjoo.successes,
-            'bio': target_madadjoo.bio,
-            'edu_status': target_madadjoo.edu_status,
-            'need': {'description': needs.description, 'type': needs.type, 'urgent': needs.urgent, 'cash': needs.cash}
-            }
+    needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
+    # user = {'first_name': target_madadjoo.first_name,
+    #         'last_name': target_madadjoo.last_name,
+    #         'id_number': target_madadjoo.id_number,
+    #         'phone_number': target_madadjoo.phone_number,
+    #         'email': target_madadjoo.email,
+    #         'address': target_madadjoo.address,
+    #         'profile_pic': target_madadjoo.profile_pic,
+    #         'invest': target_madadjoo.invest_percentage,
+    #         'successes': target_madadjoo.successes,
+    #         'bio': target_madadjoo.bio,
+    #         'edu_status': target_madadjoo.edu_status,
+    #         'need': {'description': needs.description, 'type': needs.type, 'urgent': needs.urgent, 'cash': needs.cash}
+    #         }
     hamyars = hamyar.objects.filter(sponsership__madadjoo_id=target_madadjoo.id)
-    return render(request, 'madadkar/show_a_madadjoo.html', {'user': user, 'hamyars': hamyars})
+    return render(request, 'madadkar/show_a_madadjoo.html', {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
 
 
 @hamyar_login_required
@@ -101,22 +102,22 @@ def support_a_madadjoo(request):
 @hamyar_login_required
 def show_a_madadjoo_hamyar(request):
     target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
-    needs = models.requirements.objects.get(madadjoo_id=target_madadjoo.id)
-    user = {'first_name': target_madadjoo.first_name,
-            'last_name': target_madadjoo.last_name,
-            'id_number': target_madadjoo.id_number,
-            'phone_number': target_madadjoo.phone_number,
-            'email': target_madadjoo.email,
-            'address': target_madadjoo.address,
-            'profile_pic': target_madadjoo.profile_pic,
-            'invest': target_madadjoo.invest_percentage,
-            'successes': target_madadjoo.successes,
-            'bio': target_madadjoo.bio,
-            'edu_status': target_madadjoo.edu_status,
-            'need': {'description': needs.description, 'type': needs.type, 'urgent': needs.urgent, 'cash': needs.cash}
-            }
+    needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
+    # user = {'first_name': target_madadjoo.first_name,
+    #         'last_name': target_madadjoo.last_name,
+    #         'id_number': target_madadjoo.id_number,
+    #         'phone_number': target_madadjoo.phone_number,
+    #         'email': target_madadjoo.email,
+    #         'address': target_madadjoo.address,
+    #         'profile_pic': target_madadjoo.profile_pic,
+    #         'invest': target_madadjoo.invest_percentage,
+    #         'successes': target_madadjoo.successes,
+    #         'bio': target_madadjoo.bio,
+    #         'edu_status': target_madadjoo.edu_status,
+    #         'need': {'description': needs.description, 'type': needs.type, 'urgent': needs.urgent, 'cash': needs.cash}
+    #         }
     hamyars = hamyar.objects.filter(sponsership__madadjoo_id=target_madadjoo.id)
-    return render(request, 'hamyar/show_a_madadjoo.html', {'user': user, 'hamyars': hamyars})
+    return render(request, 'hamyar/show_a_madadjoo.html', {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
 
 
 @madadkar_login_required

@@ -2,28 +2,28 @@
 
 {% block need %}
     <textarea rows="3" id="staticneed" readonly class="form-control-plaintext form-control"
-              placeholder="شرح و مبلغ نیاز مددجو در این‌جا وارد می‌شود">{{ user.need.description }}</textarea>
+              placeholder="شرح و مبلغ نیاز مددجو در این‌جا وارد می‌شود">{{ need.description }}</textarea>
 {% endblock %}
 
 {% block monthly %}
     <input class="form-check-input" type="radio" name="type"
-           id="inlineRadio1" value="mo" disabled {% if user.need.type == "mo" %}checked{% endif %}>
+           id="inlineRadio1" value="mo" disabled {% if need.type == "mo" %}checked{% endif %}>
 {% endblock %}
 
 {% block annual %}
     <input class="form-check-input" type="radio" name="type"
-           id="inlineRadio2" value="ann" disabled {% if user.need.type == "ann" %}checked{% endif %}>
+           id="inlineRadio2" value="ann" disabled {% if need.type == "ann" %}checked{% endif %}>
 {% endblock %}
 
 {% block special %}
     <input class="form-check-input" type="radio" name="type"
-           id="inlineRadio3" value="inst" disabled {% if user.need.type == "inst" %}checked{% endif %}>
+           id="inlineRadio3" value="inst" disabled {% if need.type == "inst" %}checked{% endif %}>
 {% endblock %}
 
 {% block emergency %}
     <div class="form-check form-check-inline" disabled>
         <div class="col-md-1 mr-auto">
-            {% if user.need.urgent %}
+            {% if need.urgent %}
                 <span class="badge badge-danger">نیاز فوری</span>
             {% else %}
                 <span class="badge badge-secondary">نیاز فوری</span>
@@ -32,7 +32,7 @@
     </div>
     <div class="form-check form-check-inline" disabled>
         <div class="col-md-1 mr-auto">
-            {% if user.need.cash %}
+            {% if need.cash %}
                 <span class="badge badge-danger">نقدی</span>
             {% else %}
                 <span class="badge badge-secondary">نقدی</span>

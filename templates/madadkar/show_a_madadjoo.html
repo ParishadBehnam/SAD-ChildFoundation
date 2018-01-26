@@ -1,7 +1,7 @@
 {% extends "base_show_a_madadjoo.html" %}
 
 {% block buttons %}
-    <a href="edit_madadjoo">
+    <a href="{% url "edit_madadjoo" %}?username={{ user.username }}">
         <button type="button" class="btn btn-warning"> ویرایش</button>
     </a>
     <button type="button" class="btn btn-danger">حذف</button>

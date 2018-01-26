@@ -23,53 +23,53 @@
 
 {% block name %}
     <input type="text" id="staticName" class="form-control"
-           placeholder="نام مددجو">
+           placeholder="نام مددجو" value="{{ user.first_name }}">
 {% endblock %}
 
 {% block lastName %}
     <input type="text" class="form-control" id="staticLastName"
-           placeholder="نام خانوادگی مددجو">
+           placeholder="نام خانوادگی مددجو" value="{{ user.last_name }}">
 {% endblock %}
 
 {% block idNum %}
     <input type="text" id="staticid" class="form-control"
-           placeholder="کد ملی مددجو">
+           placeholder="کد ملی مددجو" value="{{ user.id_number }}">
 {% endblock %}
 
 {% block phone %}
     <input type="text" class="form-control" id="staticphone"
-           placeholder="شماره تلفن مددجو">
+           placeholder="شماره تلفن مددجو" value="{{ user.phone_number }}">
 {% endblock %}
 
 {% block email %}
     <input type="text" class="form-control" id="staticphone"
-           placeholder="رایانامه مددجو">
+           placeholder="رایانامه مددجو" value="{{ user.email }}">
 {% endblock %}
 
 {% block addr %}
     <input type="text" id="staticaddr" class="form-control"
-           placeholder="آدرس مددجو در این‌جا وارد می‌شود.">
+           placeholder="آدرس مددجو در این‌جا وارد می‌شود." value="{{ user.address }}">
 {% endblock %}
 
 {% block percentage %}
     <input type="text" class="form-control"
            id="staticpercentage"
-           placeholder="درصد پس‌انداز">
+           placeholder="درصد پس‌انداز" value="{{ user.invest_percentage }}">
 {% endblock %}
 
 {% block success %}
     <textarea rows="7" id="staticsuccess" class="form-control"
-              placeholder="شرح موفقیت‌های مددجو در اینجا وارد می‌شود"></textarea>
+              placeholder="شرح موفقیت‌های مددجو در اینجا وارد می‌شود">{{ user.successes }}</textarea>
 {% endblock %}
 
 {% block bio %}
     <textarea rows="7" id="staticbio" class="form-control"
-              placeholder="مشخصات مددجو در این‌جا وارد می‌شود"></textarea>
+              placeholder="مشخصات مددجو در این‌جا وارد می‌شود">{{ user.bio }}</textarea>
 {% endblock %}
 
 {% block education %}
     <textarea rows="7" id="staticedu" class="form-control"
-              placeholder="وضعیت تحصیلی مددجو در این‌جا وارد می‌شود"></textarea>
+              placeholder="وضعیت تحصیلی مددجو در این‌جا وارد می‌شود">{{ user.edu_status }}</textarea>
 {% endblock %}
 
 

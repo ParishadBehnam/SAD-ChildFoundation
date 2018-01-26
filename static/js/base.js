@@ -23,3 +23,23 @@ $('.emergency-need').click(function() {
 
     }
 });
+
+$(function(){
+    $(document).on("change","input", function(){
+        var allGood=true;
+        var lastInputField=0;
+        $("input").each(function() {
+            if ($(this).val() =="") {
+                allGood=false;
+                return false;
+            }
+            lastInputField++;
+        });
+
+        if (allGood) {
+            $("<span>" + lastInputField + "<input type='text' id='lastinputfieldId" + lastInputField +"'" +
+              "name='lastinputfieldName" + lastInputField + "'></span>").appendTo("form");
+        }
+    });
+});
+​
