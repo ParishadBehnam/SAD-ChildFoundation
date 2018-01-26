@@ -5,11 +5,11 @@
 
 {% block sender %}
     <input type="text" readonly class="form-control-plaintext form-control" id="sender"
-           placeholder="نام مددجو">
+           placeholder="نام مددجو" value="{{ user.first_name }} {{ user.last_name }}">
 {% endblock %}
 {% block receiver %}
     <input type="text" readonly class="form-control-plaintext form-control" id="sender"
-           placeholder="نام مددکار">
+           placeholder="نام مددکار" value="{{ receiver.first_name }} {{ receiver.last_name }}">
 
 {% endblock %}
 

@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block buttons %}
-    <a href="send_request_madadkar">
+    <a href="{% url "send_request_madadkar" %}?username={{ username }}">
         <button type="button" class="btn btn-outline-warning">ارسال درخواست</button>
     </a>
     <a href="send_gratitude_letter">
@@ -19,6 +19,12 @@
     <input type="text" id="staticName" readonly class="form-control-plaintext form-control" value="{{ first_name }}">
 {% endblock %}
 
+{% block l-name %}
+    <input type="text" readonly class="form-control-plaintext form-control" id="staticLastName"
+           value="{{ last_name }}">
+
+{% endblock %}
+
 {% block profile_pic %}
     {% if user.profile_pic %}
         <img src="{{ profile_pic.url|default:"https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276" }}"
@@ -27,10 +33,4 @@
         <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
              alt="نام مددجو" class="img-thumbnail">
     {% endif %}
-{% endblock %}
-
-{% block l-name %}
-    <input type="text" readonly class="form-control-plaintext form-control" id="staticLastName"
-           value="{{ last_name }}">
-
 {% endblock %}

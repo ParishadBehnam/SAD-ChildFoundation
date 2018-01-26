@@ -122,7 +122,7 @@ def show_a_madadjoo_hamyar(request):
 def show_a_hamyar(request):
     target_hamyar = hamyar.objects.get(username=request.GET.get('username', ''))
     madadjoos = madadjoo.objects.filter(corr_madadkar_id=request.user.id, sponsership__hamyar_id=target_hamyar.id)
-    return render(request, 'madadkar/show_a_hamyar.html', {'user': target_hamyar, 'madadjoos': madadjoos})
+    return render(request, 'madadkar/show_a_hamyar.html', {'hamyar': target_hamyar, 'madadjoos': madadjoos})
 
 
 @madadkar_login_required
@@ -238,16 +238,18 @@ def show_a_madadkar_madadjoo(request):
     try:
         madadkar.profile_pic
         return render(request, 'madadjoo/show_a_madadkar.html',
-                  {'first_name': madadkar.first_name, 'last_name': madadkar.last_name, 'profile_pic': madadkar.profile_pic})
+                  {'first_name': madadkar.first_name, 'last_name': madadkar.last_name,
+                   'username': madadkar.username, 'profile_pic': madadkar.profile_pic})
     except Exception:
         return render(request, 'madadjoo/show_a_madadkar.html',
-                  {'first_name': madadkar.first_name, 'last_name': madadkar.last_name, 'profile_pic': None})
+                  {'first_name': madadkar.first_name, 'last_name': madadkar.last_name,
+                   'username': madadkar.username, 'profile_pic': None})
 
 
 @madadjoo_login_required
 def show_a_hamyar_madadjoo(request):
     target_hamyar = hamyar.objects.get(username=request.GET.get('username', ''))
-    return render(request, 'madadjoo/show_a_hamyar.html', {'user': target_hamyar})
+    return render(request, 'madadjoo/show_a_hamyar.html', {'hamyar': target_hamyar})
 
 
 @madadjoo_login_required
@@ -257,12 +259,21 @@ def payment_reports_madadjoo(request):
 
 @madadjoo_login_required
 def send_letter_hamyar_madadjoo(request):
+    if request.method == "GET":
+        return render(request, 'madadjoo/send_letter_hamyar.html')
+    else:
+        pass
     return render(request, 'madadjoo/send_letter_hamyar.html')
 
 
 @madadjoo_login_required
 def send_request_madadkar(request):
-    return render(request, 'madadjoo/send_request_madadkar.html')
+    if request.method == "GET":
+        target_madadkar = madadkar.objects.get(username=request.GET.get('username', ''))
+        user = madadjoo.objects.get(username=request.user)
+        return render(request, 'madadjoo/send_request_madadkar.html', {'user': user, 'receiver': target_madadkar})
+    else:
+        return render(request, 'madadjoo/send_request_madadkar.html')
 
 
 @madadjoo_login_required
