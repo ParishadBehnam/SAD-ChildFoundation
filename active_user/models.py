@@ -123,8 +123,8 @@ class hamyar_system_payment(models.Model):
     amount = models.IntegerField(null=False)
     date = models.DateField(auto_now=True)
 
-    class Meta:
-        unique_together = (("hamyar", "date"),)
+    # class Meta:
+    #     unique_together = (("hamyar", "date"),)
 
 
 class sponsership(models.Model):
@@ -142,8 +142,8 @@ class hamyar_madadjoo_payment(models.Model):
     type = models.CharField(choices=(('mo','monthly'), ('ann','annual'), ('inst','instantly')), max_length=60)
     date = models.DateField(auto_now=True)
 
-    class Meta:
-        unique_together = (("madadjoo", "hamyar", "date"),)
+    # class Meta:
+    #     unique_together = (("madadjoo", "hamyar", "date"),)
 
 
 class hamyar_madadjoo_non_cash(models.Model):
@@ -161,8 +161,8 @@ class hamyar_madadjoo_meeting(models.Model): #should process this table when mad
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
     date = models.DateField(auto_now=True)
 
-    class Meta:
-        unique_together = (("hamyar", "date", "madadjoo"),)
+    # class Meta:
+    #     unique_together = (("hamyar", "date", "madadjoo"),)
 
 
 class madadjoo_hamyar_letter(models.Model):
@@ -170,9 +170,10 @@ class madadjoo_hamyar_letter(models.Model):
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
     date = models.DateField(auto_now=True)
     text = models.TextField()
+    title = models.TextField(default="")
     confirmed = models.BooleanField(default=False)
 
-    class Meta:
-        unique_together = (("hamyar", "date", "madadjoo"),)
+    # class Meta:
+    #     unique_together = (("hamyar", "date", "madadjoo"),)
 
 

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block buttons %}
-    <a href="send_letter_hamyar_madadjoo">
+    <a href="{% url "send_letter_hamyar_madadjoo" %}?username={{ hamyar.username }}">
         <button type="button" class="btn btn-outline-warning">ارسال نامه</button>
     </a>
 {% endblock %}
