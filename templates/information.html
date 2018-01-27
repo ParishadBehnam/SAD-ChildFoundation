@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-4">
+
+        <nav id="navbar-scroller" class="right-navbar">
+            <nav class="nav nav-pills flex-column">
+                <a class="nav-link active" href="#item-1">مشاهده اطلاعات کلان سامانه</a>
+                <a class="nav-link" href="#item-2">تاریخچه</a>
+                <a class="nav-link" href="#item-3">چارت سازمانی</a>
+                <a class="nav-link" href="#item-4">اهداف</a>
+                <a class="nav-link" href="#item-5">فعالیت‌ها</a>
+                <a class="nav-link" href="#item-6">حامیان</a>
+            </nav>
+        </nav>
+    </div>
+    <div class="col-8">
+        <div data-spy="scroll" data-target="#navbar-scrollbar" data-offset="0">
+            <h4 id="item-1">مشاهده اطلاعات کلان سامانه</h4>
+            <p></p>
+            <h5 id="item-2">تاریخچه</h5>
+            <p>{{ system.history }}</p>
+            <h5 id="item-3">چارت سازمانی</h5>
+            <img src="/media/{{ system.chart }}"
+                 alt="چارت" class="embed-responsive embed-responsive-16by9 img-thumbnail">
+            </p>
+            <h5 id="item-4">اهداف</h5>
+            <p>{{ system.goals }}</p>
+            <h5 id="item-5">فعالیت‌ها</h5>
+            <p>{{ system.activities }}</p>
+            <h5 id="item-6">حامیان</h5>
+            <p>{{ system.supporters }}</p>
+
+        </div>
+    </div>
+</div>
