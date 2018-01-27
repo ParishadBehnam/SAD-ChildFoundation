@@ -21,8 +21,8 @@ from active_user.decorators import madadkar_login_required
 from active_user.decorators import hamyar_login_required
 from active_user.decorators import madadjoo_login_required
 from active_user.models import madadjoo, hamyar, madadkar, sponsership, \
-    madadjoo_madadkar_letter, madadjoo_hamyar_letter , hamyar_madadjoo_meeting
-    madadjoo_madadkar_letter, madadjoo_hamyar_letter, hamyar_system_payment
+    madadjoo_madadkar_letter, madadjoo_hamyar_letter , hamyar_madadjoo_meeting,\
+    hamyar_system_payment
 
 
 @madadkar_login_required
