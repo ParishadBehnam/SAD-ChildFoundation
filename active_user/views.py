@@ -102,7 +102,8 @@ def edit_madadjoo(request):
                 urgent = True if request.POST.get('urgent' + str(index)) == "urgent" else False
                 confirmed = False if urgent else True
 
-                new_req = requirements(description=description, type=type, cash=cash, urgent=urgent, confirmed=confirmed, madadjoo_id=user.id)
+                new_req = requirements(description=description, type=type, cash=cash, urgent=urgent,
+                                       confirmed=confirmed, madadjoo_id=user.id)
                 new_req.save()
             index += 1
 
@@ -498,7 +499,7 @@ def add_a_madadjoo_admin(request):
         phone_number = '0' if phone_number == '' else phone_number
         address = request.POST.get('addres')
         email = request.POST.get('email')
-        profile_pic = request.POST.get('profile_pic')
+        profile_pic = request.FILES.get('profile_pic')
         bio = request.POST.get('bio')
         edu_status = request.POST.get('edu_status')
         successes = request.POST.get('successes')
@@ -575,9 +576,20 @@ def add_a_madadjoo_madadkar(request):
         new_madadjoo.set_password(request.POST.get("password"))
         try:
             new_madadjoo.save()
-            new_req = models.requirements(description=description, type=type, confirmed=False, urgent=urgent,
-                                          cash=cash, madadjoo=new_madadjoo)
-            new_req.save()
+            index = 0
+            for desc in request.POST.getlist('description'):
+                if desc != "":
+                    description = desc
+                    type = request.POST.get('type' + str(index))
+                    cash = True if request.POST.get('cash' + str(index)) == "cash" else False
+                    urgent = True if request.POST.get('urgent' + str(index)) == "urgent" else False
+                    confirmed = False if urgent else True
+
+                    new_req = requirements(description=description, type=type, cash=cash, urgent=urgent,
+                                           confirmed=confirmed, madadjoo_id=new_madadjoo.id)
+                    new_req.save()
+                index += 1
+
         except IntegrityError:
             return render_to_response("madadkar/add_a_madadjoo.html",
                                       {"error_message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
