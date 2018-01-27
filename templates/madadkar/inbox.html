@@ -8,10 +8,21 @@
             <div class="list-group">
                 {% block list %}
 
-                    {% for letter in letters %}
-                        <a href="{% url "letter_content_madadkar" %}?letter={{ letter.id }}" class="bg-light list-group-item list-group-item-action">
+                    {% for letter in madadjoo_madadkar_letters %}
+                        <a href="{% url "letter_madadjoo_content_madadkar" %}?letter={{ letter.id }}" class="bg-light list-group-item list-group-item-action">
                           {{ letter.title }}
-                        <span class="emergency-need badge badge-info">مددجو به مددکار</span></a>
+                        </a>
+                    {% endfor %}
+                    {% for letter in madadjoo_hamyar_letters %}
+                        <a href="{% url "letter_mtoh_content_madadkar" %}?letter={{ letter.id }}" class="bg-light list-group-item list-group-item-action">
+                          {{ letter.title }}
+                        <span class="emergency-need badge badge-info">مددجو به همیار</span></a>
+                        </a>
+                    {% endfor %}
+                    {% for letter in hamyar_madadjoo_letters %}
+                        <a href="{% url "letter_htom_content_madadkar" %}?letter={{ letter.id }}" class="bg-light list-group-item list-group-item-action">
+                          {{ letter.title }}
+                        <span class="emergency-need badge badge-warning">همیار به مددجو</span></a>
                         </a>
                     {% endfor %}
                 {% endblock %}

@@ -54,6 +54,10 @@ urlpatterns = [
     url(r'activity_report_admin$', views.activity_report, name='activity_report_admin'),
     url(r'madadjoo_paid_report$', views.madadjoo_paid_report, name='madadjoo_paid_report'),
     url(r'support_a_madadjoo_hamyar$', views.support_a_madadjoo, name='support_a_madadjoo'),
-    url(r'letter_content_madadkar$', views.letter_content_madadkar, name='letter_content_madadkar'),
+    url(r'letter_madadjoo_content_madadkar$', views.letter_madadjoo_content_madadkar, name='letter_madadjoo_content_madadkar'),
+    url(r'letter_mtoh_content_madadkar$', views.letter_mtoh_content_madadkar, name='letter_mtoh_content_madadkar'),
+    url(r'letter_htom_content_madadkar$', views.letter_htom_content_madadkar, name='letter_htom_content_madadkar'),
+    url(r'delete_letter_madadkar$', views.delete_letter_madadkar, name='delete_letter_madadkar'),
+    url(r'delete_letter_hamyar$', views.delete_letter_hamyar, name='delete_letter_hamyar'),
     url(r'letter_content_hamyar$', views.letter_content_hamyar, name='letter_content_hamyar'),
 ]

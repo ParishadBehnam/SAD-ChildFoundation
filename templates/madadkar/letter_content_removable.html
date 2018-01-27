@@ -1,4 +1,4 @@
-{% extends "hamyar/inbox.html" %}
+{% extends "madadkar/inbox.html" %}
 
 {% block letter_content %}
             <div class="col-sm-11 col-md-9 col-lg-8 rounded" style="height: 100%; background-color: #f4f4f4">
@@ -7,7 +7,7 @@
                     <h4>{{ letter.title }}</h4>
                 </div>
                 <div class="col-md-6 mr-auto">
-                    <a href="{% url "delete_letter_hamyar" %}?letter={{ letter.id }}"
+                    <a href="{% url "delete_letter_madadkar" %}?letter={{ letter.id }}"
                         class="btn btn-outline-danger">
                                         حذف نامه
                     </a>
