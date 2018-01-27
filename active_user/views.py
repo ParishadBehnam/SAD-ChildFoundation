@@ -95,9 +95,9 @@ def edit_madadjoo(request):
             if desc != "":
                 description = desc
                 type = request.POST.get('type' + str(index))
-                print("hiiiiii")
-                print(desc)
-                print(type)
+                # print("hiiiiii")
+                # print(desc)
+                # print(type)
                 cash = True if request.POST.get('cash' + str(index)) == "cash" else False
                 urgent = True if request.POST.get('urgent' + str(index)) == "urgent" else False
                 confirmed = False if urgent else True
@@ -215,14 +215,15 @@ def delete_letter_madadkar(request):
     return render(request, 'madadkar/inbox.html',
                   {'madadjoo_madadkar_letters': all_madadjoo_madadkar_letters,
                    'madadjoo_hamyar_letters': all_madadjoo_hamyar_letters,
-                   'hamyar_madadjoo_letters': all_hamyar_madadjoo_letters})
+                   'hamyar_madadjoo_letters': all_hamyar_madadjoo_letters,
+                   'success_message': 'نامه با موفقیت حذف گردید.'})
 
 
 @hamyar_login_required
 def delete_letter_hamyar(request):
     models.madadjoo_hamyar_letter.objects.get(id=request.GET.get('letter', '')).delete()
     all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id, confirmed=1)
-    return render(request, 'hamyar/inbox.html', {'letters': all_letters})
+    return render(request, 'hamyar/inbox.html', {'letters': all_letters, 'success_message': 'نامه با موفقیت حذف گردید.'})
 
 
 @madadkar_login_required
@@ -398,14 +399,16 @@ def send_letter_hamyar_madadjoo(request):
     target_hamyar = hamyar.objects.get(username=request.GET.get('username', ''))
     user = madadjoo.objects.get(username=request.user)
     if request.method == "GET":
-        return render(request, 'madadjoo/send_gratitude_letter.html', {'user': user, 'receiver': target_hamyar})
+        return render(request, 'madadjoo/send_letter_hamyar.html', {'user': user, 'receiver': target_hamyar})
     else:
         title = request.POST.get('title')
         text = request.POST.get('text')
         letter = madadjoo_hamyar_letter(madadjoo=user, hamyar=target_hamyar, text=text, title=title,
                                         confirmed=False)
         letter.save()
-        return HttpResponseRedirect(reverse("madadjoo_panel"))
+        # return HttpResponseRedirect(reverse("madadjoo_panel"))
+        return render(request, 'madadjoo/send_letter_hamyar.html', {'user': user, 'receiver': target_hamyar,
+                                                                    'success_message':'نامه‌ی شما برای تایید به مددکار ارسال شد.'})
 
 
 @madadjoo_login_required
@@ -420,7 +423,9 @@ def send_request_madadkar(request):
         letter = madadjoo_madadkar_letter(madadjoo=user, madadkar=target_madadkar, text=text, title=title,
                                           thank=False)
         letter.save()
-        return HttpResponseRedirect(reverse("madadjoo_panel"))
+        # return HttpResponseRedirect(reverse("madadjoo_panel"))
+        return render(request, 'madadjoo/send_request_madadkar.html', {'user': user, 'receiver': target_madadkar,
+                                                                       'success_message': 'درخواست شما برای مددکار ارسال شد.'})
 
 
 @madadjoo_login_required
@@ -435,7 +440,9 @@ def send_gratitude_letter(request):
         letter = madadjoo_madadkar_letter(madadjoo=user, madadkar=target_madadkar, text=text, title=title,
                                           thank=True)
         letter.save()
-        return HttpResponseRedirect(reverse("madadjoo_panel"))
+        # return HttpResponseRedirect(reverse("madadjoo_panel"))
+        return render(request, 'madadjoo/send_gratitude_letter.html', {'user': user, 'receiver': target_madadkar,
+                                                                       'success_message': 'نامه‌ی تشکر شما برای مددکار ارسال شد.'})
 
 
 @madadjoo_login_required
@@ -532,7 +539,8 @@ def add_a_madadjoo_admin(request):
         except ValueError:
             return render_to_response("admin/add_a_madadjoo.html", {"error_message": "لطفا موارد الزامی را تکمیل کنید"})
 
-        return HttpResponseRedirect(reverse("admin_panel"))
+        # return HttpResponseRedirect(reverse("admin_panel"))
+        return render(request, 'admin/add_a_madadjoo.html', {'success_message': 'مددجوی جدید با موفقیت در سامانه ثبت گردید.'})
 
 
 @madadkar_login_required
@@ -596,7 +604,8 @@ def add_a_madadjoo_madadkar(request):
         except ValueError:
             return render_to_response("madadkar/add_a_madadjoo.html", {"error_message": "لطفا موارد الزامی را تکمیل کنید"})
 
-        return HttpResponseRedirect(reverse("madadkar_panel"))
+        # return HttpResponseRedirect(reverse("madadkar_panel"))
+        return render(request, 'madadkar/add_a_madadjoo.html', {'success_message': 'مددجوی جدید با موفقیت در سامانه ثبت گردید.'})
 
 
 @admin_login_required
@@ -642,7 +651,8 @@ def add_a_madadkar_admin(request):
         except ValueError:
             return render_to_response("admin/add_a_madadkar.html", {"error_message": "لطفا موارد الزامی را تکمیل کنید"})
 
-        return HttpResponseRedirect(reverse("admin_panel"))
+        # return HttpResponseRedirect(reverse("admin_panel"))
+        return render(request, 'admin/add_a_madadkar.html', {'success_message': 'مددکار جدید با موفقیت در سامانه ثبت گردید.'})
 
 
 @admin_login_required
@@ -687,7 +697,8 @@ def add_a_hamyar_admin(request):
         except ValueError:
             return render_to_response("admin/add_a_hamyar.html", {"error_message": "لطفا موارد الزامی را تکمیل کنید"})
 
-        return HttpResponseRedirect(reverse("admin_panel"))
+        # return HttpResponseRedirect(reverse("admin_panel"))
+        return render(request, 'admin/add_a_hamyar.html', {'success_message': 'همیار جدید با موفقیت در سامانه ثبت گردید.'})
 
 
 @admin_login_required
