@@ -94,6 +94,7 @@ def system_logout(request):
 @csrf_exempt
 def general_information(request):
     system = information.objects.first()
+    print(system.history)
     if request.GET.get('success') == '2':
         return render(request, 'general_information.html', {'success_message': 'شما با موفقیت از حساب کاربری خود خارج شدید.',
                                                             'system': system})
