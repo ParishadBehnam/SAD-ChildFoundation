@@ -198,12 +198,7 @@ def show_hamyar_information(request):
     madadjoos = madadjoo.objects.filter(sponsership__hamyar_id=active_user.id)
     return render(request, 'hamyar/show_details.html', {'madadjoos': madadjoos})
 
-
 @hamyar_login_required
-def edit_hamyar_information(request):
-    return render(request, 'hamyar/edit_details.html')
-
-
 @csrf_exempt
 def edit_hamyar_information(request):
     if request.method == 'GET':
