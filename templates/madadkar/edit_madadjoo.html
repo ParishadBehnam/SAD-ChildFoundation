@@ -10,9 +10,8 @@
 {% block below_image %}
 
     <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action disabled">
-            نام همیاران
-        </a>
+        <a href="#" class="list-group-item list-group-item-action disabled" style="cursor: default">
+نام کاربری همیاران مددجو        </a>
         {% block links %}
             {% for hamyar in hamyars %}
                 <a href="{% url "show_a_hamyar" %}?username={{ hamyar.username }}"

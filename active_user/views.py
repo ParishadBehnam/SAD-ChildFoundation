@@ -14,13 +14,14 @@ from django.views.decorators.csrf import csrf_exempt
 
 from active_user import forms
 from active_user import models
+from system import models as system_models
 
 from active_user.decorators import admin_login_required
 from active_user.decorators import madadkar_login_required
 from active_user.decorators import hamyar_login_required
 from active_user.decorators import madadjoo_login_required
 from active_user.models import madadjoo, hamyar, madadkar, sponsership, \
-    madadjoo_madadkar_letter, madadjoo_hamyar_letter
+    madadjoo_madadkar_letter, madadjoo_hamyar_letter, hamyar_system_payment
 
 
 @madadkar_login_required
@@ -181,7 +182,14 @@ def madadkar_panel(request):
 
 @hamyar_login_required
 def hamyar_panel(request):
-    return render(request, 'hamyar/hamyar_panel.html')
+    if request.method == 'GET':
+        return render(request, 'hamyar/hamyar_panel.html')
+    else:
+        amount = request.POST.get('amount')
+        our_system = list(system_models.information.objects.all())
+        payment = hamyar_system_payment(amount=amount, hamyar_id=request.user.id, system_id=our_system[0].history)
+        payment.save()
+        return render(request, 'hamyar/hamyar_panel.html')
 
 
 @hamyar_login_required
@@ -197,6 +205,7 @@ def show_hamyar_information(request):
             }
     madadjoos = madadjoo.objects.filter(sponsership__hamyar_id=active_user.id)
     return render(request, 'hamyar/show_details.html', {'madadjoos': madadjoos})
+
 
 @hamyar_login_required
 @csrf_exempt
