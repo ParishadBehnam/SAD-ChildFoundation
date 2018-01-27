@@ -475,17 +475,78 @@ def admin_panel(request):
 
 @admin_login_required
 def show_madadjoo_admin(request):
-    return render(request, 'admin/show_madadjoo.html')
+    all_madadjoo = madadjoo.objects.all()
+    return render(request, 'admin/show_madadjoo.html', {'madadjoos': all_madadjoo})
 
 
 @login_required(login_url='/login')
 def show_a_madadjoo_admin(request):
-    return render(request, 'admin/show_a_madadjoo.html')
+    target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
+    needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
+    hamyars = hamyar.objects.filter(sponsership__madadjoo_id=target_madadjoo.id)
+    return render(request, 'admin/show_a_madadjoo.html',
+                  {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
 
 
 @admin_login_required
 def edit_a_madadjoo_admin(request):
-    return render(request, 'admin/edit_a_madadjoo.html')
+    if request.method == "GET":
+        target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
+        needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
+        return render(request, 'admin/edit_madadjoo_full.html',
+                      {'user': target_madadjoo, 'needs': needs})
+    else:
+        user = madadjoo.objects.get(username=request.GET.get('username', ''))
+        user.first_name = request.POST.get('first_name')
+        user.last_name = request.POST.get('last_name')
+        user.id_number = request.POST.get('id_number')
+        user.phone_number = request.POST.get('phone_number')
+        user.address = request.POST.get('address')
+        user.email = request.POST.get('email')
+        user.bio = request.POST.get('bio')
+        user.edu_status = request.POST.get('edu_status')
+        user.successes = request.POST.get('successes')
+        user.invest_percentage = request.POST.get('invest_percentage')
+        if request.POST.get('profile_pic') != '':
+            user.profile_pic = request.FILES.get('profile_pic')
+
+        all_reqs = requirements.objects.filter(madadjoo_id=user.id)
+        for req in all_reqs:
+            prev_req = requirements.objects.get(id=req.id)
+            prev_req.description = request.POST.get('description_base' + str(req.id))
+            prev_req.cash = True if request.POST.get('cash_base' + str(req.id)) == "cash" else False
+            prev_req.urgent = True if request.POST.get('urgent_base' + str(req.id)) == "urgent" else False
+            prev_req.type = request.POST.get('type_base' + str(req.id))
+            prev_req.confirmed = False if req.urgent else True
+            prev_req.save()
+            index = 0
+
+        for desc in request.POST.getlist('description'):
+            if desc != "":
+                description = desc
+                type = request.POST.get('type' + str(index))
+                # print("hiiiiii")
+                # print(desc)
+                # print(type)
+                cash = True if request.POST.get('cash' + str(index)) == "cash" else False
+                urgent = True if request.POST.get('urgent' + str(index)) == "urgent" else False
+                confirmed = False if urgent else True
+
+                new_req = requirements(description=description, type=type, cash=cash, urgent=urgent,
+                                       confirmed=confirmed, madadjoo_id=user.id)
+                new_req.save()
+            index += 1
+
+        target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
+        needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
+        try:
+            user.save()
+            s = 'اطلاعات مددجو با موفقیت ویرایش شد.'
+            return render(request, 'admin/edit_madadjoo_full.html',
+                          {'user': user, 'needs': needs, 'success_message': s})
+        except IntegrityError:
+            return render(request, 'admin/edit_madadjoo_full.html',
+                          {'user': target_madadjoo, 'needs': needs, 'error_message': 'کد ملی باید یکتا باشد.'})
 
 
 @admin_login_required
