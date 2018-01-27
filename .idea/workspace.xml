@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="066d6cc6-cd8a-4e5d-9a0b-2253d677f1d7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/active_user/views.py" afterPath="$PROJECT_DIR$/active_user/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/madadkar/edit_madadjoo.html" afterPath="$PROJECT_DIR$/templates/madadkar/edit_madadjoo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/snippets/need_snippet_edit_admin.html" afterPath="$PROJECT_DIR$/templates/snippets/need_snippet_edit_admin.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/snippets/need_snippet_base.html" afterPath="$PROJECT_DIR$/templates/snippets/need_snippet_base.html" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -63,7 +61,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/active_user/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="241">
@@ -98,8 +96,8 @@
       <file leaf-file-name="edit_madadjoo.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/madadkar/edit_madadjoo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="46" lean-forward="false" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
+            <state relative-caret-position="232">
+              <caret line="85" column="36" lean-forward="false" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -108,8 +106,18 @@
       <file leaf-file-name="need_snippet_edit_admin.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/snippets/need_snippet_edit_admin.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="56" column="16" lean-forward="false" selection-start-line="32" selection-start-column="2" selection-end-line="56" selection-end-column="16" />
+            <state relative-caret-position="0">
+              <caret line="0" column="29" lean-forward="false" selection-start-line="0" selection-start-column="29" selection-end-line="0" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="need_snippet_base.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/snippets/need_snippet_base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="487">
+              <caret line="46" column="18" lean-forward="false" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -118,8 +126,8 @@
       <file leaf-file-name="need_snippet_show.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/snippets/need_snippet_show.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="25" column="32" lean-forward="true" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="32" />
+            <state relative-caret-position="-275">
+              <caret line="0" column="27" lean-forward="false" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -173,10 +181,10 @@
       <find>nee</find>
       <find>user.need</find>
       <find>need</find>
-      <find>user.neednee</find>
       <find>show_a_madad</find>
-      <find>edit_madad</find>
       <find>show_a_hamyar</find>
+      <find>edit_madad</find>
+      <find>user.neednee</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -214,10 +222,11 @@
         <option value="$PROJECT_DIR$/static/js/base.js" />
         <option value="$PROJECT_DIR$/templates/snippets/need_snippet_show.html" />
         <option value="$PROJECT_DIR$/templates/madadkar/show_a_madadjoo.html" />
-        <option value="$PROJECT_DIR$/templates/snippets/need_snippet_edit_admin.html" />
         <option value="$PROJECT_DIR$/templates/base_show_a_madadjoo.html" />
         <option value="$PROJECT_DIR$/templates/madadkar/edit_madadjoo.html" />
         <option value="$PROJECT_DIR$/active_user/views.py" />
+        <option value="$PROJECT_DIR$/templates/snippets/need_snippet_edit_admin.html" />
+        <option value="$PROJECT_DIR$/templates/snippets/need_snippet_base.html" />
       </list>
     </option>
   </component>
@@ -1182,14 +1191,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/snippets/need_snippet_base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-300">
-          <caret line="0" column="18" lean-forward="false" selection-start-line="0" selection-start-column="18" selection-end-line="0" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/base.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="511">
@@ -1214,22 +1215,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/snippets/need_snippet_show.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="25" column="32" lean-forward="true" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/snippets/need_snippet_edit_admin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="56" column="16" lean-forward="false" selection-start-line="32" selection-start-column="2" selection-end-line="56" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/base_show_a_madadjoo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -1246,14 +1231,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/madadkar/edit_madadjoo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="46" lean-forward="false" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/active_user/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="241">
@@ -1261,6 +1238,38 @@
           <folding>
             <element signature="e#24#63#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/madadkar/edit_madadjoo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="85" column="36" lean-forward="false" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/snippets/need_snippet_edit_admin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="29" lean-forward="false" selection-start-line="0" selection-start-column="29" selection-end-line="0" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/snippets/need_snippet_show.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-275">
+          <caret line="0" column="27" lean-forward="false" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/snippets/need_snippet_base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="487">
+          <caret line="46" column="18" lean-forward="false" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
