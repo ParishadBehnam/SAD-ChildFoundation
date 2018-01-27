@@ -58,7 +58,10 @@ def show_madadjoo_hamyar(request):
 @madadkar_login_required
 def edit_madadjoo(request):
     target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
-    return render(request, 'madadkar/edit_madadjoo.html', {'user':target_madadjoo})
+    needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
+    hamyars = hamyar.objects.filter(sponsership__madadjoo_id=target_madadjoo.id)
+
+    return render(request, 'madadkar/edit_madadjoo.html', {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
 
 
 @madadkar_login_required
@@ -84,7 +87,8 @@ def show_a_madadjoo(request):
     #         'need': {'description': needs.description, 'type': needs.type, 'urgent': needs.urgent, 'cash': needs.cash}
     #         }
     hamyars = hamyar.objects.filter(sponsership__madadjoo_id=target_madadjoo.id)
-    return render(request, 'madadkar/show_a_madadjoo.html', {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
+    return render(request, 'madadkar/show_a_madadjoo.html',
+                  {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
 
 
 @hamyar_login_required
@@ -239,12 +243,12 @@ def show_a_madadkar_madadjoo(request):
     try:
         target_madadkar.profile_pic
         return render(request, 'madadjoo/show_a_madadkar.html',
-                  {'first_name': target_madadkar.first_name, 'last_name': target_madadkar.last_name,
-                   'username': target_madadkar.username, 'profile_pic': target_madadkar.profile_pic})
+                      {'first_name': target_madadkar.first_name, 'last_name': target_madadkar.last_name,
+                       'username': target_madadkar.username, 'profile_pic': target_madadkar.profile_pic})
     except Exception:
         return render(request, 'madadjoo/show_a_madadkar.html',
-                  {'first_name': target_madadkar.first_name, 'last_name': target_madadkar.last_name,
-                   'username': target_madadkar.username, 'profile_pic': None})
+                      {'first_name': target_madadkar.first_name, 'last_name': target_madadkar.last_name,
+                       'username': target_madadkar.username, 'profile_pic': None})
 
 
 @madadjoo_login_required
@@ -268,9 +272,10 @@ def send_letter_hamyar_madadjoo(request):
         title = request.POST.get('title')
         text = request.POST.get('text')
         letter = madadjoo_hamyar_letter(madadjoo=user, hamyar=target_hamyar, text=text, title=title,
-                                          confirmed=False)
+                                        confirmed=False)
         letter.save()
         return HttpResponseRedirect(reverse("madadjoo_panel"))
+
 
 @madadjoo_login_required
 def send_request_madadkar(request):

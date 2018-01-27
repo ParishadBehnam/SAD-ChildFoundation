@@ -13,10 +13,18 @@
         <a href="#" class="list-group-item list-group-item-action disabled">
             نام همیاران
         </a>
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۱</a>
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۲</a>
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۳</a>
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۴</a>
+        {% block links %}
+            {% for hamyar in hamyars %}
+                <a href="{% url "show_a_hamyar" %}?username={{ hamyar.username }}"
+                   class="list-group-item list-group-item-action">
+                    {{ hamyar.username }}
+                </a>
+            {% endfor %}
+
+            {#    <a href="show_a_hamyar_madadjoo" class="list-group-item list-group-item-action">همیار ۲</a>#}
+            {#    <a href="show_a_hamyar_madadjoo" class="list-group-item list-group-item-action">همیار ۳</a>#}
+            {#    <a href="show_a_hamyar_madadjoo" class="list-group-item list-group-item-action">همیار ۴</a>#}
+        {% endblock %}
     </div>
 
 {% endblock %}
@@ -74,11 +82,13 @@
 
 
 {% block need %}
-    {% include "snippets/need_snippet_edit_admin.html" %}
-    <p>لیست نیاز‌ها</p>
+    {% for need in needs %}
+        {% include "snippets/need_snippet_edit_admin.html" %}
+    {% endfor %}
+    <p>افزودن نیاز جدید</p>
     <hr>
     {% include "snippets/need_snippet_edit_admin.html" %}
-{#    {% include "snippets/need_snippet_edit_admin.html" %}#}
+    {#    {% include "snippets/need_snippet_edit_admin.html" %}#}
 
 {% endblock %}
 
