@@ -282,12 +282,19 @@ def inbox_hamyar(request):
 
 @madadkar_login_required
 def madadkar_panel(request):
+    if request.GET.get('success') == '1':
+        return render(request, 'madadkar/madadkar_panel.html', {'success_message':request.user.first_name + ' ' +
+                                                                            request.user.last_name +  ' عزیز، شما با موفقیت وارد حساب کاربری خود شدید :)'})
+
     return render(request, 'madadkar/madadkar_panel.html')
 
 
 @hamyar_login_required
 def hamyar_panel(request):
     if request.method == 'GET':
+        if request.GET.get('success') == '1':
+            return render(request, 'hamyar/hamyar_panel.html', {'success_message':request.user.first_name + ' ' +
+                                                                            request.user.last_name +  ' عزیز، شما با موفقیت وارد حساب کاربری خود شدید :)'})
         return render(request, 'hamyar/hamyar_panel.html')
     else:
         amount = request.POST.get('amount')
@@ -356,6 +363,10 @@ def show_madadjoo_report(request):
 
 @madadjoo_login_required
 def madadjoo_panel(request):
+    if request.GET.get('success') == '1':
+        return render(request, 'madadjoo/madadjoo_panel.html', {'success_message':request.user.first_name + ' ' +
+                                                                            request.user.last_name +  ' عزیز، شما با موفقیت وارد حساب کاربری خود شدید :)'})
+
     return render(request, 'madadjoo/madadjoo_panel.html')
 
 
@@ -469,7 +480,12 @@ def show_madadjoo_information(request):
 
 @admin_login_required
 def admin_panel(request):
-    # print(request.session['type'])
+    # request.session['success_message']
+    # print(request.GET)
+    # print(request.GET.get('success'))
+    if request.GET.get('success') == '1':
+        return render(request, 'admin/admin_panel.html', {'success_message':request.user.first_name + ' ' +
+                                                                            request.user.last_name +  ' عزیز، شما با موفقیت وارد حساب کاربری خود شدید :)'})
     return render(request, 'admin/admin_panel.html')
 
 

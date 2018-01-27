@@ -38,8 +38,8 @@ def hamyar_register(request):
             new_hamyar.save()
 
             login(request, new_hamyar)
-            s = new_hamyar.first_name + ' ' + new_hamyar.last_name + ' خوش آمدید :) ثبت نام شما موفقیت آمیز بود!'
-            return HttpResponseRedirect(reverse("hamyar_panel"), {'success_message': s})  # this should be hamyar's own page
+            # s = new_hamyar.first_name + ' ' + new_hamyar.last_name + ' خوش آمدید :) ثبت نام شما موفقیت آمیز بود!'
+            return HttpResponseRedirect(reverse("hamyar_panel")+"?success=1")  # this should be hamyar's own page
         else:
             s = 'ثبت نام شما با خطا مواجه شده‌است. دوباره تلاش کنید.'
             return render(request, 'hamyar/hamyar_register.html', {'form': form,
@@ -69,8 +69,10 @@ def sign_in(request):
                 final_user = table_type[int(type) - 1].objects.get(username=target_username)
                 login(request, user)
                 request.session['type'] = user_type[int(type) - 1]
-                s = target_username.first_name + ' ' + target_username.last_name + ' خوش آمدید :)'
-                return HttpResponseRedirect(reverse(user_panel[int(type) - 1]))
+                # s = target_username.first_name + ' ' + target_username.last_name + ' خوش آمدید :)'
+                # request.session['success_message'] = s
+
+                return HttpResponseRedirect(reverse(user_panel[int(type) - 1])+'?success=1')
             except table_type[int(type) - 1].DoesNotExist:
                 s = 'متاسفانه ورود شما موفقیت‌آمیز نبود. دوباره تلاش کنید.'
                 return render(request, 'login.html', {'form': form, 'error_message': s})
@@ -84,13 +86,11 @@ def system_logout(request):
     print(request.user)
     if current_user is not None:
         logout(request)
-    return HttpResponseRedirect(reverse('general_information'))
+    return HttpResponseRedirect(reverse('general_information')+'?success=2')
 
 
 @csrf_exempt
 def general_information(request):
-    # print("is it here?")
+    if request.GET.get('success') == '2':
+        return render(request, 'general_information.html', {'success_message': 'شما با موفقیت از حساب کاربری خود خارج شدید.'})
     return render(request, 'general_information.html')
-
-
-    # Create your views here.
