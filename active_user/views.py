@@ -14,13 +14,16 @@ from django.views.decorators.csrf import csrf_exempt
 
 from active_user import forms
 from active_user import models
+from system import models as system_models
 
 from active_user.decorators import admin_login_required
 from active_user.decorators import madadkar_login_required
 from active_user.decorators import hamyar_login_required
 from active_user.decorators import madadjoo_login_required
 from active_user.models import madadjoo, hamyar, madadkar, sponsership, \
-    madadjoo_madadkar_letter, madadjoo_hamyar_letter, requirements
+ \
+madadjoo_madadkar_letter, madadjoo_hamyar_letter, hamyar_madadjoo_meeting, \
+hamyar_system_payment, requirements
 
 
 @madadkar_login_required
@@ -74,7 +77,7 @@ def edit_madadjoo(request):
         user.edu_status = request.POST.get('edu_status')
         user.successes = request.POST.get('successes')
         user.invest_percentage = request.POST.get('invest_percentage')
-        if request.FILES.get('profile_pic') != '':
+        if request.POST.get('profile_pic') != '':
             user.profile_pic = request.FILES.get('profile_pic')
 
         all_reqs = requirements.objects.filter(madadjoo_id=user.id)
@@ -102,7 +105,7 @@ def edit_madadjoo(request):
         try:
             user.save()
             return render(request, 'madadkar/edit_madadjoo_full.html',
-                          {'user': target_madadjoo, 'needs': needs})
+                          {'user': user, 'needs': needs})
         except IntegrityError:
             return render(request, 'madadkar/edit_madadjoo_full.html',
                           {'user': target_madadjoo, 'needs': needs, 'message': 'کد ملی باید یکتا باشد.'})
@@ -187,27 +190,104 @@ def send_letter_hamyar(request):
 
 @madadkar_login_required
 def inbox_madadkar(request):
-    all_letters = madadjoo_madadkar_letter.objects.filter(madadkar_id=request.user.id)
-    return render(request, 'madadkar/inbox.html', {'letters': all_letters})
+    all_madadjoo_madadkar_letters = \
+        madadjoo_madadkar_letter.objects.filter(madadkar_id=request.user.id)
+    all_madadjoo_hamyar_letters = \
+        madadjoo_hamyar_letter.objects.filter(madadjoo__corr_madadkar=request.user.id, confirmed=0)
+    all_hamyar_madadjoo_letters = \
+        hamyar_madadjoo_meeting.objects.filter(madadjoo__corr_madadkar=request.user.id)
+
+    return render(request, 'madadkar/inbox.html',
+                  {'madadjoo_madadkar_letters': all_madadjoo_madadkar_letters,
+                   'madadjoo_hamyar_letters': all_madadjoo_hamyar_letters,
+                   'hamyar_madadjoo_letters': all_hamyar_madadjoo_letters})
 
 
 @madadkar_login_required
-def letter_content_madadkar(request):
+def letter_madadjoo_content_madadkar(request):
     target_letter = models.madadjoo_madadkar_letter.objects.get(id=request.GET.get('letter', ''))
     target_madadjoo = models.madadjoo.objects.get(active_user_ptr_id=target_letter.madadjoo_id)
     target_madadkar = models.madadkar.objects.get(active_user_ptr_id=target_letter.madadkar_id)
-    all_letters = madadjoo_madadkar_letter.objects.filter(madadkar_id=request.user.id)
+    all_madadjoo_madadkar_letters = \
+        madadjoo_madadkar_letter.objects.filter(madadkar_id=request.user.id)
+    all_madadjoo_hamyar_letters = \
+        madadjoo_hamyar_letter.objects.filter(madadjoo__corr_madadkar=request.user.id, confirmed=0)
+    all_hamyar_madadjoo_letters = \
+        hamyar_madadjoo_meeting.objects.filter(madadjoo__corr_madadkar=request.user.id)
+    return render(request, 'madadkar/letter_content_removable.html',
+                  {'madadjoo_madadkar_letters': all_madadjoo_madadkar_letters,
+                   'madadjoo_hamyar_letters': all_madadjoo_hamyar_letters,
+                   'hamyar_madadjoo_letters': all_hamyar_madadjoo_letters,
+                   'letter': target_letter, 'sender': target_madadjoo, 'receiver': target_madadkar})
+
+
+@madadkar_login_required
+def delete_letter_madadkar(request):
+    models.madadjoo_madadkar_letter.objects.get(id=request.GET.get('letter', '')).delete()
+    all_madadjoo_madadkar_letters = \
+        madadjoo_madadkar_letter.objects.filter(madadkar_id=request.user.id)
+    all_madadjoo_hamyar_letters = \
+        madadjoo_hamyar_letter.objects.filter(madadjoo__corr_madadkar=request.user.id, confirmed=0)
+    all_hamyar_madadjoo_letters = \
+        hamyar_madadjoo_meeting.objects.filter(madadjoo__corr_madadkar=request.user.id)
+    return render(request, 'madadkar/inbox.html',
+                  {'madadjoo_madadkar_letters': all_madadjoo_madadkar_letters,
+                   'madadjoo_hamyar_letters': all_madadjoo_hamyar_letters,
+                   'hamyar_madadjoo_letters': all_hamyar_madadjoo_letters})
+
+
+@hamyar_login_required
+def delete_letter_hamyar(request):
+    models.madadjoo_hamyar_letter.objects.get(id=request.GET.get('letter', '')).delete()
+    all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id, confirmed=1)
+    return render(request, 'hamyar/inbox.html', {'letters': all_letters})
+
+
+@madadkar_login_required
+def letter_mtoh_content_madadkar(request):
+    target_letter = models.madadjoo_hamyar_letter.objects.get(id=request.GET.get('letter', ''))
+    target_madadjoo = models.madadjoo.objects.get(active_user_ptr_id=target_letter.madadjoo_id)
+    target_hamyar = models.hamyar.objects.get(active_user_ptr_id=target_letter.hamyar_id)
+    all_madadjoo_madadkar_letters = \
+        madadjoo_madadkar_letter.objects.filter(madadkar_id=request.user.id)
+    all_madadjoo_hamyar_letters = \
+        madadjoo_hamyar_letter.objects.filter(madadjoo__corr_madadkar=request.user.id, confirmed=0)
+    all_hamyar_madadjoo_letters = \
+        hamyar_madadjoo_meeting.objects.filter(madadjoo__corr_madadkar=request.user.id)
     return render(request, 'madadkar/letter_content.html',
-                  {'letters': all_letters, 'letter': target_letter, 'sender': target_madadjoo,
-                   'receiver': target_madadkar})
+    {'madadjoo_madadkar_letters': all_madadjoo_madadkar_letters,
+     'madadjoo_hamyar_letters': all_madadjoo_hamyar_letters,
+     'hamyar_madadjoo_letters': all_hamyar_madadjoo_letters,
+     'letter': target_letter, 'sender': target_madadjoo, 'receiver': target_hamyar})
+
+
+
+
+@madadkar_login_required
+def letter_htom_content_madadkar(request):
+    target_letter = models.hamyar_madadjoo_meeting.objects.get(id=request.GET.get('letter', ''))
+    target_madadjoo = models.madadjoo.objects.get(active_user_ptr_id=target_letter.madadjoo_id)
+    target_hamyar = models.hamyar.objects.get(active_user_ptr_id=target_letter.hamyar_id)
+    all_madadjoo_madadkar_letters = \
+        madadjoo_madadkar_letter.objects.filter(madadkar_id=request.user.id)
+    all_madadjoo_hamyar_letters = \
+        madadjoo_hamyar_letter.objects.filter(madadjoo__corr_madadkar=request.user.id, confirmed=0)
+    all_hamyar_madadjoo_letters = \
+        hamyar_madadjoo_meeting.objects.filter(madadjoo__corr_madadkar=request.user.id)
+    return render(request, 'madadkar/letter_content_removable.html',
+                  {'madadjoo_madadkar_letters': all_madadjoo_madadkar_letters,
+                   'madadjoo_hamyar_letters': all_madadjoo_hamyar_letters,
+                   'hamyar_madadjoo_letters': all_hamyar_madadjoo_letters,
+                   'letter': target_letter, 'sender': target_hamyar, 'receiver': target_madadjoo})
 
 
 @hamyar_login_required
 def letter_content_hamyar(request):
-    target_letter = models.madadjoo_hamyar_letter.objects.get(id=request.GET.get('letter', ''))
+    target_letter = models.madadjoo_hamyar_letter.objects.get(id=request.GET.get('letter', ''), confirmed=0)
     target_madadjoo = models.madadjoo.objects.get(active_user_ptr_id=target_letter.madadjoo_id)
     target_hamyar = models.hamyar.objects.get(active_user_ptr_id=target_letter.hamyar_id)
     all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id)
+
     return render(request, 'hamyar/letter_content.html',
                   {'letters': all_letters, 'letter': target_letter,
                    'sender': target_madadjoo, 'receiver': target_hamyar})
@@ -215,7 +295,7 @@ def letter_content_hamyar(request):
 
 @hamyar_login_required
 def inbox_hamyar(request):
-    all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id)
+    all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id, confirmed=0)
     return render(request, 'hamyar/inbox.html', {'letters': all_letters})
 
 
@@ -226,7 +306,14 @@ def madadkar_panel(request):
 
 @hamyar_login_required
 def hamyar_panel(request):
-    return render(request, 'hamyar/hamyar_panel.html')
+    if request.method == 'GET':
+        return render(request, 'hamyar/hamyar_panel.html')
+    else:
+        amount = request.POST.get('amount')
+        our_system = list(system_models.information.objects.all())
+        payment = hamyar_system_payment(amount=amount, hamyar_id=request.user.id, system_id=our_system[0].history)
+        payment.save()
+        return render(request, 'hamyar/hamyar_panel.html')
 
 
 @hamyar_login_required

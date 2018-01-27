@@ -1,0 +1,27 @@
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #be4148">
+                <h4 class="modal-title" style="color: white">صفحه‌ی پرداخت</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>مبلغ پرداخت (تومان)</label>
+                        <input type="number" id="payment_amount" name="amount" class="form-control"
+                               placeholder="مبلغ پرداخت">
+                    </div>
+                    <input type="submit" class="btn btn-danger" value="پرداخت">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">بستن</button>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #be4148">
+                {#                <button type="button" class="close" data-dismiss="modal">&times;</button>#}
+                <h4 class="modal-title" style="color: white">صفحه‌ی پرداخت</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <div class="col-md-8">نیاز مددجو</div>
+                            <div class="form-check form-check-inline disabled col-md-8">
+                                <label class="form-check-label col-md-10"> نیاز ۱ </label>
+                                <input class="form-check-input col-md-2" type="radio" name="type{{ need.id }}"
+                                       id="mo" value="1" {% if need.type == "mo" %}checked{% endif %}>
+                            </div>
+                            <div class="form-check form-check-inline disabled col-md-8">
+                                <label class="form-check-label col-md-10">نیاز شماره ۲</label>
+                                <input class="form-check-input col-md-2" type="radio" name="type{{ need.id }}"
+                                       id="mo" value="2" {% if need.type == "mo" %}checked{% endif %}>
+                            </div>
+                            <div class="form-check form-check-inline disabled col-md-8">
+                                <label class="form-check-label col-md-10">یه نیازی</label>
+                                <input class="form-check-input col-md-2" type="radio" name="type{{ need.id }}"
+                                       id="mo" value="3" {% if need.type == "mo" %}checked{% endif %}>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>مبلغ پرداخت (تومان)</label>
+                            <input type="number" id="payment_amount" class="form-control"
+                                   placeholder="مبلغ پرداخت">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-danger" data-dismiss="modal"> پرداخت</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">بستن</button>
+            </div>
+        </div>
+
+    </div>
+</div>
