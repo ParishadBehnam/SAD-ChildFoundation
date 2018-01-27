@@ -6,27 +6,27 @@
 {% endblock %}
 
 {% block monthly %}
-    <input class="form-check-input" type="radio" name="type"
+    <input class="form-check-input" type="radio" name="type{{ need.id }}"
            id="mo" value="mo" {% if need.type == "mo" %}checked{% endif %}>
 {% endblock %}
 
 {% block annual %}
-    <input class="form-check-input" type="radio" name="type"
+    <input class="form-check-input" type="radio" name="type{{ need.id }}"
            id="ann" value="ann" {% if need.type == "ann" %}checked{% endif %}>
 {% endblock %}
 
 {% block special %}
-    <input class="form-check-input" type="radio" name="type"
+    <input class="form-check-input" type="radio" name="type{{ need.id }}"
            id="inst" value="inst" {% if need.type == "inst" %}checked{% endif %}>
 {% endblock %}
 
 {% block urgent %}
-    <input class="form-check-input" type="checkbox" name="urgent"
+    <input class="form-check-input" type="checkbox" name="urgent{{ need.id }}"
            id="urgent" value="urgent" {% if need.urgent %} checked {% endif %}>
 {% endblock %}
 
 {% block chash %}
-    <input class="form-check-input" type="checkbox" name="chash"
+    <input class="form-check-input" type="checkbox" name="chash{{ need.id }}"
            id="chash" value="chash" {% if need.chash %} checked {% endif %}>
 {% endblock %}
 

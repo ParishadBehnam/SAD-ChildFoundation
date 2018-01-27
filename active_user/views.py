@@ -61,7 +61,7 @@ def edit_madadjoo(request):
     needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
     hamyars = hamyar.objects.filter(sponsership__madadjoo_id=target_madadjoo.id)
 
-    return render(request, 'madadkar/edit_madadjoo.html', {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
+    return render(request, 'madadkar/edit_madadjoo_full.html', {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
 
 
 @madadkar_login_required
