@@ -87,8 +87,12 @@
     {% endfor %}
     <p>افزودن نیاز جدید</p>
     <hr>
-    {% include "snippets/need_snippet_edit_adder.html" %}
-    {#    {% include "snippets/need_snippet_edit_admin.html" %}#}
+    <div class="toadd">
+        {% include "snippets/need_snippet_edit_adder.html" %}
+        {% block addneed %}
+        {% endblock %}
+        {#    {% include "snippets/need_snippet_edit_admin.html" %}#}
+    </div>
 
 {% endblock %}
 

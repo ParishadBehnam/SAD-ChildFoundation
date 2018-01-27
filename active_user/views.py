@@ -61,7 +61,7 @@ def edit_madadjoo(request):
     needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
     hamyars = hamyar.objects.filter(sponsership__madadjoo_id=target_madadjoo.id)
 
-    return render(request, 'madadkar/edit_madadjoo.html', {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
+    return render(request, 'madadkar/edit_madadjoo_full.html', {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
 
 
 @madadkar_login_required
@@ -142,13 +142,36 @@ def send_letter_hamyar(request):
 
 
 @madadkar_login_required
-def inbox(request):
-    return render(request, 'madadkar/inbox.html')
+def inbox_madadkar(request):
+    all_letters = madadjoo_madadkar_letter.objects.filter(madadkar_id=request.user.id)
+    return render(request, 'madadkar/inbox.html', {'letters': all_letters})
+
+
+@madadkar_login_required
+def letter_content_madadkar(request):
+    target_letter = models.madadjoo_madadkar_letter.objects.get(id=request.GET.get('letter', ''))
+    target_madadjoo = models.madadjoo.objects.get(active_user_ptr_id=target_letter.madadjoo_id)
+    target_madadkar = models.madadkar.objects.get(active_user_ptr_id=target_letter.madadkar_id)
+    all_letters = madadjoo_madadkar_letter.objects.filter(madadkar_id=request.user.id)
+    return render(request, 'madadkar/letter_content.html',
+                  {'letters': all_letters, 'letter': target_letter, 'sender': target_madadjoo, 'receiver': target_madadkar})
+
+
+@hamyar_login_required
+def letter_content_hamyar(request):
+    target_letter = models.madadjoo_hamyar_letter.objects.get(id=request.GET.get('letter', ''))
+    target_madadjoo = models.madadjoo.objects.get(active_user_ptr_id=target_letter.madadjoo_id)
+    target_hamyar = models.hamyar.objects.get(active_user_ptr_id=target_letter.hamyar_id)
+    all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id)
+    return render(request, 'hamyar/letter_content.html',
+                  {'letters': all_letters, 'letter': target_letter,
+                   'sender': target_madadjoo, 'receiver': target_hamyar})
 
 
 @hamyar_login_required
 def inbox_hamyar(request):
-    return render(request, 'hamyar/inbox.html')
+    all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id)
+    return render(request, 'hamyar/inbox.html', {'letters': all_letters})
 
 
 @madadkar_login_required

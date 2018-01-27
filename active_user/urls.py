@@ -16,8 +16,9 @@ urlpatterns = [
     url(r'show_a_hamyar$', views.show_a_hamyar, name='show_a_hamyar'),
     url(r'send_letter$', views.send_letter, name='send_letter'),
     url(r'send_letter_hamyar$', views.send_letter_hamyar, name='send_letter_hamyar'),
-    url(r'inbox$', views.inbox, name='inbox'),
+    url(r'inbox_madadkar$', views.inbox_madadkar, name='inbox_madadkar'),
     url(r'inbox_hamyar$', views.inbox_hamyar, name='inbox_hamyar'),
+
     url(r'madadkar_panel$', views.madadkar_panel, name='madadkar_panel'),
     url(r'hamyar_panel$', views.hamyar_panel, name='hamyar_panel'),
     url(r'show_hamyar_hamyar$', views.show_hamyar_information, name='show_hamyar_hamyar'),
@@ -53,4 +54,6 @@ urlpatterns = [
     url(r'activity_report_admin$', views.activity_report, name='activity_report_admin'),
     url(r'madadjoo_paid_report$', views.madadjoo_paid_report, name='madadjoo_paid_report'),
     url(r'support_a_madadjoo_hamyar$', views.support_a_madadjoo, name='support_a_madadjoo'),
+    url(r'letter_content_madadkar$', views.letter_content_madadkar, name='letter_content_madadkar'),
+    url(r'letter_content_hamyar$', views.letter_content_hamyar, name='letter_content_hamyar'),
 ]

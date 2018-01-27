@@ -7,70 +7,19 @@
         <div class="col-sm-1 col-md-3 col-lg-4 rounded" style="height: 100%;">
             <div class="list-group">
                 {% block list %}
-                    <a href="#" class="bg-light list-group-item list-group-item-action">
-                        عنوان نامه
-                        <span class="emergency-need badge badge-danger">اخطار</span>
-                    </a>
-                    <a href="#" class="bg-light list-group-item list-group-item-action">عنوان نامه
-                        <span class="emergency-need badge badge-danger">اخطار</span></a>
-                    <a href="#" class="bg-light list-group-item list-group-item-action">عنوان نامه
-                        <span class="emergency-need badge badge-info">مددجو به همیار</span></a>
 
-                    <a href="#" class="bg-light list-group-item list-group-item-action">عنوان نامه
-                        <span class="emergency-need badge badge-danger">اخطار</span></a>
-                    <a href="#" class="bg-light list-group-item list-group-item-action">عنوان نامه
-                        <span class="emergency-need badge badge-warning">همیار به مددجو</span></a>
-
-                    <a href="#" class="bg-light list-group-item list-group-item-action">عنوان نامه
-                        <span class="emergency-need badge badge-info">مددجو به همیار</span></a>
-
-                    <a href="#" class="bg-light list-group-item list-group-item-action">عنوان نامه
-                        <span class="emergency-need badge badge-danger">اخطار</span></a>
-
-                    <a href="#" class="bg-light list-group-item list-group-item-action">عنوان نامه
-                        <span class="emergency-need badge badge-warning">همیار به مددجو</span></a>
-                    <a href="#" class="bg-light list-group-item list-group-item-action">عنوان نامه
-                        <span class="emergency-need badge badge-info">مددجو به همیار</span></a>
-
+                    {% for letter in letters %}
+                        <a href="{% url "letter_content_madadkar" %}?letter={{ letter.id }}" class="bg-light list-group-item list-group-item-action">
+                          {{ letter.title }}
+                        <span class="emergency-need badge badge-info">مددجو به مددکار</span></a>
+                        </a>
+                    {% endfor %}
                 {% endblock %}
             </div>
         </div>
-        <div class="col-sm-11 col-md-9 col-lg-8 rounded" style="height: 100%; background-color: #f4f4f4">
-            <div class="row" style="margin-top: 2%;">
-                <div class="col-md-6 mr-auto">
-                    <h4>عنوان نامه</h4>
-                </div>
-                <div class="col-md-6 mr-auto">
-                    <button type="button" class="btn btn-outline-danger">حذف نامه</button>
-                </div>
-            </div>
 
-            <hr>
-            <p>فرستنده <a href="show_a_madadjoo.html">فرستنده: نام فرستنده</a></p>
-            <p>گیرنده: مدیر سامانه </p>
-            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
-                متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
-                کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
-                شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی
-                الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و
-                دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای
-                اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+    {% block letter_content %}
 
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
-                متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
-                کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
-                شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی
-                الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و
-                دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای
-                اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
-                متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
-                کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
-                شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی
-                الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و
-                دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای
-                اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
-        </div>
+        {% endblock %}
     </div>
 {% endblock %}
