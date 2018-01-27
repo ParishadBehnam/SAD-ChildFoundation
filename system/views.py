@@ -16,6 +16,8 @@ from active_user import models
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
+from system.models import information
+
 
 @csrf_exempt
 def hamyar_register(request):
@@ -39,7 +41,8 @@ def hamyar_register(request):
 
             login(request, new_hamyar)
             s = new_hamyar.first_name + ' ' + new_hamyar.last_name + ' خوش آمدید :) ثبت نام شما موفقیت آمیز بود!'
-            return HttpResponseRedirect(reverse("hamyar_panel"), {'success_message': s})  # this should be hamyar's own page
+            return HttpResponseRedirect(reverse("hamyar_panel"),
+                                        {'success_message': s})  # this should be hamyar's own page
         else:
             s = 'ثبت نام شما با خطا مواجه شده‌است. دوباره تلاش کنید.'
             return render(request, 'hamyar/hamyar_register.html', {'form': form,
@@ -89,8 +92,8 @@ def system_logout(request):
 
 @csrf_exempt
 def general_information(request):
-    # print("is it here?")
-    return render(request, 'general_information.html')
+    system = information.objects.first()
+    return render(request, 'general_information.html', {'system': system})
 
 
     # Create your views here.

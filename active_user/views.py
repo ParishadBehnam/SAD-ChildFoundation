@@ -24,26 +24,31 @@ from active_user.models import madadjoo, hamyar, madadkar, sponsership, \
  \
     madadjoo_madadkar_letter, madadjoo_hamyar_letter, hamyar_madadjoo_meeting, \
     hamyar_system_payment, requirements
+from system.models import information
 
 
 @madadkar_login_required
 def home_madadkar(request):
-    return render(request, 'madadkar/home_madadkar.html')
+    system = information.objects.first()
+    return render(request, 'madadkar/home_madadkar.html', {'system':system})
 
 
 @hamyar_login_required
 def home_hamyar(request):
-    return render(request, 'hamyar/home_hamyar.html')
+    system = information.objects.first()
+    return render(request, 'hamyar/home_hamyar.html', {'system':system})
 
 
 @madadjoo_login_required
 def home_madadjoo(request):
-    return render(request, 'madadjoo/home_madadjoo.html')
+    system = information.objects.first()
+    return render(request, 'madadjoo/home_madadjoo.html', {'system':system})
 
 
 @admin_login_required
 def home_admin(request):
-    return render(request, 'admin/home_admin.html')
+    system = information.objects.first()
+    return render(request, 'admin/home_admin.html', {'system':system})
 
 
 @madadkar_login_required
