@@ -580,7 +580,7 @@ def add_a_madadjoo_madadkar(request):
         address = request.POST.get('addres')
         email = request.POST.get('email')
         profile_pic = request.FILES.get('profile_pic')
-        print(profile_pic)
+        # print(profile_pic)
         bio = request.POST.get('bio')
         edu_status = request.POST.get('edu_status')
         successes = request.POST.get('successes')
