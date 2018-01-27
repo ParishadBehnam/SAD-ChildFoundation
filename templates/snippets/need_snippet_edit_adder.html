@@ -6,27 +6,27 @@
 {% endblock %}
 
 {% block monthly %}
-    <input class="form-check-input adder" type="radio" name="type"
-           id="mo" value="mo" {% if need.type == "mo" %}checked{% endif %}>
+    <input class="form-check-input adder" type="radio" name="type0"
+           id="mo" value="mo" {% if need.type == "mo" %}checked{% endif %} >
 {% endblock %}
 
 {% block annual %}
-    <input class="form-check-input adder" type="radio" name="type"
-           id="ann" value="ann" {% if need.type == "ann" %}checked{% endif %}>
+    <input class="form-check-input adder" type="radio" name="type0"
+           id="ann" value="ann" {% if need.type == "ann" %}checked{% endif %} >
 {% endblock %}
 
 {% block special %}
-    <input class="form-check-input adder" type="radio" name="type"
-           id="inst" value="inst" {% if need.type == "inst" %}checked{% endif %}>
+    <input class="form-check-input adder" type="radio" name="type0"
+           id="inst" value="inst" {% if need.type == "inst" %}checked{% endif %} >
 {% endblock %}
 
 {% block urgent %}
-    <input class="form-check-input adder" type="checkbox" name="urgent"
-           id="urgent" value="urgent" {% if need.urgent %} checked {% endif %}>
+    <input class="form-check-input adder" type="checkbox" name="urgent0"
+           id="urgent" value="urgent" {% if need.urgent %} checked {% endif %} >
 {% endblock %}
 
 {% block chash %}
-    <input class="form-check-input adder" type="checkbox" name="chash"
+    <input class="form-check-input adder" type="checkbox" name="chash0"
            id="chash" value="chash" {% if need.chash %} checked {% endif %}>
 {% endblock %}
 

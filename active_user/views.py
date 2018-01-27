@@ -20,7 +20,7 @@ from active_user.decorators import madadkar_login_required
 from active_user.decorators import hamyar_login_required
 from active_user.decorators import madadjoo_login_required
 from active_user.models import madadjoo, hamyar, madadkar, sponsership, \
-    madadjoo_madadkar_letter, madadjoo_hamyar_letter
+    madadjoo_madadkar_letter, madadjoo_hamyar_letter, requirements
 
 
 @madadkar_login_required
@@ -57,11 +57,55 @@ def show_madadjoo_hamyar(request):
 
 @madadkar_login_required
 def edit_madadjoo(request):
-    target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
-    needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
-    hamyars = hamyar.objects.filter(sponsership__madadjoo_id=target_madadjoo.id)
+    if request.method == "GET":
+        target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
+        needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
+        return render(request, 'madadkar/edit_madadjoo_full.html',
+                      {'user': target_madadjoo, 'needs': needs})
+    else:
+        user = madadjoo.objects.get(username=request.GET.get('username', ''))
+        user.first_name = request.POST.get('first_name')
+        user.last_name = request.POST.get('last_name')
+        user.id_number = request.POST.get('id_number')
+        user.phone_number = request.POST.get('phone_number')
+        user.address = request.POST.get('address')
+        user.email = request.POST.get('email')
+        user.bio = request.POST.get('bio')
+        user.edu_status = request.POST.get('edu_status')
+        user.successes = request.POST.get('successes')
+        user.invest_percentage = request.POST.get('invest_percentage')
+        if request.FILES.get('profile_pic') != '':
+            user.profile_pic = request.FILES.get('profile_pic')
 
-    return render(request, 'madadkar/edit_madadjoo_full.html', {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
+        all_reqs = requirements.objects.filter(madadjoo_id=user.id)
+        for req in all_reqs:
+            prev_req = requirements.objects.get(id=req.id)
+            prev_req.description = request.POST.get('description_base' + str(req.id))
+            prev_req.cash = True if request.POST.get('cash_base' + str(req.id)) == "cash" else False
+            prev_req.urgent = True if request.POST.get('urgent_base' + str(req.id)) == "urgent" else False
+            prev_req.type = request.POST.get('type_base' + str(req.id))
+            prev_req.confirmed = False if req.urgent else True
+            prev_req.save()
+
+        for desc in request.POST.getlist('description_base'):
+            if desc != "":
+                corr_req = requirements.objects.get(madadjoo_id=user.id, description=desc)
+                corr_req.description = desc
+                corr_req.type = request.POST.get('type_base' + str(corr_req.id))
+                corr_req.cash = True if request.POST.get('cash_base' + str(corr_req.id)) == "cash" else False
+                corr_req.urgent = True if request.POST.get('urgent_base' + str(corr_req.id)) == "urgent" else False
+
+                corr_req.save()
+
+        target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
+        needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
+        try:
+            user.save()
+            return render(request, 'madadkar/edit_madadjoo_full.html',
+                          {'user': target_madadjoo, 'needs': needs})
+        except IntegrityError:
+            return render(request, 'madadkar/edit_madadjoo_full.html',
+                          {'user': target_madadjoo, 'needs': needs, 'message': 'کد ملی باید یکتا باشد.'})
 
 
 @madadkar_login_required
@@ -154,7 +198,8 @@ def letter_content_madadkar(request):
     target_madadkar = models.madadkar.objects.get(active_user_ptr_id=target_letter.madadkar_id)
     all_letters = madadjoo_madadkar_letter.objects.filter(madadkar_id=request.user.id)
     return render(request, 'madadkar/letter_content.html',
-                  {'letters': all_letters, 'letter': target_letter, 'sender': target_madadjoo, 'receiver': target_madadkar})
+                  {'letters': all_letters, 'letter': target_letter, 'sender': target_madadjoo,
+                   'receiver': target_madadkar})
 
 
 @hamyar_login_required
@@ -198,6 +243,7 @@ def show_hamyar_information(request):
     madadjoos = madadjoo.objects.filter(sponsership__hamyar_id=active_user.id)
     return render(request, 'hamyar/show_details.html', {'madadjoos': madadjoos})
 
+
 @hamyar_login_required
 @csrf_exempt
 def edit_hamyar_information(request):
@@ -211,8 +257,8 @@ def edit_hamyar_information(request):
         user.phone_number = request.POST.get('phone_number')
         user.address = request.POST.get('address')
         user.email = request.POST.get('email')
-        if request.POST.get('profile_pic') != '':
-            user.profile_pic = request.POST.get('profile_pic')
+        if request.FILES.get('profile_pic') != '':
+            user.profile_pic = request.FILES.get('profile_pic')
         try:
             user.save()
             return HttpResponseRedirect(reverse("hamyar_panel"))  # this should be hamyar's own page
@@ -356,7 +402,7 @@ def show_madadjoo_information(request):
 
 @admin_login_required
 def admin_panel(request):
-    print(request.session['type'])
+    # print(request.session['type'])
     return render(request, 'admin/admin_panel.html')
 
 

@@ -110,8 +110,8 @@ class madadjoo_madadkar_letter(models.Model):
 
 class requirements(models.Model):
     description = models.TextField(null=True)
-    type = models.CharField(choices=(('mo','monthly'), ('ann','annual'), ('inst','instantly')), max_length=60)
-    confirmed = models.BooleanField(default=False)
+    type = models.CharField(choices=(('mo','monthly'), ('ann','annual'), ('inst','instantly')), max_length=60, default='mo')
+    confirmed = models.BooleanField(default=True)
     urgent = models.BooleanField(default=False)
     cash = models.BooleanField(default=True)
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)

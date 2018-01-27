@@ -1,32 +1,32 @@
 {% extends "snippets/need_snippet_base.html" %}
 
 {% block need %}
-    <textarea rows="3" id="description" name="description" class="form-control"
+    <textarea rows="3" id="description" name="description_base{{ need.id }}" class="form-control"
               placeholder="شرح و مبلغ نیاز مددجو در این‌جا وارد می‌شود">{{ need.description }}</textarea>
 {% endblock %}
 
 {% block monthly %}
-    <input class="form-check-input" type="radio" name="type{{ need.id }}"
-           id="mo" value="mo" {% if need.type == "mo" %}checked{% endif %}>
+    <input class="form-check-input" type="radio" name="type_base{{ need.id }}"
+           id="mo" value="mo" {% if need.type == "mo" %}checked{% endif %} >
 {% endblock %}
 
 {% block annual %}
-    <input class="form-check-input" type="radio" name="type{{ need.id }}"
-           id="ann" value="ann" {% if need.type == "ann" %}checked{% endif %}>
+    <input class="form-check-input" type="radio" name="type_base{{ need.id }}"
+           id="ann" value="ann" {% if need.type == "ann" %}checked{% endif %} >
 {% endblock %}
 
 {% block special %}
-    <input class="form-check-input" type="radio" name="type{{ need.id }}"
-           id="inst" value="inst" {% if need.type == "inst" %}checked{% endif %}>
+    <input class="form-check-input" type="radio" name="type_base{{ need.id }}"
+           id="inst" value="inst" {% if need.type == "inst" %}checked{% endif %} >
 {% endblock %}
 
 {% block urgent %}
-    <input class="form-check-input" type="checkbox" name="urgent{{ need.id }}"
+    <input class="form-check-input" type="checkbox" name="urgent_base{{ need.id }}"
            id="urgent" value="urgent" {% if need.urgent %} checked {% endif %}>
 {% endblock %}
 
 {% block chash %}
-    <input class="form-check-input" type="checkbox" name="chash{{ need.id }}"
+    <input class="form-check-input" type="checkbox" name="chash_base{{ need.id }}"
            id="chash" value="chash" {% if need.chash %} checked {% endif %}>
 {% endblock %}
 
