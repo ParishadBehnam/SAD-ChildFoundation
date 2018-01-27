@@ -16,6 +16,8 @@ from active_user import models
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
+from system.models import information
+
 
 @csrf_exempt
 def hamyar_register(request):
@@ -94,3 +96,5 @@ def general_information(request):
     if request.GET.get('success') == '2':
         return render(request, 'general_information.html', {'success_message': 'شما با موفقیت از حساب کاربری خود خارج شدید.'})
     return render(request, 'general_information.html')
+    system = information.objects.first()
+    return render(request, 'general_information.html', {'system': system})

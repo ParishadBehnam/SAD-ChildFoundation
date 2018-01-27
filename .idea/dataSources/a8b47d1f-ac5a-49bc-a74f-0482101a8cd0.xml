@@ -239,80 +239,32 @@ permission_id</ColNames>
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="67" parent="8" name="date">
+    <column id="67" parent="8" name="hamyar_id">
       <Position>1</Position>
-      <DataType>DATE(0,-1)|12</DataType>
+      <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="68" parent="8" name="hamyar_id">
+    <column id="68" parent="8" name="madadjoo_id">
       <Position>2</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="69" parent="8" name="madadjoo_id">
+    <column id="69" parent="8" name="date">
       <Position>3</Position>
-      <DataType>INTEGER(0,-1)|4</DataType>
+      <DataType>DATETIME(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="70" parent="8">
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="71" parent="8" name="#FAKE_active_user_hamyar_madadjoo_meeting_2">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>hamyar_id</ColNames>
-      <Deferrable>1</Deferrable>
-      <InitiallyDeferred>1</InitiallyDeferred>
-      <RefTableName>active_user_hamyar</RefTableName>
-      <RefColNames>active_user_ptr_id</RefColNames>
-      <OnDelete>no-action</OnDelete>
-      <OnUpdate>no-action</OnUpdate>
-    </foreign-key>
-    <foreign-key id="72" parent="8" name="#FAKE_active_user_hamyar_madadjoo_meeting_1">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>madadjoo_id</ColNames>
-      <Deferrable>1</Deferrable>
-      <InitiallyDeferred>1</InitiallyDeferred>
-      <RefTableName>active_user_madadjoo</RefTableName>
-      <RefColNames>active_user_ptr_id</RefColNames>
-      <OnDelete>no-action</OnDelete>
-      <OnUpdate>no-action</OnUpdate>
-    </foreign-key>
-    <column id="73" parent="9" name="id">
-      <DataType>INTEGER(0,-1)|4</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="74" parent="9" name="date">
-      <Position>1</Position>
-      <DataType>DATE(0,-1)|12</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="75" parent="9" name="text">
-      <Position>2</Position>
-      <DataType>TEXT(0,-1)|12</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="76" parent="9" name="hamyar_id">
-      <Position>3</Position>
-      <DataType>INTEGER(0,-1)|4</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="77" parent="9" name="madadjoo_id">
-      <Position>4</Position>
-      <DataType>INTEGER(0,-1)|4</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="78" parent="9" name="active_user_hamyar_madadjoo_non_cash_hamyar_id_date_madadjoo_id_9bbea395_uniq">
+    <index id="70" parent="8" name="active_user_hamyar_madadjoo_meeting_hamyar_id_date_madadjoo_id_039cd0e7_uniq">
       <ColNames>hamyar_id
 date
 madadjoo_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="79" parent="9">
+    <key id="71" parent="8">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="80" parent="9" name="#FAKE_active_user_hamyar_madadjoo_non_cash_2">
+    <foreign-key id="72" parent="8" name="#FAKE_active_user_hamyar_madadjoo_meeting_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>hamyar_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -322,7 +274,7 @@ madadjoo_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <foreign-key id="81" parent="9" name="#FAKE_active_user_hamyar_madadjoo_non_cash_1">
+    <foreign-key id="73" parent="8" name="#FAKE_active_user_hamyar_madadjoo_meeting_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>madadjoo_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -332,40 +284,100 @@ madadjoo_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <column id="82" parent="10" name="id">
+    <column id="74" parent="9" name="id">
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="83" parent="10" name="amount">
+    <column id="75" parent="9" name="date">
+      <Position>1</Position>
+      <DataType>DATE(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="76" parent="9" name="text">
+      <Position>2</Position>
+      <DataType>TEXT(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="77" parent="9" name="hamyar_id">
+      <Position>3</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="78" parent="9" name="madadjoo_id">
+      <Position>4</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="79" parent="9" name="active_user_hamyar_madadjoo_non_cash_hamyar_id_date_madadjoo_id_9bbea395_uniq">
+      <ColNames>hamyar_id
+date
+madadjoo_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="80" parent="9">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="81" parent="9" name="#FAKE_active_user_hamyar_madadjoo_non_cash_2">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>hamyar_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>active_user_hamyar</RefTableName>
+      <RefColNames>active_user_ptr_id</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <foreign-key id="82" parent="9" name="#FAKE_active_user_hamyar_madadjoo_non_cash_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>madadjoo_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>active_user_madadjoo</RefTableName>
+      <RefColNames>active_user_ptr_id</RefColNames>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="83" parent="10" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="84" parent="10" name="amount">
       <Position>1</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="84" parent="10" name="type">
+    <column id="85" parent="10" name="type">
       <Position>2</Position>
       <DataType>VARCHAR(60)(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="85" parent="10" name="date">
-      <Position>3</Position>
-      <DataType>DATE(0,-1)|12</DataType>
-      <NotNull>1</NotNull>
-    </column>
     <column id="86" parent="10" name="hamyar_id">
-      <Position>4</Position>
+      <Position>3</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="87" parent="10" name="madadjoo_id">
-      <Position>5</Position>
+      <Position>4</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="88" parent="10">
+    <column id="88" parent="10" name="date">
+      <Position>5</Position>
+      <DataType>DATETIME(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="89" parent="10" name="active_user_hamyar_madadjoo_payment_madadjoo_id_hamyar_id_date_00aa1d5f_uniq">
+      <ColNames>madadjoo_id
+hamyar_id
+date</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="90" parent="10">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="89" parent="10" name="#FAKE_active_user_hamyar_madadjoo_payment_2">
+    <foreign-key id="91" parent="10" name="#FAKE_active_user_hamyar_madadjoo_payment_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>hamyar_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -375,7 +387,7 @@ madadjoo_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <foreign-key id="90" parent="10" name="#FAKE_active_user_hamyar_madadjoo_payment_1">
+    <foreign-key id="92" parent="10" name="#FAKE_active_user_hamyar_madadjoo_payment_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>madadjoo_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -385,35 +397,40 @@ madadjoo_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <column id="91" parent="11" name="id">
+    <column id="93" parent="11" name="id">
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="92" parent="11" name="amount">
+    <column id="94" parent="11" name="amount">
       <Position>1</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="93" parent="11" name="date">
+    <column id="95" parent="11" name="system_id">
       <Position>2</Position>
-      <DataType>DATE(0,-1)|12</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="94" parent="11" name="system_id">
-      <Position>3</Position>
       <DataType>TEXT(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="95" parent="11" name="hamyar_id">
-      <Position>4</Position>
+    <column id="96" parent="11" name="hamyar_id">
+      <Position>3</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="96" parent="11">
+    <column id="97" parent="11" name="date">
+      <Position>4</Position>
+      <DataType>DATETIME(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="98" parent="11" name="active_user_hamyar_system_payment_hamyar_id_date_006df5f4_uniq">
+      <ColNames>hamyar_id
+date</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="99" parent="11">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="97" parent="11" name="#FAKE_active_user_hamyar_system_payment_2">
+    <foreign-key id="100" parent="11" name="#FAKE_active_user_hamyar_system_payment_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>system_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -423,7 +440,7 @@ madadjoo_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <foreign-key id="98" parent="11" name="#FAKE_active_user_hamyar_system_payment_1">
+    <foreign-key id="101" parent="11" name="#FAKE_active_user_hamyar_system_payment_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>hamyar_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -433,45 +450,45 @@ madadjoo_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <column id="99" parent="12" name="active_user_ptr_id">
+    <column id="102" parent="12" name="active_user_ptr_id">
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="100" parent="12" name="bio">
+    <column id="103" parent="12" name="bio">
       <Position>1</Position>
       <DataType>TEXT(0,-1)|12</DataType>
     </column>
-    <column id="101" parent="12" name="edu_status">
+    <column id="104" parent="12" name="edu_status">
       <Position>2</Position>
       <DataType>TEXT(0,-1)|12</DataType>
     </column>
-    <column id="102" parent="12" name="successes">
+    <column id="105" parent="12" name="successes">
       <Position>3</Position>
       <DataType>TEXT(0,-1)|12</DataType>
     </column>
-    <column id="103" parent="12" name="confirmed">
+    <column id="106" parent="12" name="confirmed">
       <Position>4</Position>
       <DataType>BOOL(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="104" parent="12" name="removed">
+    <column id="107" parent="12" name="removed">
       <Position>5</Position>
       <DataType>BOOL(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="105" parent="12" name="invest_percentage">
+    <column id="108" parent="12" name="invest_percentage">
       <Position>6</Position>
       <DataType>REAL(0,-1)|6</DataType>
     </column>
-    <column id="106" parent="12" name="corr_madadkar_id">
+    <column id="109" parent="12" name="corr_madadkar_id">
       <Position>7</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
     </column>
-    <key id="107" parent="12">
+    <key id="110" parent="12">
       <ColNames>active_user_ptr_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="108" parent="12" name="#FAKE_active_user_madadjoo_2">
+    <foreign-key id="111" parent="12" name="#FAKE_active_user_madadjoo_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>active_user_ptr_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -481,7 +498,7 @@ madadjoo_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <foreign-key id="109" parent="12" name="#FAKE_active_user_madadjoo_1">
+    <foreign-key id="112" parent="12" name="#FAKE_active_user_madadjoo_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>corr_madadkar_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -491,45 +508,51 @@ madadjoo_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <column id="110" parent="13" name="id">
+    <column id="113" parent="13" name="id">
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="111" parent="13" name="date">
+    <column id="114" parent="13" name="text">
       <Position>1</Position>
-      <DataType>DATE(0,-1)|12</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="112" parent="13" name="text">
-      <Position>2</Position>
       <DataType>TEXT(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="113" parent="13" name="confirmed">
-      <Position>3</Position>
+    <column id="115" parent="13" name="confirmed">
+      <Position>2</Position>
       <DataType>BOOL(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="114" parent="13" name="hamyar_id">
+    <column id="116" parent="13" name="hamyar_id">
+      <Position>3</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="117" parent="13" name="madadjoo_id">
       <Position>4</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="115" parent="13" name="madadjoo_id">
+    <column id="118" parent="13" name="title">
       <Position>5</Position>
-      <DataType>INTEGER(0,-1)|4</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="116" parent="13" name="title">
-      <Position>6</Position>
       <DataType>TEXT(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="117" parent="13">
+    <column id="119" parent="13" name="date">
+      <Position>6</Position>
+      <DataType>DATETIME(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="120" parent="13" name="active_user_madadjoo_hamyar_letter_hamyar_id_date_madadjoo_id_18e29ec3_uniq">
+      <ColNames>hamyar_id
+date
+madadjoo_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="121" parent="13">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="118" parent="13" name="#FAKE_active_user_madadjoo_hamyar_letter_2">
+    <foreign-key id="122" parent="13" name="#FAKE_active_user_madadjoo_hamyar_letter_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>hamyar_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -539,7 +562,7 @@ madadjoo_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <foreign-key id="119" parent="13" name="#FAKE_active_user_madadjoo_hamyar_letter_1">
+    <foreign-key id="123" parent="13" name="#FAKE_active_user_madadjoo_hamyar_letter_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>madadjoo_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -549,45 +572,50 @@ madadjoo_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <column id="120" parent="14" name="id">
+    <column id="124" parent="14" name="id">
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="121" parent="14" name="text">
+    <column id="125" parent="14" name="text">
       <Position>1</Position>
       <DataType>TEXT(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="122" parent="14" name="date">
+    <column id="126" parent="14" name="madadjoo_id">
       <Position>2</Position>
-      <DataType>DATE(0,-1)|12</DataType>
+      <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="123" parent="14" name="madadjoo_id">
+    <column id="127" parent="14" name="madadkar_id">
       <Position>3</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="124" parent="14" name="madadkar_id">
+    <column id="128" parent="14" name="thank">
       <Position>4</Position>
-      <DataType>INTEGER(0,-1)|4</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="125" parent="14" name="thank">
-      <Position>5</Position>
       <DataType>BOOL(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="126" parent="14" name="title">
-      <Position>6</Position>
+    <column id="129" parent="14" name="title">
+      <Position>5</Position>
       <DataType>TEXT(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="127" parent="14">
+    <column id="130" parent="14" name="date">
+      <Position>6</Position>
+      <DataType>DATETIME(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="131" parent="14" name="active_user_madadjoo_madadkar_letter_madadjoo_id_date_e02b855e_uniq">
+      <ColNames>madadjoo_id
+date</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="132" parent="14">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="128" parent="14" name="#FAKE_active_user_madadjoo_madadkar_letter_2">
+    <foreign-key id="133" parent="14" name="#FAKE_active_user_madadjoo_madadkar_letter_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>madadjoo_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -597,7 +625,7 @@ madadjoo_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <foreign-key id="129" parent="14" name="#FAKE_active_user_madadjoo_madadkar_letter_1">
+    <foreign-key id="134" parent="14" name="#FAKE_active_user_madadjoo_madadkar_letter_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>madadkar_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -607,19 +635,19 @@ madadjoo_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <column id="130" parent="15" name="active_user_ptr_id">
+    <column id="135" parent="15" name="active_user_ptr_id">
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="131" parent="15" name="bio">
+    <column id="136" parent="15" name="bio">
       <Position>1</Position>
       <DataType>TEXT(0,-1)|12</DataType>
     </column>
-    <key id="132" parent="15">
+    <key id="137" parent="15">
       <ColNames>active_user_ptr_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="133" parent="15" name="#FAKE_active_user_madadkar_1">
+    <foreign-key id="138" parent="15" name="#FAKE_active_user_madadkar_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>active_user_ptr_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -629,40 +657,40 @@ madadjoo_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <column id="134" parent="16" name="id">
+    <column id="139" parent="16" name="id">
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="135" parent="16" name="text">
+    <column id="140" parent="16" name="text">
       <Position>1</Position>
       <DataType>TEXT(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="136" parent="16" name="date">
+    <column id="141" parent="16" name="date">
       <Position>2</Position>
       <DataType>DATE(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="137" parent="16" name="hamyar_id">
+    <column id="142" parent="16" name="hamyar_id">
       <Position>3</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="138" parent="16" name="madadjoo_id">
+    <column id="143" parent="16" name="madadjoo_id">
       <Position>4</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="139" parent="16" name="madadkar_id">
+    <column id="144" parent="16" name="madadkar_id">
       <Position>5</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="140" parent="16">
+    <key id="145" parent="16">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="141" parent="16" name="#FAKE_active_user_madadkar_remove_madadjoo_3">
+    <foreign-key id="146" parent="16" name="#FAKE_active_user_madadkar_remove_madadjoo_3">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>hamyar_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -672,7 +700,7 @@ madadjoo_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <foreign-key id="142" parent="16" name="#FAKE_active_user_madadkar_remove_madadjoo_2">
+    <foreign-key id="147" parent="16" name="#FAKE_active_user_madadkar_remove_madadjoo_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>madadjoo_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -682,7 +710,7 @@ madadjoo_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <foreign-key id="143" parent="16" name="#FAKE_active_user_madadkar_remove_madadjoo_1">
+    <foreign-key id="148" parent="16" name="#FAKE_active_user_madadkar_remove_madadjoo_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>madadkar_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -692,44 +720,44 @@ madadjoo_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <column id="144" parent="17" name="id">
+    <column id="149" parent="17" name="id">
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="145" parent="17" name="description">
+    <column id="150" parent="17" name="description">
       <Position>1</Position>
       <DataType>TEXT(0,-1)|12</DataType>
-    </column>
-    <column id="146" parent="17" name="type">
-      <Position>2</Position>
-      <DataType>VARCHAR(60)(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="147" parent="17" name="confirmed">
+    <column id="151" parent="17" name="confirmed">
+      <Position>2</Position>
+      <DataType>BOOL(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="152" parent="17" name="urgent">
       <Position>3</Position>
       <DataType>BOOL(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="148" parent="17" name="urgent">
+    <column id="153" parent="17" name="cash">
       <Position>4</Position>
       <DataType>BOOL(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="149" parent="17" name="cash">
+    <column id="154" parent="17" name="madadjoo_id">
       <Position>5</Position>
-      <DataType>BOOL(0,-1)|4</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="150" parent="17" name="madadjoo_id">
-      <Position>6</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="151" parent="17">
+    <column id="155" parent="17" name="type">
+      <Position>6</Position>
+      <DataType>VARCHAR(60)(0,-1)|12</DataType>
+    </column>
+    <key id="156" parent="17">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="152" parent="17" name="#FAKE_active_user_requirements_1">
+    <foreign-key id="157" parent="17" name="#FAKE_active_user_requirements_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>madadjoo_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -739,30 +767,30 @@ madadjoo_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <column id="153" parent="18" name="id">
+    <column id="158" parent="18" name="id">
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="154" parent="18" name="hamyar_id">
+    <column id="159" parent="18" name="hamyar_id">
       <Position>1</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="155" parent="18" name="madadjoo_id">
+    <column id="160" parent="18" name="madadjoo_id">
       <Position>2</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="156" parent="18" name="active_user_sponsership_madadjoo_id_hamyar_id_7aaefa4e_uniq">
+    <index id="161" parent="18" name="active_user_sponsership_madadjoo_id_hamyar_id_7aaefa4e_uniq">
       <ColNames>madadjoo_id
 hamyar_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="157" parent="18">
+    <key id="162" parent="18">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="158" parent="18" name="#FAKE_active_user_sponsership_2">
+    <foreign-key id="163" parent="18" name="#FAKE_active_user_sponsership_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>hamyar_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -772,7 +800,7 @@ hamyar_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <foreign-key id="159" parent="18" name="#FAKE_active_user_sponsership_1">
+    <foreign-key id="164" parent="18" name="#FAKE_active_user_sponsership_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>madadjoo_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -782,48 +810,48 @@ hamyar_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <column id="160" parent="19" name="id">
+    <column id="165" parent="19" name="id">
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="161" parent="19" name="name">
+    <column id="166" parent="19" name="name">
       <Position>1</Position>
       <DataType>VARCHAR(80)(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="162" parent="19" name="sqlite_autoindex_auth_group_1">
+    <index id="167" parent="19" name="sqlite_autoindex_auth_group_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>name</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="163" parent="19">
+    <key id="168" parent="19">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="164" parent="20" name="id">
+    <column id="169" parent="20" name="id">
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="165" parent="20" name="group_id">
+    <column id="170" parent="20" name="group_id">
       <Position>1</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="166" parent="20" name="permission_id">
+    <column id="171" parent="20" name="permission_id">
       <Position>2</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="167" parent="20" name="auth_group_permissions_group_id_permission_id_0cd325b0_uniq">
+    <index id="172" parent="20" name="auth_group_permissions_group_id_permission_id_0cd325b0_uniq">
       <ColNames>group_id
 permission_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="168" parent="20">
+    <key id="173" parent="20">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="169" parent="20" name="#FAKE_auth_group_permissions_2">
+    <foreign-key id="174" parent="20" name="#FAKE_auth_group_permissions_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>group_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -833,7 +861,7 @@ permission_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <foreign-key id="170" parent="20" name="#FAKE_auth_group_permissions_1">
+    <foreign-key id="175" parent="20" name="#FAKE_auth_group_permissions_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>permission_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -843,35 +871,35 @@ permission_id</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <column id="171" parent="21" name="id">
+    <column id="176" parent="21" name="id">
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="172" parent="21" name="content_type_id">
+    <column id="177" parent="21" name="content_type_id">
       <Position>1</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="173" parent="21" name="codename">
+    <column id="178" parent="21" name="codename">
       <Position>2</Position>
       <DataType>VARCHAR(100)(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="174" parent="21" name="name">
+    <column id="179" parent="21" name="name">
       <Position>3</Position>
       <DataType>VARCHAR(255)(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="175" parent="21" name="auth_permission_content_type_id_codename_01ab375a_uniq">
+    <index id="180" parent="21" name="auth_permission_content_type_id_codename_01ab375a_uniq">
       <ColNames>content_type_id
 codename</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="176" parent="21">
+    <key id="181" parent="21">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="177" parent="21" name="#FAKE_auth_permission_1">
+    <foreign-key id="182" parent="21" name="#FAKE_auth_permission_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>content_type_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -881,48 +909,48 @@ codename</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <column id="178" parent="22" name="id">
+    <column id="183" parent="22" name="id">
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="179" parent="22" name="object_id">
+    <column id="184" parent="22" name="object_id">
       <Position>1</Position>
       <DataType>TEXT(0,-1)|12</DataType>
     </column>
-    <column id="180" parent="22" name="object_repr">
+    <column id="185" parent="22" name="object_repr">
       <Position>2</Position>
       <DataType>VARCHAR(200)(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="181" parent="22" name="action_flag">
+    <column id="186" parent="22" name="action_flag">
       <Position>3</Position>
       <DataType>SMALLINT UNSIGNED(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="182" parent="22" name="change_message">
+    <column id="187" parent="22" name="change_message">
       <Position>4</Position>
       <DataType>TEXT(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="183" parent="22" name="content_type_id">
+    <column id="188" parent="22" name="content_type_id">
       <Position>5</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
     </column>
-    <column id="184" parent="22" name="user_id">
+    <column id="189" parent="22" name="user_id">
       <Position>6</Position>
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="185" parent="22" name="action_time">
+    <column id="190" parent="22" name="action_time">
       <Position>7</Position>
       <DataType>DATETIME(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="186" parent="22">
+    <key id="191" parent="22">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="187" parent="22" name="#FAKE_django_admin_log_2">
+    <foreign-key id="192" parent="22" name="#FAKE_django_admin_log_2">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>content_type_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -932,7 +960,7 @@ codename</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <foreign-key id="188" parent="22" name="#FAKE_django_admin_log_1">
+    <foreign-key id="193" parent="22" name="#FAKE_django_admin_log_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_id</ColNames>
       <Deferrable>1</Deferrable>
@@ -942,106 +970,106 @@ codename</ColNames>
       <OnDelete>no-action</OnDelete>
       <OnUpdate>no-action</OnUpdate>
     </foreign-key>
-    <column id="189" parent="23" name="id">
+    <column id="194" parent="23" name="id">
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="190" parent="23" name="app_label">
+    <column id="195" parent="23" name="app_label">
       <Position>1</Position>
       <DataType>VARCHAR(100)(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="191" parent="23" name="model">
+    <column id="196" parent="23" name="model">
       <Position>2</Position>
       <DataType>VARCHAR(100)(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="192" parent="23" name="django_content_type_app_label_model_76bd3d3b_uniq">
+    <index id="197" parent="23" name="django_content_type_app_label_model_76bd3d3b_uniq">
       <ColNames>app_label
 model</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="193" parent="23">
+    <key id="198" parent="23">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="194" parent="24" name="id">
+    <column id="199" parent="24" name="id">
       <DataType>INTEGER(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="195" parent="24" name="app">
+    <column id="200" parent="24" name="app">
       <Position>1</Position>
       <DataType>VARCHAR(255)(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="196" parent="24" name="name">
+    <column id="201" parent="24" name="name">
       <Position>2</Position>
       <DataType>VARCHAR(255)(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="197" parent="24" name="applied">
+    <column id="202" parent="24" name="applied">
       <Position>3</Position>
       <DataType>DATETIME(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="198" parent="24">
+    <key id="203" parent="24">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="199" parent="25" name="session_key">
+    <column id="204" parent="25" name="session_key">
       <DataType>VARCHAR(40)(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="200" parent="25" name="session_data">
+    <column id="205" parent="25" name="session_data">
       <Position>1</Position>
       <DataType>TEXT(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="201" parent="25" name="expire_date">
+    <column id="206" parent="25" name="expire_date">
       <Position>2</Position>
       <DataType>DATETIME(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="202" parent="25" name="django_session_expire_date_a5c62663">
+    <index id="207" parent="25" name="django_session_expire_date_a5c62663">
       <ColNames>expire_date</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="203" parent="25">
+    <key id="208" parent="25">
       <ColNames>session_key</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="204" parent="26" name="name">
+    <column id="209" parent="26" name="name">
       <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="205" parent="26" name="seq">
+    <column id="210" parent="26" name="seq">
       <Position>1</Position>
       <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="206" parent="27" name="history">
+    <column id="211" parent="27" name="history">
       <DataType>TEXT(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="207" parent="27" name="chart">
+    <column id="212" parent="27" name="chart">
       <Position>1</Position>
       <DataType>VARCHAR(30)(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="208" parent="27" name="goals">
+    <column id="213" parent="27" name="goals">
       <Position>2</Position>
       <DataType>TEXT(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="209" parent="27" name="activities">
+    <column id="214" parent="27" name="activities">
       <Position>3</Position>
       <DataType>TEXT(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="210" parent="27" name="supporters">
+    <column id="215" parent="27" name="supporters">
       <Position>4</Position>
       <DataType>TEXT(0,-1)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="211" parent="27">
+    <key id="216" parent="27">
       <ColNames>history</ColNames>
       <Primary>1</Primary>
     </key>
