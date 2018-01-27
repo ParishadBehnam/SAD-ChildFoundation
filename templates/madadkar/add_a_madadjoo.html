@@ -6,11 +6,17 @@
 
 {% block error %}
     {% if not message == None %}
-        <ul style="color: #990000"><li>{{ message }}</li></ul>
+        <ul style="color: #990000">
+            <li>{{ message }}</li>
+        </ul>
     {% endif %}
 {% endblock %}
 
 {% block buttons %}
+{% endblock %}
+{% block image %}
+    <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
+         alt="نام مددجو" class="img-thumbnail">
 {% endblock %}
 {% block below_image %}
     <div class="form-group text-center">
