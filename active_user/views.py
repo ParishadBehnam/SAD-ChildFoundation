@@ -89,16 +89,22 @@ def edit_madadjoo(request):
             prev_req.type = request.POST.get('type_base' + str(req.id))
             prev_req.confirmed = False if req.urgent else True
             prev_req.save()
+            index = 0
 
-        for desc in request.POST.getlist('description_base'):
+        for desc in request.POST.getlist('description'):
             if desc != "":
-                corr_req = requirements.objects.get(madadjoo_id=user.id, description=desc)
-                corr_req.description = desc
-                corr_req.type = request.POST.get('type_base' + str(corr_req.id))
-                corr_req.cash = True if request.POST.get('cash_base' + str(corr_req.id)) == "cash" else False
-                corr_req.urgent = True if request.POST.get('urgent_base' + str(corr_req.id)) == "urgent" else False
+                description = desc
+                type = request.POST.get('type' + str(index))
+                print("hiiiiii")
+                print(desc)
+                print(type)
+                cash = True if request.POST.get('cash' + str(index)) == "cash" else False
+                urgent = True if request.POST.get('urgent' + str(index)) == "urgent" else False
+                confirmed = False if urgent else True
 
-                corr_req.save()
+                new_req = requirements(description=description, type=type, cash=cash, urgent=urgent, confirmed=confirmed, madadjoo_id=user.id)
+                new_req.save()
+            index += 1
 
         target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
         needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)

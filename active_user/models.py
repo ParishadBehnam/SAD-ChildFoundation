@@ -101,16 +101,16 @@ class madadjoo_madadkar_letter(models.Model):
     madadkar = models.ForeignKey(madadkar, on_delete=models.CASCADE)
     text = models.TextField()
     title = models.TextField(default='')
-    date = models.DateField(auto_now=True)
+    date = models.DateTimeField(auto_now=True)
     thank = models.BooleanField(null=False, default=False)
 
-    # class Meta:
-    #     unique_together = (("madadjoo", "date"),)
+    class Meta:
+        unique_together = (("madadjoo", "date"),)
 
 
 class requirements(models.Model):
-    description = models.TextField(null=True)
-    type = models.CharField(choices=(('mo','monthly'), ('ann','annual'), ('inst','instantly')), max_length=60, default='mo')
+    description = models.TextField()
+    type = models.CharField(choices=(('mo','monthly'), ('ann','annual'), ('inst','instantly')), null=True, max_length=60)
     confirmed = models.BooleanField(default=True)
     urgent = models.BooleanField(default=False)
     cash = models.BooleanField(default=True)
@@ -121,10 +121,10 @@ class hamyar_system_payment(models.Model):
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
     system = models.ForeignKey(information, on_delete=models.CASCADE)
     amount = models.IntegerField(null=False)
-    date = models.DateField(auto_now=True)
+    date = models.DateTimeField(auto_now=True)
 
-    # class Meta:
-    #     unique_together = (("hamyar", "date"),)
+    class Meta:
+        unique_together = (("hamyar", "date"),)
 
 
 class sponsership(models.Model):
@@ -140,10 +140,10 @@ class hamyar_madadjoo_payment(models.Model):
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
     amount = models.IntegerField(null=False)
     type = models.CharField(choices=(('mo','monthly'), ('ann','annual'), ('inst','instantly')), max_length=60)
-    date = models.DateField(auto_now=True)
+    date = models.DateTimeField(auto_now=True)
 
-    # class Meta:
-    #     unique_together = (("madadjoo", "hamyar", "date"),)
+    class Meta:
+        unique_together = (("madadjoo", "hamyar", "date"),)
 
 
 class hamyar_madadjoo_non_cash(models.Model):
@@ -159,21 +159,21 @@ class hamyar_madadjoo_non_cash(models.Model):
 class hamyar_madadjoo_meeting(models.Model): #should process this table when madadkar wants to see her letters
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
-    date = models.DateField(auto_now=True)
+    date = models.DateTimeField(auto_now=True)
 
-    # class Meta:
-    #     unique_together = (("hamyar", "date", "madadjoo"),)
+    class Meta:
+        unique_together = (("hamyar", "date", "madadjoo"),)
 
 
 class madadjoo_hamyar_letter(models.Model):
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
-    date = models.DateField(auto_now=True)
+    date = models.DateTimeField(auto_now=True)
     text = models.TextField()
     title = models.TextField(default="")
     confirmed = models.BooleanField(default=False)
 
-    # class Meta:
-    #     unique_together = (("hamyar", "date", "madadjoo"),)
+    class Meta:
+        unique_together = (("hamyar", "date", "madadjoo"),)
 
 
