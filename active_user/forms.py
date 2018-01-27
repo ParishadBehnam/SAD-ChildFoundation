@@ -28,9 +28,7 @@ class hamyar_form(ModelForm):
         }
 
     def clean(self):
-        print('*****')
         cleaned_data = super(hamyar_form, self).clean()
-        print(self.cleaned_data)
         return cleaned_data
 
 

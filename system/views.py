@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from django.http import Http404
 from django.shortcuts import render
@@ -14,6 +14,7 @@ from active_user import forms
 from django import forms as d_forms
 from active_user import models
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 
 @csrf_exempt
@@ -37,9 +38,12 @@ def hamyar_register(request):
             new_hamyar.save()
 
             login(request, new_hamyar)
-            return HttpResponseRedirect(reverse("hamyar_panel"))  # this should be hamyar's own page
+            s = new_hamyar.first_name + ' ' + new_hamyar.last_name + ' خوش آمدید :) ثبت نام شما موفقیت آمیز بود!'
+            return HttpResponseRedirect(reverse("hamyar_panel"), {'success_message': s})  # this should be hamyar's own page
         else:
-            return render(request, 'hamyar/hamyar_register.html', {'form': form})
+            s = 'ثبت نام شما با خطا مواجه شده‌است. دوباره تلاش کنید.'
+            return render(request, 'hamyar/hamyar_register.html', {'form': form,
+                                                                   'error_message': s})
 
 
 @csrf_exempt
@@ -65,13 +69,14 @@ def sign_in(request):
                 final_user = table_type[int(type) - 1].objects.get(username=target_username)
                 login(request, user)
                 request.session['type'] = user_type[int(type) - 1]
+                s = target_username.first_name + ' ' + target_username.last_name + ' خوش آمدید :)'
                 return HttpResponseRedirect(reverse(user_panel[int(type) - 1]))
-
             except table_type[int(type) - 1].DoesNotExist:
-                return render(request, 'error_login.html', {'form': form})  # TODO
+                s = 'متاسفانه ورود شما موفقیت‌آمیز نبود. دوباره تلاش کنید.'
+                return render(request, 'login.html', {'form': form, 'error_message': s})
         else:
-
-            return render(request, 'error_login.html', {'form': form})  # TODO
+            s = 'متاسفانه ورود شما موفقیت‌آمیز نبود. دوباره تلاش کنید.'
+            return render(request, 'login.html', {'form': form, 'error_message': s})
 
 
 def system_logout(request):

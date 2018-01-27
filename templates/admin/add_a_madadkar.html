@@ -1,11 +1,5 @@
 {% extends "admin/edit_a_madadkar.html" %}
 
-{% block error %}
-    {% if not message == None %}
-        <ul style="color: #990000"><li>{{ message }}</li></ul>
-    {% endif %}
-{% endblock %}
-
 {% block below_image %}
     <div class="form-group text-center">
         <label for="profile_pic">عکس را انتخاب کنید</label>

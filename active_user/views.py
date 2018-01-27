@@ -22,8 +22,8 @@ from active_user.decorators import hamyar_login_required
 from active_user.decorators import madadjoo_login_required
 from active_user.models import madadjoo, hamyar, madadkar, sponsership, \
  \
-madadjoo_madadkar_letter, madadjoo_hamyar_letter, hamyar_madadjoo_meeting, \
-hamyar_system_payment, requirements
+    madadjoo_madadkar_letter, madadjoo_hamyar_letter, hamyar_madadjoo_meeting, \
+    hamyar_system_payment, requirements
 
 
 @madadkar_login_required
@@ -104,11 +104,12 @@ def edit_madadjoo(request):
         needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
         try:
             user.save()
+            s = 'اطلاعات مددجو با موفقیت ویرایش شد.'
             return render(request, 'madadkar/edit_madadjoo_full.html',
-                          {'user': user, 'needs': needs})
+                          {'user': user, 'needs': needs, 'success_message': s})
         except IntegrityError:
             return render(request, 'madadkar/edit_madadjoo_full.html',
-                          {'user': target_madadjoo, 'needs': needs, 'message': 'کد ملی باید یکتا باشد.'})
+                          {'user': target_madadjoo, 'needs': needs, 'error_message': 'کد ملی باید یکتا باشد.'})
 
 
 @madadkar_login_required
@@ -120,19 +121,6 @@ def add_madadjoo(request):
 def show_a_madadjoo(request):
     target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
     needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
-    # user = {'first_name': target_madadjoo.first_name,
-    #         'last_name': target_madadjoo.last_name,
-    #         'id_number': target_madadjoo.id_number,
-    #         'phone_number': target_madadjoo.phone_number,
-    #         'email': target_madadjoo.email,
-    #         'address': target_madadjoo.address,
-    #         'profile_pic': target_madadjoo.profile_pic,
-    #         'invest': target_madadjoo.invest_percentage,
-    #         'successes': target_madadjoo.successes,
-    #         'bio': target_madadjoo.bio,
-    #         'edu_status': target_madadjoo.edu_status,
-    #         'need': {'description': needs.description, 'type': needs.type, 'urgent': needs.urgent, 'cash': needs.cash}
-    #         }
     hamyars = hamyar.objects.filter(sponsership__madadjoo_id=target_madadjoo.id)
     return render(request, 'madadkar/show_a_madadjoo.html',
                   {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
@@ -147,26 +135,13 @@ def support_a_madadjoo(request):
 
     all_madadjoo = madadjoo.objects.values('username', 'first_name', 'last_name', 'bio')
     return render(request, 'hamyar/select_madadjoo.html',
-                  {'madadjoos': list(all_madadjoo), 'message': 'مددجوی مورد نظر تحت حمایت شما قرار گرفت'})
+                  {'madadjoos': list(all_madadjoo), 'success_message': 'مددجوی مورد نظر تحت حمایت شما قرار گرفت'})
 
 
 @hamyar_login_required
 def show_a_madadjoo_hamyar(request):
     target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
     needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
-    # user = {'first_name': target_madadjoo.first_name,
-    #         'last_name': target_madadjoo.last_name,
-    #         'id_number': target_madadjoo.id_number,
-    #         'phone_number': target_madadjoo.phone_number,
-    #         'email': target_madadjoo.email,
-    #         'address': target_madadjoo.address,
-    #         'profile_pic': target_madadjoo.profile_pic,
-    #         'invest': target_madadjoo.invest_percentage,
-    #         'successes': target_madadjoo.successes,
-    #         'bio': target_madadjoo.bio,
-    #         'edu_status': target_madadjoo.edu_status,
-    #         'need': {'description': needs.description, 'type': needs.type, 'urgent': needs.urgent, 'cash': needs.cash}
-    #         }
     hamyars = hamyar.objects.filter(sponsership__madadjoo_id=target_madadjoo.id)
     return render(request, 'hamyar/show_a_madadjoo.html', {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
 
@@ -255,12 +230,10 @@ def letter_mtoh_content_madadkar(request):
     all_hamyar_madadjoo_letters = \
         hamyar_madadjoo_meeting.objects.filter(madadjoo__corr_madadkar=request.user.id)
     return render(request, 'madadkar/letter_content.html',
-    {'madadjoo_madadkar_letters': all_madadjoo_madadkar_letters,
-     'madadjoo_hamyar_letters': all_madadjoo_hamyar_letters,
-     'hamyar_madadjoo_letters': all_hamyar_madadjoo_letters,
-     'letter': target_letter, 'sender': target_madadjoo, 'receiver': target_hamyar})
-
-
+                  {'madadjoo_madadkar_letters': all_madadjoo_madadkar_letters,
+                   'madadjoo_hamyar_letters': all_madadjoo_hamyar_letters,
+                   'hamyar_madadjoo_letters': all_hamyar_madadjoo_letters,
+                   'letter': target_letter, 'sender': target_madadjoo, 'receiver': target_hamyar})
 
 
 @madadkar_login_required
@@ -313,7 +286,7 @@ def hamyar_panel(request):
         our_system = list(system_models.information.objects.all())
         payment = hamyar_system_payment(amount=amount, hamyar_id=request.user.id, system_id=our_system[0].history)
         payment.save()
-        return render(request, 'hamyar/hamyar_panel.html')
+        return render(request, 'hamyar/hamyar_panel.html', {'success_message': 'پرداخت شما با موفقیت انجام شد.'})
 
 
 @hamyar_login_required
@@ -350,9 +323,10 @@ def edit_hamyar_information(request):
             user.profile_pic = request.FILES.get('profile_pic')
         try:
             user.save()
-            return render(request, 'hamyar/edit_details.html', {'user': user})  # this should be hamyar's own page
+            return render(request, 'hamyar/edit_details.html', {'user': user,
+                                                                'success_message': 'اطلاعات شما با موفقیت ویرایش شد.'})  # this should be hamyar's own page
         except IntegrityError:
-            return render(request, 'hamyar/edit_details.html', {'message': 'کد ملی باید یکتا باشد.'})
+            return render(request, 'hamyar/edit_details.html', {'error_message': 'کد ملی باید یکتا باشد.'})
 
 
 @hamyar_login_required
@@ -362,16 +336,6 @@ def payment_reports(request):
 
 @hamyar_login_required
 def select_madadjoo(request):
-    # all_madadjoo = list(madadjoo.objects.values('id', 'username', 'first_name', 'last_name', 'bio'))
-    # corr_madadjoos = list(sponsership.objects.filter(hamyar_id=request.user.id).values('madadjoo_id'))
-    # corr_madadjoos_id = [list(x.values())[0] for x in corr_madadjoos]
-    #
-    # not_rel_madadjoos = list()
-    #
-    # for madadjoo_dict in all_madadjoo:
-    #     if madadjoo_dict['id'] not in corr_madadjoos_id:
-    #         not_rel_madadjoos.append(madadjoo_dict)
-
     not_rel_madadjoos = madadjoo.objects.exclude(sponsership__hamyar_id=request.user.id)
 
     return render(request, 'hamyar/select_madadjoo.html', {'madadjoos': not_rel_madadjoos})
@@ -557,9 +521,9 @@ def add_a_madadjoo_admin(request):
             new_req.save()
         except IntegrityError:
             return render_to_response("admin/add_a_madadjoo.html",
-                                      {"message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
+                                      {"error_message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
         except ValueError:
-            return render_to_response("admin/add_a_madadjoo.html", {"message": "لطفا موارد الزامی را تکمیل کنید"})
+            return render_to_response("admin/add_a_madadjoo.html", {"error_message": "لطفا موارد الزامی را تکمیل کنید"})
 
         return HttpResponseRedirect(reverse("admin_panel"))
 
@@ -610,9 +574,9 @@ def add_a_madadjoo_madadkar(request):
             new_req.save()
         except IntegrityError:
             return render_to_response("madadkar/add_a_madadjoo.html",
-                                      {"message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
+                                      {"error_message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
         except ValueError:
-            return render_to_response("madadkar/add_a_madadjoo.html", {"message": "لطفا موارد الزامی را تکمیل کنید"})
+            return render_to_response("madadkar/add_a_madadjoo.html", {"error_message": "لطفا موارد الزامی را تکمیل کنید"})
 
         return HttpResponseRedirect(reverse("madadkar_panel"))
 
@@ -656,9 +620,9 @@ def add_a_madadkar_admin(request):
             new_madadkar.save()
         except IntegrityError:
             return render_to_response("admin/add_a_madadkar.html",
-                                      {"message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
+                                      {"error_message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
         except ValueError:
-            return render_to_response("admin/add_a_madadkar.html", {"message": "لطفا موارد الزامی را تکمیل کنید"})
+            return render_to_response("admin/add_a_madadkar.html", {"error_message": "لطفا موارد الزامی را تکمیل کنید"})
 
         return HttpResponseRedirect(reverse("admin_panel"))
 
@@ -701,9 +665,9 @@ def add_a_hamyar_admin(request):
             new_madadkar.save()
         except IntegrityError:
             return render_to_response("admin/add_a_hamyar.html",
-                                      {"message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
+                                      {"error_message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
         except ValueError:
-            return render_to_response("admin/add_a_hamyar.html", {"message": "لطفا موارد الزامی را تکمیل کنید"})
+            return render_to_response("admin/add_a_hamyar.html", {"error_message": "لطفا موارد الزامی را تکمیل کنید"})
 
         return HttpResponseRedirect(reverse("admin_panel"))
 

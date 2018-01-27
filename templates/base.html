@@ -54,6 +54,22 @@
 </nav>
 
 <div class="container text-right">
+    {% block error_alert %}
+        {% if error_message %}
+            <div class="alert alert-danger alert-dismissable fade show">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <div>{{ error_message }}</div>
+            </div>
+        {% endif %}
+    {% endblock %}
+    {% block success_alert %}
+        {% if success_message %}
+            <div class="alert alert-success alert-dismissable fade show">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <div>{{ success_message }}</div>
+            </div>
+        {% endif %}
+    {% endblock %}
     {% block content %}{% endblock %}
 
 
