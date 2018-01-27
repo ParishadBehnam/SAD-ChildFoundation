@@ -14,7 +14,8 @@ class hamyar_form(ModelForm):
         model = models.hamyar
         fields = ['username', 'password', 'first_name', 'last_name', 'id_number', 'phone_number', 'email', 'address']
         widgets = {
-            'password': forms.TextInput(attrs={'type': 'password'})
+            'password': forms.TextInput(attrs={'type': 'password'}),
+            'email': forms.EmailInput()
         }
 
         error_messages = {
@@ -27,8 +28,9 @@ class hamyar_form(ModelForm):
         }
 
     def clean(self):
+        print('*****')
         cleaned_data = super(hamyar_form, self).clean()
-
+        print(self.cleaned_data)
         return cleaned_data
 
 
@@ -39,10 +41,6 @@ class login_form(ModelForm):
     class Meta:
         model = models.active_user
         fields = ['username', 'password']
-        widgets = {
-            'password': forms.TextInput(attrs={'type': 'password'})
-        }
-
         widgets = {
             'password': forms.TextInput(attrs={'type': 'password'})
         }
