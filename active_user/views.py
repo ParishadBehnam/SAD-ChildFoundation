@@ -183,16 +183,23 @@ def edit_hamyar_information(request):
 
 @csrf_exempt
 def edit_hamyar_information(request):
-    form = forms.hamyar_form()
     if request.method == 'GET':
-        return render(request, 'hamyar/edit_details.html', {'form': form})
+        return render(request, 'hamyar/edit_details.html')
     else:
-        form = forms.hamyar_form(request.POST)
-
-        if form.is_valid():
+        user = hamyar.objects.get(username=request.user)
+        user.first_name = request.POST.get('first_name')
+        user.last_name = request.POST.get('last_name')
+        user.id_number = request.POST.get('id_number')
+        user.phone_number = request.POST.get('phone_number')
+        user.address = request.POST.get('address')
+        user.email = request.POST.get('email')
+        if request.POST.get('profile_pic') != '':
+            user.profile_pic = request.POST.get('profile_pic')
+        try:
+            user.save()
             return HttpResponseRedirect(reverse("hamyar_panel"))  # this should be hamyar's own page
-        else:
-            return render(request, 'hamyar/edit_details.html', {'form': form})
+        except IntegrityError:
+            return render(request, 'hamyar/edit_details.html', {'message': 'کد ملی باید یکتا باشد.'})
 
 
 @hamyar_login_required

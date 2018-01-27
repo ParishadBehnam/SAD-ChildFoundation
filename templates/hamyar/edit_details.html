@@ -1,16 +1,23 @@
 {% extends "hamyar/show_details.html" %}
 
 {% block buttons %}
+{% endblock %}
 
+{% block error %}
+    {% if not message == None %}
+        <ul style="color: #990000">
+            <li>{{ message }}</li>
+        </ul>
+    {% endif %}
 {% endblock %}
 
 {% block name %}
-    <input type="text" id="staticName" class="form-control"
+    <input type="text" name="first_name" id="staticName" class="form-control"
            placeholder="نام همیار" value="{{ user.first_name }}">
 {% endblock %}
 
 {% block l-name %}
-    <input type="text" id="staticName" class="form-control"
+    <input type="text" name="last_name" id="staticName" class="form-control"
            placeholder="نام خانوادگی همیار" value="{{ user.last_name }}">
 {% endblock %}
 
@@ -20,20 +27,21 @@
 {% block upload_pic %}
     <div class="form-group text-center">
         <label for="profile_pic">برای تغییر عکس، عکس جدیدی انتخاب کنید.</label>
-        <input type="file" name="profile_pic" class="form-control-file" id="profile_pic" accept="image/*">
+        <input type="file" name="profile_pic" class="form-control-file" id="profile_pic" value="{{ user.profile_pic }}" accept="image/*">
     </div>
 {% endblock %}
 
 {% block more_detail %}
+
     <div class="form-group row">
         <label for="staticid" class="col-md-2 col-form-label">کد ملی همیار</label>
         <div class="col-md-3">
-            <input type="text" id="staticid" class="form-control form-control"
+            <input type="number" name="id_number" id="staticid" class="form-control form-control"
                    placeholder="کد ملی همیار"  value="{{ user.id_number }}">
         </div>
         <label for="staticid" class="col-md-2 col-form-label">رایانامه همیار</label>
         <div class="col-md-5">
-            <input type="text" id="staticid" class="form-control form-control"
+            <input type="email" name="email" id="staticid" class="form-control form-control"
                    placeholder="ایمیل همیار"  value="{{ user.email }}">
         </div>
     </div>
@@ -41,22 +49,21 @@
     <div class="form-group row">
         <label for="staticphone" class="col-md-2 col-form-label">شماره تلفن همیار</label>
         <div class="col-md-10">
-            <input type="text" id="staticphone" class="form-control"
+            <input type="number" id="staticphone" name="phone_number" class="form-control"
                    value="{{ user.phone_number }}">
         </div>
     </div>
     <div class="form-group row">
         <label for="staticaddr" class="col-md-2 col-form-label">آدرس همیار</label>
         <div class="col-md-10">
-            <textarea rows="7" id="staticaddr" class="form-control"
+            <textarea rows="7" id="staticaddr" name="address" class="form-control"
                       placeholder="آدرس همیار در این‌جا وارد می‌شود">{{ user.address }}</textarea>
         </div>
     </div>
     {% block pass %}
-
     {% endblock %}
 {% endblock %}
 
 {% block submit %}
-    <button type="button" class="btn btn-success">ثبت تغییرات</button>
+    <button type="submit" class="btn btn-success">ثبت تغییرات</button>
 {% endblock %}
