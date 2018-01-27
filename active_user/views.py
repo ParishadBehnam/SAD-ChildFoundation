@@ -332,7 +332,6 @@ def show_hamyar_information(request):
 
 
 @hamyar_login_required
-@csrf_exempt
 def edit_hamyar_information(request):
     if request.method == 'GET':
         return render(request, 'hamyar/edit_details.html')
@@ -344,11 +343,14 @@ def edit_hamyar_information(request):
         user.phone_number = request.POST.get('phone_number')
         user.address = request.POST.get('address')
         user.email = request.POST.get('email')
-        if request.FILES.get('profile_pic') != '':
+        # print(request.FILES)
+        # print(request.FILES.get('profile_pic'))
+        # print(request.POST.get('profile_pic'))
+        if request.POST.get('profile_pic') != '':
             user.profile_pic = request.FILES.get('profile_pic')
         try:
             user.save()
-            return HttpResponseRedirect(reverse("hamyar_panel"))  # this should be hamyar's own page
+            return render(request, 'hamyar/edit_details.html', {'user': user})  # this should be hamyar's own page
         except IntegrityError:
             return render(request, 'hamyar/edit_details.html', {'message': 'کد ملی باید یکتا باشد.'})
 

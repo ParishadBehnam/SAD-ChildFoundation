@@ -24,10 +24,11 @@
 
 {% block madadjoos %}
 {% endblock %}
-{% block upload_pic %}
+{% block below_image %}
     <div class="form-group text-center">
         <label for="profile_pic">برای تغییر عکس، عکس جدیدی انتخاب کنید.</label>
-        <input type="file" name="profile_pic" class="form-control-file" id="profile_pic" value="{{ user.profile_pic }}" accept="image/*">
+        <input type="file" name="profile_pic" class="form-control-file" id="profile_pic" value="{{ user.profile_pic }}"
+               accept="image/*">
     </div>
 {% endblock %}
 
@@ -37,12 +38,12 @@
         <label for="staticid" class="col-md-2 col-form-label">کد ملی همیار</label>
         <div class="col-md-3">
             <input type="number" name="id_number" id="staticid" class="form-control form-control"
-                   placeholder="کد ملی همیار"  value="{{ user.id_number }}">
+                   placeholder="کد ملی همیار" value="{{ user.id_number }}">
         </div>
         <label for="staticid" class="col-md-2 col-form-label">رایانامه همیار</label>
         <div class="col-md-5">
             <input type="email" name="email" id="staticid" class="form-control form-control"
-                   placeholder="ایمیل همیار"  value="{{ user.email }}">
+                   placeholder="ایمیل همیار" value="{{ user.email }}">
         </div>
     </div>
 
