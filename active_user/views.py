@@ -22,7 +22,8 @@ from active_user.decorators import hamyar_login_required
 from active_user.decorators import madadjoo_login_required
 from active_user.models import madadjoo, hamyar, madadkar, sponsership, \
     madadjoo_madadkar_letter, madadjoo_hamyar_letter, hamyar_madadjoo_meeting, \
-    hamyar_system_payment, hamyar_madadjoo_payment, requirements, hamyar_madadjoo_non_cash
+    hamyar_system_payment, hamyar_madadjoo_payment, requirements, hamyar_madadjoo_non_cash,\
+    madadkar_remove_madadjoo
 from system.models import information
 
 
@@ -144,7 +145,7 @@ def support_a_madadjoo(request):
     new_sponsership = sponsership(hamyar_id=target_hamyar.id, madadjoo_id=target_madadjoo.id)
     new_sponsership.save()
 
-    all_madadjoo = madadjoo.objects.values('username', 'first_name', 'last_name', 'bio')
+    all_madadjoo = madadjoo.objects.exclude(sponsership__hamyar_id=request.user.id)
     return render(request, 'hamyar/select_madadjoo.html',
                   {'madadjoos': list(all_madadjoo), 'success_message': 'مددجوی مورد نظر تحت حمایت شما قرار گرفت'})
 
@@ -193,7 +194,24 @@ def show_a_hamyar(request):
 
 @madadkar_login_required
 def send_letter(request):
-    return render(request, 'madadkar/send_letter.html')
+    target_madadjoo = madadjoo.objects.get(username=request.GET.get('username'))
+    target_madadkar = madadkar.objects.get(id=request.user.id)
+    hamyars = hamyar.objects.filter(sponsership__madadjoo_id=target_madadjoo.id)
+    if request.method == 'GET':
+        return render(request, 'madadkar/send_letter.html', {'hamyars': hamyars})
+    else:
+        target_hamyars = request.POST.getlist('receiver')
+        text = request.POST.get('text')
+        if text != '':
+            for h_id in target_hamyars:
+                h = hamyar.objects.get(id=h_id)
+                removed = madadkar_remove_madadjoo(text=text, madadjoo=target_madadjoo,
+                                                   hamyar=h, madadkar=target_madadkar)
+                removed.save()
+            return HttpResponseRedirect(reverse('madadkar_panel')+'?success=3')
+        else:
+            return render(request, 'madadkar/send_letter.html', {'hamyars': hamyars,
+                                                                 'error_message': 'لطفا متن اطلاع‌رسانی را پر نمایید.'})
 
 
 @hamyar_login_required
@@ -291,16 +309,31 @@ def letter_content_hamyar(request):
     target_madadjoo = models.madadjoo.objects.get(active_user_ptr_id=target_letter.madadjoo_id)
     target_hamyar = models.hamyar.objects.get(active_user_ptr_id=target_letter.hamyar_id)
     all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id)
-
+    delete_letters = madadkar_remove_madadjoo.objects.filter(hamyar_id=request.user.id)
     return render(request, 'hamyar/letter_content.html',
-                  {'letters': all_letters, 'letter': target_letter,
+                  {'letters': all_letters, 'delete_letters': delete_letters, 'letter': target_letter,
                    'sender': target_madadjoo, 'receiver': target_hamyar})
+
+
+@hamyar_login_required
+def delete_madadjoo_letter_content_hamyar(request):
+    target_letter = madadkar_remove_madadjoo.objects.get(id=request.GET.get('letter', ''))
+    target_madadjoo = models.madadjoo.objects.get(active_user_ptr_id=target_letter.madadjoo_id)
+    target_hamyar = models.hamyar.objects.get(active_user_ptr_id=target_letter.hamyar_id)
+    target_madadkar = models.madadkar.objects.get(active_user_ptr_id=target_letter.madadkar_id)
+    all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id)
+    delete_letters = madadkar_remove_madadjoo.objects.filter(hamyar_id=request.user.id)
+    # print(len(delete_letters))
+    return render(request, 'hamyar/letter_content.html',
+                  {'letters': all_letters, 'delete_letters': delete_letters, 'letter': target_letter,
+                   'sender': target_madadkar, 'receiver': target_hamyar, 'madadjoo': target_madadjoo})
 
 
 @hamyar_login_required
 def inbox_hamyar(request):
     all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id, confirmed=1)
-    return render(request, 'hamyar/inbox.html', {'letters': all_letters})
+    delete_letters = madadkar_remove_madadjoo.objects.filter(hamyar_id=request.user.id)
+    return render(request, 'hamyar/inbox.html', {'letters': all_letters, 'delete_letters': delete_letters})
 
 
 @madadkar_login_required
@@ -308,7 +341,8 @@ def madadkar_panel(request):
     if request.GET.get('success') == '1':
         return render(request, 'madadkar/madadkar_panel.html', {'success_message':request.user.first_name + ' ' +
                                                                             request.user.last_name +  ' عزیز، شما با موفقیت وارد حساب کاربری خود شدید :)'})
-
+    elif request.GET.get('success') == '3':
+        return render(request, 'madadkar/madadkar_panel.html', {'success_message': 'پیغام شما با موفقیت به همیاران ارسال شد.'})
     return render(request, 'madadkar/madadkar_panel.html')
 
 
@@ -375,7 +409,6 @@ def payment_reports(request):
 @hamyar_login_required
 def select_madadjoo(request):
     not_rel_madadjoos = madadjoo.objects.exclude(sponsership__hamyar_id=request.user.id)
-
     return render(request, 'hamyar/select_madadjoo.html', {'madadjoos': not_rel_madadjoos})
 
 

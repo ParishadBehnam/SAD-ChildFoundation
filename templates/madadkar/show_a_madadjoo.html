@@ -4,7 +4,10 @@
     <a href="{% url "edit_madadjoo" %}?username={{ user.username }}">
         <button type="button" class="btn btn-warning"> ویرایش</button>
     </a>
-    <button type="button" class="btn btn-danger">حذف</button>
+    <a href="{% url "send_letter" %}?username={{ user.username }}">
+        <button type="button" class="btn btn-danger"> حذف</button>
+    </a>
+{#    <button type="button" class="btn btn-danger">حذف</button>#}
     <button type="button" class="btn btn-outline-success">تایید شده</button>
 {% endblock %}
 

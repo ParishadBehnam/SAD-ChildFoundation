@@ -1,12 +1,34 @@
 {% extends 'base_send_letter.html' %}
-    {% block panel %}
-        <a class="nav-link" href="madadkar_panel">پنل مدیریت مددکار</a>
+{% block panel %}
+    <a class="nav-link" href="madadkar_panel" xmlns="http://www.w3.org/1999/html">پنل مدیریت مددکار</a>
+{% endblock %}
+{% block sender %}
+    <input type="text" readonly class="form-control-plaintext form-control" id="sender"
+           placeholder="نام مددکار" value="{{ user.first_name }} {{ user.last_name }}">
+{% endblock %}
+{% block receiver-container %}
+    <div class="form-group">
+        <label for="sel1">گیرنده</label>
+        <small></br>
+            با استفاده از دکمه‌ی control به انتخابات خود بیفزایید. هم چنین می‌توانید از control+A برای انتخاب همه‌ی
+            همیاران استفاده کنید.
+        </small>
+        <select multiple name="receiver" class="form-control" id="sel1">
+            {% for hamyar in hamyars %}
+                <option value="{{ hamyar.id }}">{{ hamyar.first_name }} {{ hamyar.last_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+{% endblock %}
+
+{% block title %}
+    {% block message_title %}
+        <label for="title">عنوان نامه</label>
     {% endblock %}
-    {% block sender %}
-        <input type="text" readonly class="form-control-plaintext form-control" id="sender"
-            placeholder="نام مددکار">
-    {% endblock %}
-   {% block receiver %}
-        <input type="text" readonly class="form-control-plaintext form-control" id="reciever"
-               placeholder="نام همیار">
-    {% endblock %}
+    <input type="text" name="title" class="form-control form-control-plaintext" id="title" disabled
+           value="اطلاع‌رسانی حذف مددجو">
+{% endblock %}
+
+{% block submit %}
+    <button type="submit" class="btn btn-success">ارسال و حذف</button>
+{% endblock %}

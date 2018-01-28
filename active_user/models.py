@@ -93,7 +93,7 @@ class madadkar_remove_madadjoo(models.Model):
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE, unique=True)
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
     text = models.TextField()
-    date = models.DateField()
+    date = models.DateTimeField(auto_now=True)
 
 
 class madadjoo_madadkar_letter(models.Model):

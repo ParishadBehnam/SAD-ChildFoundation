@@ -20,10 +20,10 @@
                     {% block image %}
                         {% if user.profile_pic %}
                             <img src="{{ user.profile_pic.url|default:"https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276" }}"
-                                 alt="نام مددجو" class="img-thumbnail">
+                                 alt="نام مددجو" class="img-thumbnail col-md-12">
                         {% else %}
                             <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
-                                 alt="نام مددجو" class="img-thumbnail">
+                                 alt="نام مددجو" class="img-thumbnail col-md-12">
                         {% endif %}
                     {% endblock %}
                     {% block below_image %}

@@ -1,22 +1,31 @@
 {% extends "hamyar/inbox.html" %}
 
 {% block letter_content %}
-            <div class="col-sm-11 col-md-9 col-lg-8 rounded" style="height: 100%; background-color: #f4f4f4">
-            <div class="row" style="margin-top: 2%;">
-                <div class="col-md-6 mr-auto">
-                    <h4>{{ letter.title }}</h4>
-                </div>
-                <div class="col-md-6 mr-auto">
-                    <a href="{% url "delete_letter_hamyar" %}?letter={{ letter.id }}"
-                        class="btn btn-outline-danger">
-                                        حذف نامه
-                    </a>
-                </div>
+    <div class="col-sm-11 col-md-9 col-lg-8 rounded" style="height: 100%; background-color: #f4f4f4">
+        <div class="row" style="margin-top: 2%;">
+            <div class="col-md-6 mr-auto">
+                <h4>
+                    {% if letter.title %}
+                        {{ letter.title }}
+                    {% else %}
+                        اطلاع رسانی حذف
+                        {{ madadjoo.first_name }} {{ madadjoo.last_name }}
+                    {% endif %}
+                </h4>
             </div>
-
-            <hr>
-            <p>فرستنده: {{ sender.first_name }} {{ sender.last_name }} </p>
-            <p>گیرنده: {{ receiver.first_name }} {{ receiver.last_name }}</p>
-            <p>{{ letter.text }}</p>
+            <div class="col-md-6 mr-auto">
+                {% if letter.title %}
+                    <a href="{% url "delete_letter_hamyar" %}?letter={{ letter.id }}"
+                       class="btn btn-outline-danger">
+                        حذف نامه
+                    </a>
+                {% endif %}
+            </div>
         </div>
+
+        <hr>
+        <p>فرستنده: {{ sender.first_name }} {{ sender.last_name }} </p>
+        <p>گیرنده: {{ receiver.first_name }} {{ receiver.last_name }}</p>
+        <p>{{ letter.text }}</p>
+    </div>
 {% endblock %}

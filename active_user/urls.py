@@ -53,6 +53,7 @@ urlpatterns = [
     url(r'letter_htom_content_madadkar$', views.letter_htom_content_madadkar, name='letter_htom_content_madadkar'),
     url(r'delete_letter_madadkar$', views.delete_letter_madadkar, name='delete_letter_madadkar'),
     url(r'delete_letter_hamyar$', views.delete_letter_hamyar, name='delete_letter_hamyar'),
+    url(r'delete_madadjoo_letter_content_hamyar', views.delete_madadjoo_letter_content_hamyar, name='delete_madadjoo_letter_content_hamyar'),
     url(r'letter_content_hamyar$', views.letter_content_hamyar, name='letter_content_hamyar'),
     url(r'confirm_madadjoo_hamyar_letter', views.confirm_madadjoo_hamyar_letter, name='confirm_madadjoo_hamyar_letter'),
     url(r'madadkar_panel', views.madadkar_panel, name='madadkar_panel'),
