@@ -1,4 +1,4 @@
-{% extends "madadkar/edit_madadjoo.html" %}
+{% extends "admin/edit_a_madadjoo.html" %}
 
 {% block scripts %}
     <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
@@ -9,7 +9,7 @@
                 var allGood = true;
                 var lastInputField = 0;
                 $("textarea.adder").each(function () {
-{#                    console.log("here");#}
+                       console.log("here");
                     if ($(this).val() == "") {
                         allGood = false;
                         return false;

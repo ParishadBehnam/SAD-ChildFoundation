@@ -1,97 +1,92 @@
 {% extends "base_madadjoo_info.html" %}
 
+{% block panel %}
+        <a class="nav-link" href="admin_panel">پنل مدیریت مدیر سامانه</a>
+    {% endblock %}
+
 {% block buttons %}
     <button type="button" class="btn btn-danger">حذف</button>
     <button type="button" class="btn btn-outline-success">تایید</button>
 
 {% endblock %}
 
-{% block panel %}
-    <a class="nav-link" href="admin_panel">پنل مدیریت مدیر سامانه</a>
-{% endblock %}
-
 {% block below_image %}
 
-    {% block upload_pic %}
-        <div class="form-group text-center">
-            <label for="profile_pic">برای تغییر عکس، عکس جدیدی انتخاب کنید.</label>
-            <input type="file" name="profile_pic" class="form-control-file" id="profile_pic" accept="image/*">
-        </div>
-    {% endblock %}
+ <div class="form-group text-center">
+        <label for="profile_pic">برای تغییر عکس، عکس جدیدی انتخاب کنید.</label>
+        <input type="file" name="profile_pic" class="form-control-file" id="profile_pic" value="{{ user.profile_pic }}" accept="image/*">
 
-    <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action disabled">
-            نام همیاران
-        </a>
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۱</a>
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۲</a>
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۳</a>
-        <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۴</a>
     </div>
-
 {% endblock %}
 
 {% block name %}
     <input type="text" id="staticName" class="form-control"
-           placeholder="نام مددجو">
+           placeholder="نام مددجو" name="first_name" value="{{ user.first_name }}">
 {% endblock %}
 
 {% block lastName %}
     <input type="text" class="form-control" id="staticLastName"
-           placeholder="نام خانوادگی مددجو">
+           placeholder="نام خانوادگی مددجو" name="last_name" value="{{ user.last_name }}">
 {% endblock %}
 
 {% block idNum %}
-    <input type="text" id="staticid" class="form-control"
-           placeholder="کد ملی مددجو">
+    <input type="number" id="staticid" class="form-control"
+           placeholder="کد ملی مددجو" name="id_number" value="{{ user.id_number }}">
 {% endblock %}
 
 {% block phone %}
-    <input type="text" class="form-control" id="staticphone"
-           placeholder="شماره تلفن مددجو">
+    <input type="number" class="form-control" id="staticphone"
+           placeholder="شماره تلفن مددجو" name="phone_number" value="{{ user.phone_number }}">
 {% endblock %}
 
 {% block email %}
-    <input type="text" class="form-control" id="email"
-           placeholder="رایانامه مددجو">
+    <input type="email" class="form-control" id="staticphone"
+           placeholder="رایانامه مددجو" name="email" value="{{ user.email }}">
 {% endblock %}
 
 {% block addr %}
     <input type="text" id="staticaddr" class="form-control"
-           placeholder="آدرس مددجو در این‌جا وارد می‌شود.">
+           placeholder="آدرس مددجو در این‌جا وارد می‌شود." name="address" value="{{ user.address }}">
 {% endblock %}
 
 {% block percentage %}
-    <input type="text" class="form-control"
+    <input type="number" step="0.05" class="form-control"
            id="staticpercentage"
-           placeholder="درصد پس‌انداز">
+           placeholder="درصد پس‌انداز" name="invest_percentage" value="{{ user.invest_percentage }}">
 {% endblock %}
 
 {% block success %}
     <textarea rows="7" id="staticsuccess" class="form-control"
-              placeholder="شرح موفقیت‌های مددجو در اینجا وارد می‌شود"></textarea>
+              placeholder="شرح موفقیت‌های مددجو در اینجا وارد می‌شود" name="successes">{{ user.successes }}</textarea>
 {% endblock %}
 
 {% block bio %}
     <textarea rows="7" id="staticbio" class="form-control"
-              placeholder="مشخصات مددجو در این‌جا وارد می‌شود"></textarea>
+              placeholder="مشخصات مددجو در این‌جا وارد می‌شود" name="bio">{{ user.bio }}</textarea>
 {% endblock %}
 
 {% block education %}
     <textarea rows="7" id="staticedu" class="form-control"
-              placeholder="وضعیت تحصیلی مددجو در این‌جا وارد می‌شود"></textarea>
+              placeholder="وضعیت تحصیلی مددجو در این‌جا وارد می‌شود" name="edu_status">{{ user.edu_status }}</textarea>
 {% endblock %}
 
 
 {% block need %}
-    {% include "snippets/need_snippet_edit_admin.html" %}
-    <p>لیست نیاز‌ها</p>
+    {% for need in needs %}
+        {% include "snippets/need_snippet_edit_admin.html" %}
+    {% endfor %}
+    <p>افزودن نیاز جدید</p>
     <hr>
-    {% include "snippets/need_snippet_edit_admin.html" %}
-    {#    {% include "snippets/need_snippet_edit_admin.html" %}#}
+    <div class="toadd">
+        {% include "snippets/need_snippet_edit_adder.html" %}
+        {% block addneed %}
+        {% endblock %}
+        {#    {% include "snippets/need_snippet_edit_admin.html" %}#}
+    </div>
 
 {% endblock %}
 
 {% block submit %}
-    <button type="button" class="btn btn-success">ثبت تغییرات</button>
+    <input type="submit" class="btn btn-success" value="ثبت تغییرات">
 {% endblock %}
+
