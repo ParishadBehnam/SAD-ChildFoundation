@@ -146,8 +146,9 @@ def support_a_madadjoo(request):
     target_hamyar = request.user
     new_sponsership = sponsership(hamyar_id=target_hamyar.id, madadjoo_id=target_madadjoo.id)
     new_sponsership.save()
-
-    all_madadjoo = madadjoo.objects.exclude(sponsership__hamyar_id=request.user.id)
+    deleted_mdadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
+    all_madadjoo = madadjoo.objects.filter(confirmed=True)\
+        .exclude(sponsership__hamyar_id=request.user.id, active_user_ptr_id__in=deleted_mdadjoos)
     return render(request, 'hamyar/select_madadjoo.html',
                   {'madadjoos': list(all_madadjoo), 'success_message': 'مددجوی مورد نظر تحت حمایت شما قرار گرفت'})
 
@@ -376,7 +377,7 @@ def show_hamyar_information(request):
             'address': active_user.address,
             }
     deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
-    madadjoos = madadjoo.objects.filter(sponsership__hamyar_id=active_user.id).exclude(active_user_ptr_id__in=deleted_madadjoos)
+    madadjoos = madadjoo.objects.filter(sponsership__hamyar_id=active_user.id, confirmed=True).exclude(active_user_ptr_id__in=deleted_madadjoos)
     return render(request, 'hamyar/show_details.html', {'madadjoos': madadjoos})
 
 
@@ -554,7 +555,7 @@ def admin_panel(request):
 @admin_login_required
 def show_madadjoo_admin(request):
     deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
-    all_madadjoo = madadjoo.objects.exclude(active_user_ptr_id__in=deleted_madadjoos)
+    all_madadjoo = madadjoo.objects.filter(confirmed=True).exclude(active_user_ptr_id__in=deleted_madadjoos)
     return render(request, 'admin/show_madadjoo.html', {'madadjoos': all_madadjoo})
 
 
@@ -762,7 +763,7 @@ def add_a_madadjoo_madadkar(request):
         #     return render_to_response("madadkar/add_a_madadjoo.html", {"error_message": "لطفا موارد الزامی را تکمیل کنید"})
 
         # return HttpResponseRedirect(reverse("madadkar_panel"))
-        return render(request, 'madadkar/add_a_madadjoo.html', {'success_message': 'مددجوی جدید با موفقیت در سامانه ثبت گردید.'})
+        return render(request, 'madadkar/add_a_madadjoo.html', {'success_message': 'مددجوی جدید برای تایید به مدیر سامانه ارسال گردید.'})
 
 
 @admin_login_required
