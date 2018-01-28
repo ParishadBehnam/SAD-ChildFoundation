@@ -22,11 +22,10 @@
     {% block madadjoos %}
         <div class="list-group">
             <a href="#" class="list-group-item list-group-item-action disabled">
-                نام کاربری مددجویان تحت تکلف
-            </a>
+مددجویان تحت تکلف            </a>
             {% for madadjoo in madadjoos %}
                 <a href="{% url "show_a_madadjoo_hamyar" %}?username={{ madadjoo.username }}"
-                   class="list-group-item list-group-item-action">{{ madadjoo.username }}</a>
+                   class="list-group-item list-group-item-action">{{ madadjoo.first_name }} {{ madadjoo.last_name }}</a>
             {% endfor %}
         </div>
     {% endblock %}

@@ -15,8 +15,8 @@
             </div>
 
             <hr>
-            <p>فرستنده: {{ sender.username }} </p>
-            <p>گیرنده: {{ receiver.username }} </p>
+            <p>فرستنده: {{ sender.first_name }} {{ sender.last_name }} </p>
+            <p>گیرنده: {{ receiver.first_name }} {{ receiver.last_name }}</p>
             <p>{{ letter.text }}</p>
         </div>
 {% endblock %}

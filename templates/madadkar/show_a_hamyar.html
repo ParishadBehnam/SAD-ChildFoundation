@@ -17,7 +17,7 @@
         </a>
         {% for madadjoo in madadjoos %}
             <a href="{% url "show_a_madadjoo" %}?username={{ madadjoo.username }}" class="list-group-item list-group-item-action">
-                {{ madadjoo.username }}
+                {{ madadjoo.first_name }} {{ madadjoo.last_name }}
             </a>
         {% endfor %}
     </div>

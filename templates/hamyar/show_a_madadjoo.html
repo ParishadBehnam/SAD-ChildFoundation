@@ -2,17 +2,23 @@
 {% block panel %}
     <a class="nav-link" href="hamyar_panel">پنل مدیریت همیار</a>
 {% endblock %}
+{% block buttons %}
+    <a href="{% url "send_letter_hamyar" %}?username={{ user.username }}">
+        <button type="button" class="btn btn-outline-warning">ثبت درخواست ملاقات</button>
+    </a>
+{% endblock %}
 {% block links %}
     {% for hamyar in hamyars %}
         <a href="#" class="list-group-item list-group-item-action disabled"
-           style="cursor: default">{{ hamyar.username }}</a>
+           style="cursor: default">{{ hamyar.first_name }} {{ hamyar.last_name }}</a>
     {% endfor %}
     <hr>
     <p class="lead">
         <a class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal1" href="#">ثبت پرداخت هزینه</a>
         {% include "hamyar/pay_madadjoo_popup.html" %}
-        <a class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal2" href="#">ثبت کمک غیرنقدی به مددجو</a>
+        <a class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal2" href="#">ثبت کمک غیرنقدی به
+            مددجو</a>
         {% include "hamyar/pay_madadjoo_non_cash.html" %}
-{#        <a href="#" class="btn btn-success"></a>#}
+        {#        <a href="#" class="btn btn-success"></a>#}
     </p>
 {% endblock %}

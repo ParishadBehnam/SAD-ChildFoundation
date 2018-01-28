@@ -15,7 +15,7 @@
 {% block links %}
     {% for hamyar in hamyars %}
         <a href="{% url "show_a_hamyar" %}?username={{ hamyar.username }}" class="list-group-item list-group-item-action">
-            {{ hamyar.username }}
+            {{ hamyar.first_name }} {{ hamyar.last_name }}
         </a>
     {% endfor %}
 
