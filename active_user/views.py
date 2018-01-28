@@ -54,7 +54,7 @@ def home_admin(request):
 @madadkar_login_required
 def show_madadjoo(request):
     deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
-    all_madadjoo = madadjoo.objects.filter(corr_madadkar=request.user.id, confirmed=True).exclude(active_user_ptr_id__in=deleted_madadjoos)
+    all_madadjoo = madadjoo.objects.filter(corr_madadkar=request.user.id).exclude(active_user_ptr_id__in=deleted_madadjoos)
     return render(request, 'madadkar/show_madadjoo.html', {'madadjoos': all_madadjoo})
 
 
