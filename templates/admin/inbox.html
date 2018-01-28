@@ -5,23 +5,21 @@
 {% endblock %}
 
 {% block list %}
+    {% for letter in add_madadjoo_letters %}
+        <a href= "{% url "letter_madadkar_add_madadjoo" %}?letter={{ letter.id }}" class="bg-light list-group-item list-group-item-action">ثبت مددجوی {{ letter.madadjoo.first_name }} {{ letter.madadjoo.last_name }}
+            <span class="emergency-need badge badge-info">ثبت مددجوی جدید</span></a>
+    {% endfor %}
     <a href="#" class="bg-light list-group-item list-group-item-action">
-                        عنوان نامه
+        عنوان نامه
         <span class="emergency-need badge badge-danger">فوری کردن نیاز</span>
     </a>
-    <a href="#" class="bg-light list-group-item list-group-item-action">عنوان نامه
-        <span class="emergency-need badge badge-danger">فوری کردن نیاز</span></a>
-    <a href="#" class="bg-light list-group-item list-group-item-action">عنوان نامه
-        <span class="emergency-need badge badge-info">ثبت مددجوی جدید</span></a>
 
-    <a href="#" class="bg-light list-group-item list-group-item-action">عنوان نامه
-        <span class="emergency-need badge badge-danger">فوری کردن نیاز</span></a>
-    <a href="#" class="bg-light list-group-item list-group-item-action">عنوان نامه
-        <span class="emergency-need badge badge-info">ثبت مددجوی جدید</span></a>
+{% endblock %}
 
-    <a href="#" class="bg-light list-group-item list-group-item-action">عنوان نامه
-        <span class="emergency-need badge badge-info">ثبت مددجوی جدید</span></a>
-
-    <a href="#" class="bg-light list-group-item list-group-item-action">عنوان نامه
-        <span class="emergency-need badge badge-danger">فوری کردن نیاز</span></a>
+{% block right-side-navbar %}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="home_admin">خانه <span class="sr-only">(current)</span></a>
+        </li>
+    </ul>
 {% endblock %}

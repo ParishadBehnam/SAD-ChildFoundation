@@ -176,4 +176,10 @@ class madadjoo_hamyar_letter(models.Model):
     class Meta:
         unique_together = (("hamyar", "date", "madadjoo"),)
 
+class add_madadjoo_admin_letter(models.Model):
+    madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
+    madadkar = models.ForeignKey(madadkar, on_delete=models.CASCADE)
+    text = models.TextField(null=True)
+    date = models.DateTimeField(auto_now=True)
+
 

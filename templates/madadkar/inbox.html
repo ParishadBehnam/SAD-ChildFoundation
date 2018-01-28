@@ -7,7 +7,6 @@
         <div class="col-sm-1 col-md-3 col-lg-4 rounded" style="height: 100%;">
             <div class="list-group">
                 {% block list %}
-
                     {% for letter in madadjoo_madadkar_letters %}
                         <a href="{% url "letter_madadjoo_content_madadkar" %}?letter={{ letter.id }}"
                            class="bg-light list-group-item list-group-item-action">
@@ -35,6 +34,8 @@
                             <span class="emergency-need badge badge-warning">همیار به مددجو</span></a>
                         </a>
                     {% endfor %}
+
+
                 {% endblock %}
             </div>
         </div>

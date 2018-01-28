@@ -22,7 +22,7 @@ from active_user.decorators import hamyar_login_required
 from active_user.decorators import madadjoo_login_required
 from active_user.models import madadjoo, hamyar, madadkar, sponsership, \
     madadjoo_madadkar_letter, madadjoo_hamyar_letter, hamyar_madadjoo_meeting, \
-    hamyar_system_payment, hamyar_madadjoo_payment, requirements, hamyar_madadjoo_non_cash
+    hamyar_system_payment, hamyar_madadjoo_payment, requirements, hamyar_madadjoo_non_cash, add_madadjoo_admin_letter
 from system.models import information
 
 
@@ -58,7 +58,7 @@ def show_madadjoo(request):
 
 @hamyar_login_required
 def show_madadjoo_hamyar(request):
-    all_madadjoo = madadjoo.objects.filter(sponsership__hamyar_id=request.user.id)
+    all_madadjoo = madadjoo.objects.filter(sponsership__hamyar_id=request.user.id, confirmed = True)
     return render(request, 'hamyar/show_madadjoo.html', {'madadjoos': all_madadjoo})
 
 
@@ -236,7 +236,7 @@ def letter_madadjoo_content_madadkar(request):
     return render(request, 'madadkar/letter_content_removable.html', d)
 
 
-@madadkar_login_required
+# @madadkar_login_required
 def delete_letter_madadkar(request):
     models.madadjoo_madadkar_letter.objects.get(id=request.GET.get('letter', '')).delete()
     d = show_letters_madadkar(request)
@@ -375,7 +375,7 @@ def payment_reports(request):
 @hamyar_login_required
 def select_madadjoo(request):
     not_rel_madadjoos = madadjoo.objects.exclude(sponsership__hamyar_id=request.user.id)
-
+    not_rel_madadjoos = not_rel_madadjoos.exclude(confirmed = False)
     return render(request, 'hamyar/select_madadjoo.html', {'madadjoos': not_rel_madadjoos})
 
 
@@ -518,7 +518,7 @@ def show_madadjoo_admin(request):
     return render(request, 'admin/show_madadjoo.html', {'madadjoos': all_madadjoo})
 
 
-@login_required(login_url='/login')
+@admin_login_required
 def show_a_madadjoo_admin(request):
     target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
     needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
@@ -590,8 +590,24 @@ def edit_a_madadjoo_admin(request):
 
 @admin_login_required
 def inbox_admin(request):
-    return render(request, 'admin/inbox.html')
+    add_madadjoo_letters = add_madadjoo_admin_letter.objects.all()
+    return render(request, 'admin/inbox.html', {'add_madadjoo_letters': add_madadjoo_letters})
 
+@admin_login_required
+def confirm_madadjoo_admin(request):
+    target_letter = models.add_madadjoo_admin_letter.objects.get(id=request.GET.get('letter', ''))
+    add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
+    target_letter.madadjoo.confirmed = True
+    target_letter.madadjoo.save()
+    target_letter.delete()
+    return render(request, 'admin/inbox.html', {'add_madadjoo_letters': add_madadjoo_letters, 'success_message': "مددجوی انتخابی تایید شد."})
+
+
+@admin_login_required
+def letter_madadkar_add_madadjoo(request):
+    target_letter = models.add_madadjoo_admin_letter.objects.get(id=request.GET.get('letter', ''))
+    add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
+    return render(request, 'admin/letter_content_confirm.html', {'letter':target_letter, 'add_madadjoo_letters':add_madadjoo_letters})
 
 @admin_login_required
 def add_a_madadjoo_admin(request):
@@ -647,7 +663,6 @@ def add_a_madadjoo_admin(request):
 @csrf_exempt
 def add_a_madadjoo_madadkar(request):
     if request.method == "GET":
-        # print(request.user)
         return render(request, 'madadkar/add_a_madadjoo.html')
     else:
         username = request.POST.get('username')
@@ -656,7 +671,7 @@ def add_a_madadjoo_madadkar(request):
         id_number = request.POST.get('id_number')
         phone_number = request.POST.get('phone_number')
         phone_number = '0' if phone_number == '' else phone_number
-        address = request.POST.get('addres')
+        address = request.POST.get('address')
         email = request.POST.get('email')
         profile_pic = request.FILES.get('profile_pic')
         # print(profile_pic)
@@ -684,6 +699,8 @@ def add_a_madadjoo_madadkar(request):
         new_madadjoo.set_password(request.POST.get("password"))
         try:
             new_madadjoo.save()
+            letter = add_madadjoo_admin_letter(madadjoo=new_madadjoo, madadkar=corr_madadkar, text="درخواست تایید مددجو را دارم.")
+            letter.save()
             index = 0
             for desc in request.POST.getlist('description'):
                 if desc != "":
@@ -701,8 +718,8 @@ def add_a_madadjoo_madadkar(request):
         except IntegrityError:
             return render_to_response("madadkar/add_a_madadjoo.html",
                                       {"error_message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
-        except ValueError:
-            return render_to_response("madadkar/add_a_madadjoo.html", {"error_message": "لطفا موارد الزامی را تکمیل کنید"})
+        # except ValueError:
+        #     return render_to_response("madadkar/add_a_madadjoo.html", {"error_message": "لطفا موارد الزامی را تکمیل کنید"})
 
         # return HttpResponseRedirect(reverse("madadkar_panel"))
         return render(request, 'madadkar/add_a_madadjoo.html', {'success_message': 'مددجوی جدید با موفقیت در سامانه ثبت گردید.'})
