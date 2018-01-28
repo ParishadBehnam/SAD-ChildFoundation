@@ -1,0 +1,22 @@
+{% extends "admin/inbox.html" %}
+
+{% block letter_content %}
+            <div class="col-sm-11 col-md-9 col-lg-8 rounded" style="height: 100%; background-color: #f4f4f4">
+            <div class="row" style="margin-top: 2%;">
+                <div class="col-md-6 mr-auto">
+                    <h4>درخواست تایید مددجو</h4>
+                </div>
+                <div class="col-md-6 mr-auto">
+                    <a href="{% url "confirm_madadjoo_admin" %}?letter={{ letter.id }}"
+                        class="btn btn-outline-success">
+تایید مددجو
+                    </a>
+                </div>
+            </div>
+
+            <hr>
+            <p>فرستنده: {{ letter.madadkar.first_name }} {{letter.madadkar.last_name }} </p>
+            <p>نام مددجو: {{ letter.madadjoo.first_name }} {{ letter.madadjoo.last_name }}</p>
+            <p>{{ letter.text }}</p>
+        </div>
+{% endblock %}

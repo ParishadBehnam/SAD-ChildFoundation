@@ -8,21 +8,27 @@
         <button type="button" class="btn btn-danger"> حذف</button>
     </a>
 {#    <button type="button" class="btn btn-danger">حذف</button>#}
+    {% if user.confirmed %}
     <button type="button" class="btn btn-outline-success">تایید شده</button>
+    {% else %}
+    <button type="button" class="btn btn-outline-danger">تایید نشده</button>
+    {% endif %}
+
 {% endblock %}
 
 {% block panel %}
-        <a class="nav-link" href="madadkar_panel">پنل مدیریت مددکار</a>
+    <a class="nav-link" href="madadkar_panel">پنل مدیریت مددکار</a>
 {% endblock %}
 
 {% block links %}
     {% for hamyar in hamyars %}
-        <a href="{% url "show_a_hamyar" %}?username={{ hamyar.username }}" class="list-group-item list-group-item-action">
+        <a href="{% url "show_a_hamyar" %}?username={{ hamyar.username }}"
+           class="list-group-item list-group-item-action">
             {{ hamyar.first_name }} {{ hamyar.last_name }}
         </a>
     {% endfor %}
 
-{#    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۲</a>#}
-{#    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۳</a>#}
-{#    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۴</a>#}
+    {#    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۲</a>#}
+    {#    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۳</a>#}
+    {#    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۴</a>#}
 {% endblock %}
