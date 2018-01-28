@@ -157,15 +157,16 @@ def show_a_madadjoo_hamyar(request):
     if request.method == 'GET':
         return render(request, 'hamyar/show_a_madadjoo.html', {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
     else:
-        # print(request)
-        # print(request.POST)
         target_hamyar = hamyar.objects.get(id=request.user.id)
         if 'help' in request.POST:
             text = request.POST.get('help')
-            help = hamyar_madadjoo_non_cash(madadjoo=target_madadjoo, hamyar=target_hamyar, text=text)
-            help.save()
-            return render(request, 'hamyar/show_a_madadjoo.html', {'user': target_madadjoo, 'needs': needs,
+            if text != '':
+                help = hamyar_madadjoo_non_cash(madadjoo=target_madadjoo, hamyar=target_hamyar, text=text)
+                help.save()
+                return render(request, 'hamyar/show_a_madadjoo.html', {'user': target_madadjoo, 'needs': needs,
                                                                        'hamyars': hamyars, 'success_message': 'کمک شما با موفقیت در سامانه ثبت شد.'})
+            return render(request, 'hamyar/show_a_madadjoo.html', {'user': target_madadjoo, 'needs': needs,
+                                                                       'hamyars': hamyars, 'error_message': 'لطفا توضیح از کمک خود را وارد کنید.'})
         else:
             need_id = request.POST.get('need')
             if need_id:
