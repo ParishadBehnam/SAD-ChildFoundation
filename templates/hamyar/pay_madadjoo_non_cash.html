@@ -1,0 +1,29 @@
+<!-- Modal -->
+<div id="myModal2" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #be4148">
+                <h4 class="modal-title" style="color: white">صفحه‌ی کمک غیرنقدی</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label>عنوان کمک</label>
+                            <textarea id="non_cash" class="form-control" name="help"
+                                   placeholder="توضیحی از کمک غیرنقدی"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-danger"> ثبت کمک</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">بستن</button>
+            </div>
+        </div>
+
+    </div>
+</div>

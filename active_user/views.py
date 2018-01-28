@@ -21,9 +21,8 @@ from active_user.decorators import madadkar_login_required
 from active_user.decorators import hamyar_login_required
 from active_user.decorators import madadjoo_login_required
 from active_user.models import madadjoo, hamyar, madadkar, sponsership, \
- \
     madadjoo_madadkar_letter, madadjoo_hamyar_letter, hamyar_madadjoo_meeting, \
-    hamyar_system_payment, requirements
+    hamyar_system_payment, hamyar_madadjoo_payment, requirements, hamyar_madadjoo_non_cash
 from system.models import information
 
 
@@ -155,7 +154,33 @@ def show_a_madadjoo_hamyar(request):
     target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
     needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
     hamyars = hamyar.objects.filter(sponsership__madadjoo_id=target_madadjoo.id)
-    return render(request, 'hamyar/show_a_madadjoo.html', {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
+    if request.method == 'GET':
+        return render(request, 'hamyar/show_a_madadjoo.html', {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
+    else:
+        # print(request)
+        # print(request.POST)
+        target_hamyar = hamyar.objects.get(id=request.user.id)
+        if 'help' in request.POST:
+            text = request.POST.get('help')
+            help = hamyar_madadjoo_non_cash(madadjoo=target_madadjoo, hamyar=target_hamyar, text=text)
+            help.save()
+            return render(request, 'hamyar/show_a_madadjoo.html', {'user': target_madadjoo, 'needs': needs,
+                                                                       'hamyars': hamyars, 'success_message': 'کمک شما با موفقیت در سامانه ثبت شد.'})
+        else:
+            need_id = request.POST.get('need')
+            if need_id:
+                need = requirements.objects.get(id=need_id)
+                amount = request.POST.get('amount')
+                if amount != '':
+                    payment = hamyar_madadjoo_payment(madadjoo=target_madadjoo, hamyar=target_hamyar,
+                                                      amount=amount, type=need.type)
+                    payment.save()
+                    return render(request, 'hamyar/show_a_madadjoo.html', {'user': target_madadjoo, 'needs': needs,
+                                                                       'hamyars': hamyars, 'success_message': 'پرداخت شما با موفقیت انجام شد.'})
+                return render(request, 'hamyar/show_a_madadjoo.html', {'user': target_madadjoo, 'needs': needs,
+                                                                       'hamyars': hamyars, 'error_message': 'لطفا مبلغ مورد نظر خود را وارد کنید.'})
+            return render(request, 'hamyar/show_a_madadjoo.html', {'user': target_madadjoo, 'needs': needs,
+                                                                       'hamyars': hamyars, 'error_message': 'لطفا نیاز مورد نظر خود را علامت بزنید.'})
 
 
 @madadkar_login_required

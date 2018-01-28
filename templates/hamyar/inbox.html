@@ -7,7 +7,6 @@
         <div class="col-sm-1 col-md-3 col-lg-4 rounded" style="height: 100%;">
             <div class="list-group">
                 {% block list %}
-
                     {% for letter in letters %}
                         <a href="{% url "letter_content_hamyar" %}?letter={{ letter.id }}"
                            class="bg-light list-group-item list-group-item-action">{{ letter.title }}</a>

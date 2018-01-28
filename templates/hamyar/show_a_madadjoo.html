@@ -1,12 +1,18 @@
 {% extends 'base_show_a_madadjoo.html' %}
-    {% block panel %}
-        <a class="nav-link" href="hamyar_panel">پنل مدیریت همیار</a>
-    {% endblock %}
-    {% block links %}
-        {% for hamyar in hamyars %}
-            <a href="#" class="list-group-item list-group-item-action disabled"
-            style="cursor: default">{{ hamyar.username }}</a>
-        {% endfor %}
-        <hr>
-        <a href="https://sep.shaparak.ir/PaymentError.aspx?key=0dqPUmtI1Qg" class="btn btn-success">پرداخت</a>
-    {% endblock %}
+{% block panel %}
+    <a class="nav-link" href="hamyar_panel">پنل مدیریت همیار</a>
+{% endblock %}
+{% block links %}
+    {% for hamyar in hamyars %}
+        <a href="#" class="list-group-item list-group-item-action disabled"
+           style="cursor: default">{{ hamyar.username }}</a>
+    {% endfor %}
+    <hr>
+    <p class="lead">
+        <a class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal1" href="#">ثبت پرداخت هزینه</a>
+        {% include "hamyar/pay_madadjoo_popup.html" %}
+        <a class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal2" href="#">ثبت کمک غیرنقدی به مددجو</a>
+        {% include "hamyar/pay_madadjoo_non_cash.html" %}
+{#        <a href="#" class="btn btn-success"></a>#}
+    </p>
+{% endblock %}

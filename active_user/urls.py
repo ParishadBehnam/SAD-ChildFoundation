@@ -6,7 +6,6 @@ urlpatterns = [
     url(r'home_hamyar$', views.home_hamyar, name='home_hamyar'),
     url(r'home_madadjoo$', views.home_madadjoo, name='home_madadjoo'),
     url(r'home_admin$', views.home_admin, name='home_admin'),
-
     url(r'show_madadjoo$', views.show_madadjoo, name='show_madadjoo'),
     url(r'show_madadjoo_hamyar$', views.show_madadjoo_hamyar, name='show_madadjoo_hamyar'),
     url(r'edit_madadjoo$', views.edit_madadjoo, name='edit_madadjoo'),
