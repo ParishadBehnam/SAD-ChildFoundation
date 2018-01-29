@@ -1,127 +1,133 @@
 {% extends "base_registered.html" %}
 
 {% block panel %}
-    <a class="nav-link" href="hamyar_panel">پنل مدیریت همیار</a>
+    <a class="nav-link" href="hamyar_panel" xmlns="http://www.w3.org/1999/html">پنل مدیریت همیار</a>
 {% endblock %}
 {% block content %}
 
     <div class="panel-group" id="accordion">
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading panel-info">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#cash">
-                        <h4><span aria-hidden="true"
-                                  style="margin-left:1%;"></span>وجوه پرداخت‌شده</h4>
+                    <a data-toggle="collapse" href="#cash" data-parent="#accordion">
+                        <h5><span aria-hidden="true"
+                                  style="margin-left:1%;"></span>وجوه پرداخت‌شده</h5>
                     </a>
                 </h4>
             </div>
-            <div id="cash" class="panel-collapse collapse in fade">
+            <div id="cash" class="panel-collapse collapse in fade show">
                 <hr>
                 <div class="panel-body">
-                    <div class="row bg-light">
+                    {% block cash %}
+                        <div class="row bg-light">
+                            <div class="col-md-3 rounded " style="height: 100%;">
+                                <p class="list-group-item bg-light" style="border-color: white">مددجوی
+                                    دریافت‌کننده</p>
+                            </div>
 
-                        <div class="col-md-3 rounded " style="height: 100%;">
-                            <p class="list-group-item bg-light" style="border-color: white">نام مددجوی دریافت‌کننده</p>
+                            <div class="col-md-3 rounded" style="height: 100%;">
+                                <p class="list-group-item bg-light" style="border-color: white">از تاریخِ</p>
+                            </div>
+
+                            <div class="col-md-3 rounded" style="height: 100%;">
+                                <p class="list-group-item bg-light" style="border-color: white">وجه پرداختی</p>
+                            </div>
+
+                            <div class="col-md-3 rounded" style="height: 100%;">
+                                <p class="list-group-item bg-light" style="border-color: white">نوع پرداخت</p>
+                            </div>
                         </div>
 
-                        <div class="col-md-3 rounded" style="height: 100%;">
-                            <p class="list-group-item bg-light" style="border-color: white">از تاریخِ</p>
-                        </div>
+                        {% for help in cash %}
+                            <div class="row">
+                                <div class="col-md-3 rounded" style="height: 100%;">
+                                    <p class="list-group-item"
+                                       style="border-color: white"><a
+                                            href="{% url "show_a_madadjoo_hamyar" %}?username={{ help.madadjoo.username }}">{{ help.madadjoo.first_name }} {{ help.madadjoo.last_name }}</a>
+                                    </p>
+                                </div>
 
-                        <div class="col-md-3 rounded" style="height: 100%;">
-                            <p class="list-group-item bg-light" style="border-color: white">وجه پرداختی</p>
-                        </div>
+                                <div class="col-md-3 rounded" style="height: 100%;">
+                                    <p class="list-group-item"
+                                       style="border-color: white">{{ help.date.year }}/{{ help.date.month }}/{{ help.date.day }}
+                                        - {{ help.date.hour }}:{{ help.date.minute }}:{{ help.date.second }}</p>
+                                </div>
 
-                        <div class="col-md-3 rounded" style="height: 100%;">
-                            <p class="list-group-item bg-light" style="border-color: white">نوع پرداخت</p>
-                        </div>
+                                <div class="col-md-3 rounded" style="height: 100%;">
+                                    <p class="list-group-item" style="border-color: white">{{ help.amount }} تومان</p>
+                                </div>
+
+                                <div class="col-md-3 rounded" style="height: 100%;">
+                                    <p class="list-group-item" style="border-color: white">
+                                        {% if help.type == 'ann' %}
+                                            سالانه
+                                        {% elif help.type == 'mo' %}
+                                            ماهانه
+                                        {% else %}
+                                            موردی
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endblock %}
+                    <div class="row"></br>
                     </div>
-
-                    {% for help in cash %}
-                        <div class="row">
-                            <div class="col-md-3 rounded" style="height: 100%;">
-                                <p class="list-group-item"
-                                   style="border-color: white"><a
-                                        href="{% url "show_a_madadjoo_hamyar" %}?username={{ help.madadjoo.username }}">{{ help.madadjoo.first_name }} {{ help.madadjoo.last_name }}</a>
-                                </p>
-                            </div>
-
-                            <div class="col-md-3 rounded" style="height: 100%;">
-                                <p class="list-group-item"
-                                   style="border-color: white">{{ help.date.year }}/{{ help.date.month }}/{{ help.date.day }}
-                                    - {{ help.date.hour }}:{{ help.date.minute }}:{{ help.date.second }}</p>
-                            </div>
-
-                            <div class="col-md-3 rounded" style="height: 100%;">
-                                <p class="list-group-item" style="border-color: white">{{ help.amount }} تومان</p>
-                            </div>
-
-                            <div class="col-md-3 rounded" style="height: 100%;">
-                                <p class="list-group-item" style="border-color: white">
-                                    {% if help.type == 'ann' %}
-                                        سالانه
-                                    {% elif help.type == 'mo' %}
-                                        ماهانه
-                                    {% else %}
-                                        موردی
-                                    {% endif %}
-                                </p>
-                            </div>
-                        </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#non_cash">
-                        <h4><span aria-hidden="true"
-                                  style="margin-left:1%;"></span>کمک‌های غیرنقدی پرداخت‌شده</h4>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#non_cash">
+                        <h5><span aria-hidden="true"
+                                  style="margin-left:1%;"></span>کمک‌های غیرنقدی پرداخت‌شده</h5>
                     </a>
                 </h4>
             </div>
             <div id="non_cash" class="panel-collapse collapse fade">
                 <hr>
                 <div class="panel-body">
+                    {% block non_cash %}
+                        <div class="row bg-light">
+                            <div class="col-md-3 rounded " style="height: 100%;">
+                                <p class="list-group-item bg-light" style="border-color: white">مددجوی
+                                    دریافت‌کننده</p>
+                            </div>
 
-                    <div class="row bg-light">
+                            <div class="col-md-3 rounded" style="height: 100%;">
+                                <p class="list-group-item bg-light" style="border-color: white">در تاریخِ</p>
+                            </div>
 
-                        <div class="col-md-3 rounded " style="height: 100%;">
-                            <p class="list-group-item bg-light" style="border-color: white">نام مددجوی
-                                دریافت‌کننده</p>
+                            <div class="col-md-6 rounded" style="height: 100%;">
+                                <p class="list-group-item bg-light" style="border-color: white">عنوان کمک</p>
+                            </div>
                         </div>
 
-                        <div class="col-md-3 rounded" style="height: 100%;">
-                            <p class="list-group-item bg-light" style="border-color: white">در تاریخِ</p>
-                        </div>
+                        {% for help in non_cash %}
+                            <div class="row">
+                                <div class="col-md-3 rounded" style="height: 100%;">
+                                    <p class="list-group-item"
+                                       style="border-color: white"><a
+                                            href="{% url "show_a_madadjoo_hamyar" %}?username={{ help.madadjoo.username }}">{{ help.madadjoo.first_name }} {{ help.madadjoo.last_name }}</a>
+                                    </p>
+                                </div>
 
-                        <div class="col-md-6 rounded" style="height: 100%;">
-                            <p class="list-group-item bg-light" style="border-color: white">عنوان کمک</p>
-                        </div>
+                                <div class="col-md-3 rounded" style="height: 100%;">
+                                    <p class="list-group-item"
+                                       style="border-color: white">{{ help.date.year }}/{{ help.date.month }}/{{ help.date.day }}
+                                        - {{ help.date.hour }}:{{ help.date.minute }}:{{ help.date.second }}</p>
+                                </div>
+
+                                <div class="col-md-6 rounded" style="height: 100%;">
+                                    <p class="list-group-item" style="border-color: white">{{ help.text }}</p>
+                                </div>
+
+                            </div>
+                        {% endfor %}
+                    {% endblock %}
+                    <div class="row"></br>
                     </div>
-
-                    {% for help in non_cash %}
-                        <div class="row">
-                            <div class="col-md-3 rounded" style="height: 100%;">
-                                <p class="list-group-item"
-                                   style="border-color: white"><a
-                                        href="{% url "show_a_madadjoo_hamyar" %}?username={{ help.madadjoo.username }}">{{ help.madadjoo.first_name }} {{ help.madadjoo.last_name }}</a>
-                                </p>
-                            </div>
-
-                            <div class="col-md-3 rounded" style="height: 100%;">
-                                <p class="list-group-item"
-                                   style="border-color: white">{{ help.date.year }}/{{ help.date.month }}/{{ help.date.day }}
-                                    - {{ help.date.hour }}:{{ help.date.minute }}:{{ help.date.second }}</p>
-                            </div>
-
-                            <div class="col-md-4 rounded" style="height: 100%;">
-                                <p class="list-group-item" style="border-color: white">{{ help.text }}</p>
-                            </div>
-
-                        </div>
-                    {% endfor %}
                 </div>
             </div>
 
@@ -130,145 +136,66 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#system">
-                        <h4><span aria-hidden="true"
-                                  style="margin-left:1%;"></span>وجوه پرداختی به سازمان</h4></a>
+                    <a data-toggle="collapse" href="#system" data-parent="#accordion">
+                        <h5><span aria-hidden="true"
+                                  style="margin-left:1%;"></span>وجوه پرداختی به سازمان</h5></a>
                 </h4>
             </div>
             <div id="system" class="panel-collapse collapse fade">
                 <hr>
                 <div class="panel-body">
-                    <div id="non_cash" class="panel-collapse collapse in fade show">
-                        <div class="panel-body">
-                            <div class="row bg-light">
+                    {% block system %}
+                        <div class="row bg-light">
+
+                            <div class="col-md-3 rounded" style="height: 100%;">
+                                <p class="list-group-item bg-light" style="border-color: white">وجه پرداختی</p>
+                            </div>
+
+                            <div class="col-md-3 rounded" style="height: 100%;">
+                                <p class="list-group-item bg-light" style="border-color: white">در تاریخِ</p>
+                            </div>
+
+                        </div>
+
+                        {% for help in system %}
+                            <div class="row">
 
                                 <div class="col-md-3 rounded" style="height: 100%;">
-                                    <p class="list-group-item bg-light" style="border-color: white">وجه پرداختی</p>
+                                    <p class="list-group-item" style="border-color: white">{{ help.amount }}
+                                        تومان</p>
                                 </div>
 
                                 <div class="col-md-3 rounded" style="height: 100%;">
-                                    <p class="list-group-item bg-light" style="border-color: white">در تاریخِ</p>
+                                    <p class="list-group-item"
+                                       style="border-color: white">{{ help.date.year }}/{{ help.date.month }}/{{ help.date.day }}
+                                        - {{ help.date.hour }}:{{ help.date.minute }}:{{ help.date.second }}</p>
                                 </div>
 
                             </div>
-
-                            {% for help in system %}
-                                <div class="row">
-
-                                    <div class="col-md-3 rounded" style="height: 100%;">
-                                        <p class="list-group-item" style="border-color: white">{{ help.amount }}
-                                            تومان</p>
-                                    </div>
-
-                                    <div class="col-md-3 rounded" style="height: 100%;">
-                                        <p class="list-group-item"
-                                           style="border-color: white">{{ help.date.year }}/{{ help.date.month }}/{{ help.date.day }}
-                                            - {{ help.date.hour }}:{{ help.date.minute }}:{{ help.date.second }}</p>
-                                    </div>
-
-                                </div>
-                            {% endfor %}
-                        </div>
+                        {% endfor %}
+                    {% endblock %}
+                    <div class="row"></br>
                     </div>
-
                 </div>
             </div>
         </div>
 
-
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#cash_deleteds">
-                        <h4><span aria-hidden="true"
-                                  style="margin-left:1%;"></span>وجوه پرداخت‌شده به مددجویان حذف‌شده از سازمان</h4></a>
+                    <a data-toggle="collapse" href="#cash_deleteds" data-parent="#accordion">
+                        <h5><span aria-hidden="true"
+                                  style="margin-left:1%;"></span>وجوه پرداخت‌شده به مددجویان حذف‌شده از سازمان</h5></a>
                 </h4>
             </div>
             <div id="cash_deleteds" class="panel-collapse collapse fade">
                 <hr>
                 <div class="panel-body">
-                    <div class="row bg-light">
-
-                        <div class="col-md-2 rounded " style="height: 100%;">
-                            <p class="list-group-item bg-light" style="border-color: white">نام مددجوی دریافت‌کننده</p>
-                        </div>
-
-                        <div class="col-md-3 rounded" style="height: 100%;">
-                            <p class="list-group-item bg-light" style="border-color: white">از تاریخِ</p>
-                        </div>
-
-                        <div class="col-md-3 rounded" style="height: 100%;">
-                            <p class="list-group-item bg-light" style="border-color: white">تا تاریخِ</p>
-                        </div>
-
-                        <div class="col-md-2 rounded" style="height: 100%;">
-                            <p class="list-group-item bg-light" style="border-color: white">وجه پرداختی</p>
-                        </div>
-
-                        <div class="col-md-2 rounded" style="height: 100%;">
-                            <p class="list-group-item bg-light" style="border-color: white">نوع پرداخت</p>
-                        </div>
-                    </div>
-
-                    {% for help in cash_for_deleteds %}
-                        <div class="row">
-                            <div class="col-md-2 rounded" style="height: 100%;">
-                                <p class="list-group-item"
-                                   style="border-color: white">{{ help.madadjoo.first_name }} {{ help.madadjoo.last_name }}</p>
-                            </div>
-
-                            <div class="col-md-3 rounded" style="height: 100%;">
-                                <p class="list-group-item"
-                                   style="border-color: white">{{ help.date.year }}/{{ help.date.month }}/{{ help.date.day }}
-                                    - {{ help.date.hour }}:{{ help.date.minute }}:{{ help.date.second }}</p>
-                            </div>
-
-                            <div class="col-md-3 rounded" style="height: 100%;">
-                                {% with m=help.madadjoo.madadkar_remove_madadjoo_set.all|first %}
-                                    <p class="list-group-item"
-                                       style="border-color: white">{{ m.date.year }}/{{ m.date.month }}/{{ m.date.day }}
-                                        - {{ m.date.hour }}:{{ m.date.minute }}:{{ m.date.second }}</p>
-                                {% endwith %}
-                            </div>
-
-                            <div class="col-md-2 rounded" style="height: 100%;">
-                                <p class="list-group-item" style="border-color: white">{{ help.amount }} تومان</p>
-                            </div>
-
-                            <div class="col-md-2 rounded" style="height: 100%;">
-                                <p class="list-group-item" style="border-color: white">
-                                    {% if help.type == 'ann' %}
-                                        سالانه
-                                    {% elif help.type == 'mo' %}
-                                        ماهانه
-                                    {% else %}
-                                        موردی
-                                    {% endif %}
-                                </p>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" href="#non_cash_deleted">
-                            <h4><span aria-hidden="true"
-                                      style="margin-left:1%;"></span>کمک‌های  غیرنقدی پرداخت‌شده به مددجویان حذف‌شده از سازمان</h4>
-                        </a>
-                    </h4>
-                </div>
-                <div id="non_cash_deleted" class="panel-collapse collapse fade show">
-                    <hr>
-                    <div class="panel-body">
+                    {% block cash_deleteds %}
                         <div class="row bg-light">
 
                             <div class="col-md-2 rounded " style="height: 100%;">
-                                <p class="list-group-item bg-light" style="border-color: white">نام مددجوی
-                                    دریافت‌کننده</p>
+                                <p class="list-group-item bg-light" style="border-color: white">مددجو</p>
                             </div>
 
                             <div class="col-md-3 rounded" style="height: 100%;">
@@ -288,16 +215,18 @@
                             </div>
                         </div>
 
-                        {% for help in non_cash_for_deleteds %}
+                        {% for help in cash_for_deleteds %}
                             <div class="row">
                                 <div class="col-md-2 rounded" style="height: 100%;">
                                     <p class="list-group-item"
-                                       style="border-color: white">{{ help.madadjoo.first_name }} {{ help.madadjoo.last_name }}</p>
+                                       style="border-color: white"><a
+                                            href="{% url "show_a_madadjoo_hamyar" %}?username={{ help.madadjoo.username }}">{{ help.madadjoo.first_name }} {{ help.madadjoo.last_name }}</a>
+                                    </p>
                                 </div>
 
                                 <div class="col-md-3 rounded" style="height: 100%;">
                                     <p class="list-group-item"
-                                       style="border-color: white">{{ help.date.month }}/{{ help.date.month }}/{{ help.date.day }}
+                                       style="border-color: white">{{ help.date.year }}/{{ help.date.month }}/{{ help.date.day }}
                                         - {{ help.date.hour }}:{{ help.date.minute }}:{{ help.date.second }}</p>
                                 </div>
 
@@ -326,6 +255,77 @@
                                 </div>
                             </div>
                         {% endfor %}
+                    {% endblock %}
+                    <div class="row"></br>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#non_cash_deleted" data-parent="#accordion">
+                            <h5><span aria-hidden="true"
+                                      style="margin-left:1%;"></span>کمک‌های غیرنقدی پرداخت‌شده به مددجویان حذف‌شده از
+                                سازمان</h5>
+                        </a>
+                    </h4>
+                </div>
+                <div id="non_cash_deleted" class="panel-collapse collapse fade">
+                    <hr>
+                    <div class="panel-body">
+                        {% block non_cash_deleted %}
+                            <div class="row bg-light">
+                                <div class="col-md-2 rounded " style="height: 100%;">
+                                    <p class="list-group-item bg-light" style="border-color: white">مددجو</p>
+                                </div>
+
+                                <div class="col-md-3 rounded" style="height: 100%;">
+                                    <p class="list-group-item bg-light" style="border-color: white">از تاریخِ</p>
+                                </div>
+
+                                <div class="col-md-3 rounded" style="height: 100%;">
+                                    <p class="list-group-item bg-light" style="border-color: white">تا تاریخِ</p>
+                                </div>
+
+                                <div class="col-md-2 rounded" style="height: 100%;">
+                                    <p class="list-group-item bg-light" style="border-color: white">عنوان کمک</p>
+                                </div>
+
+                            </div>
+
+                            {% for help in non_cash_for_deleteds %}
+                                <div class="row">
+                                    <div class="col-md-2 rounded" style="height: 100%;">
+                                        <p class="list-group-item"
+                                           style="border-color: white"><a
+                                                href="{% url "show_a_madadjoo_hamyar" %}?username={{ help.madadjoo.username }}">{{ help.madadjoo.first_name }} {{ help.madadjoo.last_name }}</a>
+                                        </p>
+                                    </div>
+
+                                    <div class="col-md-3 rounded" style="height: 100%;">
+                                        <p class="list-group-item"
+                                           style="border-color: white">{{ help.date.month }}/{{ help.date.month }}/{{ help.date.day }}
+                                            - {{ help.date.hour }}:{{ help.date.minute }}:{{ help.date.second }}</p>
+                                    </div>
+
+                                    <div class="col-md-3 rounded" style="height: 100%;">
+                                        {% with m=help.madadjoo.madadkar_remove_madadjoo_set.all|first %}
+                                            <p class="list-group-item"
+                                               style="border-color: white">{{ m.date.year }}/{{ m.date.month }}/{{ m.date.day }}
+                                                - {{ m.date.hour }}:{{ m.date.minute }}:{{ m.date.second }}</p>
+                                        {% endwith %}
+                                    </div>
+
+                                    <div class="col-md-2 rounded" style="height: 100%;">
+                                        <p class="list-group-item" style="border-color: white">{{ help.text }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endblock %}
+                        <div class="row"></br>
+                        </div>
                     </div>
                 </div>
             </div>

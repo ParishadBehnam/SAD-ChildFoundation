@@ -1037,8 +1037,17 @@ def add_a_hamyar_admin(request):
 
 @admin_login_required
 def payment_reports_admin(request):
-    return render(request, 'admin/payment_reports.html')
+    deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
+    cash = hamyar_madadjoo_payment.objects.exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    non_cash = hamyar_madadjoo_non_cash.objects.exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    system = hamyar_system_payment.objects.all()
 
+    cash_for_deleteds = hamyar_madadjoo_payment.objects.filter(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    non_cash_for_deleteds = hamyar_madadjoo_non_cash.objects.filter(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    return render(request, 'admin/payment_reports.html', {'cash': cash, 'non_cash': non_cash,
+                                                           'system': system,
+                                                           'cash_for_deleteds': cash_for_deleteds,
+                                                           'non_cash_for_deleteds': non_cash_for_deleteds})
 
 @admin_login_required
 def activity_report(request):
