@@ -90,7 +90,7 @@ class madadjoo(active_user):
 
 
 class madadkar_remove_madadjoo(models.Model):
-    madadkar = models.ForeignKey(madadkar, on_delete=models.CASCADE)
+    madadkar = models.ForeignKey(madadkar, on_delete=models.CASCADE, null=True)
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE, unique=True)
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
     text = models.TextField()

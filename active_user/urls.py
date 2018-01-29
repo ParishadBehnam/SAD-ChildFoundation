@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^show_a_madadjoo_hamyar$', views.show_a_madadjoo_hamyar, name='show_a_madadjoo_hamyar'),
     url(r'^show_a_hamyar$', views.show_a_hamyar, name='show_a_hamyar'),
     url(r'^send_letter$', views.send_letter, name='send_letter'),
+    url(r'^send_delete_letter$', views.send_delete_letter, name='send_delete_letter'),
     url(r'^send_letter_hamyar$', views.send_letter_hamyar, name='send_letter_hamyar'),
     url(r'^inbox_madadkar$', views.inbox_madadkar, name='inbox_madadkar'),
     url(r'^inbox_hamyar$', views.inbox_hamyar, name='inbox_hamyar'),

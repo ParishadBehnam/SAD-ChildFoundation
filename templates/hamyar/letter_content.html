@@ -24,7 +24,14 @@
         </div>
 
         <hr>
-        <p>فرستنده: {{ sender.first_name }} {{ sender.last_name }} </p>
+        <p>
+            فرستنده:
+            {% if sender %}
+                {{ sender.first_name }} {{ sender.last_name }}
+            {% else %}
+                مدیر سامانه
+            {% endif %}
+        </p>
         <p>گیرنده: {{ receiver.first_name }} {{ receiver.last_name }}</p>
         <p>{{ letter.text }}</p>
     </div>

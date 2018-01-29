@@ -7,7 +7,9 @@
     <a href="{% url "edit_a_madadjoo_admin" %}?username={{ user.username }}">
         <button type="button" class="btn btn-warning"> ویرایش</button>
     </a>
-    <button type="button" class="btn btn-danger">حذف</button>
+    <a href="{% url "send_delete_letter" %}?username={{ user.username }}">
+        <button type="button" class="btn btn-danger"> حذف</button>
+    </a>
     {% if user.confirmed %}
         <button type="button" disabled class="btn btn-outline-success">تایید شده</button>
     {% else %}
@@ -23,8 +25,4 @@
             {{ hamyar.first_name }} {{ hamyar.last_name }}
         </a>
     {% endfor %}
-
-    {#    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۲</a>#}
-    {#    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۳</a>#}
-    {#    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۴</a>#}
 {% endblock %}
