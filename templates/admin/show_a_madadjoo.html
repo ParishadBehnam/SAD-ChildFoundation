@@ -1,24 +1,30 @@
 {% extends 'base_show_a_madadjoo.html' %}
-    {% block panel %}
-        <a class="nav-link" href="admin_panel">پنل مدیریت مدیر سامانه</a>
-    {% endblock %}
+{% block panel %}
+    <a class="nav-link" href="admin_panel">پنل مدیریت مدیر سامانه</a>
+{% endblock %}
 
 {% block buttons %}
     <a href="{% url "edit_a_madadjoo_admin" %}?username={{ user.username }}">
         <button type="button" class="btn btn-warning"> ویرایش</button>
     </a>
     <button type="button" class="btn btn-danger">حذف</button>
-    <button type="button" class="btn btn-outline-success">تایید شده</button>
+    {% if user.confirmed %}
+        <button type="button" class="btn btn-outline-success">تایید شده</button>
+    {% else %}
+        <button type="button" class="btn btn-outline-danger">تایید نشده</button>
+    {% endif %}
+
 {% endblock %}
 
 {% block links %}
     {% for hamyar in hamyars %}
-        <a href="{% url "show_a_hamyar" %}?username={{ hamyar.username }}" class="list-group-item list-group-item-action">
+        <a href="{% url "show_a_hamyar" %}?username={{ hamyar.username }}"
+           class="list-group-item list-group-item-action">
             {{ hamyar.username }}
         </a>
     {% endfor %}
 
-{#    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۲</a>#}
-{#    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۳</a>#}
-{#    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۴</a>#}
+    {#    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۲</a>#}
+    {#    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۳</a>#}
+    {#    <a href="show_a_hamyar" class="list-group-item list-group-item-action">همیار ۴</a>#}
 {% endblock %}

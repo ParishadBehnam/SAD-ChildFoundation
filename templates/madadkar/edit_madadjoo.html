@@ -2,16 +2,22 @@
 
 {% block buttons %}
     <button type="button" class="btn btn-danger">حذف</button>
-    <button type="button" class="btn btn-outline-success">تایید شده</button>
+    {% if user.confirmed %}
+        <button type="button" class="btn btn-outline-success">تایید شده</button>
+    {% else %}
+        <button type="button" class="btn btn-outline-danger">تایید نشده</button>
+    {% endif %}
+
 
 {% endblock %}
 
 
 {% block below_image %}
 
- <div class="form-group text-center">
+    <div class="form-group text-center">
         <label for="profile_pic">برای تغییر عکس، عکس جدیدی انتخاب کنید.</label>
-        <input type="file" name="profile_pic" class="form-control-file" id="profile_pic" value="{{ user.profile_pic }}" accept="image/*">
+        <input type="file" name="profile_pic" class="form-control-file" id="profile_pic" value="{{ user.profile_pic }}"
+               accept="image/*">
 
     </div>
 {% endblock %}

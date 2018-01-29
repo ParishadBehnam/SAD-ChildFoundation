@@ -10,9 +10,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-{#    <link rel="stylesheet"#}
-{#          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">#}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
+    {#    <link rel="stylesheet"#}
+    {#          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">#}
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="../static/open-iconic-master/font/css/open-iconic-bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../static/css/main.css"/>
 
@@ -58,16 +59,31 @@
     {% block error_alert %}
         {% if error_message %}
             <div class="alert alert-danger alert-dismissable fade show">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <div>{{ error_message }}</div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ error_message }}
             </div>
         {% endif %}
     {% endblock %}
     {% block success_alert %}
         {% if success_message %}
             <div class="alert alert-success alert-dismissable fade show">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <div>{{ success_message }}</div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ success_message }}
+            </div>
+        {% endif %}
+    {% endblock %}
+
+    {% block warning_alert %}
+        {% if warning_message %}
+            <div class="alert alert-warning alert-dismissable fade show">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ warning_message }}
             </div>
         {% endif %}
     {% endblock %}
