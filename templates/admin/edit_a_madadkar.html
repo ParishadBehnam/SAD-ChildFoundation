@@ -14,11 +14,13 @@
            placeholder="نام خانوادگی مددکار" value="{{ madadkar.last_name }}">
 {% endblock %}
 
-{% block upload_pic %}
-    <div class="form-group text-center">
-        <label for="profile_pic">برای تغییر عکس، عکس جدیدی انتخاب کنید.</label>
-        <input type="file" name="profile_pic" class="form-control-file" id="profile_pic" accept="image/*">
-    </div>
+{% block below_image %}
+    {% block upload_pic %}
+        <div class="form-group text-center">
+            <label for="profile_pic">برای تغییر عکس، عکس جدیدی انتخاب کنید.</label>
+            <input type="file" name="profile_pic" class="form-control-file" id="profile_pic" accept="image/*">
+        </div>
+    {% endblock %}
 {% endblock %}
 
 {% block more_detail %}
