@@ -1,36 +1,49 @@
 {% extends "hamyar/base_registered.html" %}
+{% load activity_tags %}
+
 {% block content %}
     <div class="row">
         <div class="col-6 ml-auto"><h4>مشاهده‌ی فعالیت‌های مددجویان</h4></div>
-    <hr>
+        <hr>
     </div>
-        <section>
-          <div class="container py-3">
-              {% for i in "XXX" %}
+    {#    {% for madadjoo_stream in stream %}#}
+    {#        {% for action in s %}#}
+    {#            {% display_action action %}#}
+    {#        {% endfor %}#}
+    {#    {% endfor %}#}
+    <section>
+        <div class="container py-3">
+            {% for madadjoo_stream in stream %}
                 <div class="card">
-                  <div class="row ">
-                    <div class="col-md-4">
-                        <img class="card-img-right" src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276">
-                    </div>
-                    <div class="col-md-8 px-3">
-                        <div class="card-body">
-                            <h4 class="card-title">شرح فعالیت‌های مددجوی ۱</h4>
-                            <p class="card-text">
-                              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
-                    متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
-                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
-                    شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی
-                    الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
-                        </p>
+                    <div class="row ">
+                        <div class="col-md-4">
+                            {% if madadjoo_stream.0.profile_pic %}
+                                <img class="card-img-right img-thumbnail img-responsive" src=
+                                        "{{ madadjoo_stream.0.profile_pic.url|default:"https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276" }}">
+
+                            {% else %}
+                                <img class="card-img-right img-thumbnail img-responsive"
+                                     src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276">
+                            {% endif %}
+
                         </div>
-                        <div class="card-footer bg-transparent">
-                            <a href="show_a_madadjoo_hamyar" class="btn btn-primary">مشاهده بیشتر</a>
+                        <div class="col-md-8 px-3">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ madadjoo_stream.0.first_name }} {{ madadjoo_stream.0.last_name }}</h4>
+                                    {% for action in madadjoo_stream.1 %}
+                                        <p class="card-text">
+                                        {% display_action action %}
+                                        </p>
+                                    {% endfor %}
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <a href="{% url "show_a_madadjoo_hamyar" %}?username={{ madadjoo_stream.0.username }}" class="btn btn-primary">مشاهده بیشتر</a>
+                            </div>
                         </div>
-                      </div>
                     </div>
-                  </div><p></p>
-              {% endfor %}
-            </div>
-          </div>
-        </section>
+                </div><p></p>
+            {% endfor %}
+        </div>
+        </div>
+    </section>
 {% endblock %}

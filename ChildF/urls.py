@@ -20,5 +20,6 @@ urlpatterns = [
     url(r'^admin/', admin_site.urls),
     url(r'^user/', include('active_user.urls')),
     url(r'^logout/', include('system.urls')),
+    url('^activity/', include('actstream.urls')),
     url(r'', include('system.urls')),
 ]

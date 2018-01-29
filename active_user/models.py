@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 
 from django.contrib.auth.models import AbstractUser
+
 from system.models import information
 from django.utils.translation import ugettext_lazy as _
 
@@ -18,6 +19,7 @@ class active_user(AbstractUser):
     phone_number = models.IntegerField(null=True, verbose_name="شماره تلفن")
     address = models.TextField(null=True, verbose_name="آدرس")
     profile_pic = models.ImageField(null=True, verbose_name="تصویر")
+
 
     def save(self, *args, **kwargs):
         return super(active_user, self).save(*args, **kwargs)
