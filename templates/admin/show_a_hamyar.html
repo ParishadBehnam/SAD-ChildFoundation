@@ -34,9 +34,14 @@
         <a href="#" class="list-group-item list-group-item-action disabled">
             نام مددجویان تحت تکفل
         </a>
-        {% for sponser in hamyar.sponsership_set.all %}
-            <a href="{% url "show_a_madadjoo_admin" %}?username={{ sponser.madadjoo.username }}"
-               class="list-group-item list-group-item-action">{{ sponser.madadjoo.first_name }} {{ sponser.madadjoo.last_name }}</a>
+{#        {% for sponser in hamyar.sponsership_set.all %}#}
+{#            <a href="{% url "show_a_madadjoo_admin" %}?username={{ sponser.madadjoo.username }}"#}
+{#               class="list-group-item list-group-item-action">{{ sponser.madadjoo.first_name }} {{ sponser.madadjoo.last_name }}</a>#}
+{#        {% endfor %}#}
+
+        {% for madadjoo in madadjoos %}
+            <a href="{% url "show_a_madadjoo_admin" %}?username={{madadjoo.username }}"
+               class="list-group-item list-group-item-action">{{ madadjoo.first_name }} {{ madadjoo.last_name }}</a>
         {% endfor %}
     </div>
 

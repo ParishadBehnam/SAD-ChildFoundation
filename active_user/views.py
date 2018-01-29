@@ -1006,7 +1006,9 @@ def show_hamyar_admin(request):
 @admin_login_required
 def show_a_hamyar_admin(request):
     target_hamyar = hamyar.objects.get(username=request.GET.get('username', ''))
-    return render(request, 'admin/show_a_hamyar.html', {'hamyar': target_hamyar})
+    deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
+    madadjoos = madadjoo.objects.filter(sponsership__hamyar=target_hamyar).exclude(active_user_ptr_id__in=deleted_madadjoos)
+    return render(request, 'admin/show_a_hamyar.html', {'hamyar': target_hamyar, 'madadjoos': madadjoos})
 
 
 @admin_login_required
