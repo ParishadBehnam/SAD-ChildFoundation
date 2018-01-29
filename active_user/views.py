@@ -258,9 +258,9 @@ def show_letters_madadkar(request):
     all_madadjoo_madadkar_letters = \
         madadjoo_madadkar_letter.objects.filter(madadkar_id=request.user.id).exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     all_madadjoo_hamyar_letters = \
-        madadjoo_hamyar_letter.objects.filter(madadjoo__corr_madadkar=request.user.id, confirmed=0).exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+        madadjoo_hamyar_letter.objects.filter(madadjoo__corr_madadkar=request.user.id, confirmed=False).exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     all_hamyar_madadjoo_letters = \
-        hamyar_madadjoo_meeting.objects.filter(madadjoo__corr_madadkar=request.user.id).exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+        hamyar_madadjoo_meeting.objects.filter(madadjoo__corr_madadkar=request.user.id, confirmed=False).exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     all_warnings = warning_admin_letter.objects.filter(madadkar=request.user.id)
     return {'madadjoo_madadkar_letters': all_madadjoo_madadkar_letters,
             'madadjoo_hamyar_letters': all_madadjoo_hamyar_letters,
@@ -395,7 +395,8 @@ def delete_madadjoo_letter_content_hamyar(request):
 
 @hamyar_login_required
 def inbox_hamyar(request):
-    all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id, confirmed=1)
+    deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
+    all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id, confirmed=1).exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     delete_letters = madadkar_remove_madadjoo.objects.filter(hamyar_id=request.user.id)
     return render(request, 'hamyar/inbox.html', {'letters': all_letters, 'delete_letters': delete_letters})
 

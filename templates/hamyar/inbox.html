@@ -7,23 +7,17 @@
         <div class="col-sm-1 col-md-3 col-lg-4 rounded" style="height: 100%;">
             <div class="list-group">
                 {% block list %}
-                    {% if letters|length > 0 %}
-                        {% for letter in letters %}
-                            <a href="{% url "letter_content_hamyar" %}?letter={{ letter.id }}"
-                               class="bg-light list-group-item list-group-item-action">{{ letter.title }}</a>
-                        {% endfor %}
-                    {% else %}
-                        <a style="cursor: default">نامه‌ای از سوی مددجو برای شما وجود ندارد.</a>
-                    {% endif %}
-                    {% if delete_letters|length > 0 %}
-                        {% for letter in delete_letters %}
-                            <a href="{% url "delete_madadjoo_letter_content_hamyar" %}?letter={{ letter.id }}"
-                               class="bg-light list-group-item list-group-item-action">اطلاع‌رسانی حذف
-                                مددجوی {{ letter.madadjoo.first_name }} {{ letter.madadjoo.last_name }}</a>
-                        {% endfor %}
-                        {#                        {% else %}#}
-                        {#                            <a style="cursor: default">نامه‌ای برای شما وجود ندارد.</a>#}
-                    {% endif %}
+                    {% for letter in letters %}
+                        <a href="{% url "letter_content_hamyar" %}?letter={{ letter.id }}"
+                           class="bg-light list-group-item list-group-item-action">{{ letter.title }}</a>
+                    {% endfor %}
+                    {% for letter in delete_letters %}
+                        <a href="{% url "delete_madadjoo_letter_content_hamyar" %}?letter={{ letter.id }}"
+                           class="bg-light list-group-item list-group-item-action">اطلاع‌رسانی حذف
+                            مددجوی {{ letter.madadjoo.first_name }} {{ letter.madadjoo.last_name }}</a>
+                    {% endfor %}
+                    {#                        {% else %}#}
+                    {#                            <a style="cursor: default">نامه‌ای برای شما وجود ندارد.</a>#}
                 {% endblock %}
             </div>
         </div>
