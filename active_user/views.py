@@ -23,7 +23,7 @@ from active_user.decorators import madadjoo_login_required
 from active_user.models import madadjoo, hamyar, madadkar, sponsership, \
     madadjoo_madadkar_letter, madadjoo_hamyar_letter, hamyar_madadjoo_meeting, \
     hamyar_system_payment, hamyar_madadjoo_payment, requirements, hamyar_madadjoo_non_cash, add_madadjoo_admin_letter, \
-    madadkar_remove_madadjoo, urgent_need_admin_letter
+    madadkar_remove_madadjoo, urgent_need_admin_letter, admin_user, warning_admin_letter
 from system.models import information
 
 
@@ -260,11 +260,12 @@ def show_letters_madadkar(request):
     all_madadjoo_hamyar_letters = \
         madadjoo_hamyar_letter.objects.filter(madadjoo__corr_madadkar=request.user.id, confirmed=0).exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     all_hamyar_madadjoo_letters = \
-        hamyar_madadjoo_meeting.objects.filter(madadjoo__corr_madadkar=request.user.id, confirmed=0).exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
-    print(all_madadjoo_hamyar_letters)
+        hamyar_madadjoo_meeting.objects.filter(madadjoo__corr_madadkar=request.user.id).exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    all_warnings = warning_admin_letter.objects.filter(madadkar=request.user.id)
     return {'madadjoo_madadkar_letters': all_madadjoo_madadkar_letters,
             'madadjoo_hamyar_letters': all_madadjoo_hamyar_letters,
-            'hamyar_madadjoo_letters': all_hamyar_madadjoo_letters}
+            'hamyar_madadjoo_letters': all_hamyar_madadjoo_letters,
+            'warnings': all_warnings}
 
 
 @madadkar_login_required
@@ -299,6 +300,15 @@ def delete_letter_hamyar(request):
     all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id, confirmed=1)
     return render(request, 'hamyar/inbox.html',
                   {'letters': all_letters, 'success_message': 'نامه با موفقیت حذف گردید.'})
+
+@madadkar_login_required
+def warning_content_madadkar(request):
+    target_letter = warning_admin_letter.objects.get(id=request.GET.get('letter', ''))
+    d = show_letters_madadkar(request)
+    d['letter'] = target_letter
+    d['sender'] =  target_letter.admin_user
+    d['receiver'] = target_letter.madadkar
+    return render(request, 'madadkar/letter_warning_content.html', d)
 
 
 @madadkar_login_required
@@ -758,6 +768,21 @@ def urgent_need_letters(request):
 
 
 @admin_login_required
+def warning_letter_admin(request):
+    target_madadkar = madadkar.objects.get(username=request.GET.get('username', ''))
+    user = admin_user.objects.get(username=request.user.username)
+    new_warning = warning_admin_letter(admin_user=user, madadkar=target_madadkar)
+    try:
+        new_warning.save()
+        return render(request, 'admin/edit_a_madadkar.html', {'madadkar': target_madadkar,
+                                                              'warning_message': 'اخطار به این مددکار ارسال شد'})
+    except IntegrityError:
+        return render(request, 'admin/edit_a_madadkar.html',
+                      {'madadkar': target_madadkar,
+                       'error_message': 'متاسفانه امکان ارسال اخطار به این مددکار وجود ندارد'})
+
+
+@admin_login_required
 def add_a_madadjoo_admin(request):
     if request.method == "GET":
         return render(request, 'admin/add_a_madadjoo.html')
@@ -892,17 +917,41 @@ def add_a_madadjoo_madadkar(request):
 
 @admin_login_required
 def show_madadkar_admin(request):
-    return render(request, 'admin/show_madadkar.html')
+    madadkars = madadkar.objects.all()
+    return render(request, 'admin/show_madadkar.html', {'hamyars': madadkars})
 
 
 @admin_login_required
 def show_a_madadkar_admin(request):
-    return render(request, 'admin/show_a_madadkar.html')
+    target_madadkar = madadkar.objects.get(username=request.GET.get('username', ''))
+    madadjoos = madadjoo.objects.filter(corr_madadkar=target_madadkar)
+    return render(request, 'admin/show_a_madadkar.html', {'madadkar': target_madadkar})
 
 
 @admin_login_required
 def edit_a_madadkar_admin(request):
-    return render(request, 'admin/edit_a_madadkar.html')
+    target_madadkar = madadkar.objects.get(username=request.GET.get('username', ''))
+    if request.method == "GET":
+        return render(request, 'admin/edit_a_madadkar.html', {'madadkar': target_madadkar})
+    else:
+
+        target_madadkar.first_name = request.POST.get('first_name')
+        target_madadkar.last_name = request.POST.get('last_name')
+        target_madadkar.id_number = request.POST.get('id_number')
+        target_madadkar.phone_number = request.POST.get('phone_number')
+        target_madadkar.address = request.POST.get('address')
+        target_madadkar.email = request.POST.get('email')
+        target_madadkar.bio = request.POST.get('bio')
+
+        if request.POST.get('profile_pic') != '':
+            target_madadkar.profile_pic = request.FILES.get('profile_pic')
+        try:
+            target_madadkar.save()
+            return render(request, 'admin/edit_a_madadkar.html', {'madadkar': target_madadkar,
+                                                                  'success_message': 'اطلاعات شما با موفقیت ویرایش شد.'})
+        except IntegrityError:
+            return render(request, 'admin/edit_a_madadkar.html',
+                          {'madadkar': target_madadkar, 'error_message': 'کد ملی باید یکتا باشد.'})
 
 
 @admin_login_required

@@ -67,4 +67,6 @@ urlpatterns = [
     url(r'^confirm_madadjoo_admin', views.confirm_madadjoo_admin, name='confirm_madadjoo_admin'),
     url(r'^urgent_need_letters', views.urgent_need_letters, name='urgent_need_letters'),
     url(r'^confirm_need_admin', views.confirm_need_admin, name='confirm_need_admin'),
+    url(r'^warning_letter_admin', views.warning_letter_admin, name='warning_letter_admin'),
+    url(r'^warning_content_madadkar', views.warning_content_madadkar, name='warning_content_madadkar'),
 ]

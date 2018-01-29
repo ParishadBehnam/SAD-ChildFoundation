@@ -11,39 +11,49 @@
 {% endblock %}
 
 {% block buttons %}
-    <a href="#">
+    <a href="{% url "warning_letter_admin" %}?username={{ madadkar.username }}">
         <button type="button" class="btn btn-outline-danger">ارسال اخطار</button>
     </a>
-    <a href="edit_a_madadkar_admin">
+    <a href="{% url "edit_a_madadkar_admin" %}?username={{ madadkar.username }}">
         <button type="button" class="btn btn-outline-warning">ویرایش</button>
     </a>
+{% endblock %}
+{% block profile_pic %}
+    {% if madadkar.profile_pic %}
+        <img src="{{ madadkar.profile_pic.url|default:"https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276" }}"
+             alt="نام مددجو" class="img-thumbnail">
+    {% else %}
+        <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
+             alt="نام مددجو" class="img-thumbnail">
+    {% endif %}
 {% endblock %}
 
 {% block below_image %}
 
     {% block upload_pic %}
+
     {% endblock %}
 
     <div class="list-group">
         <a href="#" class="list-group-item list-group-item-action disabled">
             نام مددجویان تحت حمایت
         </a>
-        <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۱</a>
-        <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۲</a>
-        <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۳</a>
-        <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۴</a>
+        {% for madadjoo in madadkar.madadjoo_set.all %}
+            <a href="{% url "show_a_madadjoo_admin" %}?username={{ madadjoo.username }}"
+               class="list-group-item list-group-item-action disabled">{{ madadjoo.first_name }} {{ madadjoo.last_name }}</a>
+        {% endfor %}
     </div>
 
 {% endblock %}
 
 {% block name %}
     <input type="text" name="first_name" id="staticName" readonly class="form-control-plaintext form-control"
-           placeholder="نام مددکار">
+           placeholder="نام مددکار" value="{{ madadkar.first_name }}">
 {% endblock %}
 
 {% block l-name %}
     <input type="text" name="last_name" readonly class="form-control-plaintext form-control" id="staticLastName"
-           placeholder="نام خانوادگی مددکار">
+           placeholder="نام خانوادگی مددکار" value="{{ madadkar.last_name }}">
 
 {% endblock %}
 
@@ -53,34 +63,35 @@
         <label for="staticid" class="col-md-2 col-form-label">کد ملی مددکار</label>
         <div class="col-md-4">
             <input type="text" id="staticid" readonly class="form-control-plaintext form-control"
-                   placeholder="کد ملی مددکار">
+                   placeholder="کد ملی مددکار" value="{{ madadkar.id_number }}">
         </div>
         <label for="email" class="col-md-2 col-form-label">ایمیل مددکار</label>
         <div class="col-md-4">
             <input type="email" id="email" name="email" readonly class="form-control form-control"
-                   placeholder="ایمیل مددکار">
+                   placeholder="ایمیل مددکار" value="{{ madadkar.email }}">
         </div>
     </div>
     <div class="form-group row">
         <label for="staticphone" class="col-md-2 col-form-label">شماره تلفن مددکار</label>
         <div class="col-md-10">
             <input type="text" id="staticphone" readonly class="form-control-plaintext form-control"
-                   value="۰۲۱-xxxxxxxx">
+                   placeholder="021xxxxxxxx" value="{{ madadkar.phone_number }}">
         </div>
     </div>
     <div class="form-group row">
         <label for="staticaddr" class="col-md-2 col-form-label">آدرس مددکار</label>
         <div class="col-md-10">
             <textarea rows="7" id="staticaddr" readonly class="form-control-plaintext form-control"
-                      placeholder="آدرس مددکار در این‌جا وارد می‌شود"></textarea>
+                      placeholder="آدرس مددکار در این‌جا وارد می‌شود">{{ madadkar.address }}</textarea>
         </div>
     </div>
     <div class="form-group row">
         <label for="staticdisc" class="col-md-2 col-form-label">شرح‌حال</label>
         <div class="col-md-10">
             <textarea rows="7" id="staticbio" readonly class="form-control"
-                      placeholder="شرح حال مددکار در این‌جا وارد می‌شود"></textarea>
+                      placeholder="شرح حال مددکار در این‌جا وارد می‌شود">{{ madadkar.bio }}</textarea>
         </div>
     </div>
+
 
 {% endblock %}
