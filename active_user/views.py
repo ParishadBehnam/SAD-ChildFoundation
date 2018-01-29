@@ -118,13 +118,14 @@ def edit_madadjoo(request):
 
                 new_req = requirements(description=description, type=type, cash=cash, urgent=urgent,
                                        confirmed=confirmed, madadjoo_id=user.id)
+                new_req.save()
                 if urgent:
                     new_letter = urgent_need_admin_letter(madadjoo=user, madadkar=user_madadkar, need=new_req)
                     new_letter.save()
                     warning_message = True
                     new_req.urgent = False
+                    new_req.save()
 
-                new_req.save()
             index += 1
 
         target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
@@ -696,6 +697,7 @@ def confirm_madadjoo_admin(request):
                   {'add_madadjoo_letters': add_madadjoo_letters, 'urgent_need_letters': urgent_need_letters,
                    'success_message': "مددجوی انتخابی تایید شد."})
 
+
 @admin_login_required
 def confirm_need_admin(request):
     target_letter = models.urgent_need_admin_letter.objects.get(id=request.GET.get('letter', ''))
@@ -709,7 +711,6 @@ def confirm_need_admin(request):
                    'success_message': "نیاز فوری انتخابی تایید شد."})
 
 
-
 @admin_login_required
 def letter_madadkar_add_madadjoo(request):
     target_letter = models.add_madadjoo_admin_letter.objects.get(id=request.GET.get('letter', ''))
@@ -717,7 +718,8 @@ def letter_madadkar_add_madadjoo(request):
     urgent_need_letters = urgent_need_admin_letter.objects.all()
 
     return render(request, 'admin/letter_content_confirm.html',
-                  {'letter': target_letter, 'add_madadjoo_letters': add_madadjoo_letters, 'urgent_need_letters': urgent_need_letters})
+                  {'letter': target_letter, 'add_madadjoo_letters': add_madadjoo_letters,
+                   'urgent_need_letters': urgent_need_letters})
 
 
 @admin_login_required
@@ -726,7 +728,8 @@ def urgent_need_letters(request):
     add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
     urgent_need_letters = urgent_need_admin_letter.objects.all()
     return render(request, 'admin/letter_content_urgent.html',
-                  {'letter': target_letter, 'add_madadjoo_letters': add_madadjoo_letters, 'urgent_need_letters': urgent_need_letters})
+                  {'letter': target_letter, 'add_madadjoo_letters': add_madadjoo_letters,
+                   'urgent_need_letters': urgent_need_letters})
 
 
 @admin_login_required
@@ -807,8 +810,6 @@ def add_a_madadjoo_madadkar(request):
 
         id_madadkar = models.active_user.objects.get(username=request.user).id
         corr_madadkar = models.madadkar.objects.get(active_user_ptr_id=id_madadkar)
-        cash = True if request.POST.get('cash') == 'cash' else False
-        urgent = True if request.POST.get('urgent') == 'urgent' else False
 
         new_madadjoo = models.madadjoo(username=username, first_name=first_name,
                                        last_name=last_name, id_number=id_number, phone_number=phone_number,
@@ -818,6 +819,7 @@ def add_a_madadjoo_madadkar(request):
                                        confirmed=False,
                                        )
         new_madadjoo.set_password(request.POST.get("password"))
+        warning_message = False
         try:
             new_madadjoo.save()
             letter = add_madadjoo_admin_letter(madadjoo=new_madadjoo, madadkar=corr_madadkar,
@@ -835,15 +837,30 @@ def add_a_madadjoo_madadkar(request):
                     new_req = requirements(description=description, type=type, cash=cash, urgent=urgent,
                                            confirmed=confirmed, madadjoo_id=new_madadjoo.id)
                     new_req.save()
+
+                    if urgent:
+                        warning_message = True
+                        new_urgent = urgent_need_admin_letter(madadkar=corr_madadkar, madadjoo=new_madadjoo,
+                                                              need=new_req)
+                        new_urgent.save()
+                        new_req.urgent = False
+                        new_req.save()
+
                 index += 1
 
         except IntegrityError:
             return render_to_response("madadkar/add_a_madadjoo.html",
                                       {"error_message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
         # except ValueError:
-        #     return render_to_response("madadkar/add_a_madadjoo.html", {"error_message": "لطفا موارد الزامی را تکمیل کنید"})
+        #     return render_to_response("madadkar/add_a_madadjoo.html",
+        #                               {"error_message": "لطفا موارد الزامی را تکمیل کنید"})
 
-        # return HttpResponseRedirect(reverse("madadkar_panel"))
+        if warning_message:
+            w = 'نیاز‌/نیاز‌های فوری ثبت شده بعد از تایید مدیر نهایی خواهند شد'
+            return render(request, 'madadkar/add_a_madadjoo.html',
+                          {'success_message': 'مددجوی جدید برای تایید به مدیر سامانه ارسال گردید.',
+                           'warning_message': w})
+
         return render(request, 'madadkar/add_a_madadjoo.html',
                       {'success_message': 'مددجوی جدید برای تایید به مدیر سامانه ارسال گردید.'})
 
