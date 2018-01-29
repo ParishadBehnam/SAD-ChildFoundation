@@ -22,7 +22,6 @@ class active_user(AbstractUser):
     def save(self, *args, **kwargs):
         return super(active_user, self).save(*args, **kwargs)
 
-
     class Meta:
         verbose_name_plural = _("کاربران فعال")
         verbose_name = _("کاربر فعال")
@@ -55,10 +54,12 @@ class active_user(AbstractUser):
         except:
             return False
 
+
 class admin_user(active_user):
     class Meta:
         verbose_name_plural = _("مدیران")
         verbose_name = _("مدیر")
+
 
 class madadkar(active_user):
     bio = models.TextField(null=True, verbose_name="شرح حال")
@@ -110,7 +111,8 @@ class madadjoo_madadkar_letter(models.Model):
 
 class requirements(models.Model):
     description = models.TextField()
-    type = models.CharField(choices=(('mo','monthly'), ('ann','annual'), ('inst','instantly')), null=True, max_length=60)
+    type = models.CharField(choices=(('mo', 'monthly'), ('ann', 'annual'), ('inst', 'instantly')), null=True,
+                            max_length=60)
     confirmed = models.BooleanField(default=True)
     urgent = models.BooleanField(default=False)
     cash = models.BooleanField(default=True)
@@ -139,7 +141,7 @@ class hamyar_madadjoo_payment(models.Model):
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
     amount = models.IntegerField(null=False)
-    type = models.CharField(choices=(('mo','monthly'), ('ann','annual'), ('inst','instantly')), max_length=60)
+    type = models.CharField(choices=(('mo', 'monthly'), ('ann', 'annual'), ('inst', 'instantly')), max_length=60)
     date = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -156,7 +158,7 @@ class hamyar_madadjoo_non_cash(models.Model):
         unique_together = (("hamyar", "date", "madadjoo"),)
 
 
-class hamyar_madadjoo_meeting(models.Model): #should process this table when madadkar wants to see her letters
+class hamyar_madadjoo_meeting(models.Model):  # should process this table when madadkar wants to see her letters
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now=True)
@@ -176,10 +178,15 @@ class madadjoo_hamyar_letter(models.Model):
     class Meta:
         unique_together = (("hamyar", "date", "madadjoo"),)
 
+
 class add_madadjoo_admin_letter(models.Model):
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
     madadkar = models.ForeignKey(madadkar, on_delete=models.CASCADE)
     text = models.TextField(null=True)
     date = models.DateTimeField(auto_now=True)
 
-
+class urgent_need_admin_letter(models.Model):
+    madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
+    madadkar = models.ForeignKey(madadkar, on_delete=models.CASCADE)
+    need = models.ForeignKey(requirements, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now=True)

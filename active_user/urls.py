@@ -62,4 +62,6 @@ urlpatterns = [
     url(r'^madadjoo_panel', views.madadjoo_panel, name='madadjoo_panel'),
     url(r'^admin_panel', views.admin_panel, name='admin_panel'),
     url(r'^confirm_madadjoo_admin', views.confirm_madadjoo_admin, name='confirm_madadjoo_admin'),
+    url(r'^urgent_need_letters', views.urgent_need_letters, name='urgent_need_letters'),
+    url(r'^confirm_need_admin', views.confirm_need_admin, name='confirm_need_admin'),
 ]

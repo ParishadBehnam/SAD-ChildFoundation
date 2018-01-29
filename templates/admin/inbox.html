@@ -9,10 +9,13 @@
         <a href= "{% url "letter_madadkar_add_madadjoo" %}?letter={{ letter.id }}" class="bg-light list-group-item list-group-item-action">ثبت مددجوی {{ letter.madadjoo.first_name }} {{ letter.madadjoo.last_name }}
             <span class="emergency-need badge badge-info">ثبت مددجوی جدید</span></a>
     {% endfor %}
-    <a href="#" class="bg-light list-group-item list-group-item-action">
-        عنوان نامه
+
+    {% for letter in urgent_need_letters %}
+           <a href= "{% url "urgent_need_letters" %}?letter={{ letter.id }}" class="bg-light list-group-item list-group-item-action">نیاز فوری مددجو:  {{ letter.madadjoo.first_name }} {{ letter.madadjoo.last_name }}
+
         <span class="emergency-need badge badge-danger">فوری کردن نیاز</span>
     </a>
+    {% endfor %}
 
 {% endblock %}
 
