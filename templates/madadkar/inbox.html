@@ -35,6 +35,14 @@
                         </a>
                     {% endfor %}
 
+                    {% for letter in warnings %}
+                        <a href="{% url "warning_content_madadkar" %}?letter={{ letter.id }}"
+                           class="bg-light list-group-item list-group-item-action">
+                            اخطار از {{ letter.admin_user.first_name }} {{ letter.admin_user.last_name }}
+                            <span class="emergency-need badge badge-danger">اخطار</span></a>
+                        </a>
+                    {% endfor %}
+
 
                 {% endblock %}
             </div>

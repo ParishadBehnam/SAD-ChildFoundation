@@ -190,3 +190,8 @@ class urgent_need_admin_letter(models.Model):
     madadkar = models.ForeignKey(madadkar, on_delete=models.CASCADE)
     need = models.ForeignKey(requirements, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now=True)
+
+class warning_admin_letter(models.Model):
+    admin_user = models.ForeignKey(admin_user, on_delete=models.CASCADE)
+    madadkar = models.ForeignKey(madadkar, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now=True)
