@@ -3,106 +3,119 @@
     <a class="nav-link" href="madadjoo_panel">پنل مدیریت مددجو</a>
 {% endblock %}
 {% block content %}
-    <h4><span aria-hidden="true"
-              style="margin-left:1%;"></span>وجوه دریافت شده</h4>
-    <hr>
-    <div class="row bg-light">
-        <div class="col-md-4 rounded " style="height: 100%;">
-            <p class="list-group-item bg-light" style="border-color: white">نام همیار</p>
-        </div>
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#cash">
+                        <h4><span aria-hidden="true"
+                                  style="margin-left:1%;"></span>وجوه دریافت‌شده</h4>
+                    </a>
+                </h4>
+            </div>
+            <div id="cash" class="panel-collapse collapse in fade">
+                <hr>
+                <div class="panel-body">
+                    <div class="row bg-light">
 
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item bg-light" style="border-color: white">وجه دریافتی</p>
-        </div>
+                        <div class="col-md-3 rounded " style="height: 100%;">
+                            <p class="list-group-item bg-light" style="border-color: white">نام همیار</p>
+                        </div>
 
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item bg-light" style="border-color: white">تاریخ</p>
+                        <div class="col-md-3 rounded" style="height: 100%;">
+                            <p class="list-group-item bg-light" style="border-color: white">از تاریخِ</p>
+                        </div>
+
+                        <div class="col-md-3 rounded" style="height: 100%;">
+                            <p class="list-group-item bg-light" style="border-color: white">وجه دریافتی</p>
+                        </div>
+
+                        <div class="col-md-3 rounded" style="height: 100%;">
+                            <p class="list-group-item bg-light" style="border-color: white">نوع پرداخت</p>
+                        </div>
+                    </div>
+
+                    {% for help in cash %}
+                        <div class="row">
+                            <div class="col-md-3 rounded" style="height: 100%;">
+                                <p class="list-group-item"
+                                   style="border-color: white"><a href="{% url "show_a_hamyar_madadjoo" %}?username={{ help.hamyar.username }}">{{ help.hamyar.first_name }} {{ help.hamyar.last_name }}</a></p>
+                            </div>
+
+                            <div class="col-md-3 rounded" style="height: 100%;">
+                                <p class="list-group-item" style="border-color: white">{{ help.date.year }}/{{ help.date.month }}/{{ help.date.day }} - {{ help.date.hour }}:{{ help.date.minute }}:{{ help.date.second }}</p>
+                            </div>
+
+                            <div class="col-md-3 rounded" style="height: 100%;">
+                                <p class="list-group-item" style="border-color: white">{{ help.amount }} تومان</p>
+                            </div>
+
+                            <div class="col-md-3 rounded" style="height: 100%;">
+                                <p class="list-group-item" style="border-color: white">
+                                    {% if help.type == 'ann' %}
+                                        سالانه
+                                    {% elif help.type == 'mo' %}
+                                        ماهانه
+                                    {% else %}
+                                        موردی
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#non_cash">
+                        <h4><span aria-hidden="true"
+                                  style="margin-left:1%;"></span>کمک‌های غیرنقدی دریافت‌شده</h4></a>
+                </h4>
+            </div>
+            <div id="non_cash" class="panel-collapse collapse fade show">
+                <hr>
+                <div class="panel-body">
+                    <div id="non_cash" class="panel-collapse collapse in fade show">
+                        <div class="panel-body">
+                            <div class="row bg-light">
+
+                                <div class="col-md-3 rounded " style="height: 100%;">
+                                    <p class="list-group-item bg-light" style="border-color: white">نام همیار</p>
+                                </div>
+
+                                <div class="col-md-3 rounded" style="height: 100%;">
+                                    <p class="list-group-item bg-light" style="border-color: white">در تاریخِ</p>
+                                </div>
+
+                                <div class="col-md-6 rounded" style="height: 100%;">
+                                    <p class="list-group-item bg-light" style="border-color: white">عنوان کمک</p>
+                                </div>
+                            </div>
+
+                            {% for help in non_cash %}
+                                <div class="row">
+                                    <div class="col-md-3 rounded" style="height: 100%;">
+                                        <p class="list-group-item"
+                                           style="border-color: white"><a href="{% url "show_a_hamyar_madadjoo" %}?username={{ help.hamyar.username }}">{{ help.hamyar.first_name }} {{ help.hamyar.last_name }}</a></p>
+                                    </div>
+
+                                    <div class="col-md-3 rounded" style="height: 100%;">
+                                        <p class="list-group-item" style="border-color: white">{{ help.date.year }}/{{ help.date.month }}/{{ help.date.day }} - {{ help.date.hour }}:{{ help.date.minute }}:{{ help.date.second }}</p>
+                                    </div>
+
+                                    <div class="col-md-4 rounded" style="height: 100%;">
+                                        <p class="list-group-item" style="border-color: white">{{ help.text }}</p>
+                                    </div>
+
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item" style="border-color: white">همیار ۱</p>
-        </div>
-
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item" style="border-color: white">۱.۰۰۰.۰۰۰ ریال</p>
-        </div>
-
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item" style="border-color: white">۱۳۹۶/۴/۱۳</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item" style="border-color: white">همیار ۱</p>
-        </div>
-
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item" style="border-color: white">۱.۰۰۰.۰۰۰ ریال</p>
-        </div>
-
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item" style="border-color: white">۱۳۹۶/۴/۱۳</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item" style="border-color: white">همیار ۱</p>
-        </div>
-
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item" style="border-color: white">۱.۰۰۰.۰۰۰ ریال</p>
-        </div>
-
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item" style="border-color: white">۱۳۹۶/۴/۱۳</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item" style="border-color: white">همیار ۱</p>
-        </div>
-
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item" style="border-color: white">۱.۰۰۰.۰۰۰ ریال</p>
-        </div>
-
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item" style="border-color: white">۱۳۹۶/۴/۱۳</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item" style="border-color: white">همیار ۱</p>
-        </div>
-
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item" style="border-color: white">۱.۰۰۰.۰۰۰ ریال</p>
-        </div>
-
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item" style="border-color: white">۱۳۹۶/۴/۱۳</p>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item" style="border-color: white">همیار ۱</p>
-        </div>
-
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item" style="border-color: white">۱.۰۰۰.۰۰۰ ریال</p>
-        </div>
-
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item" style="border-color: white">۱۳۹۶/۴/۱۳</p>
-        </div>
-    </div>
-
 {% endblock %}

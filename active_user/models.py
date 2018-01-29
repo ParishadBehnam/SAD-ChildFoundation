@@ -149,7 +149,7 @@ class hamyar_madadjoo_payment(models.Model):
 class hamyar_madadjoo_non_cash(models.Model):
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
-    date = models.DateField(auto_now=True)
+    date = models.DateTimeField(auto_now=True)
     text = models.TextField()
 
     class Meta:

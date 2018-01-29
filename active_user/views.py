@@ -408,7 +408,20 @@ def edit_hamyar_information(request):
 
 @hamyar_login_required
 def payment_reports(request):
-    return render(request, 'hamyar/payment_reports.html')
+    deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
+    cash = hamyar_madadjoo_payment.objects.filter(hamyar_id=request.user.id).exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    non_cash = hamyar_madadjoo_non_cash.objects.filter(hamyar_id=request.user.id).exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    system = hamyar_system_payment.objects.filter(hamyar_id=request.user.id)
+
+    cash_for_deleteds = hamyar_madadjoo_payment.objects.filter(hamyar_id=request.user.id).filter(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    non_cash_for_deleteds = hamyar_madadjoo_non_cash.objects.filter(hamyar_id=request.user.id).filter(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    deleteds = madadkar_remove_madadjoo.objects.filter(madadjoo__sponsership__hamyar_id=request.user.id)
+    # print(deleteds)
+    return render(request, 'hamyar/payment_reports.html', {'cash': cash, 'non_cash': non_cash,
+                                                           'system': system,
+                                                           'cash_for_deleteds': cash_for_deleteds,
+                                                           'non_cash_for_deleteds': non_cash_for_deleteds,
+                                                           'deleted_madadjoos': deleteds})
 
 
 @hamyar_login_required
@@ -465,7 +478,10 @@ def show_a_hamyar_madadjoo(request):
 
 @madadjoo_login_required
 def payment_reports_madadjoo(request):
-    return render(request, 'madadjoo/payment_reports.html')
+    cash = hamyar_madadjoo_payment.objects.filter(madadjoo_id=request.user.id)
+    non_cash = hamyar_madadjoo_non_cash.objects.filter(madadjoo_id=request.user.id)
+    return render(request, 'madadjoo/payment_reports.html', {'cash': cash,
+                                                             'non_cash': non_cash})
 
 
 @madadjoo_login_required

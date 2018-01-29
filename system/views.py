@@ -69,11 +69,16 @@ def sign_in(request):
 
             try:
                 final_user = table_type[int(type) - 1].objects.get(username=target_username)
+                if type == '2':
+                    f = models.madadkar_remove_madadjoo.objects.filter(madadjoo_id=final_user.id)
+                    if len(f) == 0:
+                        login(request, user)
+                        request.session['type'] = user_type[int(type) - 1]
+                        return HttpResponseRedirect(reverse(user_panel[int(type) - 1])+'?success=1')
+                    else:
+                        return render(request, 'login.html', {'form': form, 'error_message': 'این مددجو از سامانه خارج شده‌است.'})
                 login(request, user)
                 request.session['type'] = user_type[int(type) - 1]
-                # s = target_username.first_name + ' ' + target_username.last_name + ' خوش آمدید :)'
-                # request.session['success_message'] = s
-
                 return HttpResponseRedirect(reverse(user_panel[int(type) - 1])+'?success=1')
             except table_type[int(type) - 1].DoesNotExist:
                 s = 'متاسفانه ورود شما موفقیت‌آمیز نبود. دوباره تلاش کنید.'
