@@ -48,10 +48,12 @@
                                 {% endblock %}
                             </div>
                             <div class="card-footer bg-transparent">
-                                <button type="button" class="btn btn-outline-success btn-lg btn-block">
-                                    <a href="{% url "support_a_madadjoo" %}?username={{ madadjoo.username }}">تکفل
-                                        کن</a>
-                                </button>
+                                <a href="{% url "support_a_madadjoo" %}?username={{ madadjoo.username }}">
+                                    <button type="button" class="btn btn-outline-success btn-lg btn-block">
+                                        تکفل
+                                        کن
+                                    </button>
+                                </a>
                             </div>
                         </div>
                     </div>

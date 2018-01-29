@@ -1,0 +1,28 @@
+{% extends "hamyar/base_registered.html" %}
+{% block content %}
+    <h4><span class="oi oi-envelope-closed" aria-hidden="true"
+              style="margin-left:1%;"></span>نامه‌های دریافتی</h4>
+    <hr>
+    <div class="row" style="height: 100%">
+        <div class="col-sm-1 col-md-3 col-lg-4 rounded" style="height: 100%;">
+            <div class="list-group">
+                {% block list %}
+                    {% if letters|length > 0 %}
+                        {% for letter in letters %}
+                            <a href="{% url "letter_content_madadjoo" %}?letter={{ letter.id }}"
+                               class="bg-light list-group-item list-group-item-action">درخواست ملاقات</a>
+                            {#                        <a href="{% url "letter_content_hamyar" %}?letter={{ 2 }}"#}
+                            {#                           class="bg-light list-group-item list-group-item-action">{</a>#}
+                        {% endfor %}
+                    {% else %}
+                        <p>هیچ پیامی وجود ندارد.</p>
+
+                    {% endif %}
+                {% endblock %}
+            </div>
+        </div>
+
+        {% block letter_content %}
+        {% endblock %}
+    </div>
+{% endblock %}

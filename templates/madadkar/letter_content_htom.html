@@ -4,19 +4,18 @@
     <div class="col-sm-11 col-md-9 col-lg-8 rounded" style="height: 100%; background-color: #f4f4f4">
         <div class="row" style="margin-top: 2%;">
             <div class="col-md-6 mr-auto">
-                <h4>{{ letter.title }}</h4>
+                <h4>درخواست ملاقات</h4>
             </div>
             <div class="col-md-6 mr-auto">
-                <a href="{% url "confirm_madadjoo_hamyar_letter" %}?letter={{ letter.id }}"
+                <a href="{% url "confirm_hamyar_madadjoo_letter" %}?letter={{ letter.id }}"
                    class="btn btn-outline-success">
-تایید نامه
+تایید ملاقات
                 </a>
             </div>
         </div>
 
         <hr>
-        <p>فرستنده: {{ sender.first_name }} {{ sender.last_name }} </p>
-        <p>گیرنده: {{ receiver.first_name }} {{ receiver.last_name }}</p>
-        <p>{{ letter.text }}</p>
+        <p>همیار درخواست‌دهنده: {{ sender.first_name }} {{ sender.last_name }} </p>
+        <p>مددجوی مقصد:  {{ receiver.first_name }} {{ receiver.last_name }}</p>
     </div>
 {% endblock %}

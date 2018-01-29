@@ -162,6 +162,7 @@ class hamyar_madadjoo_meeting(models.Model):  # should process this table when m
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now=True)
+    confirmed = models.BooleanField(default=False)
 
     class Meta:
         unique_together = (("hamyar", "date", "madadjoo"),)

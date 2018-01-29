@@ -9,9 +9,9 @@
     </a>
 {#    <button type="button" class="btn btn-danger">حذف</button>#}
     {% if user.confirmed %}
-    <button type="button" class="btn btn-outline-success">تایید شده</button>
+    <button type="button" disabled class="btn btn-outline-success">تایید شده</button>
     {% else %}
-    <button type="button" class="btn btn-outline-danger">تایید نشده</button>
+    <button type="button" disabled class="btn btn-outline-danger">تایید نشده</button>
     {% endif %}
 
 {% endblock %}

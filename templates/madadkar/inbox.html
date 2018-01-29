@@ -7,10 +7,11 @@
         <div class="col-sm-1 col-md-3 col-lg-4 rounded" style="height: 100%;">
             <div class="list-group">
                 {% block list %}
-                    {% for letter in madadjoo_madadkar_letters %}
-                        <a href="{% url "letter_madadjoo_content_madadkar" %}?letter={{ letter.id }}"
-                           class="bg-light list-group-item list-group-item-action">
-                            {{ letter.title }}
+{#                    {% if madadjoo_madadkar_letters|length|add:madadjoo_hamyar_letters|length|add:hamyar_madadjoo_letters|length > 0 %}#}
+                        {% for letter in madadjoo_madadkar_letters %}
+                            <a href="{% url "letter_madadjoo_content_madadkar" %}?letter={{ letter.id }}"
+                               class="bg-light list-group-item list-group-item-action">
+                                {{ letter.title }}
                             <span class="emergency-need badge badge-primary">
                                 {% if letter.thank %}
                                     تشکر
@@ -18,23 +19,25 @@
                                     درخواست
                                 {% endif %}
                             </span></a>
-                        </a>
-                    {% endfor %}
-                    {% for letter in madadjoo_hamyar_letters %}
-                        <a href="{% url "letter_mtoh_content_madadkar" %}?letter={{ letter.id }}"
-                           class="bg-light list-group-item list-group-item-action">
-                            {{ letter.title }}
-                            <span class="emergency-need badge badge-info">مددجو به همیار</span></a>
-                        </a>
-                    {% endfor %}
-                    {% for letter in hamyar_madadjoo_letters %}
-                        <a href="{% url "letter_htom_content_madadkar" %}?letter={{ letter.id }}"
-                           class="bg-light list-group-item list-group-item-action">
-                            درخواست ملاقات
-                            <span class="emergency-need badge badge-warning">همیار به مددجو</span></a>
-                        </a>
-                    {% endfor %}
-
+                            </a>
+                        {% endfor %}
+                        {% for letter in madadjoo_hamyar_letters %}
+                            <a href="{% url "letter_mtoh_content_madadkar" %}?letter={{ letter.id }}"
+                               class="bg-light list-group-item list-group-item-action">
+                                {{ letter.title }}
+                                <span class="emergency-need badge badge-info">مددجو به همیار</span></a>
+                            </a>
+                        {% endfor %}
+                        {% for letter in hamyar_madadjoo_letters %}
+                            <a href="{% url "letter_htom_content_madadkar" %}?letter={{ letter.id }}"
+                               class="bg-light list-group-item list-group-item-action">
+                                درخواست ملاقات
+                                <span class="emergency-need badge badge-warning">همیار به مددجو</span></a>
+                            </a>
+                        {% endfor %}
+{#                    {% else %}#}
+{#                        <p>هیچ پیغامی وجود ندارد.</p>#}
+{#                    {% endif %}#}
 
                 {% endblock %}
             </div>

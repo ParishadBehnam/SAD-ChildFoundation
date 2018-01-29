@@ -1,0 +1,22 @@
+{% extends "madadjoo/inbox.html" %}
+
+{% block letter_content %}
+    <div class="col-sm-11 col-md-9 col-lg-8 rounded" style="height: 100%; background-color: #f4f4f4">
+        <div class="row" style="margin-top: 2%;">
+            <div class="col-md-6 mr-auto">
+                <h4>
+                    درخواست ملاقات
+                </h4>
+            </div>
+            <div class="col-md-6 mr-auto">
+            </div>
+        </div>
+
+        <hr>
+        <p>{{ receiver.first_name }} {{ receiver.last_name }}
+        عزیز،
+            {{ sender.first_name }} {{ sender.last_name }}
+            درخواست ملاقات با شما را دارد.
+        </p>
+    </div>
+{% endblock %}
