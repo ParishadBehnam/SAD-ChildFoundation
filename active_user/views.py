@@ -415,13 +415,10 @@ def payment_reports(request):
 
     cash_for_deleteds = hamyar_madadjoo_payment.objects.filter(hamyar_id=request.user.id).filter(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     non_cash_for_deleteds = hamyar_madadjoo_non_cash.objects.filter(hamyar_id=request.user.id).filter(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
-    deleteds = madadkar_remove_madadjoo.objects.filter(madadjoo__sponsership__hamyar_id=request.user.id)
-    # print(deleteds)
     return render(request, 'hamyar/payment_reports.html', {'cash': cash, 'non_cash': non_cash,
                                                            'system': system,
                                                            'cash_for_deleteds': cash_for_deleteds,
-                                                           'non_cash_for_deleteds': non_cash_for_deleteds,
-                                                           'deleted_madadjoos': deleteds})
+                                                           'non_cash_for_deleteds': non_cash_for_deleteds})
 
 
 @hamyar_login_required
