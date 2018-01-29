@@ -11,31 +11,45 @@
 {% endblock %}
 
 {% block buttons %}
-    <a href="edit_a_hamyar_admin"><button type="button" class="btn btn-outline-warning">ویرایش</button></a>
+    <a href="{% url "edit_a_hamyar_admin" %}?username={{ hamyar.username }}">
+        <button type="button" class="btn btn-outline-warning">ویرایش</button>
+    </a>
+{% endblock %}
+{% block profile_pic %}
+    {% if hamyar.profile_pic %}
+        <img src="{{ hamyar.profile_pic.url|default:"https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276" }}"
+             alt="نام مددجو" class="img-thumbnail">
+
+    {% else %}
+        <img src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276"
+             alt="نام مددجو" class="img-thumbnail">
+    {% endif %}
 {% endblock %}
 
 {% block below_image %}
     {% block upload_pic %}
+
     {% endblock %}
     <div class="list-group">
         <a href="#" class="list-group-item list-group-item-action disabled">
-نام مددجویان تحت تکلف
+            نام مددجویان تحت تکفل
         </a>
-        <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۱</a>
-        <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۲</a>
-        <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۳</a>
-        <a href="show_a_madadjoo_admin" class="list-group-item list-group-item-action">مددجوی ۴</a>
+        {% for sponser in hamyar.sponsership_set.all %}
+            <a href="{% url "show_a_madadjoo_admin" %}?username={{ sponser.madadjoo.username }}"
+               class="list-group-item list-group-item-action">{{ sponser.madadjoo.first_name }} {{ sponser.madadjoo.last_name }}</a>
+        {% endfor %}
     </div>
 
 {% endblock %}
 
 {% block name %}
-    <input type="text" id="first_name" name="first_name" readonly class="form-control-plaintext form-control" placeholder="نام همیار">
+    <input type="text" id="first_name" name="first_name" readonly class="form-control-plaintext form-control"
+           placeholder="نام همیار" value="{{ hamyar.first_name }}">
 {% endblock %}
 
 {% block l-name %}
     <input type="text" readonly class="form-control-plaintext form-control" id="last_name" name="last_name"
-           placeholder="نام خانوادگی همیار">
+           placeholder="نام خانوادگی همیار" value="{{ hamyar.last_name }}">
 
 {% endblock %}
 
@@ -45,22 +59,24 @@
         <label for="id_number" class="col-md-2 col-form-label">کد ملی همیار</label>
         <div class="col-md-10">
             <input type="text" id="id_number" name="id_number" readonly class="form-control-plaintext form-control"
-                   placeholder="کد ملی همیار">
+                   placeholder="کد ملی همیار" value="{{ hamyar.id_number }}">
         </div>
     </div>
 
     <div class="form-group row">
         <label for="phone_number" class="col-md-2 col-form-label">شماره تلفن همیار</label>
         <div class="col-md-10">
-            <input type="text" id="phone_number" name="phone_number" readonly class="form-control-plaintext form-control"
-                   value="۰۲۱-xxxxxxxx">
+            <input type="text" id="phone_number" name="phone_number" readonly
+                   class="form-control-plaintext form-control"
+                   placeholder="۰۲۱xxxxxxxx" value="{{ hamyar.phone_number }}">
         </div>
     </div>
     <div class="form-group row">
         <label for="phone_number" class="col-md-2 col-form-label">آدرس همیار</label>
         <div class="col-md-10">
-            <textarea rows="7" id="phone_number" name="phone_number" readonly class="form-control-plaintext form-control"
-                      placeholder="آدرس همیار در این‌جا وارد می‌شود"></textarea>
+            <textarea rows="7" id="phone_number" name="phone_number" readonly
+                      class="form-control-plaintext form-control"
+                      placeholder="آدرس همیار در این‌جا وارد می‌شود">{{ hamyar.address }}</textarea>
         </div>
     </div>
 

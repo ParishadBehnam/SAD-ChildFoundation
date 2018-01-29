@@ -7,8 +7,19 @@
 {% block head %}
     <div class="col-4 ml-auto"><h4>مشاهده‌ی همیاران</h4></div>
     <div class="col-1 ml-auto"><a href="add_a_hamyar_admin"><button type="button" class="btn btn-outline-warning">افزودن همیار</button></a></div>
+    <br>
+    <br>
+    <br>
 {% endblock %}
 
 {% block detail %}
-    <a href="show_a_hamyar_admin" class="btn btn-secondary">نمایش مشخصات همیار</a>
+    <a href="{% url "show_a_hamyar_admin" %}?username={{ hamyar.username }}" class="btn btn-secondary">نمایش مشخصات همیار</a>
+{% endblock %}
+
+{% block right-side-navbar %}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="home_admin.html">خانه <span class="sr-only">(current)</span></a>
+        </li>
+    </ul>
 {% endblock %}

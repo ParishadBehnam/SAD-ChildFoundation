@@ -6,12 +6,12 @@
 
 {% block name %}
     <input type="text" name="first_name" class="form-control"
-           placeholder="نام همیار">
+           placeholder="نام همیار" value="{{ hamyar.first_name }}">
 {% endblock %}
 
 {% block l-name %}
     <input type="text" name="last_name" class="form-control"
-           placeholder="نام خانوادگی همیار">
+           placeholder="نام خانوادگی همیار" value="{{ hamyar.last_name }}">
 {% endblock %}
 {% block below_image %}
     {% block upload_pic %}
@@ -27,13 +27,13 @@
         <label for="id_number" class="col-md-2 col-form-label">کد ملی همیار</label>
         <div class="col-md-4">
             <input type="number" id="id_number" name="id_number" class="form-control form-control"
-                   placeholder="کد ملی همیار" required="true">
+                   placeholder="کد ملی همیار" required="true" value="{{ hamyar.id_number }}">
         </div>
 
         <label for="email" class="col-md-2 col-form-label">ایمیل همیار</label>
         <div class="col-md-4">
             <input type="email" id="email" name="email" class="form-control form-control"
-                   placeholder="ایمیل همیار" required="true">
+                   placeholder="ایمیل همیار" required="true" value="{{ hamyar.email }}">
         </div>
     </div>
 
@@ -41,14 +41,14 @@
         <label for="phone_number" class="col-md-2 col-form-label">شماره تلفن همیار</label>
         <div class="col-md-10">
             <input type="number" name="phone_number" id="phone_number" class="form-control"
-                   placeholder="021xxxxxxxx">
+                   placeholder="021xxxxxxxx" value="{{ hamyar.phone_number }}">
         </div>
     </div>
     <div class="form-group row">
         <label for="address" class="col-md-2 col-form-label">آدرس همیار</label>
         <div class="col-md-10">
             <textarea rows="7" name="address" id="address" class="form-control"
-                      placeholder="آدرس همیار در این‌جا وارد می‌شود"></textarea>
+                      placeholder="آدرس همیار در این‌جا وارد می‌شود">{{ hamyar.address }}</textarea>
         </div>
     </div>
 
@@ -59,8 +59,17 @@
 {% endblock %}
 
 {% block submit %}
-    <button type="button" class="btn btn-success">ثبت تغییرات</button>
+    <input type="submit" class="btn btn-success" value="ثبت تغییرات">
 {% endblock %}
+
+{% block right-side-navbar %}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="home_admin">خانه <span class="sr-only">(current)</span></a>
+        </li>
+    </ul>
+{% endblock %}
+
 
 
 
