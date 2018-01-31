@@ -1,4 +1,5 @@
 {% extends "hamyar/payment_reports.html" %}
+{% load tz %}
 
 {% block panel %}
     <a class="nav-link" href="admin_panel">پنل مدیریت مدیر سامانه</a>
@@ -45,8 +46,7 @@
 
             <div class="col-md-3 rounded" style="height: 100%;">
                 <p class="list-group-item"
-                   style="border-color: white">{{ help.date.year }}/{{ help.date.month }}/{{ help.date.day }}
-                    - {{ help.date.hour }}:{{ help.date.minute }}:{{ help.date.second }}</p>
+                   style="border-color: white">{{ help.date }}</p>
             </div>
 
             <div class="col-md-3 rounded" style="height: 100%;">
@@ -104,8 +104,7 @@
 
             <div class="col-md-3 rounded" style="height: 100%;">
                 <p class="list-group-item"
-                   style="border-color: white">{{ help.date.year }}/{{ help.date.month }}/{{ help.date.day }}
-                    - {{ help.date.hour }}:{{ help.date.minute }}:{{ help.date.second }}</p>
+                   style="border-color: white">{{ help.date }}</p>
             </div>
 
             <div class="col-md-5 rounded" style="height: 100%;">
@@ -150,8 +149,7 @@
 
             <div class="col-md-3 rounded" style="height: 100%;">
                 <p class="list-group-item"
-                   style="border-color: white">{{ help.date.year }}/{{ help.date.month }}/{{ help.date.day }}
-                    - {{ help.date.hour }}:{{ help.date.minute }}:{{ help.date.second }}</p>
+                   style="border-color: white">{{ help.date }}</p>
             </div>
 
         </div>
@@ -203,15 +201,13 @@
 
             <div class="col-md-3 rounded" style="height: 100%;">
                 <p class="list-group-item"
-                   style="border-color: white">{{ help.date.year }}/{{ help.date.month }}/{{ help.date.day }}
-                    - {{ help.date.hour }}:{{ help.date.minute }}:{{ help.date.second }}</p>
+                   style="border-color: white">{{ help.date }}</p>
             </div>
 
             <div class="col-md-3 rounded" style="height: 100%;">
                 {% with m=help.madadjoo.madadkar_remove_madadjoo_set.all|first %}
                     <p class="list-group-item"
-                       style="border-color: white">{{ m.date.year }}/{{ m.date.month }}/{{ m.date.day }}
-                        - {{ m.date.hour }}:{{ m.date.minute }}:{{ m.date.second }}</p>
+                       style="border-color: white">{{ m.date }}</p>
                 {% endwith %}
             </div>
 
@@ -276,15 +272,13 @@
 
             <div class="col-md-3 rounded" style="height: 100%;">
                 <p class="list-group-item"
-                   style="border-color: white">{{ help.date.month }}/{{ help.date.month }}/{{ help.date.day }}
-                    - {{ help.date.hour }}:{{ help.date.minute }}:{{ help.date.second }}</p>
+                   style="border-color: white">{{ help.date }}</p>
             </div>
 
             <div class="col-md-3 rounded" style="height: 100%;">
                 {% with m=help.madadjoo.madadkar_remove_madadjoo_set.all|first %}
                     <p class="list-group-item"
-                       style="border-color: white">{{ m.date.year }}/{{ m.date.month }}/{{ m.date.day }}
-                        - {{ m.date.hour }}:{{ m.date.minute }}:{{ m.date.second }}</p>
+                       style="border-color: white">{{ m.date }}</p>
                 {% endwith %}
             </div>
 

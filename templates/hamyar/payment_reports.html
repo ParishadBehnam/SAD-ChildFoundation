@@ -50,7 +50,7 @@
 
                                 <div class="col-md-3 rounded" style="height: 100%;">
                                     <p class="list-group-item"
-                                       style="border-color: white">{{ help.date|timezone:"Asia/Tehran" }}</p>
+                                       style="border-color: white">{{ help.date }}</p>
                                 </div>
 
                                 <div class="col-md-3 rounded" style="height: 100%;">
@@ -115,7 +115,7 @@
 
                                 <div class="col-md-3 rounded" style="height: 100%;">
                                     <p class="list-group-item"
-                                       style="border-color: white">{{ help.date|timezone:"Asia/Tehran" }}</p>
+                                       style="border-color: white">{{ help.date }}</p>
                                 </div>
 
                                 <div class="col-md-6 rounded" style="height: 100%;">
@@ -166,7 +166,7 @@
 
                                 <div class="col-md-3 rounded" style="height: 100%;">
                                     <p class="list-group-item"
-                                       style="border-color: white">{{ help.date|timezone:"Asia/Tehran" }}</p>
+                                       style="border-color: white">{{ help.date }}</p>
                                 </div>
 
                             </div>
@@ -224,13 +224,13 @@
 
                                 <div class="col-md-3 rounded" style="height: 100%;">
                                     <p class="list-group-item"
-                                       style="border-color: white">{{ help.date|timezone:"Asia/Tehran" }}</p>
+                                       style="border-color: white">{{ help.date }}</p>
                                 </div>
 
                                 <div class="col-md-3 rounded" style="height: 100%;">
                                     {% with m=help.madadjoo.madadkar_remove_madadjoo_set.all|first %}
                                         <p class="list-group-item"
-                                           style="border-color: white">{{ m.date|timezone:"Asia/Tehran" }}</p>
+                                           style="border-color: white">{{ m.date }}</p>
                                     {% endwith %}
                                 </div>
 
@@ -302,13 +302,13 @@
 
                                     <div class="col-md-3 rounded" style="height: 100%;">
                                         <p class="list-group-item"
-                                           style="border-color: white">{{ help.date|timezone:"Asia/Tehran" }}</p>
+                                           style="border-color: white">{{ help.date }}</p>
                                     </div>
 
                                     <div class="col-md-3 rounded" style="height: 100%;">
                                         {% with m=help.madadjoo.madadkar_remove_madadjoo_set.all|first %}
                                             <p class="list-group-item"
-                                               style="border-color: white">{{ m.date|timezone:"Asia/Tehran" }}</p>
+                                               style="border-color: white">{{ m.date }}</p>
                                         {% endwith %}
                                     </div>
 
