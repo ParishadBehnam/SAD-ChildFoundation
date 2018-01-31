@@ -199,14 +199,20 @@ def substitute_madadjoo(request):
                                                  'success_message': 'مددجوی جدید با موفقیت تحت حمایت شما قرار گرفت.'})
 
 
+
 @hamyar_login_required
 def show_a_madadjoo_hamyar(request):
     target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
     needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
     hamyars = hamyar.objects.filter(sponsership__madadjoo_id=target_madadjoo.id)
+    true = sponsership.objects.filter(hamyar_id=request.user.id, madadjoo_id=target_madadjoo.active_user_ptr_id)
     if request.method == 'GET':
-        return render(request, 'hamyar/show_a_madadjoo.html',
+        if true:
+            return render(request, 'hamyar/show_a_madadjoo.html',
                       {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
+        return render(request, 'hamyar/show_a_stranger.html',
+                      {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
+
     else:
         target_hamyar = hamyar.objects.get(id=request.user.id)
         if 'help' in request.POST:
@@ -305,6 +311,17 @@ def send_letter_hamyar(request):
     meeting.save()
     return render(request, 'hamyar/show_a_madadjoo.html', {'user': target_madadjoo,
                                                            'success_message': 'درخواست ملاقات شما با موفقیت در سامانه ثبت گردید'})
+
+
+@hamyar_login_required
+def stop_support_hamyar(request):
+    models.sponsership.objects.get(hamyar_id=request.user.id, madadjoo__active_user_ptr_id=request.GET.get('madadjoo', '')).delete()
+    deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
+    d = show_madadjoo(request)
+    d['success_message'] = 'عدم حمایت از مددجو با موفقیت ثبت گردید.'
+    all_madadjoo = madadjoo.objects.filter(sponsership__hamyar_id=request.user.id, confirmed=True).exclude(
+        active_user_ptr_id__in=deleted_madadjoos)
+    return render(request, 'hamyar/show_madadjoo.html', {'madadjoos': all_madadjoo})
 
 
 def show_letters_madadkar(request):
