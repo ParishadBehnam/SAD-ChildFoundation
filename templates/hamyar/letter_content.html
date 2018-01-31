@@ -19,11 +19,15 @@
                        class="btn btn-outline-danger">
                         حذف نامه
                     </a>
-                {% elif True %}
-{#                {% elif not letter.substituted %}#}
+                    {#                {% elif True %}#}
+                {% elif not is_substituted %}
                     <a href="{% url "select_to_substitute_a_madadjoo_hamyar" %}?username={{ letter.madadjoo.username }}"
                        class="btn btn-outline-warning">
-                    جایگزین مددجو
+                        جایگزین مددجو
+                    </a>
+                {% elif is_substituted %}
+                    <a href='#' disabled="True" style="pointer-events: None" class="btn btn-outline-warning">
+                        جایگزین شده‌است
                     </a>
                 {% endif %}
             </div>

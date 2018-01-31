@@ -150,16 +150,6 @@ class hamyar_madadjoo_payment(models.Model):
         unique_together = (("madadjoo", "hamyar", "date"),)
 
 
-class substitute_a_madadjoo(models.Model):
-    remove = models.ForeignKey(madadkar_remove_madadjoo, on_delete=models.CASCADE)
-    substituted_madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
-    # hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        unique_together = (("remove", "substituted_madadjoo"),)
-
-
 class hamyar_madadjoo_non_cash(models.Model):
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
