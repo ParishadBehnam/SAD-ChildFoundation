@@ -1,0 +1,219 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-31 14:03+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: active_user/forms.py:23
+msgid "این نام کاربری قبلا انتخاب شده است."
+msgstr ""
+
+#: active_user/forms.py:26
+msgid "این کد ملی در سیستم ثبت شده است."
+msgstr ""
+
+#: active_user/models.py:28
+msgid "کاربران فعال"
+msgstr ""
+
+#: active_user/models.py:29
+msgid "کاربر فعال"
+msgstr ""
+
+#: active_user/models.py:62
+msgid "مدیران"
+msgstr ""
+
+#: active_user/models.py:63
+msgid "مدیر"
+msgstr ""
+
+#: active_user/models.py:70
+msgid "مددکاران"
+msgstr ""
+
+#: active_user/models.py:71
+msgid "مددکار"
+msgstr ""
+
+#: active_user/models.py:76
+msgid "همیاران"
+msgstr ""
+
+#: active_user/models.py:77
+msgid "همیار"
+msgstr ""
+
+#: active_user/models.py:90
+msgid "مددجویان"
+msgstr ""
+
+#: active_user/models.py:91
+msgid "مددجو"
+msgstr ""
+
+#: system/admin.py:15 system/admin.py:18
+msgid "بنیاد کودک"
+msgstr ""
+
+#: system/admin.py:21
+msgid "بنیاد کودک-پنل مدیریت"
+msgstr ""
+
+#: system/models.py:15
+msgid "اطلاعات کلان سامانه"
+msgstr ""
+
+#: system/models.py:16
+msgid "اطلاع کلان سامانه"
+msgstr ""
+
+#: templates/admin/temp/actions.html:4
+msgid "عمل انتخاب شده را اجرا کن"
+msgstr ""
+
+#: templates/admin/temp/actions.html:4
+msgid "برو"
+msgstr ""
+
+#: templates/admin/temp/actions.html:10
+msgid "برای انتخاب موارد از همه صفحات کلید کنید"
+msgstr ""
+
+#: templates/admin/temp/actions.html:10
+#, python-format
+msgid "Select all %(total_count)s %(module_name)s"
+msgstr ""
+
+#: templates/admin/temp/actions.html:12
+msgid "انتخاب‌های انجام شده را نادیده بگیر"
+msgstr ""
+
+#: templates/admin/temp/app_index.html:9 templates/admin/temp/base.html:56
+#: templates/admin/temp/change_form.html:18
+#: templates/admin/temp/change_list.html:31
+msgid "خانه"
+msgstr ""
+
+#: templates/admin/temp/base.html:30
+msgid "خوش‌ آمدید,"
+msgstr ""
+
+#: templates/admin/temp/base.html:35
+msgid "نمایش درگاه"
+msgstr ""
+
+#: templates/admin/temp/base.html:40
+msgid "مستند‌سازی‌ها"
+msgstr ""
+
+#: templates/admin/temp/base.html:44
+msgid "تغییر کلمه عبور"
+msgstr ""
+
+#: templates/admin/temp/base.html:46
+msgid "خروج"
+msgstr ""
+
+#: templates/admin/temp/base_site.html:3
+msgid "Django site admin"
+msgstr ""
+
+#: templates/admin/temp/base_site.html:20
+msgid "Django administration"
+msgstr ""
+
+#: templates/admin/temp/change_form.html:21
+#: templates/admin/temp/change_list.html:51
+#, python-format
+msgid "افزودن %(name)s"
+msgstr ""
+
+#: templates/admin/temp/change_form.html:35
+msgid "تاریخچه"
+msgstr ""
+
+#: templates/admin/temp/change_form.html:37
+msgid "در سایت نمایش بده"
+msgstr ""
+
+#: templates/admin/temp/change_form.html:49
+#: templates/admin/temp/change_list.html:60
+msgid "لطفا خطای زیر را تصحیح کنید"
+msgstr ""
+
+#: templates/admin/temp/change_form.html:49
+#: templates/admin/temp/change_list.html:60
+msgid "لطفا خطاهای زیر را تصحیح کنید"
+msgstr ""
+
+#: templates/admin/temp/change_list.html:71
+msgid "فیلتر"
+msgstr ""
+
+#: templates/admin/temp/index.html:20
+#, python-format
+msgid "Models in the %(name)s application"
+msgstr ""
+
+#: templates/admin/temp/index.html:31
+msgid "افزودن"
+msgstr ""
+
+#: templates/admin/temp/index.html:37
+msgid "تغییر دادن"
+msgstr ""
+
+#: templates/admin/temp/index.html:47
+msgid "شما دسترسی ایجاد تغییرات را ندارید."
+msgstr ""
+
+#: templates/admin/temp/index.html:55
+msgid "آخرین فعالیت‌ها"
+msgstr ""
+
+#: templates/admin/temp/index.html:56
+msgid "فعالیت‌های من"
+msgstr ""
+
+#: templates/admin/temp/index.html:60
+msgid "هیچ فعالیتی وجود ندارد"
+msgstr ""
+
+#: templates/admin/temp/index.html:74
+msgid "محتوای نامشخص"
+msgstr ""
+
+#: templates/admin/temp/submit_line.html:3
+msgid "ذخیره"
+msgstr ""
+
+#: templates/admin/temp/submit_line.html:6
+msgid "پاک کردن"
+msgstr ""
+
+#: templates/admin/temp/submit_line.html:8
+msgid "بعنوان داده جدید ذخیره کن"
+msgstr ""
+
+#: templates/admin/temp/submit_line.html:9
+msgid "ذخیره و اضافه کردن داده بعدی"
+msgstr ""
+
+#: templates/admin/temp/submit_line.html:10
+msgid "ذخیره کن و برگرد"
+msgstr ""
