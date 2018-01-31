@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from actstream import action
-from actstream.models import user_stream, target_stream
+from actstream.models import user_stream, target_stream, actor_stream
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponse
@@ -25,16 +25,14 @@ from active_user.decorators import madadjoo_login_required
 from active_user.models import madadjoo, hamyar, madadkar, sponsership, \
     madadjoo_madadkar_letter, madadjoo_hamyar_letter, hamyar_madadjoo_meeting, \
     hamyar_system_payment, hamyar_madadjoo_payment, requirements, hamyar_madadjoo_non_cash, add_madadjoo_admin_letter, \
-    madadkar_remove_madadjoo, urgent_need_admin_letter, admin_user, warning_admin_letter
+    madadkar_remove_madadjoo, urgent_need_admin_letter, admin_user, warning_admin_letter, active_user
 from system.models import information
 
 
 @madadkar_login_required
 def home_madadkar(request):
-    action.send(request.user, verb='madadkar login')
-    stream = user_stream(request.user, with_user_activity=True)
     system = information.objects.first()
-    return render(request, 'madadkar/home_madadkar.html', {'system': system, 'stream': stream})
+    return render(request, 'madadkar/home_madadkar.html', {'system': system})
 
 
 @hamyar_login_required
@@ -166,7 +164,7 @@ def show_a_madadjoo(request):
 @hamyar_login_required
 def support_a_madadjoo(request):
     target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
-    target_hamyar = request.user
+    target_hamyar = hamyar.objects.get(id=request.user.id)
     new_sponsership = sponsership(hamyar_id=target_hamyar.id, madadjoo_id=target_madadjoo.id)
     new_sponsership.save()
     deleted_mdadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
@@ -260,6 +258,8 @@ def send_letter(request):
                 h = hamyar.objects.get(id=h_id)
                 removed = madadkar_remove_madadjoo(text=text, madadjoo=target_madadjoo,
                                                    hamyar=h, madadkar=target_madadkar)
+                action.send(request.user, verb="مددجو را از سامانه حذف کرد", target=target_madadjoo)
+
                 removed.save()
             return HttpResponseRedirect(reverse('madadkar_panel') + '?success=3')
         else:
@@ -402,6 +402,7 @@ def confirm_hamyar_madadjoo_letter(request):
     letter.save()
     d = show_letters_madadkar(request)
     d['success_message'] = 'درخواست ملاقات با موفقیت تایید گردید.'
+    action(request.user, verb="درخواست ملاقات با مددجو را تایید کرد", action_object=letter.hamyar, target=letter.madadjoo)
     return render(request, 'madadkar/inbox.html', d)
 
 
@@ -679,7 +680,7 @@ def send_gratitude_letter(request):
 def show_madadjoo_information(request):
     active_user = models.active_user.objects.get(username=request.user)
     madadjoo = models.madadjoo.objects.get(active_user_ptr_id=active_user.id)
-    needs = models.requirements.objects.get(madadjoo_id=active_user.id)
+    needs = models.requirements.objects.filter(madadjoo_id=active_user.id)
     user = {'first_name': active_user.first_name,
             'last_name': active_user.last_name,
             'id_number': active_user.id_number,
@@ -690,11 +691,10 @@ def show_madadjoo_information(request):
             'successes': madadjoo.successes,
             'bio': madadjoo.bio,
             'edu_status': madadjoo.edu_status,
-            'profile_pic': madadjoo.profile_pic,
-            'need': {'description': needs.description, 'type': needs.type, 'urgent': needs.urgent, 'cash': needs.cash}
-            }
+            'profile_pic': madadjoo.profile_pic}
     hamyars = hamyar.objects.filter(sponsership__madadjoo_id=active_user.id)
-    return render(request, 'madadjoo/show_madadjoo_information.html', {'user': user, 'hamyars': hamyars})
+    return render(request, 'madadjoo/show_madadjoo_information.html',
+                  {'user': user, 'hamyars': hamyars, 'needs': needs})
 
 
 @admin_login_required
@@ -777,7 +777,7 @@ def edit_a_madadjoo_admin(request):
         needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
         try:
             user.save()
-            action.send(request.user, verb='ویرایش مشخصات مددجو توسط مدیر', target=target_madadjoo)
+            action.send(request.user, verb='به عنوان مدیر مشخصات مددجو را ویرایش کرد', target=target_madadjoo)
             s = 'اطلاعات مددجو با موفقیت ویرایش شد.'
             return render(request, 'admin/edit_madadjoo_full.html',
                           {'user': user, 'needs': needs, 'success_message': s})
@@ -816,7 +816,6 @@ def confirm_need_admin(request):
     target_letter.need.save()
     action.send(request.user, verb='ثبت نیاز فوری برای مددجو', target=target_letter.madadjoo)
     target_letter.delete()
-
 
     return render(request, 'admin/inbox.html',
                   {'add_madadjoo_letters': add_madadjoo_letters, 'urgent_need_letters': urgent_need_letters,
@@ -978,16 +977,16 @@ def add_a_madadjoo_madadkar(request):
         except IntegrityError:
             return render_to_response("madadkar/add_a_madadjoo.html",
                                       {"error_message": "این نام کاربری یا کد ملی قبلا انتخاب شده است"})
-        # except ValueError:
-        #     return render_to_response("madadkar/add_a_madadjoo.html",
-        #                               {"error_message": "لطفا موارد الزامی را تکمیل کنید"})
+        except ValueError:
+            return render_to_response("madadkar/add_a_madadjoo.html",
+                                      {"error_message": "لطفا موارد الزامی را تکمیل کنید"})
 
         if warning_message:
             w = 'نیاز‌/نیاز‌های فوری ثبت شده بعد از تایید مدیر نهایی خواهند شد'
             return render(request, 'madadkar/add_a_madadjoo.html',
                           {'success_message': 'مددجوی جدید برای تایید به مدیر سامانه ارسال گردید.',
                            'warning_message': w})
-
+        action.sent(request.user, verb="مددجوی جدیدی را وارد سامانه کرد",target=new_madadjoo)
         return render(request, 'madadkar/add_a_madadjoo.html',
                       {'success_message': 'مددجوی جدید برای تایید به مدیر سامانه ارسال گردید.'})
 
@@ -1153,7 +1152,22 @@ def payment_reports_admin(request):
 
 @admin_login_required
 def activity_report(request):
-    return render(request, 'admin/activity_reports.html')
+    madadjoo_stream = []
+    for target_madadjoo in madadjoo.objects.all():
+        madadjoo_stream.append((target_madadjoo, target_stream(target_madadjoo)))
+
+    hamyar_ids = hamyar.objects.values('id')
+    madadkar_ids = madadkar.objects.values('id')
+
+    hamyar_stream = []
+    for target_hamyar in active_user.objects.filter(hamyar__active_user_ptr_id__in = hamyar_ids):
+        hamyar_stream.append((target_hamyar, actor_stream(target_hamyar)))
+
+    madadkar_stream = []
+    for target_madadkar in active_user.objects.filter(madadkar__active_user_ptr_id__in=madadkar_ids):
+        madadkar_stream.append((target_madadkar, actor_stream(target_madadkar)))
+    return render(request, 'admin/activity_reports.html',
+                  {'madadjoo_stream': madadjoo_stream, 'hamyar_stream': hamyar_stream, 'madadkar_stream': madadkar_stream})
 
 
 @admin_login_required

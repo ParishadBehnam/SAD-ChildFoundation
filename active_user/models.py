@@ -208,3 +208,12 @@ class warning_admin_letter(models.Model):
     admin_user = models.ForeignKey(admin_user, on_delete=models.CASCADE)
     madadkar = models.ForeignKey(madadkar, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now=True)
+
+
+class substitute_a_madadjoo(models.Model):
+    remove = models.ForeignKey(madadkar_remove_madadjoo, on_delete=models.CASCADE)
+    substituted_madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = (("remove", "substituted_madadjoo"),)
