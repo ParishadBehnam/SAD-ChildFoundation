@@ -1,4 +1,6 @@
-{% extends "base_registered.html" %}
+{% extends "admin/base_registered.html" %}
+{% load activity_tags %}
+
 {% block panel %}
     <a class="nav-link" href="admin_panel">پنل مدیریت مدیر سامانه</a>
 {% endblock %}
@@ -10,30 +12,71 @@
         <div class="col-md-4 rounded " style="height: 100%;">
             <p class="list-group-item bg-light" style="border-color: white">نام کاربر</p>
         </div>
+        <div class="col-md-2 rounded " style="height: 100%;">
+            <p class="list-group-item bg-light" style="border-color: white">نقش کاربر</p>
+        </div>
 
-        <div class="col-md-4 rounded" style="height: 100%;">
+        <div class="col-md-6 rounded" style="height: 100%;">
             <p class="list-group-item bg-light" style="border-color: white">فعالیت</p>
         </div>
 
-        <div class="col-md-4 rounded" style="height: 100%;">
-            <p class="list-group-item bg-light" style="border-color: white">تاریخ</p>
-        </div>
     </div>
 
-    {% for i in "xxxxxxx" %}
-        <div class="row">
-            <div class="col-md-4 rounded" style="height: 100%;">
-                <p class="list-group-item" style="border-color: white">همیار ۱</p>
-            </div>
+    {% for s in madadjoo_stream %}
+        {% for action in s.1 %}
+            <div class="row">
+                <div class="col-md-4 rounded" style="height: 100%;">
+                    <p class="list-group-item" style="border-color: white">{{ s.0.first_name }} {{ s.0.last_name }}</p>
+                </div>
+                <div class="col-md-2 rounded" style="height: 100%;">
+                    <p class="list-group-item" style="border-color: white">مددجو</p>
+                </div>
 
-            <div class="col-md-4 rounded" style="height: 100%;">
-                <p class="list-group-item" style="border-color: white">شرح فعالیت</p>
+                <div class="col-md-6 rounded" style="height: 100%;">
+                    <p class="list-group-item"
+                       style="border-color: white"> {% display_action action %}
+                    </p>
+                </div>
             </div>
+        {% endfor %}
 
-            <div class="col-md-4 rounded" style="height: 100%;">
-                <p class="list-group-item" style="border-color: white">۱۳۹۶/۴/۱۳</p>
-            </div>
-        </div>
     {% endfor %}
 
+    {% for s in hamyar_stream %}
+        {% for action in s.1 %}
+            <div class="row">
+                <div class="col-md-4 rounded" style="height: 100%;">
+                    <p class="list-group-item" style="border-color: white">{{ s.0.first_name }} {{ s.0.last_name }}</p>
+                </div>
+                <div class="col-md-2 rounded" style="height: 100%;">
+                    <p class="list-group-item" style="border-color: white">همیار</p>
+                </div>
+
+                <div class="col-md-6 rounded" style="height: 100%;">
+                    <p class="list-group-item"
+                       style="border-color: white"> {% display_action action %}
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    {% for s in madadkar_stream %}
+        {% for action in s.1 %}
+            <div class="row">
+                <div class="col-md-4 rounded" style="height: 100%;">
+                    <p class="list-group-item" style="border-color: white">{{ s.0.first_name }} {{ s.0.last_name }}</p>
+                </div>
+                <div class="col-md-2 rounded" style="height: 100%;">
+                    <p class="list-group-item" style="border-color: white">مددکار</p>
+                </div>
+
+                <div class="col-md-6 rounded" style="height: 100%;">
+                    <p class="list-group-item"
+                       style="border-color: white"> {% display_action action %}
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
 {% endblock %}
