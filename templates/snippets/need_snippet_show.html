@@ -1,23 +1,24 @@
 {% extends "snippets/need_snippet_base.html" %}
-
 {% block need %}
     <textarea rows="3" id="staticneed" readonly class="form-control-plaintext form-control"
               placeholder="شرح و مبلغ نیاز مددجو در این‌جا وارد می‌شود">{{ need.description }}</textarea>
 {% endblock %}
 
 {% block monthly %}
-    <input class="form-check-input" type="radio" name="type"
-           id="inlineRadio1" value="mo" disabled {% if need.type == "mo" %}checked{% endif %}>
+
+    <input class="form-check-input" type="radio" name="type_{{ need.id }}"
+           id="inlineRadio1" value="mo" {% if need.type == "mo" %}checked{% endif %} disabled>
 {% endblock %}
 
 {% block annual %}
-    <input class="form-check-input" type="radio" name="type"
-           id="inlineRadio2" value="ann" disabled {% if need.type == "ann" %}checked{% endif %}>
+     <input class="form-check-input" type="radio" name="type_{{ need.id }}"
+           id="inlineRadio1" value="mo" {% if need.type == "ann" %}checked{% endif %} disabled>
+
 {% endblock %}
 
 {% block special %}
-    <input class="form-check-input" type="radio" name="type"
-           id="inlineRadio3" value="inst" disabled {% if need.type == "inst" %}checked{% endif %}>
+    <input class="form-check-input" type="radio" name="type_{{ need.id }}"
+           id="inlineRadio3" value="inst" {% if need.type == "inst" %}checked{% endif %} disabled>
 {% endblock %}
 
 {% block emergency %}
