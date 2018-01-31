@@ -47,7 +47,6 @@ def home_madadjoo(request):
     system = information.objects.first()
     return render(request, 'madadjoo/home_madadjoo.html', {'system': system})
 
-
 @admin_login_required
 def home_admin(request):
     system = information.objects.first()
@@ -1003,7 +1002,7 @@ def add_a_madadjoo_madadkar(request):
             return render(request, 'madadkar/add_a_madadjoo.html',
                           {'success_message': 'مددجوی جدید برای تایید به مدیر سامانه ارسال گردید.',
                            'warning_message': w})
-        action.sent(request.user, verb="مددجوی جدیدی را وارد سامانه کرد", target=new_madadjoo)
+        action.send(request.user, verb="مددجوی جدیدی را وارد سامانه کرد", target=new_madadjoo)
         return render(request, 'madadkar/add_a_madadjoo.html',
                       {'success_message': 'مددجوی جدید برای تایید به مدیر سامانه ارسال گردید.'})
 
