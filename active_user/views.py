@@ -226,8 +226,12 @@ def show_a_madadjoo_hamyar(request):
                 need = requirements.objects.get(id=need_id)
                 amount = request.POST.get('amount')
                 if amount != '':
+                    if need.type:
+                        type = need.type
+                    else:
+                        type = 'inst'
                     payment = hamyar_madadjoo_payment(madadjoo=target_madadjoo, hamyar=target_hamyar,
-                                                      amount=amount, type=need.type)
+                                                      amount=amount, type=type)
                     payment.save()
                     action.send(request.user, verb='پرداخت به مددجو', target=target_madadjoo)
 
