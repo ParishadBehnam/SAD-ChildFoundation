@@ -492,6 +492,7 @@ def inbox_madadjoo(request):
 @madadkar_login_required
 def madadkar_panel(request):
     if request.GET.get('success') == '1':
+        print(request.user)
         return render(request, 'madadkar/madadkar_panel.html', {'success_message': request.user.first_name + ' ' +
                                                                                    request.user.last_name + ' عزیز، شما با موفقیت وارد حساب کاربری خود شدید :)'})
     elif request.GET.get('success') == '3':
@@ -716,6 +717,7 @@ def show_madadjoo_information(request):
 @admin_login_required
 def admin_panel(request):
     if request.GET.get('success') == '1':
+        print(request.user)
         return render(request, 'admin/admin_panel.html', {'success_message': request.user.first_name + ' ' +
                                                                              request.user.last_name + ' عزیز، شما با موفقیت وارد حساب کاربری خود شدید :)'})
     elif request.GET.get('success') == '3':
@@ -896,8 +898,7 @@ def add_a_madadjoo_admin(request):
         invest_percentage = '0.0' if invest_percentage == '' else invest_percentage
         description = request.POST.get('description')
         type = request.POST.get('type')
-        # corr_madadkar = models.active_user.objects.get(username=request.user)
-        corr_madadkar = None
+        corr_madadkar = madadkar.objects.get(username=request.user.username)
         cash = True if request.POST.get('cash') == 'cash' else False
         urgent = True if request.POST.get('urgent') == 'urgent' else False
 
@@ -1059,7 +1060,7 @@ def add_a_madadkar_admin(request):
         phone_number = '0' if phone_number == '' else phone_number
         address = request.POST.get('address')
         email = request.POST.get('email')
-        profile_pic = request.POST.get('profile_pic')
+        profile_pic = request.FILES.get('profile_pic')
         bio = request.POST.get('bio')
 
         new_madadkar = models.madadkar(username=username, first_name=first_name,
@@ -1132,7 +1133,7 @@ def add_a_hamyar_admin(request):
         phone_number = '0' if phone_number == '' else phone_number
         address = request.POST.get('address')
         email = request.POST.get('email')
-        profile_pic = request.POST.get('profile_pic')
+        profile_pic = request.FILES.get('profile_pic')
 
         new_madadkar = models.hamyar(username=username, first_name=first_name,
                                      last_name=last_name, id_number=id_number, phone_number=phone_number,

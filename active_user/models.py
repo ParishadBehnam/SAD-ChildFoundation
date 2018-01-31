@@ -19,6 +19,7 @@ class active_user(AbstractUser):
     phone_number = models.IntegerField(null=True, verbose_name="شماره تلفن")
     address = models.TextField(null=True, verbose_name="آدرس")
     profile_pic = models.ImageField(null=True, verbose_name="تصویر")
+    email = models.EmailField(blank=True, max_length=254, verbose_name='رایانامه')
 
 
     def save(self, *args, **kwargs):
@@ -57,11 +58,6 @@ class active_user(AbstractUser):
             return False
 
 
-class admin_user(active_user):
-    class Meta:
-        verbose_name_plural = _("مدیران")
-        verbose_name = _("مدیر")
-
 
 class madadkar(active_user):
     bio = models.TextField(null=True, verbose_name="شرح حال")
@@ -70,6 +66,10 @@ class madadkar(active_user):
         verbose_name_plural = _("مددکاران")
         verbose_name = _("مددکار")
 
+class admin_user(madadkar):
+    class Meta:
+        verbose_name_plural = _("مدیران")
+        verbose_name = _("مدیر")
 
 class hamyar(active_user):
     class Meta:
@@ -195,8 +195,8 @@ class urgent_need_admin_letter(models.Model):
     date = models.DateTimeField(auto_now=True)
 
 class warning_admin_letter(models.Model):
-    admin_user = models.ForeignKey(admin_user, on_delete=models.CASCADE)
-    madadkar = models.ForeignKey(madadkar, on_delete=models.CASCADE)
+    admin_user = models.ForeignKey(admin_user, on_delete=models.CASCADE, related_name='sender')
+    madadkar = models.ForeignKey(madadkar, on_delete=models.CASCADE, related_name='receiver')
     date = models.DateTimeField(auto_now=True)
 
 
