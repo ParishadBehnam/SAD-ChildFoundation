@@ -9,15 +9,15 @@
                 {% block list %}
                     {% for letter in letters %}
                         <a href="{% url "letter_content_hamyar" %}?letter={{ letter.id }}"
-                           class="bg-light list-group-item list-group-item-action">{{ letter.title }}</a>
+                           class="bg-light list-group-item list-group-item-action">{{ letter.title }}
+                        <span class="badge badge-info">مددجو به همیار</span></a>
                     {% endfor %}
                     {% for letter in delete_letters %}
                         <a href="{% url "delete_madadjoo_letter_content_hamyar" %}?letter={{ letter.id }}"
                            class="bg-light list-group-item list-group-item-action">اطلاع‌رسانی حذف
-                            مددجوی {{ letter.madadjoo.first_name }} {{ letter.madadjoo.last_name }}</a>
+                            مددجوی {{ letter.madadjoo.first_name }} {{ letter.madadjoo.last_name }}
+                        <span class="badge badge-primary">مددکار به همیار</span></a>
                     {% endfor %}
-                    {#                        {% else %}#}
-                    {#                            <a style="cursor: default">نامه‌ای برای شما وجود ندارد.</a>#}
                 {% endblock %}
             </div>
         </div>

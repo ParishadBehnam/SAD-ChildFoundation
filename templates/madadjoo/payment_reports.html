@@ -1,4 +1,6 @@
 {% extends "base_registered.html" %}
+{% load tz %}
+
 {% block panel %}
     <a class="nav-link" href="madadjoo_panel">پنل مدیریت مددجو</a>
 {% endblock %}
@@ -43,6 +45,7 @@
                             </div>
 
                             <div class="col-md-3 rounded" style="height: 100%;">
+{#                                <p class="list-group-item" style="border-color: white">{{ help.date|localtime }}</p>#}
                                 <p class="list-group-item" style="border-color: white">{{ help.date.year }}/{{ help.date.month }}/{{ help.date.day }} - {{ help.date.hour }}:{{ help.date.minute }}:{{ help.date.second }}</p>
                             </div>
 

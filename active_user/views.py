@@ -171,11 +171,26 @@ def support_a_madadjoo(request):
     new_sponsership.save()
     deleted_mdadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
     all_madadjoo = madadjoo.objects.filter(confirmed=True) \
-        .exclude(sponsership__hamyar_id=request.user.id, active_user_ptr_id__in=deleted_mdadjoos)
+        .exclude(sponsership__hamyar_id=request.user.id).exclude(active_user_ptr_id__in=deleted_mdadjoos)
 
     action.send(request.user, verb='حمایت از مددجو', target=target_madadjoo)
     return render(request, 'hamyar/show_madadjoo.html',
                   {'madadjoos': list(all_madadjoo), 'success_message': 'مددجوی مورد نظر تحت حمایت شما قرار گرفت'})
+
+
+@hamyar_login_required
+def substitute_a_madadjoo(request):
+    target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
+    target_hamyar = request.user
+    new_sponsership = sponsership(hamyar_id=target_hamyar.id, madadjoo_id=target_madadjoo.id)
+    new_sponsership.save()
+    deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
+    all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id, confirmed=1).exclude(
+        madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    delete_letters = madadkar_remove_madadjoo.objects.filter(hamyar_id=request.user.id)
+    action.send(request.user, verb='حمایت از مددجو', target=target_madadjoo)
+    return render(request, 'hamyar/inbox.html', {'letters': all_letters, 'delete_letters': delete_letters,
+                                                 'success_message': 'مددجوی جدید با موفقیت تحت حمایت شما قرار گرفت.'})
 
 
 @hamyar_login_required
@@ -388,6 +403,15 @@ def confirm_hamyar_madadjoo_letter(request):
     d = show_letters_madadkar(request)
     d['success_message'] = 'درخواست ملاقات با موفقیت تایید گردید.'
     return render(request, 'madadkar/inbox.html', d)
+
+
+@hamyar_login_required
+def select_to_substitute_a_madadjoo_hamyar(request):
+    id = request.GET.get('username')
+    deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
+    not_rel_madadjoos = madadjoo.objects.exclude(sponsership__hamyar_id=request.user.id)
+    not_rel_madadjoos = not_rel_madadjoos.exclude(confirmed=False).exclude(active_user_ptr_id__in=deleted_madadjoos)
+    return render(request, 'hamyar/substitute_a_madadjoo.html', {'madadjoos': not_rel_madadjoos})
 
 
 @hamyar_login_required

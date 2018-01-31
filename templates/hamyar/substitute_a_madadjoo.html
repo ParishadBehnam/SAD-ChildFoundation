@@ -1,0 +1,14 @@
+{% extends "hamyar/select_madadjoo.html" %}
+
+{% block header %}
+    <div class="col-6 ml-auto"><h4>جایگزین‌کردن مددجو</h4></div>
+{% endblock %}
+
+{% block do-button %}
+    <a href="{% url "substitute_a_madadjoo_hamyar" %}?username={{ madadjoo.username }}"
+       style="cursor: auto ">
+        <button type="button" class="btn btn-outline-warning btn-lg btn-block">
+       جایگزین کن
+        </button>
+    </a>
+{% endblock %}
