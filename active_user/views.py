@@ -372,6 +372,19 @@ def delete_letter_madadkar(request):
     return render(request, 'madadkar/inbox.html', d)
 
 
+@admin_login_required
+def delete_letter_admin(request):
+    models.madadjoo_madadkar_letter.objects.get(id=request.GET.get('letter', '')).delete()
+    admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
+    add_madadjoo_letters = add_madadjoo_admin_letter.objects.all()
+    urgent_need_letters = urgent_need_admin_letter.objects.all()
+    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
+    return render(request, 'admin/inbox.html',
+                  {'add_madadjoo_letters': add_madadjoo_letters, 'madadjoo_letters': madadjoo_letters,
+                   'urgent_need_letters': urgent_need_letters,
+                   'success_message': 'نامه با موفقیت حذف گردید.'})
+
+
 @hamyar_login_required
 def delete_letter_hamyar(request):
     models.madadjoo_hamyar_letter.objects.get(id=request.GET.get('letter', '')).delete()
@@ -826,10 +839,13 @@ def edit_a_madadjoo_admin(request):
 
 @admin_login_required
 def inbox_admin(request):
+    admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
     add_madadjoo_letters = add_madadjoo_admin_letter.objects.all()
     urgent_need_letters = urgent_need_admin_letter.objects.all()
+    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
     return render(request, 'admin/inbox.html',
-                  {'add_madadjoo_letters': add_madadjoo_letters, 'urgent_need_letters': urgent_need_letters})
+                  {'add_madadjoo_letters': add_madadjoo_letters, 'madadjoo_letters': madadjoo_letters,
+                   'urgent_need_letters': urgent_need_letters})
 
 
 @admin_login_required
@@ -862,23 +878,38 @@ def confirm_need_admin(request):
 
 @admin_login_required
 def letter_madadkar_add_madadjoo(request):
+    admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
     target_letter = models.add_madadjoo_admin_letter.objects.get(id=request.GET.get('letter', ''))
     add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
     urgent_need_letters = urgent_need_admin_letter.objects.all()
-
+    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
     return render(request, 'admin/letter_content_confirm.html',
                   {'letter': target_letter, 'add_madadjoo_letters': add_madadjoo_letters,
-                   'urgent_need_letters': urgent_need_letters})
+                   'urgent_need_letters': urgent_need_letters, 'madadjoo_letters': madadjoo_letters})
 
 
 @admin_login_required
 def urgent_need_letters(request):
+    admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
     target_letter = models.urgent_need_admin_letter.objects.get(id=request.GET.get('letter', ''))
     add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
     urgent_need_letters = urgent_need_admin_letter.objects.all()
+    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
     return render(request, 'admin/letter_content_urgent.html',
                   {'letter': target_letter, 'add_madadjoo_letters': add_madadjoo_letters,
-                   'urgent_need_letters': urgent_need_letters})
+                   'urgent_need_letters': urgent_need_letters, 'madadjoo_letters': madadjoo_letters})
+
+
+@admin_login_required
+def madadjoo_letters_admin(request):
+    admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
+    target_letter = models.madadjoo_madadkar_letter.objects.get(id=request.GET.get('letter', ''))
+    add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
+    urgent_need_letters = urgent_need_admin_letter.objects.all()
+    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
+    return render(request, 'admin/letter_content_madadjoo.html',
+                  {'letter': target_letter, 'add_madadjoo_letters': add_madadjoo_letters,
+                   'urgent_need_letters': urgent_need_letters, 'madadjoo_letters': madadjoo_letters})
 
 
 @admin_login_required

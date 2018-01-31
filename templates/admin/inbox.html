@@ -6,15 +6,30 @@
 
 {% block list %}
     {% for letter in add_madadjoo_letters %}
-        <a href= "{% url "letter_madadkar_add_madadjoo" %}?letter={{ letter.id }}" class="bg-light list-group-item list-group-item-action">ثبت مددجوی {{ letter.madadjoo.first_name }} {{ letter.madadjoo.last_name }}
+        <a href="{% url "letter_madadkar_add_madadjoo" %}?letter={{ letter.id }}"
+           class="bg-light list-group-item list-group-item-action">ثبت
+            مددجوی {{ letter.madadjoo.first_name }} {{ letter.madadjoo.last_name }}
             <span class="emergency-need badge badge-info">ثبت مددجوی جدید</span></a>
     {% endfor %}
 
     {% for letter in urgent_need_letters %}
-           <a href= "{% url "urgent_need_letters" %}?letter={{ letter.id }}" class="bg-light list-group-item list-group-item-action">نیاز فوری مددجو:  {{ letter.madadjoo.first_name }} {{ letter.madadjoo.last_name }}
+        <a href="{% url "urgent_need_letters" %}?letter={{ letter.id }}"
+           class="bg-light list-group-item list-group-item-action">نیاز فوری
+            مددجو: {{ letter.madadjoo.first_name }} {{ letter.madadjoo.last_name }}
 
-        <span class="emergency-need badge badge-danger">فوری کردن نیاز</span>
-    </a>
+            <span class="emergency-need badge badge-danger">فوری کردن نیاز</span>
+        </a>
+    {% endfor %}
+
+    {% for letter in madadjoo_letters %}
+        <a href="{% url "madadjoo_letters_admin" %}?letter={{ letter.id }}"
+           class="bg-light list-group-item list-group-item-action">{{ letter.madadjoo.first_name }} {{ letter.madadjoo.last_name }}
+            {% if letter.thank %}
+                <span class="emergency-need badge badge-primary">تشکر مددجو</span>
+            {% else %}
+                <span class="emergency-need badge badge-default">درخواست مددجو</span>
+            {% endif %}
+        </a>
     {% endfor %}
 
 {% endblock %}
