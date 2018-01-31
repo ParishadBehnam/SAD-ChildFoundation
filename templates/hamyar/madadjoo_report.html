@@ -18,11 +18,11 @@
                     <div class="row ">
                         <div class="col-md-4">
                             {% if madadjoo_stream.0.profile_pic %}
-                                <img  class="card-img-right img-thumbnail img-responsive" src=
+                                <img  class="col-md-9 card-img-right img-thumbnail img-responsive" src=
                                         "{{ madadjoo_stream.0.profile_pic.url|default:"https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276" }}">
 
                             {% else %}
-                                <img  class="card-img-right img-thumbnail img-responsive"
+                                <img  class="col-md-9 card-img-right img-thumbnail img-responsive"
                                      src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276">
                             {% endif %}
 
