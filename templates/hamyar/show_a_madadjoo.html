@@ -18,6 +18,9 @@
         {% include "hamyar/pay_madadjoo_popup.html" %}
         <a class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal2" href="#">ثبت کمک غیرنقدی به
             مددجو</a>
+        <a href={% url "stop_support_hamyar" %}?madadjoo={{ user.id }} class="btn btn-danger btn-block">
+                        عدم حمایت از مددجو
+                    </a>
         {% include "hamyar/pay_madadjoo_non_cash.html" %}
         {#        <a href="#" class="btn btn-success"></a>#}
     </p>

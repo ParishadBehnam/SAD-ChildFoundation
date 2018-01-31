@@ -1,0 +1,21 @@
+{% extends 'base_show_a_madadjoo.html' %}
+{% block panel %}
+    <a class="nav-link" href="hamyar_panel">پنل مدیریت همیار</a>
+{% endblock %}
+
+{% block links %}
+    {% for hamyar in hamyars %}
+        <a href="#" class="list-group-item list-group-item-action disabled"
+           style="cursor: default">{{ hamyar.first_name }} {{ hamyar.last_name }}</a>
+    {% endfor %}
+    <hr>
+    <p class="lead">
+         <a href="{% url "support_a_madadjoo" %}?username={{ user.username }}"
+                                   style="cursor: auto ">
+                                        <button type="button" class="btn btn-outline-success btn-lg btn-block">
+                                            تکفل
+                                            کن
+                                        </button>
+                                </a>
+    </p>
+{% endblock %}
