@@ -41,12 +41,13 @@
                         <div class="row">
                             <div class="col-md-3 rounded" style="height: 100%;">
                                 <p class="list-group-item"
-                                   style="border-color: white"><a href="{% url "show_a_hamyar_madadjoo" %}?username={{ help.hamyar.username }}">{{ help.hamyar.first_name }} {{ help.hamyar.last_name }}</a></p>
+                                   style="border-color: white"><a
+                                        href="{% url "show_a_hamyar_madadjoo" %}?username={{ help.hamyar.username }}">{{ help.hamyar.first_name }} {{ help.hamyar.last_name }}</a>
+                                </p>
                             </div>
 
                             <div class="col-md-3 rounded" style="height: 100%;">
-{#                                <p class="list-group-item" style="border-color: white">{{ help.date|localtime }}</p>#}
-                                <p class="list-group-item" style="border-color: white">{{ help.date.year }}/{{ help.date.month }}/{{ help.date.day }} - {{ help.date.hour }}:{{ help.date.minute }}:{{ help.date.second }}</p>
+                                    <p class="list-group-item" style="border-color: white">{{ help.date|timezone:"Asia/Tehran" }}</p>
                             </div>
 
                             <div class="col-md-3 rounded" style="height: 100%;">
@@ -101,11 +102,14 @@
                                 <div class="row">
                                     <div class="col-md-3 rounded" style="height: 100%;">
                                         <p class="list-group-item"
-                                           style="border-color: white"><a href="{% url "show_a_hamyar_madadjoo" %}?username={{ help.hamyar.username }}">{{ help.hamyar.first_name }} {{ help.hamyar.last_name }}</a></p>
+                                           style="border-color: white"><a
+                                                href="{% url "show_a_hamyar_madadjoo" %}?username={{ help.hamyar.username }}">{{ help.hamyar.first_name }} {{ help.hamyar.last_name }}</a>
+                                        </p>
                                     </div>
 
                                     <div class="col-md-3 rounded" style="height: 100%;">
-                                        <p class="list-group-item" style="border-color: white">{{ help.date.year }}/{{ help.date.month }}/{{ help.date.day }} - {{ help.date.hour }}:{{ help.date.minute }}:{{ help.date.second }}</p>
+                                        <p class="list-group-item"
+                                           style="border-color: white">{{ help.date|timezone:"Asia/Tehran" }}</p>
                                     </div>
 
                                     <div class="col-md-4 rounded" style="height: 100%;">
