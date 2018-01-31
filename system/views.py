@@ -64,8 +64,12 @@ def sign_in(request):
         user_panel = ["hamyar_panel", "madadjoo_panel", "madadkar_panel", "admin_panel"]
         user_type = ["hamyar", "madadjoo", "madadkar", "admin"]
 
-        in_admin_table = models.admin_user.objects.get(username=username)
-        admin_madadkar_flag = True if in_admin_table is not None and type == '3' else False
+        try:
+            in_admin_table = models.admin_user.objects.get(username=username)
+            admin_madadkar_flag = True if in_admin_table is not None and type == '3' else False
+        except:
+            admin_madadkar_flag = False
+
 
         if user is not None and not admin_madadkar_flag:
             target_username = models.active_user.objects.get(username=username)
