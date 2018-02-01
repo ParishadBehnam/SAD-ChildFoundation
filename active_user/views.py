@@ -1,38 +1,32 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import yagmail as yagmail
 from actstream import action
-from actstream.models import user_stream, target_stream, actor_stream
-from django.contrib.auth.decorators import login_required
+from actstream.models import target_stream, actor_stream
 from django.db import IntegrityError
-from django.http import HttpResponse
-from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect
-
-from django.http import Http404
 from django.shortcuts import render
+from django.shortcuts import render_to_response
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
-import yagmail
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 from active_user import forms
 from active_user import models
-from system import models as system_models
-
 from active_user.decorators import admin_login_required
 from active_user.decorators import madadkar_login_required
 from active_user.decorators import hamyar_login_required
 from active_user.decorators import madadjoo_login_required
+from active_user.decorators import madadkar_login_required
 from active_user.models import madadjoo, hamyar, madadkar, sponsership, \
     madadjoo_madadkar_letter, madadjoo_hamyar_letter, hamyar_madadjoo_meeting, \
     hamyar_system_payment, hamyar_madadjoo_payment, requirements, hamyar_madadjoo_non_cash, add_madadjoo_admin_letter, \
     madadkar_remove_madadjoo, urgent_need_admin_letter, admin_user, warning_admin_letter, active_user, \
     substitute_a_madadjoo
+from system import models as system_models
 from system.models import information
 
 

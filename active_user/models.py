@@ -21,7 +21,6 @@ class active_user(AbstractUser):
     profile_pic = models.ImageField(null=True, verbose_name="تصویر")
     email = models.EmailField(blank=True, max_length=254, verbose_name='رایانامه')
 
-
     def save(self, *args, **kwargs):
         return super(active_user, self).save(*args, **kwargs)
 
@@ -46,7 +45,11 @@ class active_user(AbstractUser):
     def is_madadkar(self):
         try:
             madadkar.objects.get(username=self.username)
-            return True
+            try:
+                admin_user.objects.get(username=self.username)
+                return False
+            except:
+                return True
         except:
             return False
 
@@ -58,7 +61,6 @@ class active_user(AbstractUser):
             return False
 
 
-
 class madadkar(active_user):
     bio = models.TextField(null=True, verbose_name="شرح حال")
 
@@ -66,10 +68,12 @@ class madadkar(active_user):
         verbose_name_plural = _("مددکاران")
         verbose_name = _("مددکار")
 
+
 class admin_user(madadkar):
     class Meta:
         verbose_name_plural = _("مدیران")
         verbose_name = _("مدیر")
+
 
 class hamyar(active_user):
     class Meta:
@@ -188,11 +192,13 @@ class add_madadjoo_admin_letter(models.Model):
     text = models.TextField(null=True)
     date = models.DateTimeField(auto_now=True)
 
+
 class urgent_need_admin_letter(models.Model):
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
     madadkar = models.ForeignKey(madadkar, on_delete=models.CASCADE)
     need = models.ForeignKey(requirements, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now=True)
+
 
 class warning_admin_letter(models.Model):
     admin_user = models.ForeignKey(admin_user, on_delete=models.CASCADE, related_name='sender')
@@ -207,3 +213,11 @@ class substitute_a_madadjoo(models.Model):
 
     class Meta:
         unique_together = (("remove", "substituted_madadjoo"),)
+
+class request_for_change_madadkar(models.Model):
+    madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now=True)
+    confirmed = models.BooleanField(default=False)
+
+    class Meta:
+        unique_together = (("madadjoo", "date"),)
