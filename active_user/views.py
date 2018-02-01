@@ -28,6 +28,7 @@ from active_user.models import madadjoo, hamyar, madadkar, sponsership, \
     substitute_a_madadjoo, request_for_change_madadkar
 from system import models as system_models
 from system.models import information
+import datetime
 
 
 @madadkar_login_required
@@ -374,13 +375,20 @@ def send_letter_hamyar(request):
 def stop_support_hamyar(request):
     amount = models.hamyar_madadjoo_payment.objects.filter(hamyar_id=request.user.id, madadjoo__active_user_ptr_id=request.GET.get('madadjoo', ''))
     sum = 0
+    now = datetime.datetime.now()
+#    print(now.month)
     for a in amount:
-        sum += a.amount
+        if a.type=='ann':
+            sum += a.amount * (a.date.year - now.year + 1)
+        elif a.type=='mo':
+            sum += a.amount * ((a.date.year - now.year)*12 + (a.date.month+1 - now.month))
+        elif a.type=='inst':
+            sum += a.amount
     amount.delete()
     our_system = list(system_models.information.objects.all())
     if sum>0 :
         payment = hamyar_system_payment(amount=sum, hamyar_id=request.user.id, system_id=our_system[0].history)
-    payment.save()
+        payment.save()
     models.sponsership.objects.get(hamyar_id=request.user.id, madadjoo__active_user_ptr_id=request.GET.get('madadjoo', '')).delete()
     deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
     d = show_madadjoo(request)
