@@ -145,6 +145,7 @@ class sponsership(models.Model):
 
 class hamyar_madadjoo_payment(models.Model):
     madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
+    need = models.ForeignKey(requirements, on_delete=models.CASCADE)
     hamyar = models.ForeignKey(hamyar, on_delete=models.CASCADE)
     amount = models.IntegerField(null=False)
     type = models.CharField(choices=(('mo', 'monthly'), ('ann', 'annual'), ('inst', 'instantly')), max_length=60)

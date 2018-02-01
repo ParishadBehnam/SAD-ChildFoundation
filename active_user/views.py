@@ -237,14 +237,14 @@ def show_a_madadjoo_hamyar(request):
                     else:
                         type = 'inst'
                     payment = hamyar_madadjoo_payment(madadjoo=target_madadjoo, hamyar=target_hamyar,
-                                                      amount=amount, type=type)
+                                                      amount=amount, type=type, need=need)
                     payment.save()
 
-                    type = 'ماهانه'  if type == 'mo' else 'سالانه'if type == 'ann' else 'موردی'
-                    message = target_madadjoo.first_name + ' ' + target_madadjoo.last_name + 'عزیز، \n پرداخت از سوی '  + \
-                                target_hamyar.first_name + ' ' + target_hamyar.last_name + ' به مبلغ ' + \
-                                str(payment.amount) + ' تومان به صورت '  + type + ' در سامانه ثبت گردید.' + \
-                                '\n\nبنیاد حمایت از کودکان'
+                    type = 'ماهانه' if type == 'mo' else 'سالانه' if type == 'ann' else 'موردی'
+                    message = target_madadjoo.first_name + ' ' + target_madadjoo.last_name + 'عزیز، \n پرداخت از سوی ' + \
+                              target_hamyar.first_name + ' ' + target_hamyar.last_name + ' به مبلغ ' + \
+                              str(payment.amount) + ' تومان به صورت ' + type + ' در سامانه ثبت گردید.' + \
+                              '\n\nبنیاد حمایت از کودکان'
 
                     server = smtplib.SMTP('smtp.gmail.com', 587)
                     server.starttls()
@@ -752,9 +752,10 @@ def request_change_madadkar(request):
     user = madadjoo.objects.get(username=request.user)
     req = request_for_change_madadkar(madadjoo=user)
     req.save()
-    return render(request, 'madadjoo/show_a_madadkar.html', {'first_name': target_madadkar.first_name, 'last_name': target_madadkar.last_name,
-                       'username': target_madadkar.username, 'profile_pic': target_madadkar.profile_pic,
-                                                             'success_message': 'درخواست شما با موفقیت برای مدیر سامانه ارسال گردید.'})
+    return render(request, 'madadjoo/show_a_madadkar.html',
+                  {'first_name': target_madadkar.first_name, 'last_name': target_madadkar.last_name,
+                   'username': target_madadkar.username, 'profile_pic': target_madadkar.profile_pic,
+                   'success_message': 'درخواست شما با موفقیت برای مدیر سامانه ارسال گردید.'})
 
 
 @madadjoo_login_required
@@ -1277,4 +1278,15 @@ def madadjoo_paid_report(request):
 
 @admin_login_required
 def need_report_admin(request):
-    return render(request, 'admin/madadjoo_paid_report.html')
+    deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
+    paid_needs = hamyar_madadjoo_payment.objects.values('need_id')
+
+    unpaid_needs = []
+
+    for target_madadjoo in madadjoo.objects.exclude(active_user_ptr_id__in=deleted_madadjoos):
+        target_needs = requirements.objects.filter(madadjoo=target_madadjoo).exclude(id__in=paid_needs)
+        if len(target_needs) > 0:
+            unpaid_needs.append(
+                (target_madadjoo, target_needs))
+
+    return render(request, 'admin/need_report.html', {'unpaid_needs': unpaid_needs})
