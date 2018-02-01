@@ -25,7 +25,7 @@ from active_user.models import madadjoo, hamyar, madadkar, sponsership, \
     madadjoo_madadkar_letter, madadjoo_hamyar_letter, hamyar_madadjoo_meeting, \
     hamyar_system_payment, hamyar_madadjoo_payment, requirements, hamyar_madadjoo_non_cash, add_madadjoo_admin_letter, \
     madadkar_remove_madadjoo, urgent_need_admin_letter, admin_user, warning_admin_letter, active_user, \
-    substitute_a_madadjoo
+    substitute_a_madadjoo, request_for_change_madadkar
 from system import models as system_models
 from system.models import information
 
@@ -243,7 +243,8 @@ def show_a_madadjoo_hamyar(request):
                     type = 'ماهانه'  if type == 'mo' else 'سالانه'if type == 'ann' else 'موردی'
                     message = target_madadjoo.first_name + ' ' + target_madadjoo.last_name + 'عزیز، \n پرداخت از سوی '  + \
                                 target_hamyar.first_name + ' ' + target_hamyar.last_name + ' به مبلغ ' + \
-                                str(payment.amount) + ' تومان به صورت '  + type + ' در سامانه ثبت گردید.'
+                                str(payment.amount) + ' تومان به صورت '  + type + ' در سامانه ثبت گردید.' + \
+                                '\n\nبنیاد حمایت از کودکان'
 
                     server = smtplib.SMTP('smtp.gmail.com', 587)
                     server.starttls()
@@ -747,18 +748,11 @@ def send_gratitude_letter(request):
 def request_change_madadkar(request):
     target_madadkar = madadkar.objects.get(username=request.GET.get('username', ''))
     user = madadjoo.objects.get(username=request.user)
-
-    if request.method == "GET":
-        return render(request, 'madadjoo/send_gratitude_letter.html', {'user': user, 'receiver': target_madadkar})
-    else:
-        title = request.POST.get('title')
-        text = request.POST.get('text')
-        letter = madadjoo_madadkar_letter(madadjoo=user, madadkar=target_madadkar, text=text, title=title,
-                                          thank=True)
-        letter.save()
-        # return HttpResponseRedirect(reverse("madadjoo_panel"))
-        return render(request, 'madadjoo/send_gratitude_letter.html', {'user': user, 'receiver': target_madadkar,
-                                                                       'success_message': 'نامه‌ی تشکر شما برای مددکار ارسال شد.'})
+    req = request_for_change_madadkar(madadjoo=user)
+    req.save()
+    return render(request, 'madadjoo/show_a_madadkar.html', {'first_name': target_madadkar.first_name, 'last_name': target_madadkar.last_name,
+                       'username': target_madadkar.username, 'profile_pic': target_madadkar.profile_pic,
+                                                             'success_message': 'درخواست شما با موفقیت برای مدیر سامانه ارسال گردید.'})
 
 
 @madadjoo_login_required
