@@ -251,7 +251,7 @@ def show_a_madadjoo_hamyar(request):
                     server.login('childf2018', 'childF20182018')
                     msg = MIMEMultipart()
                     msg['From'] = 'childf2018@gmail.com'
-                    msg['To'] = madadjoo.email
+                    msg['To'] = target_madadjoo.email
                     msg['Subject'] = 'ثبت پرداخت'
                     msg.attach(MIMEText(message, 'plain'))
                     server.send_message(msg)
