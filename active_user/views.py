@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import yagmail as yagmail
 from actstream import action
 from actstream.models import user_stream, target_stream, actor_stream
 from django.contrib.auth.decorators import login_required
@@ -13,6 +14,11 @@ from django.http import Http404
 from django.shortcuts import render
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
+
+import yagmail
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 from active_user import forms
 from active_user import models
@@ -239,6 +245,23 @@ def show_a_madadjoo_hamyar(request):
                     payment = hamyar_madadjoo_payment(madadjoo=target_madadjoo, hamyar=target_hamyar,
                                                       amount=amount, type=type)
                     payment.save()
+
+                    type = 'ماهانه'  if type == 'mo' else 'سالانه'if type == 'ann' else 'موردی'
+                    message = target_madadjoo.first_name + ' ' + target_madadjoo.last_name + 'عزیز، \n پرداخت از سوی '  + \
+                                target_hamyar.first_name + ' ' + target_hamyar.last_name + ' به مبلغ ' + \
+                                str(payment.amount) + ' تومان به صورت '  + type + ' در سامانه ثبت گردید.'
+
+                    server = smtplib.SMTP('smtp.gmail.com', 587)
+                    server.starttls()
+                    server.login('childf2018', 'childF20182018')
+                    msg = MIMEMultipart()
+                    msg['From'] = 'childf2018@gmail.com'
+                    msg['To'] = madadjoo.email
+                    msg['Subject'] = 'ثبت پرداخت'
+                    msg.attach(MIMEText(message, 'plain'))
+                    server.send_message(msg)
+                    server.quit()
+
                     action.send(request.user, verb='پرداخت به مددجو', target=target_madadjoo)
 
                     return render(request, 'hamyar/show_a_madadjoo.html', {'user': target_madadjoo, 'needs': needs,
@@ -713,6 +736,24 @@ def send_request_madadkar(request):
 def send_gratitude_letter(request):
     target_madadkar = madadkar.objects.get(username=request.GET.get('username', ''))
     user = madadjoo.objects.get(username=request.user)
+    if request.method == "GET":
+        return render(request, 'madadjoo/send_gratitude_letter.html', {'user': user, 'receiver': target_madadkar})
+    else:
+        title = request.POST.get('title')
+        text = request.POST.get('text')
+        letter = madadjoo_madadkar_letter(madadjoo=user, madadkar=target_madadkar, text=text, title=title,
+                                          thank=True)
+        letter.save()
+        # return HttpResponseRedirect(reverse("madadjoo_panel"))
+        return render(request, 'madadjoo/send_gratitude_letter.html', {'user': user, 'receiver': target_madadkar,
+                                                                       'success_message': 'نامه‌ی تشکر شما برای مددکار ارسال شد.'})
+
+
+@madadjoo_login_required
+def request_change_madadkar(request):
+    target_madadkar = madadkar.objects.get(username=request.GET.get('username', ''))
+    user = madadjoo.objects.get(username=request.user)
+
     if request.method == "GET":
         return render(request, 'madadjoo/send_gratitude_letter.html', {'user': user, 'receiver': target_madadkar})
     else:

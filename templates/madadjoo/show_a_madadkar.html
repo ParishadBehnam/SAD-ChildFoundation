@@ -13,6 +13,9 @@
     <a href="{% url "send_gratitude_letter" %}?username={{ username }}">
         <button type="button" class="btn btn-outline-success">ارسال نامه‌ی تشکر</button>
     </a>
+    <a href="{% url "request_change_madadkar" %}?username={{ username }}">
+        <button type="button" class="btn btn-outline-danger">درخواست تغییر مددکار</button>
+    </a>
 {% endblock %}
 
 {% block name %}
