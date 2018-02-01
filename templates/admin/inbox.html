@@ -21,6 +21,13 @@
         </a>
     {% endfor %}
 
+    {% for letter in change_madadkar_letters %}
+        <a href="{% url "change_madadkar_letters" %}?letter={{ letter.id }}"
+           class="bg-light list-group-item list-group-item-action">درخواست تغییر مددکار
+            <span class="emergency-need badge badge-success">تغییر مددکار</span>
+        </a>
+    {% endfor %}
+
     {% for letter in madadjoo_letters %}
         <a href="{% url "madadjoo_letters_admin" %}?letter={{ letter.id }}"
            class="bg-light list-group-item list-group-item-action">{{ letter.madadjoo.first_name }} {{ letter.madadjoo.last_name }}

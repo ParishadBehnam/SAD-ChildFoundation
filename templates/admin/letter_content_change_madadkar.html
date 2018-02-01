@@ -1,0 +1,25 @@
+{% extends "admin/inbox.html" %}
+
+{% block letter_content %}
+    <div class="col-sm-11 col-md-9 col-lg-8 rounded" style="height: 100%; background-color: #f4f4f4">
+        <div class="row" style="margin-top: 2%;">
+            <div class="col-md-6 mr-auto">
+                <h4>درخواست تغییر مددکار</h4>
+            </div>
+            <div class="col-md-6 mr-auto">
+                <a href="{% url "confirm_change_madadkar" %}?letter={{ letter.id }}"
+                   class="btn btn-outline-success">
+                    تایید درخواست
+                </a>
+            </div>
+        </div>
+
+        <hr>
+        <p>{{ letter.madadjoo.first_name }} {{ letter.madadjoo.last_name }} درخواست تغییر مددکارش را دارد
+        </p>
+        <p>
+   مددکار مربوطه:
+            {{ letter.madadjoo.corr_madadkar.first_name }} {{ letter.madadjoo.corr_madadkar.last_name }}
+        </p>
+    </div>
+{% endblock %}

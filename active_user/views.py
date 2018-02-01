@@ -71,6 +71,14 @@ def show_madadjoo_hamyar(request):
 
 
 @madadkar_login_required
+def show_madadjoo_madadkar(request):
+    deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
+    all_madadjoo = madadjoo.objects.filter(corr_madadkar=None, confirmed=True).exclude(
+        active_user_ptr_id__in=deleted_madadjoos)
+    return render(request, 'madadkar/show_not_mine_madadjoo.html', {'madadjoos': all_madadjoo})
+
+
+@madadkar_login_required
 def edit_madadjoo(request):
     if request.method == "GET":
         target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
@@ -162,6 +170,15 @@ def show_a_madadjoo(request):
                   {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
 
 
+@madadkar_login_required
+def show_a_not_mine_madadjoo(request):
+    target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
+    needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
+    hamyars = hamyar.objects.filter(sponsership__madadjoo_id=target_madadjoo.id)
+    return render(request, 'madadkar/show_a_not_mine_madadjoo.html',
+                  {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
+
+
 @hamyar_login_required
 def support_a_madadjoo(request):
     target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
@@ -175,6 +192,24 @@ def support_a_madadjoo(request):
     action.send(request.user, verb='حمایت از مددجو', target=target_madadjoo)
     return render(request, 'hamyar/show_madadjoo.html',
                   {'madadjoos': list(all_madadjoo), 'success_message': 'مددجوی مورد نظر تحت حمایت شما قرار گرفت'})
+
+
+
+@madadkar_login_required
+def support_a_madadjoo_madadkar(request):
+    target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
+    target_madadkar = madadkar.objects.get(id=request.user.id)
+    target_madadjoo.corr_madadkar = target_madadkar
+    target_madadjoo.save()
+    deleted_mdadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
+    all_madadjoo = madadjoo.objects.filter(confirmed=True, corr_madadkar=None).\
+        exclude(active_user_ptr_id__in=deleted_mdadjoos)
+
+    action.send(request.user, verb='حمایت از مددجوی بدون حامی', target=target_madadjoo)
+    return render(request, 'madadkar/show_not_mine_madadjoo.html',
+                  {'madadjoos': list(all_madadjoo), 'success_message': 'مددجوی مورد نظر تحت حمایت شما قرار گرفت'})
+
+
 
 
 @hamyar_login_required
@@ -398,9 +433,10 @@ def delete_letter_admin(request):
     add_madadjoo_letters = add_madadjoo_admin_letter.objects.all()
     urgent_need_letters = urgent_need_admin_letter.objects.all()
     madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
+    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
     return render(request, 'admin/inbox.html',
                   {'add_madadjoo_letters': add_madadjoo_letters, 'madadjoo_letters': madadjoo_letters,
-                   'urgent_need_letters': urgent_need_letters,
+                   'urgent_need_letters': urgent_need_letters, 'change_madadkar_letters': change_madadkar_letters,
                    'success_message': 'نامه با موفقیت حذف گردید.'})
 
 
@@ -668,17 +704,17 @@ def show_a_madadkar_madadjoo(request):
     madadkar_id = models.madadjoo.objects.get(username=request.user).corr_madadkar_id
     if madadkar_id == None:
         return render(request, 'madadjoo/show_a_madadkar.html',
-                      {'first_name': 'مدیر سامانه', 'last_name': 'مدیر سامانه'})
+                      {'first_name': 'ندارد', 'last_name': 'ندارد', 'has_madadkar': False})
     target_madadkar = models.madadkar.objects.get(active_user_ptr_id=madadkar_id)
     try:
         target_madadkar.profile_pic
         return render(request, 'madadjoo/show_a_madadkar.html',
                       {'first_name': target_madadkar.first_name, 'last_name': target_madadkar.last_name,
-                       'username': target_madadkar.username, 'profile_pic': target_madadkar.profile_pic})
+                       'username': target_madadkar.username, 'profile_pic': target_madadkar.profile_pic, 'has_madadkar': True})
     except Exception:
         return render(request, 'madadjoo/show_a_madadkar.html',
                       {'first_name': target_madadkar.first_name, 'last_name': target_madadkar.last_name,
-                       'username': target_madadkar.username, 'profile_pic': None})
+                       'username': target_madadkar.username, 'profile_pic': None, 'has_madadkar': True})
 
 
 @madadjoo_login_required
@@ -873,22 +909,27 @@ def inbox_admin(request):
     admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
     add_madadjoo_letters = add_madadjoo_admin_letter.objects.all()
     urgent_need_letters = urgent_need_admin_letter.objects.all()
+    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
     madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
     return render(request, 'admin/inbox.html',
                   {'add_madadjoo_letters': add_madadjoo_letters, 'madadjoo_letters': madadjoo_letters,
-                   'urgent_need_letters': urgent_need_letters})
+                   'urgent_need_letters': urgent_need_letters, 'change_madadkar_letters': change_madadkar_letters})
 
 
 @admin_login_required
 def confirm_madadjoo_admin(request):
     target_letter = models.add_madadjoo_admin_letter.objects.get(id=request.GET.get('letter', ''))
     add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
+    admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
+    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
+    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
     urgent_need_letters = urgent_need_admin_letter.objects.all()
     target_letter.madadjoo.confirmed = True
     target_letter.madadjoo.save()
     target_letter.delete()
     return render(request, 'admin/inbox.html',
-                  {'add_madadjoo_letters': add_madadjoo_letters, 'urgent_need_letters': urgent_need_letters,
+                  {'madadjoo_letters': madadjoo_letters, 'change_madadkar_letters': change_madadkar_letters,
+                   'add_madadjoo_letters': add_madadjoo_letters, 'urgent_need_letters': urgent_need_letters,
                    'success_message': "مددجوی انتخابی تایید شد."})
 
 
@@ -901,10 +942,34 @@ def confirm_need_admin(request):
     target_letter.need.save()
     action.send(request.user, verb='ثبت نیاز فوری برای مددجو', target=target_letter.madadjoo)
     target_letter.delete()
+    admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
+    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
+    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
 
     return render(request, 'admin/inbox.html',
-                  {'add_madadjoo_letters': add_madadjoo_letters, 'urgent_need_letters': urgent_need_letters,
+                  {'madadjoo_letters': madadjoo_letters, 'change_madadkar_letters': change_madadkar_letters,
+                   'add_madadjoo_letters': add_madadjoo_letters, 'urgent_need_letters': urgent_need_letters,
                    'success_message': "نیاز فوری انتخابی تایید شد."})
+
+
+@admin_login_required
+def confirm_change_madadkar(request):
+    target_letter = models.request_for_change_madadkar.objects.get(id=request.GET.get('letter', ''))
+    add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
+    urgent_need_letters = urgent_need_admin_letter.objects.all()
+    admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
+    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
+    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
+    target_letter.madadjoo.corr_madadkar = None
+    target_letter.madadjoo.save()
+    target_letter.confirmed = True
+    target_letter.save()
+    action.send(request.user, verb='درخواست تغییر مدکار توسط مددجو', target=target_letter.madadjoo)
+
+    return render(request, 'admin/inbox.html',
+                  {'madadjoo_letters': madadjoo_letters, 'change_madadkar_letters': change_madadkar_letters,
+                   'add_madadjoo_letters': add_madadjoo_letters, 'urgent_need_letters': urgent_need_letters,
+                   'success_message': "درخواست تغییر مددکار تایید شد."})
 
 
 @admin_login_required
@@ -914,9 +979,11 @@ def letter_madadkar_add_madadjoo(request):
     add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
     urgent_need_letters = urgent_need_admin_letter.objects.all()
     madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
+    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
     return render(request, 'admin/letter_content_confirm.html',
                   {'letter': target_letter, 'add_madadjoo_letters': add_madadjoo_letters,
-                   'urgent_need_letters': urgent_need_letters, 'madadjoo_letters': madadjoo_letters})
+                   'urgent_need_letters': urgent_need_letters, 'change_madadkar_letters': change_madadkar_letters,
+                   'madadjoo_letters': madadjoo_letters})
 
 
 @admin_login_required
@@ -926,9 +993,25 @@ def urgent_need_letters(request):
     add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
     urgent_need_letters = urgent_need_admin_letter.objects.all()
     madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
+    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
     return render(request, 'admin/letter_content_urgent.html',
                   {'letter': target_letter, 'add_madadjoo_letters': add_madadjoo_letters,
-                   'urgent_need_letters': urgent_need_letters, 'madadjoo_letters': madadjoo_letters})
+                   'urgent_need_letters': urgent_need_letters, 'change_madadkar_letters': change_madadkar_letters,
+                   'madadjoo_letters': madadjoo_letters})
+
+
+@admin_login_required
+def change_madadkar_letters(request):
+    admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
+    target_letter = models.request_for_change_madadkar.objects.get(id=request.GET.get('letter', ''))
+    add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
+    urgent_need_letters = urgent_need_admin_letter.objects.all()
+    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
+    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
+    return render(request, 'admin/letter_content_change_madadkar.html',
+                  {'letter': target_letter, 'add_madadjoo_letters': add_madadjoo_letters,
+                   'urgent_need_letters': urgent_need_letters, 'change_madadkar_letters': change_madadkar_letters,
+                   'madadjoo_letters': madadjoo_letters})
 
 
 @admin_login_required
@@ -938,8 +1021,9 @@ def madadjoo_letters_admin(request):
     add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
     urgent_need_letters = urgent_need_admin_letter.objects.all()
     madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
+    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
     return render(request, 'admin/letter_content_madadjoo.html',
-                  {'letter': target_letter, 'add_madadjoo_letters': add_madadjoo_letters,
+                  {'letter': target_letter, 'add_madadjoo_letters': add_madadjoo_letters, 'change_madadkar_letters': change_madadkar_letters,
                    'urgent_need_letters': urgent_need_letters, 'madadjoo_letters': madadjoo_letters})
 
 

@@ -1,0 +1,18 @@
+{% extends 'madadkar/show_madadjoo.html' %}
+
+{% block link %}
+    <a href="{% url "show_a_not_mine_madadjoo" %}?username={{ madadjoo.username }}" class="btn btn-secondary">نمایش مشخصات
+        مددجو</a>
+{% endblock %}
+{% block button %}
+    <div class="card-footer bg-transparent">
+        {% block do-button %}
+            <a href="{% url "support_a_madadjoo_madadkar" %}?username={{ madadjoo.username }}"
+               style="cursor: auto ">
+                <button type="button" class="btn btn-outline-success btn-lg btn-block">
+                    حمایت کن
+                </button>
+            </a>
+        {% endblock %}
+    </div>
+{% endblock %}
