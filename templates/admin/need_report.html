@@ -7,28 +7,32 @@
     </div>
     <section>
         <div class="container py-3">
-            {% for madadjoo_stream in stream %}
+            {% for needs in unpaid_needs %}
                 <div class="card">
                     <div class="row ">
                         <div class="col-md-4">
-                            {% if madadjoo_stream.0.profile_pic %}
-                                <img  class="col-md-9 card-img-right img-thumbnail img-responsive" src=
-                                        "{{ madadjoo_stream.0.profile_pic.url|default:"https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276" }}">
+                            {% if needs.0.profile_pic %}
+                                <img class="col-md-9 card-img-right img-thumbnail img-responsive" src=
+                                        "{{ needs.0.profile_pic.url|default:"https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276" }}">
 
                             {% else %}
-                                <img  class="col-md-9 card-img-right img-thumbnail img-responsive"
+                                <img class="col-md-9 card-img-right img-thumbnail img-responsive"
                                      src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276">
                             {% endif %}
 
                         </div>
                         <div class="col-md-8 px-3">
                             <div class="card-body">
-                                <h4 class="card-title">{{ madadjoo_stream.0.first_name }} {{ madadjoo_stream.0.last_name }}</h4>
-                                        <p class="card-text">
-                                        </p>
+                                <h4 class="card-title">{{ needs.0.first_name }} {{ needs.0.last_name }}</h4>
+                                {% for need in needs.1 %}
+                                    <div class="card-text">
+                                        {% include "snippets/need_snippet_show_report.html" %}
+                                    </div>
+                                {% endfor %}
                             </div>
                             <div class="card-footer bg-transparent">
-                                <a href="{% url "show_a_madadjoo_hamyar" %}?username={{ madadjoo_stream.0.username }}" class="btn btn-primary">مشاهده بیشتر</a>
+                                <a href="{% url "show_a_madadjoo_admin" %}?username={{ needs.0.username }}"
+                                   class="btn btn-primary">مشاهده بیشتر</a>
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,56 @@
+<div class="form-group row">
+    <label for="description" class="col-md-1 col-form-label">نیاز</label>
+    <div class="col-md-3">
+         <textarea rows="3" id="staticneed" readonly class="form-control-plaintext form-control"
+                   placeholder="شرح و مبلغ نیاز مددجو در این‌جا وارد می‌شود">{{ need.description }}</textarea>
+    </div>
+
+
+    <div class="col-md-8">
+        <div class="form-check form-check-inline disabled">
+            <label class="form-check-label col-md-12"> ماهانه </label>
+            <div class="col-md-12">
+                <input class="form-check-input" type="radio" name="type_{{ need.id }}"
+                       id="inlineRadio1" value="mo" {% if need.type == "mo" %}checked{% endif %} disabled>
+            </div>
+        </div>
+        <div class="form-check form-check-inline disabled">
+            <label class="form-check-label col-md-12"> سالانه </label>
+            <div class="col-md-12">
+                <input class="form-check-input" type="radio" name="type_{{ need.id }}"
+                       id="inlineRadio1" value="mo" {% if need.type == "ann" %}checked{% endif %} disabled>
+            </div>
+        </div>
+        <div class="form-check form-check-inline disabled">
+            <label class="form-check-label col-md-12">موردی </label>
+            <div class="col-md-12">
+                <input class="form-check-input" type="radio" name="type_{{ need.id }}"
+                       id="inlineRadio3" value="inst" {% if need.type == "inst" %}checked{% endif %} disabled>
+            </div>
+        </div>
+
+        <div class="form-check form-check-inline disabled">
+            <label class="form-check-label col-md-1"> </label>
+            <div class="col-md-12">
+                {% if need.urgent %}
+                    <span class="badge badge-danger">نیاز فوری</span>
+                {% else %}
+                    <span class="badge badge-secondary">نیاز فوری</span>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form-check form-check-inline disabled">
+            <label class="form-check-label col-md-1"> </label>
+            <div class="col-md-12">
+                {% if need.cash %}
+                    <span class="badge badge-danger">نقدی</span>
+                {% else %}
+                    <span class="badge badge-secondary">نقدی</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
