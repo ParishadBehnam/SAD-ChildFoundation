@@ -41,6 +41,7 @@ def home_madadjoo(request):
     system = information.objects.first()
     return render(request, 'madadjoo/home_madadjoo.html', {'system': system})
 
+
 @admin_login_required
 def home_admin(request):
     system = information.objects.first()
@@ -51,7 +52,7 @@ def home_admin(request):
 def show_madadjoo(request):
     deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
     all_madadjoo = madadjoo.objects.filter(corr_madadkar=request.user.id).exclude(
-            active_user_ptr_id__in=deleted_madadjoos)
+        active_user_ptr_id__in=deleted_madadjoos)
     return render(request, 'madadkar/show_madadjoo.html', {'madadjoos': all_madadjoo})
 
 
@@ -59,7 +60,7 @@ def show_madadjoo(request):
 def show_madadjoo_hamyar(request):
     deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
     all_madadjoo = madadjoo.objects.filter(sponsership__hamyar_id=request.user.id, confirmed=True).exclude(
-            active_user_ptr_id__in=deleted_madadjoos)
+        active_user_ptr_id__in=deleted_madadjoos)
     return render(request, 'hamyar/show_madadjoo.html', {'madadjoos': all_madadjoo})
 
 
@@ -186,12 +187,11 @@ def substitute_madadjoo(request):
 
     deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
     all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id, confirmed=1).exclude(
-            madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+        madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     delete_letters = madadkar_remove_madadjoo.objects.filter(hamyar_id=request.user.id)
     action.send(request.user, verb='حمایت از مددجو', target=target_madadjoo)
     return render(request, 'hamyar/inbox.html', {'letters': all_letters, 'delete_letters': delete_letters,
                                                  'success_message': 'مددجوی جدید با موفقیت تحت حمایت شما قرار گرفت.'})
-
 
 
 @hamyar_login_required
@@ -203,7 +203,7 @@ def show_a_madadjoo_hamyar(request):
     if request.method == 'GET':
         if true:
             return render(request, 'hamyar/show_a_madadjoo.html',
-                      {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
+                          {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
         return render(request, 'hamyar/show_a_stranger.html',
                       {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
 
@@ -313,7 +313,8 @@ def send_letter_hamyar(request):
 
 @hamyar_login_required
 def stop_support_hamyar(request):
-    models.sponsership.objects.get(hamyar_id=request.user.id, madadjoo__active_user_ptr_id=request.GET.get('madadjoo', '')).delete()
+    models.sponsership.objects.get(hamyar_id=request.user.id,
+                                   madadjoo__active_user_ptr_id=request.GET.get('madadjoo', '')).delete()
     deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
     d = show_madadjoo(request)
     d['success_message'] = 'عدم حمایت از مددجو با موفقیت ثبت گردید.'
@@ -326,13 +327,13 @@ def show_letters_madadkar(request):
     deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
     all_madadjoo_madadkar_letters = \
         madadjoo_madadkar_letter.objects.filter(madadkar_id=request.user.id).exclude(
-                madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+            madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     all_madadjoo_hamyar_letters = \
         madadjoo_hamyar_letter.objects.filter(madadjoo__corr_madadkar=request.user.id, confirmed=False).exclude(
-                madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+            madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     all_hamyar_madadjoo_letters = \
         hamyar_madadjoo_meeting.objects.filter(madadjoo__corr_madadkar=request.user.id, confirmed=False).exclude(
-                madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+            madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     all_warnings = warning_admin_letter.objects.filter(madadkar=request.user.id)
     return {'madadjoo_madadkar_letters': all_madadjoo_madadkar_letters,
             'madadjoo_hamyar_letters': all_madadjoo_hamyar_letters,
@@ -460,10 +461,11 @@ def letter_content_hamyar(request):
     target_madadjoo = models.madadjoo.objects.get(active_user_ptr_id=target_letter.madadjoo_id)
     target_hamyar = models.hamyar.objects.get(active_user_ptr_id=target_letter.hamyar_id)
     all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id).exclude(
-            madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+        madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     delete_letters = madadkar_remove_madadjoo.objects.filter(hamyar_id=request.user.id)
     return render(request, 'hamyar/letter_content.html',
-                  {'letters': all_letters, 'delete_letters': delete_letters, 'letter': target_letter, 'sender': target_madadjoo, 'receiver': target_hamyar})
+                  {'letters': all_letters, 'delete_letters': delete_letters, 'letter': target_letter,
+                   'sender': target_madadjoo, 'receiver': target_hamyar})
 
 
 @madadjoo_login_required
@@ -493,7 +495,7 @@ def delete_madadjoo_letter_content_hamyar(request):
     else:
         target_madadkar = None
     all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id).exclude(
-            madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+        madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     delete_letters = madadkar_remove_madadjoo.objects.filter(hamyar_id=request.user.id)
     return render(request, 'hamyar/letter_content.html',
                   {'letters': all_letters, 'delete_letters': delete_letters, 'letter': target_letter,
@@ -505,7 +507,7 @@ def delete_madadjoo_letter_content_hamyar(request):
 def inbox_hamyar(request):
     deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
     all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id, confirmed=1).exclude(
-            madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+        madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     delete_letters = madadkar_remove_madadjoo.objects.filter(hamyar_id=request.user.id)
     return render(request, 'hamyar/inbox.html', {'letters': all_letters, 'delete_letters': delete_letters})
 
@@ -556,7 +558,7 @@ def show_hamyar_information(request):
             }
     deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
     madadjoos = madadjoo.objects.filter(sponsership__hamyar_id=active_user.id, confirmed=True).exclude(
-            active_user_ptr_id__in=deleted_madadjoos)
+        active_user_ptr_id__in=deleted_madadjoos)
     return render(request, 'hamyar/show_details.html', {'madadjoos': madadjoos})
 
 
@@ -589,15 +591,15 @@ def edit_hamyar_information(request):
 def payment_reports(request):
     deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
     cash = hamyar_madadjoo_payment.objects.filter(hamyar_id=request.user.id).exclude(
-            madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+        madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     non_cash = hamyar_madadjoo_non_cash.objects.filter(hamyar_id=request.user.id).exclude(
-            madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+        madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     system = hamyar_system_payment.objects.filter(hamyar_id=request.user.id)
 
     cash_for_deleteds = hamyar_madadjoo_payment.objects.filter(hamyar_id=request.user.id).filter(
-            madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+        madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     non_cash_for_deleteds = hamyar_madadjoo_non_cash.objects.filter(hamyar_id=request.user.id).filter(
-            madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+        madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     return render(request, 'hamyar/payment_reports.html', {'cash': cash, 'non_cash': non_cash,
                                                            'system': system,
                                                            'cash_for_deleteds': cash_for_deleteds,
@@ -1136,7 +1138,7 @@ def show_a_hamyar_admin(request):
     target_hamyar = hamyar.objects.get(username=request.GET.get('username', ''))
     deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
     madadjoos = madadjoo.objects.filter(sponsership__hamyar=target_hamyar).exclude(
-            active_user_ptr_id__in=deleted_madadjoos)
+        active_user_ptr_id__in=deleted_madadjoos)
     return render(request, 'admin/show_a_hamyar.html', {'hamyar': target_hamyar, 'madadjoos': madadjoos})
 
 
@@ -1235,4 +1237,9 @@ def activity_report(request):
 
 @admin_login_required
 def madadjoo_paid_report(request):
+    return render(request, 'admin/madadjoo_paid_report.html')
+
+
+@admin_login_required
+def need_report_admin(request):
     return render(request, 'admin/madadjoo_paid_report.html')

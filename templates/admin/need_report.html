@@ -1,0 +1,40 @@
+{% extends "admin/base_registered.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-6 ml-auto"><h4>مشاهده‌ی نیاز‌های حمایت نشده مددجویان</h4></div>
+        <hr>
+    </div>
+    <section>
+        <div class="container py-3">
+            {% for madadjoo_stream in stream %}
+                <div class="card">
+                    <div class="row ">
+                        <div class="col-md-4">
+                            {% if madadjoo_stream.0.profile_pic %}
+                                <img  class="col-md-9 card-img-right img-thumbnail img-responsive" src=
+                                        "{{ madadjoo_stream.0.profile_pic.url|default:"https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276" }}">
+
+                            {% else %}
+                                <img  class="col-md-9 card-img-right img-thumbnail img-responsive"
+                                     src="https://intermountainhealthcare.org/-/media/images/modules/physician-directory/profile-placeholder.png?mh=276&mw=276">
+                            {% endif %}
+
+                        </div>
+                        <div class="col-md-8 px-3">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ madadjoo_stream.0.first_name }} {{ madadjoo_stream.0.last_name }}</h4>
+                                        <p class="card-text">
+                                        </p>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <a href="{% url "show_a_madadjoo_hamyar" %}?username={{ madadjoo_stream.0.username }}" class="btn btn-primary">مشاهده بیشتر</a>
+                            </div>
+                        </div>
+                    </div>
+                </div><p></p>
+            {% endfor %}
+        </div>
+        </div>
+    </section>
+{% endblock %}

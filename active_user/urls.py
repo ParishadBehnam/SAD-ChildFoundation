@@ -75,4 +75,5 @@ urlpatterns = [
     url(r'^warning_letter_admin', views.warning_letter_admin, name='warning_letter_admin'),
     url(r'^warning_content_madadkar', views.warning_content_madadkar, name='warning_content_madadkar'),
     url(r'^stop_support_hamyar$', views.stop_support_hamyar, name='stop_support_hamyar'),
+    url(r'^need_report_admin', views.need_report_admin, name='need_report_admin'),
 ]
