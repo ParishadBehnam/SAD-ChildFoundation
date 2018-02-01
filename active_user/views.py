@@ -173,7 +173,7 @@ def support_a_madadjoo(request):
         .exclude(sponsership__hamyar_id=request.user.id).exclude(active_user_ptr_id__in=deleted_mdadjoos)
 
     action.send(request.user, verb='حمایت از مددجو', target=target_madadjoo)
-    return render(request, 'hamyar/show_madadjoo.html',
+    return render(request, 'hamyar/select_madadjoo.html',
                   {'madadjoos': list(all_madadjoo), 'success_message': 'مددجوی مورد نظر تحت حمایت شما قرار گرفت'})
 
 
@@ -337,8 +337,16 @@ def send_letter_hamyar(request):
 
 @hamyar_login_required
 def stop_support_hamyar(request):
-    models.sponsership.objects.get(hamyar_id=request.user.id,
-                                   madadjoo__active_user_ptr_id=request.GET.get('madadjoo', '')).delete()
+    amount = models.hamyar_madadjoo_payment.objects.filter(hamyar_id=request.user.id, madadjoo__active_user_ptr_id=request.GET.get('madadjoo', ''))
+    sum = 0
+    for a in amount:
+        sum += a.amount
+    amount.delete()
+    our_system = list(system_models.information.objects.all())
+    if sum>0 :
+        payment = hamyar_system_payment(amount=sum, hamyar_id=request.user.id, system_id=our_system[0].history)
+    payment.save()
+    models.sponsership.objects.get(hamyar_id=request.user.id, madadjoo__active_user_ptr_id=request.GET.get('madadjoo', '')).delete()
     deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
     d = show_madadjoo(request)
     d['success_message'] = 'عدم حمایت از مددجو با موفقیت ثبت گردید.'
