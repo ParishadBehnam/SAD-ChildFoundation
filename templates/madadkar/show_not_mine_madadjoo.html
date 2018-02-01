@@ -1,5 +1,9 @@
 {% extends 'madadkar/show_madadjoo.html' %}
 
+{% block title %}
+            <div class="col-6 ml-auto"><h4> مشاهده مددجویان بدون حامی</h4></div>
+        {% endblock %}
+
 {% block link %}
     <a href="{% url "show_a_not_mine_madadjoo" %}?username={{ madadjoo.username }}" class="btn btn-secondary">نمایش مشخصات
         مددجو</a>
