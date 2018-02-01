@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^send_letter_hamyar_madadjoo', views.send_letter_hamyar_madadjoo, name='send_letter_hamyar_madadjoo'),
     url(r'^send_request_madadkar', views.send_request_madadkar, name='send_request_madadkar'),
     url(r'^send_gratitude_letter', views.send_gratitude_letter, name='send_gratitude_letter'),
+    url(r'^request_change_madadkar', views.request_change_madadkar, name='request_change_madadkar'),
     url(r'^show_madadjoo_information', views.show_madadjoo_information, name='show_madadjoo_information'),
     url(r'^show_madadjoo_admin', views.show_madadjoo_admin, name='show_madadjoo_admin'),
     url(r'^show_madadkar_admin', views.show_madadkar_admin, name='show_madadkar_admin'),

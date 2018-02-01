@@ -10,8 +10,14 @@ from django.shortcuts import render_to_response
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+from active_user import forms
 from active_user import models
 from active_user.decorators import admin_login_required
+from active_user.decorators import madadkar_login_required
 from active_user.decorators import hamyar_login_required
 from active_user.decorators import madadjoo_login_required
 from active_user.decorators import madadkar_login_required
@@ -19,7 +25,7 @@ from active_user.models import madadjoo, hamyar, madadkar, sponsership, \
     madadjoo_madadkar_letter, madadjoo_hamyar_letter, hamyar_madadjoo_meeting, \
     hamyar_system_payment, hamyar_madadjoo_payment, requirements, hamyar_madadjoo_non_cash, add_madadjoo_admin_letter, \
     madadkar_remove_madadjoo, urgent_need_admin_letter, admin_user, warning_admin_letter, active_user, \
-    substitute_a_madadjoo
+    substitute_a_madadjoo, request_for_change_madadkar
 from system import models as system_models
 from system.models import information
 
@@ -233,6 +239,24 @@ def show_a_madadjoo_hamyar(request):
                     payment = hamyar_madadjoo_payment(madadjoo=target_madadjoo, hamyar=target_hamyar,
                                                       amount=amount, type=type)
                     payment.save()
+
+                    type = 'ماهانه'  if type == 'mo' else 'سالانه'if type == 'ann' else 'موردی'
+                    message = target_madadjoo.first_name + ' ' + target_madadjoo.last_name + 'عزیز، \n پرداخت از سوی '  + \
+                                target_hamyar.first_name + ' ' + target_hamyar.last_name + ' به مبلغ ' + \
+                                str(payment.amount) + ' تومان به صورت '  + type + ' در سامانه ثبت گردید.' + \
+                                '\n\nبنیاد حمایت از کودکان'
+
+                    server = smtplib.SMTP('smtp.gmail.com', 587)
+                    server.starttls()
+                    server.login('childf2018', 'childF20182018')
+                    msg = MIMEMultipart()
+                    msg['From'] = 'childf2018@gmail.com'
+                    msg['To'] = madadjoo.email
+                    msg['Subject'] = 'ثبت پرداخت'
+                    msg.attach(MIMEText(message, 'plain'))
+                    server.send_message(msg)
+                    server.quit()
+
                     action.send(request.user, verb='پرداخت به مددجو', target=target_madadjoo)
 
                     return render(request, 'hamyar/show_a_madadjoo.html', {'user': target_madadjoo, 'needs': needs,
@@ -720,6 +744,17 @@ def send_gratitude_letter(request):
         # return HttpResponseRedirect(reverse("madadjoo_panel"))
         return render(request, 'madadjoo/send_gratitude_letter.html', {'user': user, 'receiver': target_madadkar,
                                                                        'success_message': 'نامه‌ی تشکر شما برای مددکار ارسال شد.'})
+
+
+@madadjoo_login_required
+def request_change_madadkar(request):
+    target_madadkar = madadkar.objects.get(username=request.GET.get('username', ''))
+    user = madadjoo.objects.get(username=request.user)
+    req = request_for_change_madadkar(madadjoo=user)
+    req.save()
+    return render(request, 'madadjoo/show_a_madadkar.html', {'first_name': target_madadkar.first_name, 'last_name': target_madadkar.last_name,
+                       'username': target_madadkar.username, 'profile_pic': target_madadkar.profile_pic,
+                                                             'success_message': 'درخواست شما با موفقیت برای مدیر سامانه ارسال گردید.'})
 
 
 @madadjoo_login_required

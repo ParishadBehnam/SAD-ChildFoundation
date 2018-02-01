@@ -70,7 +70,6 @@ def sign_in(request):
         except:
             admin_madadkar_flag = False
 
-
         if user is not None and not admin_madadkar_flag:
             target_username = models.active_user.objects.get(username=username)
 
