@@ -1,269 +1,5 @@
 [
 {
-  "model": "contenttypes.contenttype",
-  "pk": 1,
-  "fields": {
-    "app_label": "admin",
-    "model": "logentry"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 2,
-  "fields": {
-    "app_label": "auth",
-    "model": "permission"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 3,
-  "fields": {
-    "app_label": "auth",
-    "model": "group"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 4,
-  "fields": {
-    "app_label": "contenttypes",
-    "model": "contenttype"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 5,
-  "fields": {
-    "app_label": "sessions",
-    "model": "session"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 6,
-  "fields": {
-    "app_label": "system",
-    "model": "information"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 7,
-  "fields": {
-    "app_label": "active_user",
-    "model": "active_user"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 8,
-  "fields": {
-    "app_label": "active_user",
-    "model": "add_madadjoo_admin_letter"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 9,
-  "fields": {
-    "app_label": "active_user",
-    "model": "hamyar_madadjoo_meeting"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 10,
-  "fields": {
-    "app_label": "active_user",
-    "model": "hamyar_madadjoo_non_cash"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 11,
-  "fields": {
-    "app_label": "active_user",
-    "model": "hamyar_madadjoo_payment"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 12,
-  "fields": {
-    "app_label": "active_user",
-    "model": "hamyar_system_payment"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 13,
-  "fields": {
-    "app_label": "active_user",
-    "model": "madadjoo_hamyar_letter"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 14,
-  "fields": {
-    "app_label": "active_user",
-    "model": "madadjoo_madadkar_letter"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 15,
-  "fields": {
-    "app_label": "active_user",
-    "model": "madadkar_remove_madadjoo"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 16,
-  "fields": {
-    "app_label": "active_user",
-    "model": "requirements"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 17,
-  "fields": {
-    "app_label": "active_user",
-    "model": "sponsership"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 18,
-  "fields": {
-    "app_label": "active_user",
-    "model": "substitute_a_madadjoo"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 19,
-  "fields": {
-    "app_label": "active_user",
-    "model": "urgent_need_admin_letter"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 20,
-  "fields": {
-    "app_label": "active_user",
-    "model": "warning_admin_letter"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 21,
-  "fields": {
-    "app_label": "active_user",
-    "model": "hamyar"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 22,
-  "fields": {
-    "app_label": "active_user",
-    "model": "madadjoo"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 23,
-  "fields": {
-    "app_label": "active_user",
-    "model": "madadkar"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 24,
-  "fields": {
-    "app_label": "active_user",
-    "model": "admin_user"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 25,
-  "fields": {
-    "app_label": "sites",
-    "model": "site"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 26,
-  "fields": {
-    "app_label": "actstream",
-    "model": "action"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 27,
-  "fields": {
-    "app_label": "actstream",
-    "model": "follow"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
-  "pk": 28,
-  "fields": {
-    "app_label": "active_user",
-    "model": "request_for_change_madadkar"
-  }
-},
-{
-  "model": "sessions.session",
-  "pk": "58qx4r09u30is9e0yf3h05l5c69xgn4r",
-  "fields": {
-    "session_data": "MGYwMjhmOWRlOTZmOWEwMDc1NDkwMzRmZDAwODEyZWE3YWI2ODA1NDp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwidHlwZSI6ImhhbXlhciIsIl9hdXRoX3VzZXJfaWQiOiI0IiwiX2F1dGhfdXNlcl9oYXNoIjoiNjg2YmQ1NDA3Yzc2NjJiNTg4ZDg2ZTZkZjRkODQ2ZGMzNGRjZjdkYyJ9",
-    "expire_date": "2018-02-14T20:14:17.200Z"
-  }
-},
-{
-  "model": "sessions.session",
-  "pk": "btx486l51hpf6pz109kbruqrza50lzws",
-  "fields": {
-    "session_data": "MjQ5NmUyZjJmM2Y1MGZmMDZjYmYxMWY1MDVhYmJkNWYxODU0ODNmNzp7InR5cGUiOiJoYW15YXIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6IjY4NmJkNTQwN2M3NjYyYjU4OGQ4NmU2ZGY0ZDg0NmRjMzRkY2Y3ZGMiLCJfYXV0aF91c2VyX2lkIjoiNCJ9",
-    "expire_date": "2018-02-14T19:00:45.194Z"
-  }
-},
-{
-  "model": "sessions.session",
-  "pk": "etk0l2bp1yks1tx04g1msn3b4qeacttj",
-  "fields": {
-    "session_data": "ODE2NDZhOWQ2NzIzYmM0MDE5NzliZWM1MTg4NTExYjkxYjIxOTBhNzp7Il9hdXRoX3VzZXJfaWQiOiI0IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI2ODZiZDU0MDdjNzY2MmI1ODhkODZlNmRmNGQ4NDZkYzM0ZGNmN2RjIiwidHlwZSI6ImhhbXlhciJ9",
-    "expire_date": "2018-02-16T08:46:58.160Z"
-  }
-},
-{
-  "model": "sessions.session",
-  "pk": "iu7f79i7ucmeborzn5209uux0wwn19n6",
-  "fields": {
-    "session_data": "OTUxZmQ3YTVhYjMwNGU0MzZkMzEyN2JhMmJiZjRiZWQ0ZWNhNDhhMDp7InR5cGUiOiJtYWRhZGthciIsIl9hdXRoX3VzZXJfaGFzaCI6ImNhNTIzMmE2OTYxOTdlNzAzMWE5OGEyZjZiOWYyNDMxNTg5Yzc1YTkiLCJfYXV0aF91c2VyX2lkIjoiMyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=",
-    "expire_date": "2018-02-15T09:28:28.206Z"
-  }
-},
-{
-  "model": "sessions.session",
-  "pk": "ivnvr8qbpzomczzq5oy3g2zd9lakbd61",
-  "fields": {
-    "session_data": "MDY2YTFlNzljZDNhMjUxNDlmOGE0MDdkNDY0MTJiNDU1NDljNmQxNDp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxM2VjMTVjMmQ2MmVhYjdiMGNlYzc0OTQ4NzQwMWI3Yzc1ZmE4YzZlIiwidHlwZSI6ImFkbWluIn0=",
-    "expire_date": "2018-02-15T08:25:20.021Z"
-  }
-},
-{
   "model": "system.information",
   "pk": "\u0627\u06cc\u0646 \u0628\u0646\u06cc\u0627\u062f \u0627\u0632 \u0633\u0627\u0644 \u06f1\u06f3\u06f7\u06f3 \u062f\u0631 \u0627\u06cc\u0631\u0627\u0646 \u0648 \u0622\u0645\u0631\u06cc\u06a9\u0627 \u0641\u0639\u0627\u0644\u06cc\u062a \u062e\u0648\u062f \u0631\u0627 \u0622\u063a\u0627\u0632 \u06a9\u0631\u062f\u0647 \u0627\u0633\u062a. \u0627\u06cc\u0646 \u0645\u0624\u0633\u0633\u0647 \u062f\u0631 \u0627\u06cc\u0631\u0627\u0646 \u0628\u0627 \u0646\u0627\u0645 \"\u0645\u0624\u0633\u0633\u0647 \u062e\u06cc\u0631\u06cc\u0647 \u0631\u0641\u0627\u0647 \u06a9\u0648\u062f\u06a9\"\u0628\u0647 \u062b\u0628\u062a \u0631\u0633\u06cc\u062f\u0647 \u0627\u0633\u062a. \u062f\u0631\u0633\u0627\u0644 \u06f1\u06f3\u06f7\u06f8 \u0628\u0646\u06cc\u0627\u062f\u06a9\u0648\u062f\u06a9 \u062f\u0631 \u0627\u06cc\u0631\u0627\u0646 \u062b\u0628\u062a \u0631\u0633\u0645\u06cc \u0634\u062f \u0648 \u0627\u0632 \u062b\u0628\u062a \u0634\u0631\u06a9\u062a \u0647\u0627 \u062f\u0631 \u0634\u06cc\u0631\u0627\u0632 \u0645\u062c\u0648\u0632\u06cc \u0628\u0647 \u0634\u0645\u0627\u0631\u0647 \u06f3\u06f9\u06f8 \u062f\u0631\u06cc\u0627\u0641\u062a \u06a9\u0631\u062f. \u0633\u067e\u0633 \u062f\u0641\u062a\u0631\u0645\u0631\u06a9\u0632\u06cc \u0628\u0646\u06cc\u0627\u062f\u06a9\u0648\u062f\u06a9 \u0627\u0632 \u0634\u06cc\u0631\u0627\u0632 \u0628\u0647 \u062a\u0647\u0631\u0627\u0646 \u0645\u0646\u062a\u0642\u0644 \u0634\u062f \u0648 \u067e\u0633 \u0627\u0632 \u0627\u0646\u062a\u0642\u0627\u0644 \u0631\u0633\u0645\u06cc \u0627\u0633\u0646\u0627\u062f\u060c \u0645\u062c\u062f\u062f\u0627\u064b \u0627\u0632 \u062b\u0628\u062a \u0634\u0631\u06a9\u062a \u0647\u0627 \u062f\u0631 \u0633\u0627\u0644 \u06f1\u06f3\u06f8\u06f8 \u0645\u062c\u0648\u0632\u06cc \u0628\u0647 \u0634\u0645\u0627\u0631\u0647 \u06f2\u06f5\u06f5\u06f4\u06f0 \u062f\u0631\u06cc\u0627\u0641\u062a \u06a9\u0631\u062f.",
   "fields": {
@@ -271,1026 +7,6 @@
     "goals": "\u062e\u0637 \u0645\u0634\u06cc \u0645\u0648\u0633\u0633\u0647 \u062e\u06cc\u0631\u06cc\u0647 \u0631\u0641\u0627\u0647 \u06a9\u0648\u062f\u06a9\u060c \u0628\u0631 \u0627\u0647\u0645\u06cc\u062a \u0628\u0647 \u062a\u062d\u0635\u06cc\u0644 \u0648 \u0622\u0645\u0648\u0632\u0634 \u0627\u0633\u062a\u0648\u0627\u0631 \u0628\u0648\u062f\u0647 \u0627\u0633\u062a .\u0627\u06cc\u0646 \u0645\u0648\u0633\u0633\u0647 \u062a\u0644\u0627\u0634 \u0645\u06cc\u200c\u06a9\u0646\u062f \u062a\u0627 \u0628\u0627 \u062d\u0641\u0638 \u0634\u0627\u0646 \u0627\u0646\u0633\u0627\u0646\u06cc \u062f\u0627\u0646\u0634 \u0622\u0645\u0648\u0632\u0627\u0646\u060c \u0627\u0632 \u00ab\u0646\u06cc\u0627\u0632\u0645\u0646\u062f \u067e\u0631\u0648\u0631\u06cc\u00bb\u060c \u067e\u0631\u0647\u06cc\u0632 \u06a9\u0646\u062f \u0648 \u0622\u0646\u0647\u0627 \u0631\u0627 \u062f\u0631 \u0633\u0627\u062e\u062a\u0646 \u0622\u06cc\u0646\u062f\u0647\u200c\u0627\u06cc \u0628\u0627 \u0686\u0634\u0645 \u0627\u0646\u062f\u0627\u0632\u0647\u0627\u06cc \u0631\u0648\u0634\u0646 \u06cc\u0627\u0631\u06cc \u06a9\u0646\u062f. \u0628\u0646\u06cc\u0627\u062f \u06a9\u0648\u062f\u06a9 \u0627\u06cc\u0631\u0627\u0646\u060c \u06cc\u06a9 \u0633\u0627\u0632\u0645\u0627\u0646 \u063a\u06cc\u0631 \u0627\u0646\u062a\u0641\u0627\u0639\u06cc \u0648 \u063a\u06cc\u0631\u062f\u0648\u0644\u062a\u06cc \u0627\u0633\u062a \u0648 \u0627\u06cc\u0646 \u0648\u06cc\u0698\u06af\u06cc \u0628\u062e\u0634 \u062c\u062f\u0627\u06cc\u06cc \u0646\u0627\u067e\u0630\u06cc\u0631 \u062e\u0637 \u0645\u0634\u06cc \u0645\u0648\u0633\u0633\u0647 \u062e\u06cc\u0631\u06cc\u0647 \u0631\u0641\u0627\u0647 \u06a9\u0648\u062f\u06a9 \u0628\u0648\u062f\u0647 \u0648 \u062e\u0648\u0627\u0647\u062f \u0628\u0648\u062f \u0648 \u062f\u0631 \u0647\u06cc\u0686 \u0634\u0631\u0627\u06cc\u0637\u06cc \u0627\u0632 \u0647\u0631\u06af\u0648\u0646\u0647 \u0627\u0642\u062f\u0627\u0645\u06cc \u06a9\u0647 \u0628\u0627 \u0627\u06cc\u0646 \u0648\u06cc\u0698\u06af\u06cc \u0645\u0637\u0627\u0628\u0642\u062a \u0646\u062f\u0627\u0634\u062a\u0647 \u0628\u0627\u0634\u062f\u060c \u0627\u0633\u062a\u0642\u0628\u0627\u0644 \u0646\u062e\u0648\u0627\u0647\u062f \u06a9\u0631\u062f. \u0627\u0644\u0628\u062a\u0647 \u0647\u0645\u06cc\u0627\u0631\u0627\u0646 \u0628\u0646\u06cc\u0627\u062f \u06a9\u0648\u062f\u06a9 \u0627\u06cc\u0631\u0627\u0646\u060c \u0645\u06cc\u062a\u0648\u0627\u0646\u0646\u062f \u0627\u0632 \u0647\u0631 \u0642\u0634\u0631\u060c \u0647\u0631 \u0645\u0644\u06cc\u062a \u0648 \u0628\u0627 \u0647\u0631 \u0645\u0631\u0627\u0645 \u0633\u06cc\u0627\u0633\u06cc \u0648 \u0645\u0630\u0647\u0628\u06cc \u0628\u0627\u0634\u0646\u062f. \u0627\u0645\u0627 \u0645\u0648\u0633\u0633\u0647 \u0647\u06cc\u0686\u06af\u0648\u0646\u0647 \u0627\u0642\u062f\u0627\u0645 \u0648 \u06cc\u0627 \u062c\u0647\u062a \u06af\u06cc\u0631\u06cc\u060c \u0639\u0644\u06cc\u0647 \u06af\u0631\u0648\u0647 \u062e\u0627\u0635\u06cc \u0631\u0627\u060c \u0646\u062e\u0648\u0627\u0647\u062f \u067e\u0630\u06cc\u0631\u0641\u062a. \u0647\u0631 \u06af\u0648\u0646\u0647 \u0647\u0645\u06cc\u0627\u0631\u06cc \u0645\u0627\u062f\u06cc \u06cc\u0627 \u0645\u0639\u0646\u0648\u06cc \u0646\u06cc\u0632 \u0628\u0627 \u0627\u062d\u062a\u0631\u0627\u0645 \u0628\u0647 \u0646\u06cc\u062a \u062e\u06cc\u0631 \u0641\u0631\u062f \u06cc\u0627 \u0633\u0627\u0632\u0645\u0627\u0646 \u0627\u0631\u0627\u0626\u0647 \u062f\u0647\u0646\u062f\u0647\u060c \u06a9\u0647 \u0628\u0627 \u0647\u062f\u0641\u06cc \u063a\u06cc\u0631 \u0627\u0632 \u06a9\u0645\u06a9 \u0628\u0647 \u062f\u0627\u0646\u0634 \u0622\u0645\u0648\u0632\u0627\u0646 \u0646\u06cc\u0627\u0632\u0645\u0646\u062f \u0628\u0627\u0634\u062f\u060c \u067e\u0630\u06cc\u0631\u0641\u062a\u0647 \u0646\u062e\u0648\u0627\u0647\u062f \u0634\u062f. \u062e\u0637 \u0645\u0634\u06cc \u0645\u0648\u0633\u0633\u0647 \u062e\u06cc\u0631\u06cc\u0647 \u0631\u0641\u0627\u0647 \u06a9\u0648\u062f\u06a9\u060c \u0628\u0631 \u0627\u0647\u0645\u06cc\u062a \u0628\u0647 \u062a\u062d\u0635\u06cc\u0644 \u0648 \u0622\u0645\u0648\u0632\u0634 \u0627\u0633\u062a\u0648\u0627\u0631 \u0628\u0648\u062f\u0647 \u0627\u0633\u062a .\u0627\u06cc\u0646 \u0645\u0648\u0633\u0633\u0647 \u062a \u0634 \u0645\u06cc\u06a9\u0646\u062f \u062a\u0627 \u0628\u0627 \u062d\u0641\u0638 \u0634\u0627\u0646 \u0627\u0646\u0633\u0627\u0646\u06cc \u062f\u0627\u0646\u0634 \u0622\u0645\u0648\u0632\u0627\u0646\u060c \u0627\u0632 \u00ab\u0646\u06cc\u0627\u0632\u0645\u0646\u062f \u067e\u0631\u0648\u0631\u06cc\u00bb\u060c \u067e\u0631\u0647\u06cc\u0632 \u06a9\u0646\u062f \u0648 \u0622\u0646\u0647\u0627 \u0631\u0627 \u062f\u0631 \u0633\u0627\u062e\u062a\u0646 \u0622\u06cc\u0646\u062f\u0647\u0627\u06cc \u0628\u0627 \u0686\u0634\u0645 \u0627\u0646\u062f\u0627\u0632\u0647\u0627\u06cc \u0631\u0648\u0634\u0646 \u06cc\u0627\u0631\u06cc \u06a9\u0646\u062f. \u0628\u0646\u06cc\u0627\u062f \u06a9\u0648\u062f\u06a9 \u0627\u06cc\u0631\u0627\u0646\u060c \u06cc\u06a9 \u0633\u0627\u0632\u0645\u0627\u0646 \u063a\u06cc\u0631 \u0627\u0646\u062a\u0641\u0627\u0639\u06cc \u0648 \u063a\u06cc\u0631\u062f\u0648\u0644\u062a\u06cc \u0627\u0633\u062a \u0648 \u0627\u06cc\u0646 \u0648\u06cc\u0698\u06af\u06cc \u0628\u062e\u0634 \u062c\u062f\u0627\u06cc\u06cc \u0646\u0627\u067e\u0630\u06cc\u0631 \u062e\u0637 \u0645\u0634\u06cc \u0645\u0648\u0633\u0633\u0647 \u062e\u06cc\u0631\u06cc\u0647 \u0631\u0641\u0627\u0647 \u06a9\u0648\u062f\u06a9 \u0628\u0648\u062f\u0647 \u0648 \u062e\u0648\u0627\u0647\u062f \u0628\u0648\u062f \u0648 \u062f\u0631 \u0647\u06cc\u0686 \u0634\u0631\u0627\u06cc\u0637\u06cc \u0627\u0632 \u0647\u0631\u06af\u0648\u0646\u0647 \u0627\u0642\u062f\u0627\u0645\u06cc \u06a9\u0647 \u0628\u0627 \u0627\u06cc\u0646 \u0648\u06cc\u0698\u06af\u06cc \u0645\u0637\u0627\u0628\u0642\u062a \u0646\u062f\u0627\u0634\u062a\u0647 \u0628\u0627\u0634\u062f\u060c \u0627\u0633\u062a\u0642\u0628\u0627\u0644 \u0646\u062e\u0648\u0627\u0647\u062f \u06a9\u0631\u062f. \u0627\u0644\u0628\u062a\u0647 \u0647\u0645\u06cc\u0627\u0631\u0627\u0646 \u0628\u0646\u06cc\u0627\u062f \u06a9\u0648\u062f\u06a9 \u0627\u06cc\u0631\u0627\u0646\u060c \u0645\u06cc\u062a\u0648\u0627\u0646\u0646\u062f \u0627\u0632 \u0647\u0631 \u0642\u0634\u0631\u060c \u0647\u0631 \u0645\u0644\u06cc\u062a \u0648 \u0628\u0627 \u0647\u0631 \u0645\u0631\u0627\u0645 \u0633\u06cc\u0627\u0633\u06cc \u0648 \u0645\u0630\u0647\u0628\u06cc \u0628\u0627\u0634\u0646\u062f. \u0627\u0645\u0627 \u0645\u0648\u0633\u0633\u0647 \u0647\u06cc\u0686\u06af\u0648\u0646\u0647 \u0627\u0642\u062f\u0627\u0645 \u0648 \u06cc\u0627 \u062c\u0647\u062a \u06af\u06cc\u0631\u06cc\u060c \u0639\u0644\u06cc\u0647 \u06af\u0631\u0648\u0647 \u062e\u0627\u0635\u06cc \u0631\u0627\u060c \u0646\u062e\u0648\u0627\u0647\u062f \u067e\u0630\u06cc\u0631\u0641\u062a. \u0647\u0631 \u06af\u0648\u0646\u0647 \u0647\u0645\u06cc\u0627\u0631\u06cc \u0645\u0627\u062f\u06cc \u06cc\u0627 \u0645\u0639\u0646\u0648\u06cc \u0646\u06cc\u0632 \u0628\u0627 \u0627\u062d\u062a\u0631\u0627\u0645 \u0628\u0647 \u0646\u06cc\u062a \u062e\u06cc\u0631 \u0641\u0631\u062f \u06cc\u0627 \u0633\u0627\u0632\u0645\u0627\u0646 \u0627\u0631\u0627\u0626\u0647 \u062f\u0647\u0646\u062f\u0647\u060c \u06a9\u0647 \u0628\u0627 \u0647\u062f\u0641\u06cc \u063a\u06cc\u0631 \u0627\u0632 \u06a9\u0645\u06a9 \u0628\u0647 \u062f\u0627\u0646\u0634 \u0622\u0645\u0648\u0632\u0627\u0646 \u0646\u06cc\u0627\u0632\u0645\u0646\u062f \u0628\u0627\u0634\u062f\u060c \u067e\u0630\u06cc\u0631\u0641\u062a\u0647 \u0646\u062e\u0648\u0627\u0647\u062f \u0634\u062f.",
     "activities": "\u0628\u0646\u06cc\u0627\u062f\u06a9\u0648\u062f\u06a9 \u0627\u0632 \u0622\u063a\u0627\u0632\u0650 \u0641\u0639\u0627\u0644\u06cc\u062a \u062a\u0627\u06a9\u0646\u0648\u0646 \u062a\u0648\u0627\u0646\u0633\u062a\u0647\u200c\u0627\u0633\u062a \u0628\u06cc\u0634 \u0627\u0632 \u062f\u0648\u0627\u0632\u062f\u0647\u200c\u0647\u0632\u0627\u0631 \u062f\u0627\u0646\u0634\u200c\u0622\u0645\u0648\u0632 \u0648 \u0628\u0647 \u062a\u0628\u0639 \u0622\u0646 \u062e\u0627\u0646\u0648\u0627\u062f\u0647\u200c\u0647\u0627\u06cc \u0622\u0646\u0647\u0627 \u0631\u0627 \u062a\u062d\u062a \u062d\u0645\u0627\u06cc\u062a \u0642\u0631\u0627\u0631\u062f\u0647\u062f \u0648 \u0627\u0645\u0631\u0648\u0632 \u0646\u06cc\u0632 \u0628\u06cc\u0634 \u0627\u0632 \u06f8\u06f3\u06f0\u06f0 \u062f\u0627\u0646\u0634\u200c\u0622\u0645\u0648\u0632 \u0631\u0627 \u062f\u0631 \u0633\u0631\u0627\u0633\u0631 \u0627\u06cc\u0631\u0627\u0646 \u062d\u0645\u0627\u06cc\u062a \u0645\u06cc\u06a9\u0646\u062f \u06a9\u0647 \u062d\u062f\u0648\u062f \u0647\u0632\u0627\u0631\u0646\u0641\u0631 \u0627\u0632 \u0627\u06cc\u0646 \u062f\u0627\u0646\u0634\u200c\u0622\u0645\u0648\u0632\u0627\u0646 \u062a\u0648\u0627\u0646\u0633\u062a\u0647\u200c\u0627\u0646\u062f \u0628\u0647 \u062f\u0627\u0646\u0634\u06af\u0627\u0647\u200c\u0647\u0627\u06cc \u06a9\u0634\u0648\u0631 \u0648\u0627\u0631\u062f \u0634\u0648\u0646\u062f. \u0627\u0632 \u0622\u0646\u062c\u0627 \u06a9\u0647 \u0628\u0646\u06cc\u0627\u062f\u06a9\u0648\u062f\u06a9 \u0627\u0632 \u0627\u0628\u062a\u062f\u0627\u06cc \u0641\u0639\u0627\u0644\u06cc\u062a \u062e\u0648\u062f \u0645\u0639\u062a\u0642\u062f \u0628\u0647 \u0639\u0645\u0644\u06a9\u0631\u062f\u06cc \u0641\u0631\u0627\u06af\u06cc\u0631\u060c \u067e\u06cc\u0634\u0631\u0648\u060c \u0645\u062f\u0631\u0646\u060c \u067e\u0627\u0633\u062e\u06af\u0648 \u0648 \u0634\u0641\u0627\u0641 \u0628\u0648\u062f\u0647\u200c\u0627\u0633\u062a\u060c \u0647\u0645\u0648\u0627\u0631\u0647 \u062f\u0631 \u062c\u0647\u062a \u062a\u0648\u0633\u0639\u0647 \u0641\u0646\u0627\u0648\u0631\u06cc \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0633\u06cc\u0627\u0631 \u06a9\u0648\u0634\u06cc\u062f\u0647\u200c\u0627\u0633\u062a. \u067e\u0633 \u0628\u0627 \u0627\u0639\u062a\u0642\u0627\u062f \u0628\u0647 \u0627\u06cc\u0646 \u0631\u0648\u06cc\u06a9\u0631\u062f \u0645\u062a\u0646\u0627\u0633\u0628 \u0628\u0627 \u0646\u06cc\u0627\u0632\u060c \u0627\u0647\u062f\u0627\u0641\u060c \u0686\u0634\u0645\u200c\u0627\u0646\u062f\u0627\u0632 \u0648... \u0646\u0633\u0628\u062a \u0628\u0647 \u0637\u0631\u0627\u062d\u06cc \u06cc\u06a9 \u0646\u0631\u0645\u200c\u0627\u0641\u0632\u0627\u0631 \u062c\u0627\u0645\u0639 \u062a\u062d\u062a \u0648\u0628 \u0628\u0647 \u0646\u0627\u0645 \u0648\u0646\u062f\u0627 \u0627\u0642\u062f\u0627\u0645\u200c\u06a9\u0631\u062f \u0648 \u062f\u0631 \u0633\u0627\u0644 \u06f8\u06f7 \u0628\u0647\u200c\u0637\u0648\u0631 \u0631\u0633\u0645\u06cc \u0627\u0632 \u0627\u06cc\u0646 \u0646\u0631\u0645\u200c\u0627\u0641\u0632\u0627\u0631 \u0628\u0647\u0631\u0647\u200c\u0628\u0631\u062f\u0627\u0631\u06cc \u0634\u062f \u0648 \u0627\u0632 \u0622\u0646 \u067e\u0633 \u062a\u0645\u0627\u0645\u06cc \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u062f\u0627\u0646\u0634\u200c\u0622\u0645\u0648\u0632\u0627\u0646\u060c \u0647\u0645\u06cc\u0627\u0631\u0627\u0646\u060c \u0647\u0645\u06a9\u0627\u0631\u0627\u0646\u060c \u0645\u0627\u0644\u06cc \u0648... \u0628\u0631 \u0631\u0648\u06cc \u0627\u06cc\u0646 \u0646\u0631\u0645\u200c\u0627\u0641\u0632\u0627\u0631 \u0642\u0631\u0627\u0631\u06af\u0631\u0641\u062a \u0648 \u0627\u06cc\u0646 \u0646\u0631\u0645\u200c\u0627\u0641\u0632\u0627\u0631 \u062a\u0648\u0627\u0646\u0633\u062a \u062c\u0627\u0645\u0639\u0647 \u062c\u0647\u0627\u0646\u06cc \u0628\u0646\u06cc\u0627\u062f\u06a9\u0648\u062f\u06a9 \u0631\u0627 \u0628\u0647 \u06cc\u06a9 \u062f\u0647\u06a9\u062f\u0647\u200c\u06cc \u0627\u0637\u0644\u0627\u0639\u0627\u062a\u06cc \u0648 \u0627\u0631\u062a\u0628\u0627\u0637\u06cc \u062a\u0628\u062f\u06cc\u0644 \u06a9\u0646\u062f. \u0628\u0646\u06cc\u0627\u062f\u06a9\u0648\u062f\u06a9 \u0628\u0631\u0627\u06cc \u0628\u06cc\u0627\u0646 \u0641\u0639\u0627\u0644\u06cc\u062a \u0634\u0641\u0627\u0641 \u062e\u0648\u062f \u0627\u0632 \u0633\u0627\u0644 \u06f8\u06f1 \u0627\u0632 \u062d\u0633\u0627\u0628\u0631\u0633\u0627\u0646 \u0631\u0633\u0645\u06cc \u062f\u0639\u0648\u062a \u0628\u0647\u200c\u0639\u0645\u0644 \u0622\u0648\u0631\u062f \u062a\u0627 \u06af\u0631\u062f\u0634 \u0645\u0627\u0644\u06cc \u0645\u0624\u0633\u0633\u0647 \u0645\u0648\u0631\u062f\u062d\u0633\u0627\u0628\u0631\u0633\u06cc \u0642\u0631\u0627\u0631\u06af\u06cc\u0631\u062f. \u0628\u0646\u06cc\u0627\u062f\u06a9\u0648\u062f\u06a9 \u062f\u0631 \u0633\u0627\u0644 \u06f2\u06f0\u06f0\u06f5 \u062a\u0648\u0627\u0646\u0633\u062a \u0627\u0632 \u06a9\u0645\u0633\u06cc\u0648\u0646 \u0627\u0642\u062a\u0635\u0627\u062f\u06cc- \u0627\u062c\u062a\u0645\u0627\u0639\u06cc \u0633\u0627\u0632\u0645\u0627\u0646 \u0645\u0644\u0644 (Ecosoc) \u0645\u0642\u0627\u0645 \u0645\u0634\u0648\u0631\u062a\u06cc \u062f\u0631\u06cc\u0627\u0641\u062a \u06a9\u0646\u062f \u0648 \u062a\u0627\u06a9\u0646\u0648\u0646 \u0646\u06cc\u0632 \u0647\u0631 \u067e\u0646\u062c \u0633\u0627\u0644 \u06cc\u06a9\u0628\u0627\u0631 \u0628\u0627 \u0627\u0631\u0627\u0626\u0647\u200c\u06cc \u0639\u0645\u0644\u06a9\u0631\u062f \u0634\u0641\u0627\u0641 \u0648 \u0627\u0646\u0633\u0627\u0646\u062f\u0648\u0633\u062a\u0627\u0646\u0647\u200c\u06cc \u062e\u0648\u062f \u0645\u0648\u0641\u0642 \u0634\u062f\u0647\u200c\u0627\u0633\u062a \u0627\u06cc\u0646 \u06af\u0648\u0627\u0647\u06cc\u0646\u0627\u0645\u0647 \u0631\u0627 \u062a\u0645\u062f\u06cc\u062f \u06a9\u0646\u062f. \u0647\u0645\u0686\u0646\u06cc\u0646 \u0627\u06cc\u0646 \u0645\u0624\u0633\u0633\u0647 \u062f\u0631 \u0633\u0627\u0644 \u06f8\u06f6 \u0645\u0648\u0641\u0642 \u0628\u0647 \u06a9\u0633\u0628 \u0645\u062c\u0648\u0632 \u0645\u0639\u0627\u0641\u06cc\u062a \u0645\u0627\u0644\u06cc\u0627\u062a\u06cc \u0627\u0632 \u0647\u06cc\u0623\u062a \u062f\u0648\u0644\u062a \u0634\u062f \u06a9\u0647 \u0645\u0628\u062a\u0646\u06cc \u0628\u0631 \u0627\u06cc\u0646 \u0645\u062c\u0648\u0632 \u0647\u0645\u06cc\u0627\u0631\u0627\u0646 \u0645\u06cc\u062a\u0648\u0627\u0646\u0646\u062f \u06a9\u0645\u06a9\u200c\u0647\u0627\u06cc \u062e\u0648\u062f \u0631\u0627 \u062f\u0631 \u0642\u0627\u0644\u0628 \u0647\u0632\u06cc\u0646\u0647\u200c\u0647\u0627\u06cc \u0642\u0627\u0628\u0644 \u0642\u0628\u0648\u0644 \u0645\u0627\u0644\u06cc\u0627\u062a\u06cc \u0628\u0647 \u0633\u0627\u0632\u0645\u0627\u0646 \u0627\u0645\u0648\u0631 \u0645\u0627\u0644\u06cc\u0627\u062a\u06cc \u0627\u0631\u0627\u0626\u0647\u200c\u06a9\u0646\u0646\u062f.",
     "supporters": "\u06cc\u0646 \u0645\u0624\u0633\u0633\u0647\u060c \u06cc\u06a9 \u0645\u0624\u0633\u0633\u0647 \u062e\u06cc\u0631\u06cc\u0647 \u0645\u0631\u062f\u0645\u200c \u0646\u0647\u0627\u062f\u060c \u063a\u06cc\u0631\u062f\u0648\u0644\u062a\u06cc\u060c \u063a\u06cc\u0631\u0633\u06cc\u0627\u0633\u06cc\u060c \u063a\u06cc\u0631\u0627\u0646\u062a\u0641\u0627\u0639\u06cc\u060c \u0641\u0631\u0627\u0645\u0630\u0647\u0628\u06cc \u0648 \u0641\u0631\u0627\u0645\u0631\u0632\u06cc \u0627\u0633\u062a \u06a9\u0647 \u0631\u0648\u06cc\u06a9\u0631\u062f\u06cc \u06a9\u0627\u0645\u0644\u0627 \u0627\u0646\u0633\u0627\u0646\u200c\u062f\u0648\u0633\u062a\u0627\u0646\u0647 \u062f\u0627\u0631\u062f. \u0647\u062f\u0641 \u0627\u06cc\u0646 \u0645\u0624\u0633\u0633\u0647 \u062f\u0633\u062a\u06cc\u0627\u0628\u06cc \u0628\u0647 \u0627\u06cc\u0646 \u0622\u0631\u0645\u0627\u0646 \u0627\u0633\u062a \u06a9\u0647 \u00ab\u0647\u06cc\u0686 \u062f\u0627\u0646\u0634\u200c\u0622\u0645\u0648\u0632 \u0628\u0627 \u0627\u0633\u062a\u0639\u062f\u0627\u062f\u06cc \u0628\u0647 \u062f\u0644\u06cc\u0644 \u0645\u0634\u06a9\u0644\u0627\u062a \u0627\u0642\u062a\u0635\u0627\u062f\u06cc \u0627\u0632 \u062a\u062d\u0635\u06cc\u0644 \u0648 \u062a\u0644\u0627\u0634 \u0628\u0627\u0632 \u0646\u0645\u0627\u0646\u062f.\u00bb"
-  }
-},
-{
-  "model": "sites.site",
-  "pk": 1,
-  "fields": {
-    "domain": "example.com",
-    "name": "example.com"
-  }
-},
-{
-  "model": "actstream.action",
-  "pk": 1,
-  "fields": {
-    "actor_content_type": 7,
-    "actor_object_id": "4",
-    "verb": "\u062d\u0645\u0627\u06cc\u062a \u0627\u0632 \u0645\u062f\u062f\u062c\u0648",
-    "description": null,
-    "target_content_type": 22,
-    "target_object_id": "6",
-    "action_object_content_type": null,
-    "action_object_object_id": null,
-    "timestamp": "2018-01-31T14:32:55.470Z",
-    "public": true
-  }
-},
-{
-  "model": "actstream.action",
-  "pk": 2,
-  "fields": {
-    "actor_content_type": 7,
-    "actor_object_id": "2",
-    "verb": "\u0628\u0647 \u0639\u0646\u0648\u0627\u0646 \u0645\u062f\u06cc\u0631 \u0645\u0634\u062e\u0635\u0627\u062a \u0645\u062f\u062f\u062c\u0648 \u0631\u0627 \u0648\u06cc\u0631\u0627\u06cc\u0634 \u06a9\u0631\u062f",
-    "description": null,
-    "target_content_type": 22,
-    "target_object_id": "6",
-    "action_object_content_type": null,
-    "action_object_object_id": null,
-    "timestamp": "2018-01-31T14:35:11.619Z",
-    "public": true
-  }
-},
-{
-  "model": "actstream.action",
-  "pk": 3,
-  "fields": {
-    "actor_content_type": 7,
-    "actor_object_id": "2",
-    "verb": "\u0628\u0647 \u0639\u0646\u0648\u0627\u0646 \u0645\u062f\u06cc\u0631 \u0645\u0634\u062e\u0635\u0627\u062a \u0645\u062f\u062f\u062c\u0648 \u0631\u0627 \u0648\u06cc\u0631\u0627\u06cc\u0634 \u06a9\u0631\u062f",
-    "description": null,
-    "target_content_type": 22,
-    "target_object_id": "6",
-    "action_object_content_type": null,
-    "action_object_object_id": null,
-    "timestamp": "2018-01-31T15:38:34.236Z",
-    "public": true
-  }
-},
-{
-  "model": "actstream.action",
-  "pk": 4,
-  "fields": {
-    "actor_content_type": 7,
-    "actor_object_id": "4",
-    "verb": "\u067e\u0631\u062f\u0627\u062e\u062a \u0628\u0647 \u0645\u062f\u062f\u062c\u0648",
-    "description": null,
-    "target_content_type": 22,
-    "target_object_id": "6",
-    "action_object_content_type": null,
-    "action_object_object_id": null,
-    "timestamp": "2018-01-31T15:39:01.349Z",
-    "public": true
-  }
-},
-{
-  "model": "actstream.action",
-  "pk": 5,
-  "fields": {
-    "actor_content_type": 7,
-    "actor_object_id": "5",
-    "verb": "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0645\u0634\u062e\u0635\u0627\u062a \u0645\u062f\u062f\u062c\u0648",
-    "description": null,
-    "target_content_type": 22,
-    "target_object_id": "8",
-    "action_object_content_type": null,
-    "action_object_object_id": null,
-    "timestamp": "2018-01-31T17:15:06.072Z",
-    "public": true
-  }
-},
-{
-  "model": "actstream.action",
-  "pk": 6,
-  "fields": {
-    "actor_content_type": 7,
-    "actor_object_id": "2",
-    "verb": "\u0628\u0647 \u0639\u0646\u0648\u0627\u0646 \u0645\u062f\u06cc\u0631 \u0645\u0634\u062e\u0635\u0627\u062a \u0645\u062f\u062f\u062c\u0648 \u0631\u0627 \u0648\u06cc\u0631\u0627\u06cc\u0634 \u06a9\u0631\u062f",
-    "description": null,
-    "target_content_type": 22,
-    "target_object_id": "8",
-    "action_object_content_type": null,
-    "action_object_object_id": null,
-    "timestamp": "2018-01-31T17:15:43.515Z",
-    "public": true
-  }
-},
-{
-  "model": "actstream.action",
-  "pk": 7,
-  "fields": {
-    "actor_content_type": 7,
-    "actor_object_id": "2",
-    "verb": "\u0628\u0647 \u0639\u0646\u0648\u0627\u0646 \u0645\u062f\u06cc\u0631 \u0645\u0634\u062e\u0635\u0627\u062a \u0645\u062f\u062f\u062c\u0648 \u0631\u0627 \u0648\u06cc\u0631\u0627\u06cc\u0634 \u06a9\u0631\u062f",
-    "description": null,
-    "target_content_type": 22,
-    "target_object_id": "8",
-    "action_object_content_type": null,
-    "action_object_object_id": null,
-    "timestamp": "2018-01-31T17:16:00.236Z",
-    "public": true
-  }
-},
-{
-  "model": "actstream.action",
-  "pk": 8,
-  "fields": {
-    "actor_content_type": 7,
-    "actor_object_id": "2",
-    "verb": "\u0628\u0647 \u0639\u0646\u0648\u0627\u0646 \u0645\u062f\u06cc\u0631 \u0645\u0634\u062e\u0635\u0627\u062a \u0645\u062f\u062f\u062c\u0648 \u0631\u0627 \u0648\u06cc\u0631\u0627\u06cc\u0634 \u06a9\u0631\u062f",
-    "description": null,
-    "target_content_type": 22,
-    "target_object_id": "8",
-    "action_object_content_type": null,
-    "action_object_object_id": null,
-    "timestamp": "2018-01-31T17:16:15.635Z",
-    "public": true
-  }
-},
-{
-  "model": "actstream.action",
-  "pk": 9,
-  "fields": {
-    "actor_content_type": 7,
-    "actor_object_id": "2",
-    "verb": "\u0628\u0647 \u0639\u0646\u0648\u0627\u0646 \u0645\u062f\u06cc\u0631 \u0645\u0634\u062e\u0635\u0627\u062a \u0645\u062f\u062f\u062c\u0648 \u0631\u0627 \u0648\u06cc\u0631\u0627\u06cc\u0634 \u06a9\u0631\u062f",
-    "description": null,
-    "target_content_type": 22,
-    "target_object_id": "8",
-    "action_object_content_type": null,
-    "action_object_object_id": null,
-    "timestamp": "2018-01-31T17:31:39.832Z",
-    "public": true
-  }
-},
-{
-  "model": "actstream.action",
-  "pk": 10,
-  "fields": {
-    "actor_content_type": 7,
-    "actor_object_id": "2",
-    "verb": "\u062b\u0628\u062a \u0646\u06cc\u0627\u0632 \u0641\u0648\u0631\u06cc \u0628\u0631\u0627\u06cc \u0645\u062f\u062f\u062c\u0648",
-    "description": null,
-    "target_content_type": 22,
-    "target_object_id": "8",
-    "action_object_content_type": null,
-    "action_object_object_id": null,
-    "timestamp": "2018-01-31T17:32:09.702Z",
-    "public": true
-  }
-},
-{
-  "model": "actstream.action",
-  "pk": 11,
-  "fields": {
-    "actor_content_type": 7,
-    "actor_object_id": "4",
-    "verb": "\u062d\u0645\u0627\u06cc\u062a \u0627\u0632 \u0645\u062f\u062f\u062c\u0648",
-    "description": null,
-    "target_content_type": 22,
-    "target_object_id": "8",
-    "action_object_content_type": null,
-    "action_object_object_id": null,
-    "timestamp": "2018-01-31T17:32:34.773Z",
-    "public": true
-  }
-},
-{
-  "model": "actstream.action",
-  "pk": 12,
-  "fields": {
-    "actor_content_type": 7,
-    "actor_object_id": "4",
-    "verb": "\u067e\u0631\u062f\u0627\u062e\u062a \u0628\u0647 \u0645\u062f\u062f\u062c\u0648",
-    "description": null,
-    "target_content_type": 22,
-    "target_object_id": "8",
-    "action_object_content_type": null,
-    "action_object_object_id": null,
-    "timestamp": "2018-01-31T17:41:16.869Z",
-    "public": true
-  }
-},
-{
-  "model": "actstream.action",
-  "pk": 13,
-  "fields": {
-    "actor_content_type": 7,
-    "actor_object_id": "2",
-    "verb": "\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u062a\u063a\u06cc\u06cc\u0631 \u0645\u062f\u06a9\u0627\u0631 \u062a\u0648\u0633\u0637 \u0645\u062f\u062f\u062c\u0648",
-    "description": null,
-    "target_content_type": 22,
-    "target_object_id": "8",
-    "action_object_content_type": null,
-    "action_object_object_id": null,
-    "timestamp": "2018-02-01T09:44:26.420Z",
-    "public": true
-  }
-},
-{
-  "model": "actstream.action",
-  "pk": 14,
-  "fields": {
-    "actor_content_type": 7,
-    "actor_object_id": "3",
-    "verb": "\u062d\u0645\u0627\u06cc\u062a \u0627\u0632 \u0645\u062f\u062f\u062c\u0648\u06cc \u0628\u062f\u0648\u0646 \u062d\u0627\u0645\u06cc",
-    "description": null,
-    "target_content_type": 22,
-    "target_object_id": "8",
-    "action_object_content_type": null,
-    "action_object_object_id": null,
-    "timestamp": "2018-02-01T09:45:05.706Z",
-    "public": true
-  }
-},
-{
-  "model": "actstream.action",
-  "pk": 15,
-  "fields": {
-    "actor_content_type": 7,
-    "actor_object_id": "4",
-    "verb": "\u062d\u0645\u0627\u06cc\u062a \u0627\u0632 \u0645\u062f\u062f\u062c\u0648",
-    "description": null,
-    "target_content_type": 22,
-    "target_object_id": "6",
-    "action_object_content_type": null,
-    "action_object_object_id": null,
-    "timestamp": "2018-02-02T08:49:19.834Z",
-    "public": true
-  }
-},
-{
-  "model": "actstream.action",
-  "pk": 16,
-  "fields": {
-    "actor_content_type": 7,
-    "actor_object_id": "4",
-    "verb": "\u062d\u0645\u0627\u06cc\u062a \u0627\u0632 \u0645\u062f\u062f\u062c\u0648",
-    "description": null,
-    "target_content_type": 22,
-    "target_object_id": "6",
-    "action_object_content_type": null,
-    "action_object_object_id": null,
-    "timestamp": "2018-02-02T08:52:59.143Z",
-    "public": true
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 1,
-  "fields": {
-    "name": "Can add log entry",
-    "content_type": 1,
-    "codename": "add_logentry"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 2,
-  "fields": {
-    "name": "Can change log entry",
-    "content_type": 1,
-    "codename": "change_logentry"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 3,
-  "fields": {
-    "name": "Can delete log entry",
-    "content_type": 1,
-    "codename": "delete_logentry"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 4,
-  "fields": {
-    "name": "Can add permission",
-    "content_type": 2,
-    "codename": "add_permission"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 5,
-  "fields": {
-    "name": "Can change permission",
-    "content_type": 2,
-    "codename": "change_permission"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 6,
-  "fields": {
-    "name": "Can delete permission",
-    "content_type": 2,
-    "codename": "delete_permission"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 7,
-  "fields": {
-    "name": "Can add group",
-    "content_type": 3,
-    "codename": "add_group"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 8,
-  "fields": {
-    "name": "Can change group",
-    "content_type": 3,
-    "codename": "change_group"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 9,
-  "fields": {
-    "name": "Can delete group",
-    "content_type": 3,
-    "codename": "delete_group"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 10,
-  "fields": {
-    "name": "Can add content type",
-    "content_type": 4,
-    "codename": "add_contenttype"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 11,
-  "fields": {
-    "name": "Can change content type",
-    "content_type": 4,
-    "codename": "change_contenttype"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 12,
-  "fields": {
-    "name": "Can delete content type",
-    "content_type": 4,
-    "codename": "delete_contenttype"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 13,
-  "fields": {
-    "name": "Can add session",
-    "content_type": 5,
-    "codename": "add_session"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 14,
-  "fields": {
-    "name": "Can change session",
-    "content_type": 5,
-    "codename": "change_session"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 15,
-  "fields": {
-    "name": "Can delete session",
-    "content_type": 5,
-    "codename": "delete_session"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 16,
-  "fields": {
-    "name": "Can add \u0627\u0637\u0644\u0627\u0639 \u06a9\u0644\u0627\u0646 \u0633\u0627\u0645\u0627\u0646\u0647",
-    "content_type": 6,
-    "codename": "add_information"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 17,
-  "fields": {
-    "name": "Can change \u0627\u0637\u0644\u0627\u0639 \u06a9\u0644\u0627\u0646 \u0633\u0627\u0645\u0627\u0646\u0647",
-    "content_type": 6,
-    "codename": "change_information"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 18,
-  "fields": {
-    "name": "Can delete \u0627\u0637\u0644\u0627\u0639 \u06a9\u0644\u0627\u0646 \u0633\u0627\u0645\u0627\u0646\u0647",
-    "content_type": 6,
-    "codename": "delete_information"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 19,
-  "fields": {
-    "name": "Can add \u06a9\u0627\u0631\u0628\u0631 \u0641\u0639\u0627\u0644",
-    "content_type": 7,
-    "codename": "add_active_user"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 20,
-  "fields": {
-    "name": "Can change \u06a9\u0627\u0631\u0628\u0631 \u0641\u0639\u0627\u0644",
-    "content_type": 7,
-    "codename": "change_active_user"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 21,
-  "fields": {
-    "name": "Can delete \u06a9\u0627\u0631\u0628\u0631 \u0641\u0639\u0627\u0644",
-    "content_type": 7,
-    "codename": "delete_active_user"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 22,
-  "fields": {
-    "name": "Can add add_madadjoo_admin_letter",
-    "content_type": 8,
-    "codename": "add_add_madadjoo_admin_letter"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 23,
-  "fields": {
-    "name": "Can change add_madadjoo_admin_letter",
-    "content_type": 8,
-    "codename": "change_add_madadjoo_admin_letter"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 24,
-  "fields": {
-    "name": "Can delete add_madadjoo_admin_letter",
-    "content_type": 8,
-    "codename": "delete_add_madadjoo_admin_letter"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 25,
-  "fields": {
-    "name": "Can add hamyar_madadjoo_meeting",
-    "content_type": 9,
-    "codename": "add_hamyar_madadjoo_meeting"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 26,
-  "fields": {
-    "name": "Can change hamyar_madadjoo_meeting",
-    "content_type": 9,
-    "codename": "change_hamyar_madadjoo_meeting"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 27,
-  "fields": {
-    "name": "Can delete hamyar_madadjoo_meeting",
-    "content_type": 9,
-    "codename": "delete_hamyar_madadjoo_meeting"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 28,
-  "fields": {
-    "name": "Can add hamyar_madadjoo_non_cash",
-    "content_type": 10,
-    "codename": "add_hamyar_madadjoo_non_cash"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 29,
-  "fields": {
-    "name": "Can change hamyar_madadjoo_non_cash",
-    "content_type": 10,
-    "codename": "change_hamyar_madadjoo_non_cash"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 30,
-  "fields": {
-    "name": "Can delete hamyar_madadjoo_non_cash",
-    "content_type": 10,
-    "codename": "delete_hamyar_madadjoo_non_cash"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 31,
-  "fields": {
-    "name": "Can add hamyar_madadjoo_payment",
-    "content_type": 11,
-    "codename": "add_hamyar_madadjoo_payment"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 32,
-  "fields": {
-    "name": "Can change hamyar_madadjoo_payment",
-    "content_type": 11,
-    "codename": "change_hamyar_madadjoo_payment"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 33,
-  "fields": {
-    "name": "Can delete hamyar_madadjoo_payment",
-    "content_type": 11,
-    "codename": "delete_hamyar_madadjoo_payment"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 34,
-  "fields": {
-    "name": "Can add hamyar_system_payment",
-    "content_type": 12,
-    "codename": "add_hamyar_system_payment"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 35,
-  "fields": {
-    "name": "Can change hamyar_system_payment",
-    "content_type": 12,
-    "codename": "change_hamyar_system_payment"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 36,
-  "fields": {
-    "name": "Can delete hamyar_system_payment",
-    "content_type": 12,
-    "codename": "delete_hamyar_system_payment"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 37,
-  "fields": {
-    "name": "Can add madadjoo_hamyar_letter",
-    "content_type": 13,
-    "codename": "add_madadjoo_hamyar_letter"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 38,
-  "fields": {
-    "name": "Can change madadjoo_hamyar_letter",
-    "content_type": 13,
-    "codename": "change_madadjoo_hamyar_letter"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 39,
-  "fields": {
-    "name": "Can delete madadjoo_hamyar_letter",
-    "content_type": 13,
-    "codename": "delete_madadjoo_hamyar_letter"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 40,
-  "fields": {
-    "name": "Can add madadjoo_madadkar_letter",
-    "content_type": 14,
-    "codename": "add_madadjoo_madadkar_letter"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 41,
-  "fields": {
-    "name": "Can change madadjoo_madadkar_letter",
-    "content_type": 14,
-    "codename": "change_madadjoo_madadkar_letter"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 42,
-  "fields": {
-    "name": "Can delete madadjoo_madadkar_letter",
-    "content_type": 14,
-    "codename": "delete_madadjoo_madadkar_letter"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 43,
-  "fields": {
-    "name": "Can add madadkar_remove_madadjoo",
-    "content_type": 15,
-    "codename": "add_madadkar_remove_madadjoo"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 44,
-  "fields": {
-    "name": "Can change madadkar_remove_madadjoo",
-    "content_type": 15,
-    "codename": "change_madadkar_remove_madadjoo"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 45,
-  "fields": {
-    "name": "Can delete madadkar_remove_madadjoo",
-    "content_type": 15,
-    "codename": "delete_madadkar_remove_madadjoo"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 46,
-  "fields": {
-    "name": "Can add requirements",
-    "content_type": 16,
-    "codename": "add_requirements"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 47,
-  "fields": {
-    "name": "Can change requirements",
-    "content_type": 16,
-    "codename": "change_requirements"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 48,
-  "fields": {
-    "name": "Can delete requirements",
-    "content_type": 16,
-    "codename": "delete_requirements"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 49,
-  "fields": {
-    "name": "Can add sponsership",
-    "content_type": 17,
-    "codename": "add_sponsership"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 50,
-  "fields": {
-    "name": "Can change sponsership",
-    "content_type": 17,
-    "codename": "change_sponsership"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 51,
-  "fields": {
-    "name": "Can delete sponsership",
-    "content_type": 17,
-    "codename": "delete_sponsership"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 52,
-  "fields": {
-    "name": "Can add substitute_a_madadjoo",
-    "content_type": 18,
-    "codename": "add_substitute_a_madadjoo"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 53,
-  "fields": {
-    "name": "Can change substitute_a_madadjoo",
-    "content_type": 18,
-    "codename": "change_substitute_a_madadjoo"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 54,
-  "fields": {
-    "name": "Can delete substitute_a_madadjoo",
-    "content_type": 18,
-    "codename": "delete_substitute_a_madadjoo"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 55,
-  "fields": {
-    "name": "Can add urgent_need_admin_letter",
-    "content_type": 19,
-    "codename": "add_urgent_need_admin_letter"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 56,
-  "fields": {
-    "name": "Can change urgent_need_admin_letter",
-    "content_type": 19,
-    "codename": "change_urgent_need_admin_letter"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 57,
-  "fields": {
-    "name": "Can delete urgent_need_admin_letter",
-    "content_type": 19,
-    "codename": "delete_urgent_need_admin_letter"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 58,
-  "fields": {
-    "name": "Can add warning_admin_letter",
-    "content_type": 20,
-    "codename": "add_warning_admin_letter"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 59,
-  "fields": {
-    "name": "Can change warning_admin_letter",
-    "content_type": 20,
-    "codename": "change_warning_admin_letter"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 60,
-  "fields": {
-    "name": "Can delete warning_admin_letter",
-    "content_type": 20,
-    "codename": "delete_warning_admin_letter"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 61,
-  "fields": {
-    "name": "Can add \u0647\u0645\u06cc\u0627\u0631",
-    "content_type": 21,
-    "codename": "add_hamyar"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 62,
-  "fields": {
-    "name": "Can change \u0647\u0645\u06cc\u0627\u0631",
-    "content_type": 21,
-    "codename": "change_hamyar"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 63,
-  "fields": {
-    "name": "Can delete \u0647\u0645\u06cc\u0627\u0631",
-    "content_type": 21,
-    "codename": "delete_hamyar"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 64,
-  "fields": {
-    "name": "Can add \u0645\u062f\u062f\u062c\u0648",
-    "content_type": 22,
-    "codename": "add_madadjoo"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 65,
-  "fields": {
-    "name": "Can change \u0645\u062f\u062f\u062c\u0648",
-    "content_type": 22,
-    "codename": "change_madadjoo"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 66,
-  "fields": {
-    "name": "Can delete \u0645\u062f\u062f\u062c\u0648",
-    "content_type": 22,
-    "codename": "delete_madadjoo"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 67,
-  "fields": {
-    "name": "Can add \u0645\u062f\u062f\u06a9\u0627\u0631",
-    "content_type": 23,
-    "codename": "add_madadkar"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 68,
-  "fields": {
-    "name": "Can change \u0645\u062f\u062f\u06a9\u0627\u0631",
-    "content_type": 23,
-    "codename": "change_madadkar"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 69,
-  "fields": {
-    "name": "Can delete \u0645\u062f\u062f\u06a9\u0627\u0631",
-    "content_type": 23,
-    "codename": "delete_madadkar"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 70,
-  "fields": {
-    "name": "Can add \u0645\u062f\u06cc\u0631",
-    "content_type": 24,
-    "codename": "add_admin_user"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 71,
-  "fields": {
-    "name": "Can change \u0645\u062f\u06cc\u0631",
-    "content_type": 24,
-    "codename": "change_admin_user"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 72,
-  "fields": {
-    "name": "Can delete \u0645\u062f\u06cc\u0631",
-    "content_type": 24,
-    "codename": "delete_admin_user"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 73,
-  "fields": {
-    "name": "Can add site",
-    "content_type": 25,
-    "codename": "add_site"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 74,
-  "fields": {
-    "name": "Can change site",
-    "content_type": 25,
-    "codename": "change_site"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 75,
-  "fields": {
-    "name": "Can delete site",
-    "content_type": 25,
-    "codename": "delete_site"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 76,
-  "fields": {
-    "name": "Can add action",
-    "content_type": 26,
-    "codename": "add_action"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 77,
-  "fields": {
-    "name": "Can change action",
-    "content_type": 26,
-    "codename": "change_action"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 78,
-  "fields": {
-    "name": "Can delete action",
-    "content_type": 26,
-    "codename": "delete_action"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 79,
-  "fields": {
-    "name": "Can add follow",
-    "content_type": 27,
-    "codename": "add_follow"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 80,
-  "fields": {
-    "name": "Can change follow",
-    "content_type": 27,
-    "codename": "change_follow"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 81,
-  "fields": {
-    "name": "Can delete follow",
-    "content_type": 27,
-    "codename": "delete_follow"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 82,
-  "fields": {
-    "name": "Can add request_for_change_madadkar",
-    "content_type": 28,
-    "codename": "add_request_for_change_madadkar"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 83,
-  "fields": {
-    "name": "Can change request_for_change_madadkar",
-    "content_type": 28,
-    "codename": "change_request_for_change_madadkar"
-  }
-},
-{
-  "model": "auth.permission",
-  "pk": 84,
-  "fields": {
-    "name": "Can delete request_for_change_madadkar",
-    "content_type": 28,
-    "codename": "delete_request_for_change_madadkar"
   }
 },
 {
@@ -1677,6 +393,270 @@
     "madadjoo": 8,
     "date": "2018-02-01T09:44:26.413Z",
     "confirmed": true
+  }
+},
+{
+  "model": "sites.site",
+  "pk": 1,
+  "fields": {
+    "domain": "example.com",
+    "name": "example.com"
+  }
+},
+{
+  "model": "actstream.action",
+  "pk": 1,
+  "fields": {
+    "actor_content_type": 7,
+    "actor_object_id": "4",
+    "verb": "\u062d\u0645\u0627\u06cc\u062a \u0627\u0632 \u0645\u062f\u062f\u062c\u0648",
+    "description": null,
+    "target_content_type": 22,
+    "target_object_id": "6",
+    "action_object_content_type": null,
+    "action_object_object_id": null,
+    "timestamp": "2018-01-31T14:32:55.470Z",
+    "public": true
+  }
+},
+{
+  "model": "actstream.action",
+  "pk": 2,
+  "fields": {
+    "actor_content_type": 7,
+    "actor_object_id": "2",
+    "verb": "\u0628\u0647 \u0639\u0646\u0648\u0627\u0646 \u0645\u062f\u06cc\u0631 \u0645\u0634\u062e\u0635\u0627\u062a \u0645\u062f\u062f\u062c\u0648 \u0631\u0627 \u0648\u06cc\u0631\u0627\u06cc\u0634 \u06a9\u0631\u062f",
+    "description": null,
+    "target_content_type": 22,
+    "target_object_id": "6",
+    "action_object_content_type": null,
+    "action_object_object_id": null,
+    "timestamp": "2018-01-31T14:35:11.619Z",
+    "public": true
+  }
+},
+{
+  "model": "actstream.action",
+  "pk": 3,
+  "fields": {
+    "actor_content_type": 7,
+    "actor_object_id": "2",
+    "verb": "\u0628\u0647 \u0639\u0646\u0648\u0627\u0646 \u0645\u062f\u06cc\u0631 \u0645\u0634\u062e\u0635\u0627\u062a \u0645\u062f\u062f\u062c\u0648 \u0631\u0627 \u0648\u06cc\u0631\u0627\u06cc\u0634 \u06a9\u0631\u062f",
+    "description": null,
+    "target_content_type": 22,
+    "target_object_id": "6",
+    "action_object_content_type": null,
+    "action_object_object_id": null,
+    "timestamp": "2018-01-31T15:38:34.236Z",
+    "public": true
+  }
+},
+{
+  "model": "actstream.action",
+  "pk": 4,
+  "fields": {
+    "actor_content_type": 7,
+    "actor_object_id": "4",
+    "verb": "\u067e\u0631\u062f\u0627\u062e\u062a \u0628\u0647 \u0645\u062f\u062f\u062c\u0648",
+    "description": null,
+    "target_content_type": 22,
+    "target_object_id": "6",
+    "action_object_content_type": null,
+    "action_object_object_id": null,
+    "timestamp": "2018-01-31T15:39:01.349Z",
+    "public": true
+  }
+},
+{
+  "model": "actstream.action",
+  "pk": 5,
+  "fields": {
+    "actor_content_type": 7,
+    "actor_object_id": "5",
+    "verb": "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0645\u0634\u062e\u0635\u0627\u062a \u0645\u062f\u062f\u062c\u0648",
+    "description": null,
+    "target_content_type": 22,
+    "target_object_id": "8",
+    "action_object_content_type": null,
+    "action_object_object_id": null,
+    "timestamp": "2018-01-31T17:15:06.072Z",
+    "public": true
+  }
+},
+{
+  "model": "actstream.action",
+  "pk": 6,
+  "fields": {
+    "actor_content_type": 7,
+    "actor_object_id": "2",
+    "verb": "\u0628\u0647 \u0639\u0646\u0648\u0627\u0646 \u0645\u062f\u06cc\u0631 \u0645\u0634\u062e\u0635\u0627\u062a \u0645\u062f\u062f\u062c\u0648 \u0631\u0627 \u0648\u06cc\u0631\u0627\u06cc\u0634 \u06a9\u0631\u062f",
+    "description": null,
+    "target_content_type": 22,
+    "target_object_id": "8",
+    "action_object_content_type": null,
+    "action_object_object_id": null,
+    "timestamp": "2018-01-31T17:15:43.515Z",
+    "public": true
+  }
+},
+{
+  "model": "actstream.action",
+  "pk": 7,
+  "fields": {
+    "actor_content_type": 7,
+    "actor_object_id": "2",
+    "verb": "\u0628\u0647 \u0639\u0646\u0648\u0627\u0646 \u0645\u062f\u06cc\u0631 \u0645\u0634\u062e\u0635\u0627\u062a \u0645\u062f\u062f\u062c\u0648 \u0631\u0627 \u0648\u06cc\u0631\u0627\u06cc\u0634 \u06a9\u0631\u062f",
+    "description": null,
+    "target_content_type": 22,
+    "target_object_id": "8",
+    "action_object_content_type": null,
+    "action_object_object_id": null,
+    "timestamp": "2018-01-31T17:16:00.236Z",
+    "public": true
+  }
+},
+{
+  "model": "actstream.action",
+  "pk": 8,
+  "fields": {
+    "actor_content_type": 7,
+    "actor_object_id": "2",
+    "verb": "\u0628\u0647 \u0639\u0646\u0648\u0627\u0646 \u0645\u062f\u06cc\u0631 \u0645\u0634\u062e\u0635\u0627\u062a \u0645\u062f\u062f\u062c\u0648 \u0631\u0627 \u0648\u06cc\u0631\u0627\u06cc\u0634 \u06a9\u0631\u062f",
+    "description": null,
+    "target_content_type": 22,
+    "target_object_id": "8",
+    "action_object_content_type": null,
+    "action_object_object_id": null,
+    "timestamp": "2018-01-31T17:16:15.635Z",
+    "public": true
+  }
+},
+{
+  "model": "actstream.action",
+  "pk": 9,
+  "fields": {
+    "actor_content_type": 7,
+    "actor_object_id": "2",
+    "verb": "\u0628\u0647 \u0639\u0646\u0648\u0627\u0646 \u0645\u062f\u06cc\u0631 \u0645\u0634\u062e\u0635\u0627\u062a \u0645\u062f\u062f\u062c\u0648 \u0631\u0627 \u0648\u06cc\u0631\u0627\u06cc\u0634 \u06a9\u0631\u062f",
+    "description": null,
+    "target_content_type": 22,
+    "target_object_id": "8",
+    "action_object_content_type": null,
+    "action_object_object_id": null,
+    "timestamp": "2018-01-31T17:31:39.832Z",
+    "public": true
+  }
+},
+{
+  "model": "actstream.action",
+  "pk": 10,
+  "fields": {
+    "actor_content_type": 7,
+    "actor_object_id": "2",
+    "verb": "\u062b\u0628\u062a \u0646\u06cc\u0627\u0632 \u0641\u0648\u0631\u06cc \u0628\u0631\u0627\u06cc \u0645\u062f\u062f\u062c\u0648",
+    "description": null,
+    "target_content_type": 22,
+    "target_object_id": "8",
+    "action_object_content_type": null,
+    "action_object_object_id": null,
+    "timestamp": "2018-01-31T17:32:09.702Z",
+    "public": true
+  }
+},
+{
+  "model": "actstream.action",
+  "pk": 11,
+  "fields": {
+    "actor_content_type": 7,
+    "actor_object_id": "4",
+    "verb": "\u062d\u0645\u0627\u06cc\u062a \u0627\u0632 \u0645\u062f\u062f\u062c\u0648",
+    "description": null,
+    "target_content_type": 22,
+    "target_object_id": "8",
+    "action_object_content_type": null,
+    "action_object_object_id": null,
+    "timestamp": "2018-01-31T17:32:34.773Z",
+    "public": true
+  }
+},
+{
+  "model": "actstream.action",
+  "pk": 12,
+  "fields": {
+    "actor_content_type": 7,
+    "actor_object_id": "4",
+    "verb": "\u067e\u0631\u062f\u0627\u062e\u062a \u0628\u0647 \u0645\u062f\u062f\u062c\u0648",
+    "description": null,
+    "target_content_type": 22,
+    "target_object_id": "8",
+    "action_object_content_type": null,
+    "action_object_object_id": null,
+    "timestamp": "2018-01-31T17:41:16.869Z",
+    "public": true
+  }
+},
+{
+  "model": "actstream.action",
+  "pk": 13,
+  "fields": {
+    "actor_content_type": 7,
+    "actor_object_id": "2",
+    "verb": "\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u062a\u063a\u06cc\u06cc\u0631 \u0645\u062f\u06a9\u0627\u0631 \u062a\u0648\u0633\u0637 \u0645\u062f\u062f\u062c\u0648",
+    "description": null,
+    "target_content_type": 22,
+    "target_object_id": "8",
+    "action_object_content_type": null,
+    "action_object_object_id": null,
+    "timestamp": "2018-02-01T09:44:26.420Z",
+    "public": true
+  }
+},
+{
+  "model": "actstream.action",
+  "pk": 14,
+  "fields": {
+    "actor_content_type": 7,
+    "actor_object_id": "3",
+    "verb": "\u062d\u0645\u0627\u06cc\u062a \u0627\u0632 \u0645\u062f\u062f\u062c\u0648\u06cc \u0628\u062f\u0648\u0646 \u062d\u0627\u0645\u06cc",
+    "description": null,
+    "target_content_type": 22,
+    "target_object_id": "8",
+    "action_object_content_type": null,
+    "action_object_object_id": null,
+    "timestamp": "2018-02-01T09:45:05.706Z",
+    "public": true
+  }
+},
+{
+  "model": "actstream.action",
+  "pk": 15,
+  "fields": {
+    "actor_content_type": 7,
+    "actor_object_id": "4",
+    "verb": "\u062d\u0645\u0627\u06cc\u062a \u0627\u0632 \u0645\u062f\u062f\u062c\u0648",
+    "description": null,
+    "target_content_type": 22,
+    "target_object_id": "6",
+    "action_object_content_type": null,
+    "action_object_object_id": null,
+    "timestamp": "2018-02-02T08:49:19.834Z",
+    "public": true
+  }
+},
+{
+  "model": "actstream.action",
+  "pk": 16,
+  "fields": {
+    "actor_content_type": 7,
+    "actor_object_id": "4",
+    "verb": "\u062d\u0645\u0627\u06cc\u062a \u0627\u0632 \u0645\u062f\u062f\u062c\u0648",
+    "description": null,
+    "target_content_type": 22,
+    "target_object_id": "6",
+    "action_object_content_type": null,
+    "action_object_object_id": null,
+    "timestamp": "2018-02-02T08:52:59.143Z",
+    "public": true
   }
 }
 ]
