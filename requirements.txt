@@ -68,6 +68,5 @@ UserManager==0.5.3
 vine==1.1.4
 w3lib==1.18.0
 Werkzeug==0.13
-wfdb==1.3.9
 whitenoise==3.3.1
 zope.interface==4.4.3
