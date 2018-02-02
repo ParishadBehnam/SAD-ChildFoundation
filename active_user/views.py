@@ -391,11 +391,11 @@ def stop_support_hamyar(request):
         payment.save()
     models.sponsership.objects.get(hamyar_id=request.user.id, madadjoo__active_user_ptr_id=request.GET.get('madadjoo', '')).delete()
     deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
-    d = show_madadjoo(request)
-    d['success_message'] = 'عدم حمایت از مددجو با موفقیت ثبت گردید.'
+    # d = show_madadjoo(request)
+    # d['success_message'] = 'عدم حمایت از مددجو با موفقیت ثبت گردید.'
     all_madadjoo = madadjoo.objects.filter(sponsership__hamyar_id=request.user.id, confirmed=True).exclude(
         active_user_ptr_id__in=deleted_madadjoos)
-    return render(request, 'hamyar/show_madadjoo.html', {'madadjoos': all_madadjoo})
+    return render(request, 'hamyar/show_madadjoo.html', {'madadjoos': all_madadjoo, 'success_message' : 'عدم حمایت از مددجو با موفقیت ثبت گردید.'})
 
 
 def show_letters_madadkar(request):
