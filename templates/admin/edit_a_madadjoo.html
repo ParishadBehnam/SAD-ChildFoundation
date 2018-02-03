@@ -3,6 +3,9 @@
 {% block panel %}
     <a class="nav-link" href="admin_panel">پنل مدیریت مدیر سامانه</a>
 {% endblock %}
+{% block home_url %}
+    <a class="nav-link" href="home_admin">خانه <span class="sr-only">(current)</span></a>
+{% endblock %}
 
 {% block buttons %}
     <button type="button" class="btn btn-danger">حذف</button>
@@ -31,7 +34,7 @@
 {% endblock %}
 
 {% block idNum %}
-    <input type="number" id="staticid" class="form-control"
+    <input type="number" id="staticid" class="form-control" required
            placeholder="کد ملی مددجو" name="id_number" value="{{ user.id_number }}">
 {% endblock %}
 
@@ -41,7 +44,7 @@
 {% endblock %}
 
 {% block email %}
-    <input type="email" class="form-control" id="staticphone"
+    <input type="email" class="form-control" id="staticphone" required
            placeholder="رایانامه مددجو" name="email" value="{{ user.email }}">
 {% endblock %}
 

@@ -13,7 +13,7 @@
 
 {% block name %}
     <input type="text" name="first_name" id="staticName" class="form-control"
-           placeholder="نام همیار" value="{{ user.first_name }}">
+           placeholder="نام همیار" value="{{ user.first_name }}" >
 {% endblock %}
 
 {% block l-name %}
@@ -38,12 +38,12 @@
         <label for="staticid" class="col-md-2 col-form-label">کد ملی همیار</label>
         <div class="col-md-3">
             <input type="number" name="id_number" id="staticid" class="form-control form-control"
-                   placeholder="کد ملی همیار" value="{{ user.id_number }}">
+                   placeholder="کد ملی همیار" value="{{ user.id_number }}" required>
         </div>
         <label for="staticid" class="col-md-2 col-form-label">رایانامه همیار</label>
         <div class="col-md-5">
             <input type="email" name="email" id="staticid" class="form-control form-control"
-                   placeholder="ایمیل همیار" value="{{ user.email }}">
+                   placeholder="ایمیل همیار" value="{{ user.email }}" required>
         </div>
     </div>
 

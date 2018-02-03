@@ -136,8 +136,8 @@ def edit_madadjoo(request):
             prev_req.type = request.POST.get('type_base' + str(req.id))
             prev_req.confirmed = False if req.urgent else True
             prev_req.save()
-            index = 0
 
+        index = 0
         for desc in request.POST.getlist('description'):
             if desc != "":
                 description = desc
@@ -697,6 +697,8 @@ def edit_hamyar_information(request):
         user.last_name = request.POST.get('last_name')
         user.id_number = request.POST.get('id_number')
         user.phone_number = request.POST.get('phone_number')
+        if user.phone_number == '':
+            user.phone_number = None
         user.address = request.POST.get('address')
         user.email = request.POST.get('email')
         # print(request.FILES)
@@ -922,12 +924,16 @@ def edit_a_madadjoo_admin(request):
         user.last_name = request.POST.get('last_name')
         user.id_number = request.POST.get('id_number')
         user.phone_number = request.POST.get('phone_number')
+        if user.phone_number == '':
+            user.phone_number = None
         user.address = request.POST.get('address')
         user.email = request.POST.get('email')
         user.bio = request.POST.get('bio')
         user.edu_status = request.POST.get('edu_status')
         user.successes = request.POST.get('successes')
         user.invest_percentage = request.POST.get('invest_percentage')
+        if user.invest_percentage == '':
+            user.invest_percentage = None
         if request.POST.get('profile_pic') != '':
             user.profile_pic = request.FILES.get('profile_pic')
 
@@ -1030,7 +1036,7 @@ def confirm_change_madadkar(request):
     # change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
     # madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
     d = show_letters_admin(request)
-    d['success_message':] = "درخواست تغییر مددکار تایید شد."
+    d['success_message'] = "درخواست تغییر مددکار تایید شد."
 
     return render(request, 'admin/inbox.html', d)
 
@@ -1258,6 +1264,8 @@ def edit_a_madadkar_admin(request):
         target_madadkar.last_name = request.POST.get('last_name')
         target_madadkar.id_number = request.POST.get('id_number')
         target_madadkar.phone_number = request.POST.get('phone_number')
+        if target_madadkar.phone_number == '':
+            target_madadkar.phone_number = None
         target_madadkar.address = request.POST.get('address')
         target_madadkar.email = request.POST.get('email')
         target_madadkar.bio = request.POST.get('bio')
@@ -1283,7 +1291,7 @@ def add_a_madadkar_admin(request):
         last_name = request.POST.get('last_name')
         id_number = request.POST.get('id_number')
         phone_number = request.POST.get('phone_number')
-        phone_number = '0' if phone_number == '' else phone_number
+        phone_number = None if phone_number == '' else phone_number
         address = request.POST.get('address')
         email = request.POST.get('email')
         profile_pic = request.FILES.get('profile_pic')
@@ -1332,6 +1340,8 @@ def edit_a_hamyar_admin(request):
         target_hamyar.last_name = request.POST.get('last_name')
         target_hamyar.id_number = request.POST.get('id_number')
         target_hamyar.phone_number = request.POST.get('phone_number')
+        if target_hamyar.phone_number == '':
+            target_hamyar.phone_number = None
         target_hamyar.address = request.POST.get('address')
         target_hamyar.email = request.POST.get('email')
 
@@ -1356,7 +1366,7 @@ def add_a_hamyar_admin(request):
         last_name = request.POST.get('last_name')
         id_number = request.POST.get('id_number')
         phone_number = request.POST.get('phone_number', 0)
-        phone_number = '0' if phone_number == '' else phone_number
+        phone_number = None if phone_number == '' else phone_number
         address = request.POST.get('address')
         email = request.POST.get('email')
         profile_pic = request.FILES.get('profile_pic')

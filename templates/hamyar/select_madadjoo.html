@@ -1,4 +1,7 @@
 {% extends "hamyar/base_registered.html" %}
+{% block home_url %}
+    <a class="nav-link" href="home_hamyar">خانه <span class="sr-only">(current)</span></a>
+{% endblock %}
 {% block content %}
     {% block message %}
         {% if not message == None %}
@@ -38,12 +41,12 @@
                             <div class="card-footer bg-transparent">
                                 {% block do-button %}
                                     <a href="{% url "support_a_madadjoo" %}?username={{ madadjoo.username }}"
-                                   style="cursor: auto ">
+                                       style="cursor: auto ">
                                         <button type="button" class="btn btn-outline-success btn-lg btn-block">
                                             تکفل
                                             کن
                                         </button>
-                                </a>
+                                    </a>
                                 {% endblock %}
                             </div>
                         </div>

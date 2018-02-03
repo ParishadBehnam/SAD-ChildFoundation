@@ -1,7 +1,11 @@
 {% extends 'base_show_madadjoo.html' %}
-    {% block panel %}
-        <a class="nav-link" href="madadkar_panel">پنل مدیریت مددکار</a>
-    {% endblock %}
+{% block panel %}
+    <a class="nav-link" href="madadkar_panel">پنل مدیریت مددکار</a>
+{% endblock %}
+{% block home_url %}
+    <a class="nav-link" href="home_madadkar">خانه <span class="sr-only">(current)</span></a>
+{% endblock %}
 {% block link %}
-    <a href="{% url "show_a_madadjoo" %}?username={{ madadjoo.username }}" class="btn btn-secondary">نمایش مشخصات مددجو</a>
- {% endblock %}
+    <a href="{% url "show_a_madadjoo" %}?username={{ madadjoo.username }}" class="btn btn-secondary">نمایش مشخصات
+        مددجو</a>
+{% endblock %}

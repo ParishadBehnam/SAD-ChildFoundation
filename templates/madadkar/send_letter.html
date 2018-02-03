@@ -2,6 +2,9 @@
 {% block panel %}
     <a class="nav-link" href="madadkar_panel" xmlns="http://www.w3.org/1999/html">پنل مدیریت مددکار</a>
 {% endblock %}
+{% block home_url %}
+    <a class="nav-link" href="home_madadkar">خانه <span class="sr-only">(current)</span></a>
+{% endblock %}
 {% block sender %}
     <input type="text" readonly class="form-control-plaintext form-control" id="sender"
            placeholder="نام مددکار" value="{{ user.first_name }} {{ user.last_name }}">

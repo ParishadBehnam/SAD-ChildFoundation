@@ -1,5 +1,9 @@
 {% extends "madadjoo/base_show_a_supporter.html" %}
 
+{% block home_url %}
+    <a class="nav-link" href="home_hamyar">خانه <span class="sr-only">(current)</span></a>
+{% endblock %}
+
 {% block panel %}
     <a class="nav-link" href="hamyar_panel">پنل مدیریت همیار</a>
 {% endblock %}
@@ -22,7 +26,7 @@
     {% block madadjoos %}
         <div class="list-group">
             <a href="#" class="list-group-item list-group-item-action disabled">
-مددجویان تحت تکلف            </a>
+                مددجویان تحت تکلف </a>
             {% for madadjoo in madadjoos %}
                 <a href="{% url "show_a_madadjoo_hamyar" %}?username={{ madadjoo.username }}"
                    class="list-group-item list-group-item-action">{{ madadjoo.first_name }} {{ madadjoo.last_name }}</a>

@@ -1,6 +1,9 @@
 {% extends "base_registered.html" %}
 {% load tz %}
 
+{% block home_url %}
+    <a class="nav-link" href="home_hamyar">خانه <span class="sr-only">(current)</span></a>
+{% endblock %}
 {% block panel %}
     <a class="nav-link" href="hamyar_panel" xmlns="http://www.w3.org/1999/html">پنل مدیریت همیار</a>
 {% endblock %}

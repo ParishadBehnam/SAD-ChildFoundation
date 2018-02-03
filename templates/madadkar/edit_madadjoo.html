@@ -33,7 +33,7 @@
 {% endblock %}
 
 {% block idNum %}
-    <input type="number" id="staticid" class="form-control"
+    <input type="number" id="staticid" class="form-control" required
            placeholder="کد ملی مددجو" name="id_number" value="{{ user.id_number }}">
 {% endblock %}
 
@@ -43,7 +43,7 @@
 {% endblock %}
 
 {% block email %}
-    <input type="email" class="form-control" id="staticphone"
+    <input type="email" class="form-control" id="staticphone" required
            placeholder="رایانامه مددجو" name="email" value="{{ user.email }}">
 {% endblock %}
 
