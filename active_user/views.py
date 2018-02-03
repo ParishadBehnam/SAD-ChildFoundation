@@ -458,11 +458,12 @@ def delete_letter_madadkar(request):
 
 
 def show_letters_admin(request):
-    add_madadjoo_letters = add_madadjoo_admin_letter.objects.all()
-    urgent_need_letters = urgent_need_admin_letter.objects.all()
+    deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
+    add_madadjoo_letters = add_madadjoo_admin_letter.objects.exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    urgent_need_letters = urgent_need_admin_letter.objects.exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
-    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
-    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
+    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar).exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False).exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     return {'add_madadjoo_letters': add_madadjoo_letters, 'madadjoo_letters': madadjoo_letters,
             'urgent_need_letters': urgent_need_letters, 'change_madadkar_letters': change_madadkar_letters}
 
