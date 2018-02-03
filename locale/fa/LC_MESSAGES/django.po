@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-02 21:54+0330\n"
+"POT-Creation-Date: 2018-01-31 14:03+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,35 +34,35 @@ msgstr ""
 msgid "کاربر فعال"
 msgstr ""
 
-#: active_user/models.py:68
-msgid "مددکاران"
-msgstr ""
-
-#: active_user/models.py:69
-msgid "مددکار"
-msgstr ""
-
-#: active_user/models.py:74
+#: active_user/models.py:62
 msgid "مدیران"
 msgstr ""
 
-#: active_user/models.py:75
+#: active_user/models.py:63
 msgid "مدیر"
 msgstr ""
 
-#: active_user/models.py:80
+#: active_user/models.py:70
+msgid "مددکاران"
+msgstr ""
+
+#: active_user/models.py:71
+msgid "مددکار"
+msgstr ""
+
+#: active_user/models.py:76
 msgid "همیاران"
 msgstr ""
 
-#: active_user/models.py:81
+#: active_user/models.py:77
 msgid "همیار"
 msgstr ""
 
-#: active_user/models.py:94
+#: active_user/models.py:90
 msgid "مددجویان"
 msgstr ""
 
-#: active_user/models.py:95
+#: active_user/models.py:91
 msgid "مددجو"
 msgstr ""
 
