@@ -480,12 +480,21 @@ def delete_letter_admin(request):
     return render(request, 'admin/inbox.html', d)
 
 
+def show_letters_hamyar(request):
+    deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
+    all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id, confirmed=1).exclude(
+            madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    delete_letters = madadkar_remove_madadjoo.objects.filter(hamyar_id=request.user.id)
+    return {'letters': all_letters, 'delete_letters': delete_letters}
+
+
 @hamyar_login_required
 def delete_letter_hamyar(request):
     models.madadjoo_hamyar_letter.objects.get(id=request.GET.get('letter', '')).delete()
-    all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id, confirmed=1)
-    return render(request, 'hamyar/inbox.html',
-                  {'letters': all_letters, 'success_message': 'نامه با موفقیت حذف گردید.'})
+    # all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id, confirmed=1)
+    d = show_letters_hamyar(request)
+    d['success_message'] = 'نامه با موفقیت حذف گردید.'
+    return render(request, 'hamyar/inbox.html', d)
 
 
 @madadkar_login_required
@@ -558,32 +567,40 @@ def select_to_substitute_a_madadjoo_hamyar(request):
 
 @hamyar_login_required
 def letter_content_hamyar(request):
-    deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
     target_letter = models.madadjoo_hamyar_letter.objects.get(id=request.GET.get('letter', ''), confirmed=1)
     target_madadjoo = models.madadjoo.objects.get(active_user_ptr_id=target_letter.madadjoo_id)
     target_hamyar = models.hamyar.objects.get(active_user_ptr_id=target_letter.hamyar_id)
-    all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id).exclude(
-            madadjoo__active_user_ptr_id__in=deleted_madadjoos)
-    delete_letters = madadkar_remove_madadjoo.objects.filter(hamyar_id=request.user.id)
-    return render(request, 'hamyar/letter_content.html',
-                  {'letters': all_letters, 'delete_letters': delete_letters, 'letter': target_letter,
-                   'sender': target_madadjoo, 'receiver': target_hamyar})
+    # deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
+    # all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id).exclude(
+    #         madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    # delete_letters = madadkar_remove_madadjoo.objects.filter(hamyar_id=request.user.id)
+    d = show_letters_hamyar(request)
+    d['letter'] = target_letter
+    d['sender'] = target_madadjoo
+    d['receiver'] = target_hamyar
+    return render(request, 'hamyar/letter_content.html', d)
 
+
+def show_letters_madadjoo(request):
+    all_letters = hamyar_madadjoo_meeting.objects.filter(madadjoo_id=request.user.id, confirmed=True)
+    return {'letters': all_letters}
 
 @madadjoo_login_required
 def letter_content_madadjoo(request):
     target_letter = hamyar_madadjoo_meeting.objects.get(id=request.GET.get('letter', ''), confirmed=True)
     target_madadjoo = models.madadjoo.objects.get(active_user_ptr_id=target_letter.madadjoo_id)
     target_hamyar = models.hamyar.objects.get(active_user_ptr_id=target_letter.hamyar_id)
-    all_letters = hamyar_madadjoo_meeting.objects.filter(madadjoo_id=request.user.id, confirmed=True)
-    return render(request, 'madadjoo/letter_content.html',
-                  {'letters': all_letters, 'letter': target_letter,
-                   'sender': target_hamyar, 'receiver': target_madadjoo})
+    # all_letters = hamyar_madadjoo_meeting.objects.filter(madadjoo_id=request.user.id, confirmed=True)
+    d = show_letters_madadjoo(request)
+    d['letter'] = target_letter
+    d['sender'] = target_hamyar
+    d['receiver'] = target_madadjoo
+    return render(request, 'madadjoo/letter_content.html', d)
 
 
 @hamyar_login_required
 def delete_madadjoo_letter_content_hamyar(request):
-    deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
+    # deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
     target_letter = madadkar_remove_madadjoo.objects.get(id=request.GET.get('letter', ''))
     try:
         substitute_a_madadjoo.objects.get(remove=target_letter)
@@ -596,28 +613,33 @@ def delete_madadjoo_letter_content_hamyar(request):
         target_madadkar = models.madadkar.objects.get(active_user_ptr_id=target_letter.madadkar_id)
     else:
         target_madadkar = None
-    all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id).exclude(
-            madadjoo__active_user_ptr_id__in=deleted_madadjoos)
-    delete_letters = madadkar_remove_madadjoo.objects.filter(hamyar_id=request.user.id)
-    return render(request, 'hamyar/letter_content.html',
-                  {'letters': all_letters, 'delete_letters': delete_letters, 'letter': target_letter,
-                   'is_substituted': is_subs, 'sender': target_madadkar, 'receiver': target_hamyar,
-                   'madadjoo': target_madadjoo})
+    # all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id).exclude(
+    #         madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    # delete_letters = madadkar_remove_madadjoo.objects.filter(hamyar_id=request.user.id)
+    d = show_letters_hamyar(request)
+    d['letter'] = target_letter
+    d['sender'] = target_madadkar
+    d['receiver'] = target_hamyar
+    d['madadjoo'] = target_madadjoo
+    d['is_substituted'] = is_subs
+    return render(request, 'hamyar/letter_content.html', d)
 
 
 @hamyar_login_required
 def inbox_hamyar(request):
-    deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
-    all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id, confirmed=1).exclude(
-            madadjoo__active_user_ptr_id__in=deleted_madadjoos)
-    delete_letters = madadkar_remove_madadjoo.objects.filter(hamyar_id=request.user.id)
-    return render(request, 'hamyar/inbox.html', {'letters': all_letters, 'delete_letters': delete_letters})
+    # deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
+    # all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id, confirmed=1).exclude(
+    #         madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    # delete_letters = madadkar_remove_madadjoo.objects.filter(hamyar_id=request.user.id)
+    d = show_letters_hamyar(request)
+    return render(request, 'hamyar/inbox.html', d)
 
 
 @madadjoo_login_required
 def inbox_madadjoo(request):
-    all_letters = hamyar_madadjoo_meeting.objects.filter(madadjoo_id=request.user.id, confirmed=True)
-    return render(request, 'madadjoo/inbox.html', {'letters': all_letters})
+    d = show_letters_madadjoo(request)
+    # all_letters = hamyar_madadjoo_meeting.objects.filter(madadjoo_id=request.user.id, confirmed=True)
+    return render(request, 'madadjoo/inbox.html', d)
 
 
 @madadkar_login_required
@@ -950,126 +972,118 @@ def edit_a_madadjoo_admin(request):
 
 @admin_login_required
 def inbox_admin(request):
-    admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
-    add_madadjoo_letters = add_madadjoo_admin_letter.objects.all()
-    urgent_need_letters = urgent_need_admin_letter.objects.all()
-    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
-    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
-    return render(request, 'admin/inbox.html',
-                  {'add_madadjoo_letters': add_madadjoo_letters, 'madadjoo_letters': madadjoo_letters,
-                   'urgent_need_letters': urgent_need_letters, 'change_madadkar_letters': change_madadkar_letters})
+    d = show_letters_admin(request)
+    # admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
+    # add_madadjoo_letters = add_madadjoo_admin_letter.objects.all()
+    # urgent_need_letters = urgent_need_admin_letter.objects.all()
+    # change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
+    # madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
+    return render(request, 'admin/inbox.html', d)
 
 
 @admin_login_required
 def confirm_madadjoo_admin(request):
     target_letter = models.add_madadjoo_admin_letter.objects.get(id=request.GET.get('letter', ''))
-    add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
-    admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
-    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
-    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
-    urgent_need_letters = urgent_need_admin_letter.objects.all()
     target_letter.madadjoo.confirmed = True
     target_letter.madadjoo.save()
     target_letter.delete()
-    return render(request, 'admin/inbox.html',
-                  {'madadjoo_letters': madadjoo_letters, 'change_madadkar_letters': change_madadkar_letters,
-                   'add_madadjoo_letters': add_madadjoo_letters, 'urgent_need_letters': urgent_need_letters,
-                   'success_message': "مددجوی انتخابی تایید شد."})
+    # add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
+    # admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
+    # change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
+    # madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
+    # urgent_need_letters = urgent_need_admin_letter.objects.all()
+    d = show_letters_admin(request)
+    d['success_message'] = "مددجوی انتخابی تایید شد."
+    return render(request, 'admin/inbox.html', d)
 
 
 @admin_login_required
 def confirm_need_admin(request):
     target_letter = models.urgent_need_admin_letter.objects.get(id=request.GET.get('letter', ''))
-    add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
-    urgent_need_letters = urgent_need_admin_letter.objects.all()
     target_letter.need.urgent = True
     target_letter.need.save()
     action.send(request.user, verb='ثبت نیاز فوری برای مددجو', target=target_letter.madadjoo)
     target_letter.delete()
-    admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
-    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
-    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
+    # add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
+    # urgent_need_letters = urgent_need_admin_letter.objects.all()
+    # admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
+    # change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
+    # madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
+    d = show_letters_admin(request)
+    d['success_message'] = "نیاز فوری انتخابی تایید شد."
 
-    return render(request, 'admin/inbox.html',
-                  {'madadjoo_letters': madadjoo_letters, 'change_madadkar_letters': change_madadkar_letters,
-                   'add_madadjoo_letters': add_madadjoo_letters, 'urgent_need_letters': urgent_need_letters,
-                   'success_message': "نیاز فوری انتخابی تایید شد."})
+    return render(request, 'admin/inbox.html', d)
 
 
 @admin_login_required
 def confirm_change_madadkar(request):
     target_letter = models.request_for_change_madadkar.objects.get(id=request.GET.get('letter', ''))
-    add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
-    urgent_need_letters = urgent_need_admin_letter.objects.all()
-    admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
-    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
-    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
     target_letter.madadjoo.corr_madadkar = None
     target_letter.madadjoo.save()
     target_letter.confirmed = True
     target_letter.save()
     action.send(request.user, verb='درخواست تغییر مدکار توسط مددجو', target=target_letter.madadjoo)
+    # add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
+    # urgent_need_letters = urgent_need_admin_letter.objects.all()
+    # admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
+    # change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
+    # madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
+    d = show_letters_admin(request)
+    d['success_message':] = "درخواست تغییر مددکار تایید شد."
 
-    return render(request, 'admin/inbox.html',
-                  {'madadjoo_letters': madadjoo_letters, 'change_madadkar_letters': change_madadkar_letters,
-                   'add_madadjoo_letters': add_madadjoo_letters, 'urgent_need_letters': urgent_need_letters,
-                   'success_message': "درخواست تغییر مددکار تایید شد."})
+    return render(request, 'admin/inbox.html', d)
 
 
 @admin_login_required
 def letter_madadkar_add_madadjoo(request):
-    admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
     target_letter = models.add_madadjoo_admin_letter.objects.get(id=request.GET.get('letter', ''))
-    add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
-    urgent_need_letters = urgent_need_admin_letter.objects.all()
-    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
-    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
-    return render(request, 'admin/letter_content_confirm.html',
-                  {'letter': target_letter, 'add_madadjoo_letters': add_madadjoo_letters,
-                   'urgent_need_letters': urgent_need_letters, 'change_madadkar_letters': change_madadkar_letters,
-                   'madadjoo_letters': madadjoo_letters})
+    # admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
+    # add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
+    # urgent_need_letters = urgent_need_admin_letter.objects.all()
+    # madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
+    # change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
+    d = show_letters_admin(request)
+    d['letter'] = target_letter
+    return render(request, 'admin/letter_content_confirm.html', d)
 
 
 @admin_login_required
 def urgent_need_letters(request):
-    admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
     target_letter = models.urgent_need_admin_letter.objects.get(id=request.GET.get('letter', ''))
-    add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
-    urgent_need_letters = urgent_need_admin_letter.objects.all()
-    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
-    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
-    return render(request, 'admin/letter_content_urgent.html',
-                  {'letter': target_letter, 'add_madadjoo_letters': add_madadjoo_letters,
-                   'urgent_need_letters': urgent_need_letters, 'change_madadkar_letters': change_madadkar_letters,
-                   'madadjoo_letters': madadjoo_letters})
+    # admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
+    # add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
+    # urgent_need_letters = urgent_need_admin_letter.objects.all()
+    # madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
+    # change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
+    d = show_letters_admin(request)
+    d['letter'] = target_letter
+    return render(request, 'admin/letter_content_urgent.html', d)
 
 
 @admin_login_required
 def change_madadkar_letters(request):
-    admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
     target_letter = models.request_for_change_madadkar.objects.get(id=request.GET.get('letter', ''))
-    add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
-    urgent_need_letters = urgent_need_admin_letter.objects.all()
-    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
-    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
-    return render(request, 'admin/letter_content_change_madadkar.html',
-                  {'letter': target_letter, 'add_madadjoo_letters': add_madadjoo_letters,
-                   'urgent_need_letters': urgent_need_letters, 'change_madadkar_letters': change_madadkar_letters,
-                   'madadjoo_letters': madadjoo_letters})
+    # admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
+    # add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
+    # urgent_need_letters = urgent_need_admin_letter.objects.all()
+    # madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
+    # change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
+    d = show_letters_admin(request)
+    d['letter'] = target_letter
+    return render(request, 'admin/letter_content_change_madadkar.html', d)
 
 
 @admin_login_required
 def madadjoo_letters_admin(request):
-    admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
     target_letter = models.madadjoo_madadkar_letter.objects.get(id=request.GET.get('letter', ''))
-    add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
-    urgent_need_letters = urgent_need_admin_letter.objects.all()
-    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
-    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
-    return render(request, 'admin/letter_content_madadjoo.html',
-                  {'letter': target_letter, 'add_madadjoo_letters': add_madadjoo_letters,
-                   'change_madadkar_letters': change_madadkar_letters,
-                   'urgent_need_letters': urgent_need_letters, 'madadjoo_letters': madadjoo_letters})
+    # admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
+    # add_madadjoo_letters = models.add_madadjoo_admin_letter.objects.all()
+    # urgent_need_letters = urgent_need_admin_letter.objects.all()
+    # madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
+    # change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
+    d = show_letters_admin(request)
+    d['letter'] = target_letter
+    return render(request, 'admin/letter_content_madadjoo.html', d)
 
 
 @admin_login_required
