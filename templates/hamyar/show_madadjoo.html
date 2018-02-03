@@ -8,3 +8,11 @@
 {% block link %}
     <a href="{% url "show_a_madadjoo_hamyar" %}?username={{ madadjoo.username }}" class="btn btn-secondary">نمایش مشخصات مددجو</a>
  {% endblock %}
+
+{% block right-side-navbar %}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="home_hamyar">خانه <span class="sr-only">(current)</span></a>
+        </li>
+    </ul>
+{% endblock %}

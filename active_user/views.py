@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import datetime
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 from actstream import action
 from actstream.models import target_stream, actor_stream
 from django.db import IntegrityError
@@ -10,14 +15,8 @@ from django.shortcuts import render_to_response
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-
-from active_user import forms
 from active_user import models
 from active_user.decorators import admin_login_required
-from active_user.decorators import madadkar_login_required
 from active_user.decorators import hamyar_login_required
 from active_user.decorators import madadjoo_login_required
 from active_user.decorators import madadkar_login_required
@@ -28,9 +27,6 @@ from active_user.models import madadjoo, hamyar, madadkar, sponsership, \
     substitute_a_madadjoo, request_for_change_madadkar
 from system import models as system_models
 from system.models import information
-import datetime
-
-from background_task import background
 
 
 # @background(schedule=20)
