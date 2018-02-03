@@ -946,7 +946,7 @@ def edit_a_madadjoo_admin(request):
             prev_req.type = request.POST.get('type_base' + str(req.id))
             prev_req.confirmed = False if req.urgent else True
             prev_req.save()
-            index = 0
+        index = 0
 
         for desc in request.POST.getlist('description'):
             if desc != "":
@@ -999,6 +999,7 @@ def confirm_madadjoo_admin(request):
     # change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
     # madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
     # urgent_need_letters = urgent_need_admin_letter.objects.all()
+    action.send(request.user, verb='مددجو را تایید کرد', target = target_letter.madadjoo)
     d = show_letters_admin(request)
     d['success_message'] = "مددجوی انتخابی تایید شد."
     return render(request, 'admin/inbox.html', d)
