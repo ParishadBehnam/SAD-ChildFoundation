@@ -524,12 +524,13 @@ def confirm_madadjoo_hamyar_letter(request):
 @madadkar_login_required
 def confirm_hamyar_madadjoo_letter(request):
     letter = hamyar_madadjoo_meeting.objects.get(id=request.GET.get('letter'))
+    target_madadjoo = madadjoo.objects.get(active_user_ptr_id=letter.madadjoo_id)
     letter.confirmed = True
     letter.save()
     d = show_letters_madadkar(request)
     d['success_message'] = 'درخواست ملاقات با موفقیت تایید گردید.'
     action(request.user, verb="درخواست ملاقات با مددجو را تایید کرد", action_object=letter.hamyar,
-           target=letter.madadjoo)
+           target=target_madadjoo)
     return render(request, 'madadkar/inbox.html', d)
 
 
