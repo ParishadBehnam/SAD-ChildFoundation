@@ -235,20 +235,21 @@ def substitute_madadjoo(request):
     removed_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
     remove = madadkar_remove_madadjoo.objects.get(madadjoo=removed_madadjoo, hamyar_id=target_hamyar.id)
 
-    print(target_madadjoo, target_hamyar, removed_madadjoo, remove.id)
+    # print(target_madadjoo, target_hamyar, removed_madadjoo, remove.id)
     new_sponsership = sponsership(hamyar_id=target_hamyar.id, madadjoo_id=target_madadjoo.id)
     new_sponsership.save()
 
     new_substitution = substitute_a_madadjoo(remove_id=remove.id, substituted_madadjoo_id=target_madadjoo.id)
     new_substitution.save()
 
-    deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
-    all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id, confirmed=1).exclude(
-            madadjoo__active_user_ptr_id__in=deleted_madadjoos)
-    delete_letters = madadkar_remove_madadjoo.objects.filter(hamyar_id=request.user.id)
+    d = show_letters_hamyar(request)
+    d['success_message'] =  'مددجوی جدید با موفقیت تحت حمایت شما قرار گرفت.'
+    # deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
+    # all_letters = madadjoo_hamyar_letter.objects.filter(hamyar_id=request.user.id, confirmed=1).exclude(
+    #         madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    # delete_letters = madadkar_remove_madadjoo.objects.filter(hamyar_id=request.user.id)
     action.send(request.user, verb='حمایت از مددجو', target=target_madadjoo)
-    return render(request, 'hamyar/inbox.html', {'letters': all_letters, 'delete_letters': delete_letters,
-                                                 'success_message': 'مددجوی جدید با موفقیت تحت حمایت شما قرار گرفت.'})
+    return render(request, 'hamyar/inbox.html', d)
 
 
 @hamyar_login_required
