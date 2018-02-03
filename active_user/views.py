@@ -296,7 +296,6 @@ def show_a_madadjoo_hamyar(request):
                               target_hamyar.first_name + ' ' + target_hamyar.last_name + ' به مبلغ ' + \
                               str(payment.amount) + ' تومان به صورت ' + type + ' در سامانه ثبت گردید.' + \
                               '\n\nبنیاد حمایت از کودکان'
-
                     server = smtplib.SMTP('smtp.gmail.com', 587)
                     server.starttls()
                     server.login('childf2018', 'childF20182018')
@@ -388,27 +387,30 @@ def send_letter_hamyar(request):
 
 @hamyar_login_required
 def stop_support_hamyar(request):
-    amount = models.hamyar_madadjoo_payment.objects.filter(hamyar_id=request.user.id, madadjoo__active_user_ptr_id=request.GET.get('madadjoo', ''))
+    amount = models.hamyar_madadjoo_payment.objects.filter(hamyar_id=request.user.id,
+                                                           madadjoo__active_user_ptr_id=request.GET.get('madadjoo', ''))
     sum = 0
     now = datetime.datetime.now()
-#    print(now.month)
+    #    print(now.month)
     for a in amount:
-        if a.type=='ann':
+        if a.type == 'ann':
             sum += a.amount * (a.date.year - now.year + 1)
-        elif a.type=='mo':
-            sum += a.amount * ((a.date.year - now.year)*12 + (a.date.month+1 - now.month))
-        elif a.type=='inst':
+        elif a.type == 'mo':
+            sum += a.amount * ((a.date.year - now.year) * 12 + (a.date.month + 1 - now.month))
+        elif a.type == 'inst':
             sum += a.amount
     amount.delete()
     our_system = list(system_models.information.objects.all())
-    if sum>0 :
+    if sum > 0:
         payment = hamyar_system_payment(amount=sum, hamyar_id=request.user.id, system_id=our_system[0].history)
         payment.save()
-    models.sponsership.objects.get(hamyar_id=request.user.id, madadjoo__active_user_ptr_id=request.GET.get('madadjoo', '')).delete()
+    models.sponsership.objects.get(hamyar_id=request.user.id,
+                                   madadjoo__active_user_ptr_id=request.GET.get('madadjoo', '')).delete()
     deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
     all_madadjoo = madadjoo.objects.filter(sponsership__hamyar_id=request.user.id, confirmed=True).exclude(
-        active_user_ptr_id__in=deleted_madadjoos)
-    return render(request, 'hamyar/show_madadjoo.html', {'madadjoos': all_madadjoo, 'success_message' : 'عدم حمایت از مددجو با موفقیت ثبت گردید.'})
+            active_user_ptr_id__in=deleted_madadjoos)
+    return render(request, 'hamyar/show_madadjoo.html',
+                  {'madadjoos': all_madadjoo, 'success_message': 'عدم حمایت از مددجو با موفقیت ثبت گردید.'})
 
 
 def show_letters_madadkar(request):
@@ -455,18 +457,27 @@ def delete_letter_madadkar(request):
     return render(request, 'madadkar/inbox.html', d)
 
 
+def show_letters_admin(request):
+    add_madadjoo_letters = add_madadjoo_admin_letter.objects.all()
+    urgent_need_letters = urgent_need_admin_letter.objects.all()
+    admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
+    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
+    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
+    return {'add_madadjoo_letters': add_madadjoo_letters, 'madadjoo_letters': madadjoo_letters,
+            'urgent_need_letters': urgent_need_letters, 'change_madadkar_letters': change_madadkar_letters}
+
+
 @admin_login_required
 def delete_letter_admin(request):
     models.madadjoo_madadkar_letter.objects.get(id=request.GET.get('letter', '')).delete()
-    admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
-    add_madadjoo_letters = add_madadjoo_admin_letter.objects.all()
-    urgent_need_letters = urgent_need_admin_letter.objects.all()
-    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
-    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
-    return render(request, 'admin/inbox.html',
-                  {'add_madadjoo_letters': add_madadjoo_letters, 'madadjoo_letters': madadjoo_letters,
-                   'urgent_need_letters': urgent_need_letters, 'change_madadkar_letters': change_madadkar_letters,
-                   'success_message': 'نامه با موفقیت حذف گردید.'})
+    # admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
+    # add_madadjoo_letters = add_madadjoo_admin_letter.objects.all()
+    # urgent_need_letters = urgent_need_admin_letter.objects.all()
+    # madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar)
+    # change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False)
+    d = show_letters_admin(request)
+    d['success_message'] = 'نامه با موفقیت حذف گردید.'
+    return render(request, 'admin/inbox.html', d)
 
 
 @hamyar_login_required
