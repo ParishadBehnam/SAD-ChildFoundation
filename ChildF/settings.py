@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'system.apps.SystemConfig',
     'active_user.apps.ActiveUserConfig',
     'django.contrib.sites',
+    'background_task',
     'actstream',
+
 ]
 SITE_ID = 1
 
@@ -130,5 +132,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Configure Django App for Heroku.
 import django_heroku
-django_heroku.settings(locals())
 
+django_heroku.settings(locals())
