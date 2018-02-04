@@ -22,7 +22,7 @@
 {% endblock %}
 
 {% block emergency %}
-    <div class="form-check form-check-inline" disabled>
+    <div class="col-sm-2 form-check form-check-inline" disabled>
         <div class="col-md-1 mr-auto">
             {% if need.urgent %}
                 <span class="badge badge-danger">نیاز فوری</span>
@@ -31,7 +31,7 @@
             {% endif %}
         </div>
     </div>
-    <div class="form-check form-check-inline" disabled>
+    <div class="col-sm-1 form-check form-check-inline" disabled>
         <div class="col-md-1 mr-auto">
             {% if need.cash %}
                 <span class="badge badge-danger">نقدی</span>
