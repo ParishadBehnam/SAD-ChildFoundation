@@ -9,14 +9,14 @@
               style="margin-left:1%;"></span>فعالیت‌های کاربران</h4>
     <hr>
     <div class="row bg-light">
-        <div class="col-md-4 rounded " style="height: 100%;">
+        <div class="col-4 rounded " style="height: 100%;">
             <p class="list-group-item bg-light" style="border-color: white">نام کاربر</p>
         </div>
-        <div class="col-md-2 rounded " style="height: 100%;">
+        <div class="col-2 rounded " style="height: 100%;">
             <p class="list-group-item bg-light" style="border-color: white">نقش کاربر</p>
         </div>
 
-        <div class="col-md-6 rounded" style="height: 100%;">
+        <div class="col-6 rounded" style="height: 100%;">
             <p class="list-group-item bg-light" style="border-color: white">فعالیت</p>
         </div>
 
@@ -25,14 +25,14 @@
     {% for s in madadjoo_stream %}
         {% for action in s.1 %}
             <div class="row">
-                <div class="col-md-4 rounded" style="height: 100%;">
+                <div class="col-4 rounded" style="height: 100%;">
                     <p class="list-group-item" style="border-color: white">{{ s.0.first_name }} {{ s.0.last_name }}</p>
                 </div>
-                <div class="col-md-2 rounded" style="height: 100%;">
+                <div class="col-2 rounded" style="height: 100%;">
                     <p class="list-group-item" style="border-color: white">مددجو</p>
                 </div>
 
-                <div class="col-md-6 rounded" style="height: 100%;">
+                <div class="col-6 rounded" style="height: 100%;">
                     <p class="list-group-item"
                        style="border-color: white"> {% display_action action %}
                     </p>
@@ -45,14 +45,14 @@
     {% for s in hamyar_stream %}
         {% for action in s.1 %}
             <div class="row">
-                <div class="col-md-4 rounded" style="height: 100%;">
+                <div class="col-4 rounded" style="height: 100%;">
                     <p class="list-group-item" style="border-color: white">{{ s.0.first_name }} {{ s.0.last_name }}</p>
                 </div>
-                <div class="col-md-2 rounded" style="height: 100%;">
+                <div class="col-2 rounded" style="height: 100%;">
                     <p class="list-group-item" style="border-color: white">همیار</p>
                 </div>
 
-                <div class="col-md-6 rounded" style="height: 100%;">
+                <div class="col-6 rounded" style="height: 100%;">
                     <p class="list-group-item"
                        style="border-color: white"> {% display_action action %}
                     </p>
@@ -64,14 +64,14 @@
     {% for s in madadkar_stream %}
         {% for action in s.1 %}
             <div class="row">
-                <div class="col-md-4 rounded" style="height: 100%;">
+                <div class="col-4 rounded" style="height: 100%;">
                     <p class="list-group-item" style="border-color: white">{{ s.0.first_name }} {{ s.0.last_name }}</p>
                 </div>
-                <div class="col-md-2 rounded" style="height: 100%;">
+                <div class="col-2 rounded" style="height: 100%;">
                     <p class="list-group-item" style="border-color: white">مددکار</p>
                 </div>
 
-                <div class="col-md-6 rounded" style="height: 100%;">
+                <div class="col-6 rounded" style="height: 100%;">
                     <p class="list-group-item"
                        style="border-color: white"> {% display_action action %}
                     </p>
