@@ -24,43 +24,43 @@
                 <div class="panel-body">
                     {% block cash %}
                         <div class="row bg-light">
-                            <div class="col-sm-3 col-md-3 rounded " style="height: 100%;">
+                            <div class="col-3 rounded " style="height: 100%;">
                                 <p class="list-group-item bg-light" style="border-color: white">مددجوی
                                     دریافت‌کننده</p>
                             </div>
 
-                            <div class="col-sm-3 col-md-3 rounded" style="height: 100%;">
+                            <div class="col-3 rounded" style="height: 100%;">
                                 <p class="list-group-item bg-light" style="border-color: white">از تاریخِ</p>
                             </div>
 
-                            <div class="col-sm-3 col-md-3 rounded" style="height: 100%;">
+                            <div class="col-3 rounded" style="height: 100%;">
                                 <p class="list-group-item bg-light" style="border-color: white">وجه پرداختی</p>
                             </div>
 
-                            <div class="col-sm-3 col-md-3 rounded" style="height: 100%;">
+                            <div class="col-3 rounded" style="height: 100%;">
                                 <p class="list-group-item bg-light" style="border-color: white">نوع پرداخت</p>
                             </div>
                         </div>
 
                         {% for help in cash %}
                             <div class="row">
-                                <div class="col-sm-3 col-md-3 rounded" style="height: 100%;">
+                                <div class="col-3 rounded" style="height: 100%;">
                                     <p class="list-group-item"
                                        style="border-color: white"><a
                                             href="{% url "show_a_madadjoo_hamyar" %}?username={{ help.madadjoo.username }}">{{ help.madadjoo.first_name }} {{ help.madadjoo.last_name }}</a>
                                     </p>
                                 </div>
 
-                                <div class="col-sm-3 col-md-3 rounded" style="height: 100%;">
+                                <div class="col-3 rounded" style="height: 100%;">
                                     <p class="list-group-item"
                                        style="border-color: white">{{ help.date }}</p>
                                 </div>
 
-                                <div class="col-sm-3 col-md-3 rounded" style="height: 100%;">
+                                <div class="col-3 rounded" style="height: 100%;">
                                     <p class="list-group-item" style="border-color: white">{{ help.amount }} تومان</p>
                                 </div>
 
-                                <div class="col-sm-3 col-md-3 rounded" style="height: 100%;">
+                                <div class="col-3 rounded" style="height: 100%;">
                                     <p class="list-group-item" style="border-color: white">
                                         {% if help.type == 'ann' %}
                                             سالانه
@@ -93,35 +93,35 @@
                 <div class="panel-body">
                     {% block non_cash %}
                         <div class="row bg-light">
-                            <div class="col-md-3 rounded " style="height: 100%;">
+                            <div class="col-3 rounded " style="height: 100%;">
                                 <p class="list-group-item bg-light" style="border-color: white">مددجوی
                                     دریافت‌کننده</p>
                             </div>
 
-                            <div class="col-md-3 rounded" style="height: 100%;">
+                            <div class="col-3 rounded" style="height: 100%;">
                                 <p class="list-group-item bg-light" style="border-color: white">در تاریخِ</p>
                             </div>
 
-                            <div class="col-md-6 rounded" style="height: 100%;">
+                            <div class="col-6 rounded" style="height: 100%;">
                                 <p class="list-group-item bg-light" style="border-color: white">عنوان کمک</p>
                             </div>
                         </div>
 
                         {% for help in non_cash %}
                             <div class="row">
-                                <div class="col-md-3 rounded" style="height: 100%;">
+                                <div class="col-3 rounded" style="height: 100%;">
                                     <p class="list-group-item"
                                        style="border-color: white"><a
                                             href="{% url "show_a_madadjoo_hamyar" %}?username={{ help.madadjoo.username }}">{{ help.madadjoo.first_name }} {{ help.madadjoo.last_name }}</a>
                                     </p>
                                 </div>
 
-                                <div class="col-md-3 rounded" style="height: 100%;">
+                                <div class="col-3 rounded" style="height: 100%;">
                                     <p class="list-group-item"
                                        style="border-color: white">{{ help.date }}</p>
                                 </div>
 
-                                <div class="col-md-6 rounded" style="height: 100%;">
+                                <div class="col-6 rounded" style="height: 100%;">
                                     <p class="list-group-item" style="border-color: white">{{ help.text }}</p>
                                 </div>
 
@@ -149,11 +149,11 @@
                     {% block system %}
                         <div class="row bg-light">
 
-                            <div class="col-md-3 rounded" style="height: 100%;">
+                            <div class="col-3 rounded" style="height: 100%;">
                                 <p class="list-group-item bg-light" style="border-color: white">وجه پرداختی</p>
                             </div>
 
-                            <div class="col-md-3 rounded" style="height: 100%;">
+                            <div class="col-6 rounded" style="height: 100%;">
                                 <p class="list-group-item bg-light" style="border-color: white">در تاریخِ</p>
                             </div>
 
@@ -162,12 +162,12 @@
                         {% for help in system %}
                             <div class="row">
 
-                                <div class="col-md-3 rounded" style="height: 100%;">
+                                <div class="col-3 rounded" style="height: 100%;">
                                     <p class="list-group-item" style="border-color: white">{{ help.amount }}
                                         تومان</p>
                                 </div>
 
-                                <div class="col-md-3 rounded" style="height: 100%;">
+                                <div class="col-6 rounded" style="height: 100%;">
                                     <p class="list-group-item"
                                        style="border-color: white">{{ help.date }}</p>
                                 </div>
@@ -195,53 +195,53 @@
                     {% block cash_deleteds %}
                         <div class="row bg-light">
 
-                            <div class="col-md-2 rounded " style="height: 100%;">
+                            <div class="col-2 rounded " style="height: 100%;">
                                 <p class="list-group-item bg-light" style="border-color: white">مددجو</p>
                             </div>
 
-                            <div class="col-md-3 rounded" style="height: 100%;">
+                            <div class="col-3 rounded" style="height: 100%;">
                                 <p class="list-group-item bg-light" style="border-color: white">از تاریخِ</p>
                             </div>
 
-                            <div class="col-md-3 rounded" style="height: 100%;">
+                            <div class="col-3 rounded" style="height: 100%;">
                                 <p class="list-group-item bg-light" style="border-color: white">تا تاریخِ</p>
                             </div>
 
-                            <div class="col-md-2 rounded" style="height: 100%;">
+                            <div class="col-2 rounded" style="height: 100%;">
                                 <p class="list-group-item bg-light" style="border-color: white">وجه پرداختی</p>
                             </div>
 
-                            <div class="col-md-2 rounded" style="height: 100%;">
+                            <div class="col-2 rounded" style="height: 100%;">
                                 <p class="list-group-item bg-light" style="border-color: white">نوع پرداخت</p>
                             </div>
                         </div>
 
                         {% for help in cash_for_deleteds %}
                             <div class="row">
-                                <div class="col-md-2 rounded" style="height: 100%;">
+                                <div class="col-2 rounded" style="height: 100%;">
                                     <p class="list-group-item"
                                        style="border-color: white"><a
                                             href="{% url "show_a_madadjoo_hamyar" %}?username={{ help.madadjoo.username }}">{{ help.madadjoo.first_name }} {{ help.madadjoo.last_name }}</a>
                                     </p>
                                 </div>
 
-                                <div class="col-md-3 rounded" style="height: 100%;">
+                                <div class="col-3 rounded" style="height: 100%;">
                                     <p class="list-group-item"
                                        style="border-color: white">{{ help.date }}</p>
                                 </div>
 
-                                <div class="col-md-3 rounded" style="height: 100%;">
+                                <div class="col-3 rounded" style="height: 100%;">
                                     {% with m=help.madadjoo.madadkar_remove_madadjoo_set.all|first %}
                                         <p class="list-group-item"
                                            style="border-color: white">{{ m.date }}</p>
                                     {% endwith %}
                                 </div>
 
-                                <div class="col-md-2 rounded" style="height: 100%;">
+                                <div class="col-2 rounded" style="height: 100%;">
                                     <p class="list-group-item" style="border-color: white">{{ help.amount }} تومان</p>
                                 </div>
 
-                                <div class="col-md-2 rounded" style="height: 100%;">
+                                <div class="col-2 rounded" style="height: 100%;">
                                     <p class="list-group-item" style="border-color: white">
                                         {% if help.type == 'ann' %}
                                             سالانه
@@ -276,15 +276,15 @@
                     <div class="panel-body">
                         {% block non_cash_deleted %}
                             <div class="row bg-light">
-                                <div class="col-md-2 rounded " style="height: 100%;">
+                                <div class="col-2 rounded " style="height: 100%;">
                                     <p class="list-group-item bg-light" style="border-color: white">مددجو</p>
                                 </div>
 
-                                <div class="col-md-3 rounded" style="height: 100%;">
+                                <div class="col-3 rounded" style="height: 100%;">
                                     <p class="list-group-item bg-light" style="border-color: white">از تاریخِ</p>
                                 </div>
 
-                                <div class="col-md-3 rounded" style="height: 100%;">
+                                <div class="col-3 rounded" style="height: 100%;">
                                     <p class="list-group-item bg-light" style="border-color: white">تا تاریخِ</p>
                                 </div>
 
@@ -296,26 +296,26 @@
 
                             {% for help in non_cash_for_deleteds %}
                                 <div class="row">
-                                    <div class="col-md-2 rounded" style="height: 100%;">
+                                    <div class="col-2 rounded" style="height: 100%;">
                                         <p class="list-group-item"
                                            style="border-color: white"><a
                                                 href="{% url "show_a_madadjoo_hamyar" %}?username={{ help.madadjoo.username }}">{{ help.madadjoo.first_name }} {{ help.madadjoo.last_name }}</a>
                                         </p>
                                     </div>
 
-                                    <div class="col-md-3 rounded" style="height: 100%;">
+                                    <div class="col-3 rounded" style="height: 100%;">
                                         <p class="list-group-item"
                                            style="border-color: white">{{ help.date }}</p>
                                     </div>
 
-                                    <div class="col-md-3 rounded" style="height: 100%;">
+                                    <div class="col-3 rounded" style="height: 100%;">
                                         {% with m=help.madadjoo.madadkar_remove_madadjoo_set.all|first %}
                                             <p class="list-group-item"
                                                style="border-color: white">{{ m.date }}</p>
                                         {% endwith %}
                                     </div>
 
-                                    <div class="col-md-2 rounded" style="height: 100%;">
+                                    <div class="col-2 rounded" style="height: 100%;">
                                         <p class="list-group-item" style="border-color: white">{{ help.text }}</p>
                                     </div>
                                 </div>

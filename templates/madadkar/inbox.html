@@ -9,7 +9,7 @@
                 {% block list %}
 {#                    {% if madadjoo_madadkar_letters|length|add:madadjoo_hamyar_letters|length|add:hamyar_madadjoo_letters|length > 0 %}#}
                         {% for letter in madadjoo_madadkar_letters %}
-                            <a href="{% url "letter_madadjoo_content_madadkar" %}?letter={{ letter.id }}"
+                            <a href="{% url "letter_madadjoo_content_madadkar" %}?letter={{ letter.id }}#selected"
                                class="bg-light list-group-item list-group-item-action">
                                 {{ letter.title }}
                             <span class="emergency-need badge badge-primary">
@@ -22,14 +22,14 @@
                         </a>
                     {% endfor %}
                     {% for letter in madadjoo_hamyar_letters %}
-                        <a href="{% url "letter_mtoh_content_madadkar" %}?letter={{ letter.id }}"
+                        <a href="{% url "letter_mtoh_content_madadkar" %}?letter={{ letter.id }}#selected"
                            class="bg-light list-group-item list-group-item-action">
                             {{ letter.title }}
                             <span class="emergency-need badge badge-info">مددجو به همیار</span></a>
                         </a>
                     {% endfor %}
                     {% for letter in hamyar_madadjoo_letters %}
-                        <a href="{% url "letter_htom_content_madadkar" %}?letter={{ letter.id }}"
+                        <a href="{% url "letter_htom_content_madadkar" %}?letter={{ letter.id }}#selected"
                            class="bg-light list-group-item list-group-item-action">
                             درخواست ملاقات
                             <span class="emergency-need badge badge-warning">همیار به مددجو</span></a>
@@ -37,7 +37,7 @@
                     {% endfor %}
 
                     {% for letter in warnings %}
-                        <a href="{% url "warning_content_madadkar" %}?letter={{ letter.id }}"
+                        <a href="{% url "warning_content_madadkar" %}?letter={{ letter.id }}#selected"
                            class="bg-light list-group-item list-group-item-action">
                             اخطار از {{ letter.admin_user.first_name }} {{ letter.admin_user.last_name }}
                             <span class="emergency-need badge badge-danger">اخطار</span></a>

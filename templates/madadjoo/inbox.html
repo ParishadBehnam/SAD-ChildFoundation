@@ -9,7 +9,7 @@
                 {% block list %}
                     {% if letters|length > 0 %}
                         {% for letter in letters %}
-                            <a href="{% url "letter_content_madadjoo" %}?letter={{ letter.id }}"
+                            <a href="{% url "letter_content_madadjoo" %}?letter={{ letter.id }}#selected"
                                class="bg-light list-group-item list-group-item-action">درخواست ملاقات
                             <span class="badge badge-primary">همیار به مددجو</span></a>
                             {#                        <a href="{% url "letter_content_hamyar" %}?letter={{ 2 }}"#}

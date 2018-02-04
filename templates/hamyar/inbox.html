@@ -8,7 +8,7 @@
             <div class="list-group">
                 {% block list %}
                     {% for letter in letters %}
-                        <a href="{% url "letter_content_hamyar" %}?letter={{ letter.id }}"
+                        <a href="{% url "letter_content_hamyar" %}?letter={{ letter.id }}#selected"
                            class="bg-light list-group-item list-group-item-action">{{ letter.title }}
                         <span class="badge badge-info">مددجو به همیار</span></a>
                     {% endfor %}
