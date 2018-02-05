@@ -7,6 +7,7 @@ class Command(BaseCommand):
         sched = BlockingScheduler()
 
         from active_user.models import madadjoo, hamyar, sponsership
+        import smtplib
 
         @sched.scheduled_job('interval', seconds=10)
         def timed_job():
