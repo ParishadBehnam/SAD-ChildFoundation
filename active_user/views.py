@@ -28,6 +28,9 @@ from active_user.models import madadjoo, hamyar, madadkar, sponsership, \
 from system import models as system_models
 from system.models import information
 
+from background_task import background
+
+
 @madadkar_login_required
 def home_madadkar(request):
     system = information.objects.first()
