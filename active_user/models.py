@@ -222,3 +222,15 @@ class request_for_change_madadkar(models.Model):
 
     class Meta:
         unique_together = (("madadjoo", "date"),)
+
+
+class admin_madadjoo_payment(models.Model):
+    admin = models.ForeignKey(admin_user, on_delete=models.CASCADE)
+    madadjoo = models.ForeignKey(madadjoo, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now=True)
+    need = models.ForeignKey(requirements, on_delete=models.CASCADE)
+    amount = models.IntegerField(null=False)
+    type = models.CharField(choices=(('mo', 'monthly'), ('ann', 'annual'), ('inst', 'instantly')), max_length=60)
+
+    class Meta:
+        unique_together = (("madadjoo", "admin", "date"),)
