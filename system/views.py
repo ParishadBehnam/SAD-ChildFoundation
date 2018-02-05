@@ -40,7 +40,6 @@ def hamyar_register(request):
             new_hamyar.save()
 
             login(request, new_hamyar)
-            # s = new_hamyar.first_name + ' ' + new_hamyar.last_name + ' خوش آمدید :) ثبت نام شما موفقیت آمیز بود!'
             return HttpResponseRedirect(reverse("hamyar_panel")+"?success=1")  # this should be hamyar's own page
         else:
             s = 'ثبت نام شما با خطا مواجه شده‌است. دوباره تلاش کنید.'
@@ -96,7 +95,6 @@ def sign_in(request):
 
 def system_logout(request):
     current_user = request.user
-    print(request.user)
     if current_user is not None:
         logout(request)
     return HttpResponseRedirect(reverse('general_information')+'?success=2')
