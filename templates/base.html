@@ -32,7 +32,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
                     {% block home_url %}
-                        <a class="nav-link" href="/">خانه <span class="sr-only">(current)</span></a>
+                        <a class="nav-link col-3" href="/">خانه <span class="sr-only">(current)</span></a>
                     {% endblock %}
                 </li>
             </ul>
@@ -54,6 +54,7 @@
     </div>
 </nav>
 
+<div style="margin-top: 5rem">
 <div class="col-sm-8 col-md-10 container text-right">
     {% block error_alert %}
         {% if error_message %}
@@ -87,8 +88,7 @@
         {% endif %}
     {% endblock %}
     {% block content %}{% endblock %}
-
-
+</div>
 </div>
 {% block footer %}
     <!--Footer-->

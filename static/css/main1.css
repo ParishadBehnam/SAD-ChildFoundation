@@ -1,0 +1,196 @@
+@font-face {
+  font-family: BYas;
+  src: url("../fonts/BYas.eot") format("eot"), url("../fonts/BYas.woff") format("woff"), url("../fonts/BYas.ttf") format("truetype"); }
+@font-face {
+  font-family: BNazanin;
+  src: url("../fonts/BNazanin.eot") format("eot"), url("../fonts/BNazanin.woff") format("woff"), url("../fonts/BNazanin.ttf") format("truetype"); }
+@font-face {
+  font-family: BBardiya;
+  src: url("../fonts/BBardiya.eot");
+  src: url("../fonts/BBardiya.eot?#") format("embedded-opentype"), url("../fonts/BBardiya.woff") format("woff"), url("../fonts/BBardiya.ttf") format("truetype");
+  font-weight: 300; }
+@font-face {
+  font-family: BJalal;
+  src: url("../fonts/BJalal.eot");
+  src: url("../fonts/BJalal.eot?#") format("embedded-opentype"), url("../fonts/BJalal.woff") format("woff"), url("../fonts/BJalal.ttf") format("truetype"); }
+@font-face {
+  font-family: 'open-iconic';
+  src: url("../open-iconic-master/font/fonts/open-iconic.eot"); }
+body {
+  font-family: BJalal;
+  direction: rtl; }
+  body ul.errorlist {
+    color: #990000; }
+  body .center {
+    margin-left: auto;
+    margin-right: auto; }
+  body a {
+    color: black; }
+    body a:hover {
+      color: lightcoral;
+      text-decoration: none; }
+  body .container.text-right {
+    margin-top: 6%;
+    margin-bottom: 6%; }
+    body .container.text-right h4 {
+      color: #666; }
+    @media screen and (720) {
+      body .container.text-right {
+        margin-top: 20%; } }
+    @media screen and (1080) {
+      body .container.text-right {
+        margin-top: 10%; } }
+    @media screen and (1920) {
+      body .container.text-right {
+        margin-top: 6%; } }
+    body .container.text-right .nav {
+      display: inherit; }
+  body nav.navbar {
+    background-color: #800000; }
+  body nav.navbar-header.navbar a {
+    color: white; }
+
+#navbar-scroller {
+  position: fixed; }
+
+footer {
+  padding: 2%;
+  background-color: #e5e5e5; }
+
+/*body nav .btn:hover {*/
+/*background-color: dimgray;*/
+/*}*/
+@font-face {
+  font-family: BYas;
+  src: url("../fonts/BYas.eot") format("eot"), url("../fonts/BYas.woff") format("woff"), url("../fonts/BYas.ttf") format("truetype"); }
+@font-face {
+  font-family: BNazanin;
+  src: url("../fonts/BNazanin.eot") format("eot"), url("../fonts/BNazanin.woff") format("woff"), url("../fonts/BNazanin.ttf") format("truetype"); }
+@font-face {
+  font-family: BBardiya;
+  src: url("../fonts/BBardiya.eot");
+  src: url("../fonts/BBardiya.eot?#") format("embedded-opentype"), url("../fonts/BBardiya.woff") format("woff"), url("../fonts/BBardiya.ttf") format("truetype");
+  font-weight: 300; }
+@font-face {
+  font-family: BJalal;
+  src: url("../fonts/BJalal.eot");
+  src: url("../fonts/BJalal.eot?#") format("embedded-opentype"), url("../fonts/BJalal.woff") format("woff"), url("../fonts/BJalal.ttf") format("truetype"); }
+@font-face {
+  font-family: 'open-iconic';
+  src: url("../open-iconic-master/font/fonts/open-iconic.eot"); }
+body {
+  font-family: BJalal;
+  direction: rtl; }
+  body ul.errorlist {
+    color: #990000; }
+  body .center {
+    margin-left: auto;
+    margin-right: auto; }
+  body a {
+    color: black; }
+    body a:hover {
+      color: lightcoral;
+      text-decoration: none; }
+  body .container.text-right {
+    margin-top: 6%;
+    margin-bottom: 6%; }
+    body .container.text-right h4 {
+      color: #666; }
+    @media screen and (720) {
+      body .container.text-right {
+        margin-top: 20%; } }
+    @media screen and (1080) {
+      body .container.text-right {
+        margin-top: 10%; } }
+    @media screen and (1920) {
+      body .container.text-right {
+        margin-top: 6%; } }
+    body .container.text-right .nav {
+      display: inherit; }
+  body nav.navbar {
+    background-color: #800000; }
+  body nav.navbar-header.navbar a {
+    color: white; }
+
+#navbar-scroller {
+  position: fixed; }
+
+footer {
+  padding: 2%;
+  background-color: #e5e5e5; }
+
+/*body nav .btn:hover {*/
+/*background-color: dimgray;*/
+/*}*/
+body .nav-pills .nav-link.active {
+  background-color: #f0cdd0;
+  color: black; }
+
+@font-face {
+  font-family: BYas;
+  src: url("../fonts/BYas.eot") format("eot"), url("../fonts/BYas.woff") format("woff"), url("../fonts/BYas.ttf") format("truetype"); }
+@font-face {
+  font-family: BNazanin;
+  src: url("../fonts/BNazanin.eot") format("eot"), url("../fonts/BNazanin.woff") format("woff"), url("../fonts/BNazanin.ttf") format("truetype"); }
+@font-face {
+  font-family: BBardiya;
+  src: url("../fonts/BBardiya.eot");
+  src: url("../fonts/BBardiya.eot?#") format("embedded-opentype"), url("../fonts/BBardiya.woff") format("woff"), url("../fonts/BBardiya.ttf") format("truetype");
+  font-weight: 300; }
+@font-face {
+  font-family: BJalal;
+  src: url("../fonts/BJalal.eot");
+  src: url("../fonts/BJalal.eot?#") format("embedded-opentype"), url("../fonts/BJalal.woff") format("woff"), url("../fonts/BJalal.ttf") format("truetype"); }
+@font-face {
+  font-family: 'open-iconic';
+  src: url("../open-iconic-master/font/fonts/open-iconic.eot"); }
+body {
+  font-family: BJalal;
+  direction: rtl; }
+  body ul.errorlist {
+    color: #990000; }
+  body .center {
+    margin-left: auto;
+    margin-right: auto; }
+  body a {
+    color: black; }
+    body a:hover {
+      color: lightcoral;
+      text-decoration: none; }
+  body .container.text-right {
+    margin-top: 6%;
+    margin-bottom: 6%; }
+    body .container.text-right h4 {
+      color: #666; }
+    @media screen and (720) {
+      body .container.text-right {
+        margin-top: 20%; } }
+    @media screen and (1080) {
+      body .container.text-right {
+        margin-top: 10%; } }
+    @media screen and (1920) {
+      body .container.text-right {
+        margin-top: 6%; } }
+    body .container.text-right .nav {
+      display: inherit; }
+  body nav.navbar {
+    background-color: #800000; }
+  body nav.navbar-header.navbar a {
+    color: white; }
+
+#navbar-scroller {
+  position: fixed; }
+
+footer {
+  padding: 2%;
+  background-color: #e5e5e5; }
+
+/*body nav .btn:hover {*/
+/*background-color: dimgray;*/
+/*}*/
+body .panel-default ul.nav-pills {
+  height: 500px; }
+body .panel-default .nav {
+  display: inherit; }
+
+/*# sourceMappingURL=main1.css.map */
