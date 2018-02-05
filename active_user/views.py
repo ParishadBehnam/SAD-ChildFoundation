@@ -48,7 +48,6 @@ def home_madadjoo(request):
 
 @admin_login_required
 def home_admin(request):
-    report_to_hamyar()
     system = information.objects.first()
     return render(request, 'admin/home_admin.html', {'system': system})
 

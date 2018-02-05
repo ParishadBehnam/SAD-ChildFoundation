@@ -7,4 +7,3 @@ def timed_job():
     print('This job is run every three minutes.')
 
 sched.start()
-
