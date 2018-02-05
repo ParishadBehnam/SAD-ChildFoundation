@@ -21,8 +21,6 @@ class Command(BaseCommand):
                 for target_madadjoo in corr_madadjoos:
                     message += '\n' + target_madadjoo.first_name + " " + target_madadjoo.last_name + ": " + target_madadjoo.edu_status
 
-                print("here")
-
                 server = smtplib.SMTP('smtp.gmail.com', 587)
                 server.starttls()
                 server.login('childf2018', 'childF20182018')
