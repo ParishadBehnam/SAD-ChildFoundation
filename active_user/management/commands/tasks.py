@@ -16,7 +16,7 @@ class Command(BaseCommand):
                 corr_madadjoos = madadjoo.objects.filter(active_user_ptr__in=corr_madadjoos_ids)
 
                 for target_madadjoo in corr_madadjoos:
-                    message += '\n' + target_madadjoo.first_name + " " + target_madadjoo.lastname + ": " + target_madadjoo.edu_status
+                    message += '\n' + target_madadjoo.first_name + " " + target_madadjoo.last_name + ": " + target_madadjoo.edu_status
 
                 print("here")
 
