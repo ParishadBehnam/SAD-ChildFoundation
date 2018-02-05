@@ -1356,6 +1356,13 @@ def payment_reports_admin(request):
 
 
 @admin_login_required
+def own_payment_reports_admin(request):
+    deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
+    cash = admin_madadjoo_payment.objects.filter(admin_id=request.user.id).exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    return render(request, 'admin/payment_reports_mine.html', {'cash': cash})
+
+
+@admin_login_required
 def activity_report(request):
     madadjoo_stream = []
     for target_madadjoo in madadjoo.objects.all():
