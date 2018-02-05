@@ -1,9 +1,12 @@
 import django
+from django.conf import settings
+
+settings.configure()
 django.setup()
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 from active_user.models import madadjoo, hamyar, sponsership
-# from django.conf import settings
+
 
 sched = BlockingScheduler()
 
