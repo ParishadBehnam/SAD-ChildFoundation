@@ -24,7 +24,7 @@ from active_user.models import madadjoo, hamyar, madadkar, sponsership, \
     madadjoo_madadkar_letter, madadjoo_hamyar_letter, hamyar_madadjoo_meeting, \
     hamyar_system_payment, hamyar_madadjoo_payment, requirements, hamyar_madadjoo_non_cash, add_madadjoo_admin_letter, \
     madadkar_remove_madadjoo, urgent_need_admin_letter, admin_user, warning_admin_letter, active_user, \
-    substitute_a_madadjoo, request_for_change_madadkar
+    substitute_a_madadjoo, request_for_change_madadkar, admin_madadjoo_payment
 from system import models as system_models
 from system.models import information
 
@@ -224,7 +224,7 @@ def substitute_madadjoo(request):
     new_substitution.save()
 
     d = show_letters_hamyar(request)
-    d['success_message'] =  'مددجوی جدید با موفقیت تحت حمایت شما قرار گرفت.'
+    d['success_message'] = 'مددجوی جدید با موفقیت تحت حمایت شما قرار گرفت.'
     action.send(request.user, verb='حمایت از مددجو', target=target_madadjoo)
     return render(request, 'hamyar/inbox.html', d)
 
@@ -439,8 +439,10 @@ def show_letters_admin(request):
     add_madadjoo_letters = add_madadjoo_admin_letter.objects.exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     urgent_need_letters = urgent_need_admin_letter.objects.exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     admin_as_a_madadkar = madadkar.objects.get(id=request.user.id)
-    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar).exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
-    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False).exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    madadjoo_letters = madadjoo_madadkar_letter.objects.filter(madadkar=admin_as_a_madadkar).exclude(
+        madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    change_madadkar_letters = request_for_change_madadkar.objects.filter(confirmed=False).exclude(
+        madadjoo__active_user_ptr_id__in=deleted_madadjoos)
     return {'add_madadjoo_letters': add_madadjoo_letters, 'madadjoo_letters': madadjoo_letters,
             'urgent_need_letters': urgent_need_letters, 'change_madadkar_letters': change_madadkar_letters}
 
@@ -523,7 +525,7 @@ def confirm_hamyar_madadjoo_letter(request):
     d = show_letters_madadkar(request)
     d['success_message'] = 'درخواست ملاقات با موفقیت تایید گردید.'
     action.send(request.user, verb="درخواست ملاقات با مددجو را تایید کرد", action_object=target_hamyar,
-           target=target_madadjoo)
+                target=target_madadjoo)
     return render(request, 'madadkar/inbox.html', d)
 
 
@@ -552,6 +554,7 @@ def letter_content_hamyar(request):
 def show_letters_madadjoo(request):
     all_letters = hamyar_madadjoo_meeting.objects.filter(madadjoo_id=request.user.id, confirmed=True)
     return {'letters': all_letters}
+
 
 @madadjoo_login_required
 def letter_content_madadjoo(request):
@@ -749,7 +752,8 @@ def show_a_hamyar_madadjoo(request):
 def payment_reports_madadjoo(request):
     cash = hamyar_madadjoo_payment.objects.filter(madadjoo_id=request.user.id)
     non_cash = hamyar_madadjoo_non_cash.objects.filter(madadjoo_id=request.user.id)
-    return render(request, 'madadjoo/payment_reports.html', {'cash': cash,
+    admin_cash = admin_madadjoo_payment.objects.filter(madadjoo_id=request.user.id)
+    return render(request, 'madadjoo/payment_reports.html', {'cash': cash, 'admin_cash': admin_cash,
                                                              'non_cash': non_cash})
 
 
@@ -839,7 +843,7 @@ def admin_panel(request):
     if request.GET.get('success') == '1':
         print(request.user)
         return render(request, 'admin/admin_panel.html', {'success_message': request.user.first_name + ' ' +
-                                                                             request.user.last_name + ' عزیز، شما با موفقیت وارد حساب کاربری خود شدید :)'})
+                                                                             request.user.last_name + ' عزیز ، شما با موفقیت وارد حساب کاربری خود شدید :)'})
     elif request.GET.get('success') == '3':
         return render(request, 'admin/admin_panel.html',
                       {'success_message': 'پیغام شما با موفقیت به همیاران ارسال شد.'})
@@ -858,8 +862,51 @@ def show_a_madadjoo_admin(request):
     target_madadjoo = madadjoo.objects.get(username=request.GET.get('username', ''))
     needs = models.requirements.objects.filter(madadjoo_id=target_madadjoo.id)
     hamyars = hamyar.objects.filter(sponsership__madadjoo_id=target_madadjoo.id)
-    return render(request, 'admin/show_a_madadjoo.html',
-                  {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
+    if request.method == 'GET':
+        return render(request, 'admin/show_a_madadjoo.html',
+                      {'user': target_madadjoo, 'needs': needs, 'hamyars': hamyars})
+    else:
+        need_id = request.POST.get('need')
+        if need_id:
+            need = requirements.objects.get(id=need_id)
+            amount = request.POST.get('amount')
+            admin = admin_user.objects.get(id=request.user.id)
+            if amount != '':
+                if need.type:
+                    type = need.type
+                else:
+                    type = 'inst'
+                payment = admin_madadjoo_payment(madadjoo=target_madadjoo, admin=admin,
+                                                 amount=amount, type=type, need=need)
+                payment.save()
+
+                type = 'ماهانه' if type == 'mo' else 'سالانه' if type == 'ann' else 'موردی'
+                message = target_madadjoo.first_name + ' ' + target_madadjoo.last_name + ' عزیز، \n پرداخت از سوی ' + \
+                          'مدیر سامانه' + ' به مبلغ ' + \
+                          str(payment.amount) + ' تومان به صورت ' + type + ' در سامانه ثبت گردید.' + \
+                          '\n\nبنیاد حمایت از کودکان'
+                server = smtplib.SMTP('smtp.gmail.com', 587)
+                server.starttls()
+                server.login('childf2018', 'childF20182018')
+                msg = MIMEMultipart()
+                msg['From'] = 'childf2018@gmail.com'
+                msg['To'] = target_madadjoo.email
+                msg['Subject'] = 'ثبت پرداخت'
+                msg.attach(MIMEText(message, 'plain'))
+                server.send_message(msg)
+                server.quit()
+
+                action.send(request.user, verb='پرداخت به مددجو', target=target_madadjoo)
+
+                return render(request, 'admin/show_a_madadjoo.html', {'user': target_madadjoo, 'needs': needs,
+                                                                      'hamyars': hamyars,
+                                                                      'success_message': 'پرداخت شما با موفقیت انجام شد.'})
+            return render(request, 'admin/show_a_madadjoo.html', {'user': target_madadjoo, 'needs': needs,
+                                                                   'hamyars': hamyars,
+                                                                   'error_message': 'لطفا مبلغ مورد نظر خود را وارد کنید.'})
+        return render(request, 'admin/show_a_madadjoo.html', {'user': target_madadjoo, 'needs': needs,
+                                                               'hamyars': hamyars,
+                                                               'error_message': 'لطفا نیاز مورد نظر خود را علامت بزنید.'})
 
 
 @admin_login_required
@@ -937,7 +984,7 @@ def confirm_madadjoo_admin(request):
     target_letter.madadjoo.confirmed = True
     target_letter.madadjoo.save()
     target_letter.delete()
-    action.send(request.user, verb='مددجو را تایید کرد', target = target_letter.madadjoo)
+    action.send(request.user, verb='مددجو را تایید کرد', target=target_letter.madadjoo)
     d = show_letters_admin(request)
     d['success_message'] = "مددجوی انتخابی تایید شد."
     return render(request, 'admin/inbox.html', d)
@@ -1306,6 +1353,13 @@ def payment_reports_admin(request):
                                                           'system': system,
                                                           'cash_for_deleteds': cash_for_deleteds,
                                                           'non_cash_for_deleteds': non_cash_for_deleteds})
+
+
+@admin_login_required
+def own_payment_reports_admin(request):
+    deleted_madadjoos = madadkar_remove_madadjoo.objects.values('madadjoo_id')
+    cash = admin_madadjoo_payment.objects.filter(admin_id=request.user.id).exclude(madadjoo__active_user_ptr_id__in=deleted_madadjoos)
+    return render(request, 'admin/payment_reports_mine.html', {'cash': cash})
 
 
 @admin_login_required

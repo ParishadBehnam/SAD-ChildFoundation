@@ -1,0 +1,61 @@
+{% extends "hamyar/payment_reports.html" %}
+{% load tz %}
+
+{% block panel %}
+    <a class="nav-link" href="admin_panel">پنل مدیریت مدیر سامانه</a>
+{% endblock %}
+
+{% block cash %}
+    <div class="row bg-light">
+        <div class="col-2 rounded " style="height: 100%;">
+            <p class="list-group-item bg-light" style="border-color: white">مددجو</p>
+        </div>
+
+        <div class="col-3 rounded" style="height: 100%;">
+            <p class="list-group-item bg-light" style="border-color: white">از تاریخِ</p>
+        </div>
+
+        <div class="col-3 rounded" style="height: 100%;">
+            <p class="list-group-item bg-light" style="border-color: white">وجه پرداختی</p>
+        </div>
+
+        <div class="col-2 rounded" style="height: 100%;">
+            <p class="list-group-item bg-light" style="border-color: white">نوع پرداخت</p>
+        </div>
+    </div>
+
+    {% for help in cash %}
+        <div class="row">
+            <div class="col-2 rounded" style="height: 100%;">
+                <p class="list-group-item"
+                   style="border-color: white"><a
+                        href="{% url "show_a_madadjoo_admin" %}?username={{ help.madadjoo.username }}">{{ help.madadjoo.first_name }} {{ help.madadjoo.last_name }}</a>
+                </p>
+            </div>
+
+            <div class="col-3 rounded" style="height: 100%;">
+                <p class="list-group-item"
+                   style="border-color: white">{{ help.date }}</p>
+            </div>
+
+            <div class="col-3 rounded" style="height: 100%;">
+                <p class="list-group-item" style="border-color: white">{{ help.amount }} تومان</p>
+            </div>
+
+            <div class="col-2 rounded" style="height: 100%;">
+                <p class="list-group-item" style="border-color: white">
+                    {% if help.type == 'ann' %}
+                        سالانه
+                    {% elif help.type == 'mo' %}
+                        ماهانه
+                    {% else %}
+                        موردی
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block admin %}
+{% endblock %}
