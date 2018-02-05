@@ -18,7 +18,7 @@
                     </a>
                 </h4>
             </div>
-            <div id="cash" class="panel-collapse collapse in fade">
+            <div id="cash" class="panel-collapse collapse show fade">
                 <hr>
                 <div class="panel-body">
                     <div class="row bg-light">
@@ -50,7 +50,59 @@
                             </div>
 
                             <div class="col-md-3 rounded" style="height: 100%;">
-                                    <p class="list-group-item" style="border-color: white">{{ help.date }}</p>
+                                <p class="list-group-item" style="border-color: white">{{ help.date }}</p>
+                            </div>
+
+                            <div class="col-md-3 rounded" style="height: 100%;">
+                                <p class="list-group-item" style="border-color: white">{{ help.amount }} تومان</p>
+                            </div>
+
+                            <div class="col-md-3 rounded" style="height: 100%;">
+                                <p class="list-group-item" style="border-color: white">
+                                    {% if help.type == 'ann' %}
+                                        سالانه
+                                    {% elif help.type == 'mo' %}
+                                        ماهانه
+                                    {% else %}
+                                        موردی
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" href="#admin_cash">
+                        <h4><span aria-hidden="true"
+                                  style="margin-left:1%;"></span> وجوه دریافت‌شده از مدیر سامانه</h4>
+                    </a>
+                </h4>
+            </div>
+            <div id="admin_cash" class="panel-collapse collapse in fade">
+                <hr>
+                <div class="panel-body">
+                    <div class="row bg-light">
+                        <div class="col-md-3 rounded" style="height: 100%;">
+                            <p class="list-group-item bg-light" style="border-color: white">از تاریخِ</p>
+                        </div>
+
+                        <div class="col-md-3 rounded" style="height: 100%;">
+                            <p class="list-group-item bg-light" style="border-color: white">وجه دریافتی</p>
+                        </div>
+
+                        <div class="col-md-3 rounded" style="height: 100%;">
+                            <p class="list-group-item bg-light" style="border-color: white">نوع پرداخت</p>
+                        </div>
+                    </div>
+
+                    {% for help in admin_cash %}
+                        <div class="row">
+                            <div class="col-md-3 rounded" style="height: 100%;">
+                                <p class="list-group-item" style="border-color: white">{{ help.date }}</p>
                             </div>
 
                             <div class="col-md-3 rounded" style="height: 100%;">
@@ -81,7 +133,7 @@
                                   style="margin-left:1%;"></span>کمک‌های غیرنقدی دریافت‌شده</h4></a>
                 </h4>
             </div>
-            <div id="non_cash" class="panel-collapse collapse fade show">
+            <div id="non_cash" class="panel-collapse collapse fade in">
                 <hr>
                 <div class="panel-body">
                     <div id="non_cash" class="panel-collapse collapse in fade show">

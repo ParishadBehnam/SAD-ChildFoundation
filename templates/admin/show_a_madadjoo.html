@@ -1,6 +1,6 @@
 {% extends 'base_show_a_madadjoo.html' %}
 {% block panel %}
-    <a class="nav-link" href="admin_panel">پنل مدیریت مدیر سامانه</a>
+    <a class="nav-link" href="admin_panel" xmlns="http://www.w3.org/1999/html">پنل مدیریت مدیر سامانه</a>
 {% endblock %}
 {% block home_url %}
     <a class="nav-link" href="home_admin">خانه <span class="sr-only">(current)</span></a>
@@ -28,6 +28,10 @@
             {{ hamyar.first_name }} {{ hamyar.last_name }}
         </a>
     {% endfor %}
+    <p class="lead">
+        <a class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal1" href="#">ثبت پرداخت هزینه</a>
+        {% include "admin/pay_madadjoo_popup.html" %}
+    </p>
 {% endblock %}
 
 {% block right-side-navbar %}
