@@ -1,2 +1,2 @@
-task: python active_user/tasks.py
+task: python active_user/management/commands/tasks.py
 web: gunicorn ChildF.wsgi --log-file -

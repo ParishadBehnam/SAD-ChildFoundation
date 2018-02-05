@@ -1,14 +1,4 @@
-import django
-from django.conf import settings
-
-settings.configure()
-django.setup()
-
-from apscheduler.schedulers.blocking import BlockingScheduler
 from active_user.models import madadjoo, hamyar, sponsership
-
-
-sched = BlockingScheduler()
 
 @sched.scheduled_job('interval', seconds=10)
 def timed_job():
@@ -32,9 +22,3 @@ def timed_job():
         msg.attach(MIMEText(message, 'plain'))
         server.send_message(msg)
         server.quit()
-
-# settings.configure()
-sched.start()
-# class Command(django.core.management.base.BaseCommand):
-#     def handle(self):
-#         sched.start()
