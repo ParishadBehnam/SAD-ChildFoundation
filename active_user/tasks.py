@@ -1,6 +1,6 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
-from active_user.models import madadjoo, hamyar, sponsership
-from django.conf import settings
+# from active_user.models import madadjoo, hamyar, sponsership
+# from django.conf import settings
 
 sched = BlockingScheduler()
 
@@ -27,5 +27,5 @@ def timed_job():
         # server.send_message(msg)
         # server.quit()
 
-settings.configure()
+# settings.configure()
 sched.start()
