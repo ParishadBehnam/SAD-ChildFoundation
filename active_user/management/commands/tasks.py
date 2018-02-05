@@ -11,7 +11,7 @@ class Command(BaseCommand):
         from email.mime.multipart import MIMEMultipart
         from email.mime.text import MIMEText
 
-        @sched.scheduled_job('interval', seconds=10000000)
+        @sched.scheduled_job('interval', days=60)
         def timed_job():
             for target_hamyar in hamyar.objects.all():
                 message = target_hamyar.first_name + " " + target_hamyar.last_name + " عزیز شرح وضعیت تحصیلی مددجویان تحت حمایت شما در زیر آمده است"
