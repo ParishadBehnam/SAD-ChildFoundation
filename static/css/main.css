@@ -108,6 +108,10 @@ body .nav-pills .nav-link.active {
   background-color: #f0cdd0;
   color: black; }
 
+@media only screen and (max-width: 800px) {
+  nav.right-navbar {
+    background-color: black;
+    opacity: 0; } }
 @font-face {
   font-family: BYas;
   src: url("../fonts/BYas.eot") format("eot"), url("../fonts/BYas.woff") format("woff"), url("../fonts/BYas.ttf") format("truetype"); }
