@@ -8,6 +8,8 @@ class Command(BaseCommand):
 
         from active_user.models import madadjoo, hamyar, sponsership
         import smtplib
+        from email.mime.multipart import MIMEMultipart
+        from email.mime.text import MIMEText
 
         @sched.scheduled_job('interval', seconds=10)
         def timed_job():
